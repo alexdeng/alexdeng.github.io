@@ -1,0 +1,24 @@
+# Dependencies
+markdown:         kramdown
+pygments:         false
+
+# Permalinks
+permalink:        pretty
+
+# Setup
+title:            Alex(Shaojie) Deng
+tagline:          'alexdeng at live dot com'
+description:      'description here'
+url:              http://alexdeng.github.io
+baseurl:          '/'
+paginate:
+
+author:
+  name:           'Alex Deng'
+  url:            https://alexdeng.github.io
+
+# Custom vars
+version:          1.0.0
+
+github:
+  repo:           https://github.com/poole/lanyon
