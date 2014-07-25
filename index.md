@@ -9,9 +9,9 @@ markdown: kramdown
 
 
 
-<table style="border:0;width:730;">
+<table style="border:0;">
 <tr>
-<td style="border:0;background-color:#fff"><img src="{{ site.baseurl }}public/profile.jpg" alt="Shaojie" style="width: 2000px;"/></td>
+<td style="border:0;background-color:#fff"><img src="{{ site.baseurl }}public/profile.jpg" alt="Shaojie" style="width:200px;max-width:none"/></td>
 <td style="border:0;background-color:#fff">
 <table style="border:0">
 <tr><h1>Alex Deng</h1></tr>
