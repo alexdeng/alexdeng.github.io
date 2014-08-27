@@ -1,19 +1,7 @@
 ---
-layout: default
-title: Home
-markdown: kramdown
+layout: page
+title: Publications
 ---
-
-
-<h1>Alex Deng</h1>
-
-<div style="float: right;padding-left:15px;">
-  <img src="{{ site.baseurl }}public/profile.jpg" alt="Alex Shaojie Deng" title="Alex Deng" width="125px"/>
-</div>
-
-I'm a data and applied scientist on the [Microsoft Analysis and Experimentation Team](http://www.exp-platform.com). The Analysis and Experimentation team is responsible for one of the largest and best cutting-edge online experimentation system in the industry. [We are hiring!](http://www.exp-platform.com/Pages/hiring.aspx)
-
-I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequential Monte Carlo with [Prof. Tze Lai](https://statistics.stanford.edu/people/tze-leung-lai). I have broad interests in all kinds of statistical methods, web programing, data visualization and physics. 
 
 
 ## Selected Publications (newest first)
@@ -40,49 +28,8 @@ I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequenti
 -   Crossover Design in online experimentation  
     Yu Guo and Alex Deng. Working paper
 
-## Public Talks/Slides
--   [Essential Causual Inference Using Observational Data](http://rpubs.com/alexdeng/EssentialDnA)
-
-
-## Other
+## Other 
 -   [Finite User Pool Effect in Two Sample t-test of Controlled Experiments on the Web]({{site.baseurl}}public/files/interface2011-deng.pdf)    
     Shaojie Deng. Interface 2011.
 -   [Choice of the Randomization Unit in Online Controlled Experiment]({{site.baseurl}}public/files/jsm2011-deng.pdf)  
     Shaojie Deng, Roger Longbotham, Toby Walker and Ya Xu. JSM 2011.
-
-
-
-
-<!-- <div class="posts">
-  {% for post in paginator.posts %}
-  <div class="post">
-    <h1 class="post-title">
-      <a href="{{ post.url }}">
-        {{ post.title }}
-      </a>
-    </h1>
-
-    <span class="post-date">{{ post.date | date_to_string }}</span>
-
-    {{ post.content }}
-  </div>
-  {% endfor %}
-</div> -->
-
-<!-- <div class="pagination">
-  {% if paginator.next_page %}
-    <a class="pagination-item older" href="{{ site.baseurl }}page{{paginator.next_page}}">Older</a>
-  {% else %}
-    <span class="pagination-item older">Older</span>
-  {% endif %}
-  {% if paginator.previous_page %}
-    {% if paginator.page == 2 %}
-      <a class="pagination-item newer" href="{{ site.baseurl }}">Newer</a>
-    {% else %}
-      <a class="pagination-item newer" href="{{ site.baseurl }}page{{paginator.previous_page}}">Newer</a>
-    {% endif %}
-  {% else %}
-    <span class="pagination-item newer">Newer</span>
-  {% endif %}
-</div> -->
-
