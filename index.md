@@ -17,7 +17,8 @@ I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequenti
 
 
 ## Selected Publications (newest first)
-
+-   [Diluted Treatment Effect Estimation for Trigger Analysis in Online Controlled Experiments]({{site.baseurl}}public/files/wsdm2015-dilution.pdf) 
+    Alex Deng and Victor Hu. WSDM 2015.  
 -   [Seven Rules of Thumb for Web Site Experimenters](http://www.exp-platform.com/Pages/SevenRulesofThumbforWebSiteExperimenters.aspx)    
     Ron Kohavi, Alex Deng, Roger Longbotham, and Ya Xu. KDD 2014.
 -   [Statistical Inference in Two-stage Online Controlled Experiments with Treatment Selection and Validation](http://www.exp-platform.com/Documents/p609-deng.pdf)  
@@ -35,10 +36,8 @@ I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequenti
 
 
 ## Working papers
--   Diluted Treatment Effect Estimation for Trigger Analysis in Online Controlled Experiments  
-    Alex Deng and Victor Hu. Submitted.  
--   Crossover Design in online experimentation  
-    Yu Guo and Alex Deng. Working paper
+-   Flexible Online Repeated Measures Experiment  
+    Yu Guo and Alex Deng. Submitted
 
 ## Public Talks/Slides
 -   [Essential Causual Inference Using Observational Data](http://rpubs.com/alexdeng/EssentialDnA)
