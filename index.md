@@ -35,9 +35,9 @@ I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequenti
     Hock Peng Chan, Shaojie Deng and Tze-Leung Lai. Advances in Applied Probability 2012.
 
 
-## Working papers
+## Preprints And Working Papers
 -   Flexible Online Repeated Measures Experiment  
-    Yu Guo and Alex Deng. Submitted
+    Yu Guo and Alex Deng. [ArXiv](http://arxiv.org/abs/1501.00450)
 
 ## Public Talks/Slides
 -   [Essential Causual Inference Using Observational Data](http://rpubs.com/alexdeng/EssentialDnA)
