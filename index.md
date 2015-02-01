@@ -17,7 +17,7 @@ I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequenti
 
 
 ## Selected Publications (newest first)
--   [Diluted Treatment Effect Estimation for Trigger Analysis in Online Controlled Experiments]({{site.baseurl}}public/files/wsdm2015-dilution.pdf)  
+-   [Diluted Treatment Effect Estimation for Trigger Analysis in Online Controlled Experiments]({{site.baseurl}}public/files/wsdm2015-dilution.pdf) ([Slides]({{site.baseurl}}public/files/WSDM2015DilutionTalk.pdf))
     Alex Deng and Victor Hu. WSDM 2015.  
 -   [Seven Rules of Thumb for Web Site Experimenters](http://www.exp-platform.com/Pages/SevenRulesofThumbforWebSiteExperimenters.aspx)    
     Ron Kohavi, Alex Deng, Roger Longbotham, and Ya Xu. KDD 2014.
@@ -26,7 +26,7 @@ I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequenti
 -   [Online Controlled Experiments at Large Scale](http://www.exp-platform.com/Pages/ControlledExperimentsAtLargeScale.aspx)  
     Ron Kohavi, Alex Deng, Brian Frasca, Toby Walker, Ya Xu, Nils Pohlmann. KDD 2013.
 -   [Improving the Sensitivity of Online Controlled Experiments by Utilizing Pre-Experiment Data](http://www.exp-platform.com/Pages/CUPED.aspx)  
-    Alex Deng, Ya Xu, Ron Kohavi and Toby Walker. WSDM 2012.
+    Alex Deng, Ya Xu, Ron Kohavi and Toby Walker. WSDM 2013.
 -   [Trustworthy Online Controlled Experiments: Five Puzzling Outcomes Explained](http://www.exp-platform.com/Pages/PuzzlingOutcomesExplained.aspx)  
     Ron Kohavi, Alex Deng, Brian Frasca, Roger Longbotham, Toby Walker and Ya Xu. KDD 2012.
 -   [Sequential importance sampling and resampling for dynamic portfolio credit risk](http://statweb.stanford.edu/~ckirby/lai/pubs/2011_SequentialImportance.pdf)  
@@ -39,7 +39,7 @@ I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequenti
 -   Flexible Online Repeated Measures Experiment  
     Yu Guo and Alex Deng. [ArXiv](http://arxiv.org/abs/1501.00450)
 
-## Public Talks/Slides
+## Other Talks/Slides 
 -   [Essential Causual Inference Using Observational Data](http://rpubs.com/alexdeng/EssentialDnA)
 
 
