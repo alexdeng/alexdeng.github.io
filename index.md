@@ -8,7 +8,7 @@ markdown: kramdown
 <h1>Alex Deng</h1>
 
 <div style="float: right;padding-left:15px;">
-  <img src="{{ site.baseurl }}public/profile.jpg" alt="Alex Shaojie Deng" title="Alex Deng" width="125px"/>
+  <img src="{{ site.baseurl }}public/profile2_mono_sq.jpg" alt="Alex Shaojie Deng" title="Alex Deng" width="200px"/>
 </div>
 
 I'm a data and applied scientist on the [Microsoft Analysis and Experimentation Team](http://www.exp-platform.com). The Analysis and Experimentation team is responsible for one of the largest and best cutting-edge online experimentation system in the industry. I'm currently leading a team focusing on methodological improvements of the experimentation platform and tackling the related engineering challenges. [We are hiring!](http://www.exp-platform.com/Pages/hiring.aspx)
@@ -17,6 +17,8 @@ I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequenti
 
 
 ## Selected Publications (newest first)
+-   [Objective Bayesian Two Sample Hypothesis Testing]({{site.baseurl}}public/files/BayesianAB.pdf)    
+    Alex Deng. WWW 2015, The 1st Workshop on Offline and Online Evaluation of Web-based Services
 -   [Diluted Treatment Effect Estimation for Trigger Analysis in Online Controlled Experiments]({{site.baseurl}}public/files/wsdm2015-dilution.pdf) ([Slides]({{site.baseurl}}public/files/WSDM2015DilutionTalk.pdf))
     Alex Deng and Victor Hu. WSDM 2015.  
 -   [Seven Rules of Thumb for Web Site Experimenters](http://www.exp-platform.com/Pages/SevenRulesofThumbforWebSiteExperimenters.aspx)    
