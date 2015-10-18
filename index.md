@@ -42,6 +42,8 @@ I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequenti
     Yu Guo and Alex Deng. [ArXiv](http://arxiv.org/abs/1501.00450)
 
 ## Other Talks/Slides 
+-   [A/B Testing for the Next Decade: challenges, competitions and opportunities (Netflix U Talk)]({{site.baseurl}}public/files/NetflixUTalk.pdf)
+-   [Challenges in A/B Testing (Amazon Tech Talk)]({{site.baseurl}}public/files/Amazon%20Tech%20Talk.pdf)
 -   [Essential Causual Inference Using Observational Data](http://rpubs.com/alexdeng/EssentialDnA)
 
 
