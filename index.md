@@ -38,6 +38,8 @@ I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequenti
 
 
 ## Preprints And Working Papers
+-   Continuous Monitoring of A/B Tests without Pain: Optional Stopping in Bayesian Testing
+    Alex Deng, Jiannan Lu and Shouyuan Chen [ArXiv](http://arxiv.org/abs/1602.05549)
 -   Flexible Online Repeated Measures Experiment  
     Yu Guo and Alex Deng. [ArXiv](http://arxiv.org/abs/1501.00450)
 
