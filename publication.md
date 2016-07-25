@@ -5,13 +5,13 @@ title: Publications
 
 
 ## Selected Publications (newest first)
--   [Data-Driven Metric Development for Online Controlled Experiments: Seven Lessons Learned](http://www.kdd.org/kdd2016/papers/files/adf0853-dengA.pdf)
+-   [Data-Driven Metric Development for Online Controlled Experiments: Seven Lessons Learned](http://www.kdd.org/kdd2016/papers/files/adf0853-dengA.pdf)  
     Alex Deng, Xiaolin Shi. KDD 2016.
--   [Demystifying the Bias from Selective Inference: a Revisit to Dawid's Treatment Selection Problem](http://arxiv.org/abs/1601.05835) 
+-   [Demystifying the Bias from Selective Inference: a Revisit to Dawid's Treatment Selection Problem](http://arxiv.org/abs/1601.05835)  
     Jiannan Lu, Alex Deng. Statistics and Probability Letters.
--   [Objective Bayesian Two Sample Hypothesis Testing for Online Controlled Experiments]({{site.baseurl}}public/files/BayesianAB.pdf) ([Slides]({{site.baseurl}}public/files/OBA.pdf))    
+-   [Objective Bayesian Two Sample Hypothesis Testing for Online Controlled Experiments]({{site.baseurl}}public/files/BayesianAB.pdf) ([Slides]({{site.baseurl}}public/files/OBA.pdf))      
     Alex Deng. WWW 2015, The 1st Workshop on Offline and Online Evaluation of Web-based Services
--   [Diluted Treatment Effect Estimation for Trigger Analysis in Online Controlled Experiments]({{site.baseurl}}public/files/wsdm2015-dilution.pdf) ([Slides]({{site.baseurl}}public/files/WSDM2015DilutionTalk.pdf))
+-   [Diluted Treatment Effect Estimation for Trigger Analysis in Online Controlled Experiments]({{site.baseurl}}public/files/wsdm2015-dilution.pdf) ([Slides]({{site.baseurl}}public/files/WSDM2015DilutionTalk.pdf))  
     Alex Deng and Victor Hu. WSDM 2015.  
 -   [Seven Rules of Thumb for Web Site Experimenters](http://www.exp-platform.com/Pages/SevenRulesofThumbforWebSiteExperimenters.aspx)    
     Ron Kohavi, Alex Deng, Roger Longbotham, and Ya Xu. KDD 2014.
