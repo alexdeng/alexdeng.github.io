@@ -5,7 +5,14 @@ title: Publications
 
 
 ## Selected Publications (newest first)
-
+-   [Data-Driven Metric Development for Online Controlled Experiments: Seven Lessons Learned](http://www.kdd.org/kdd2016/papers/files/adf0853-dengA.pdf)
+    Alex Deng, Xiaolin Shi. KDD 2016.
+-   [Demystifying the Bias from Selective Inference: a Revisit to Dawid's Treatment Selection Problem](http://arxiv.org/abs/1601.05835) 
+    Jiannan Lu, Alex Deng. Statistics and Probability Letters.
+-   [Objective Bayesian Two Sample Hypothesis Testing for Online Controlled Experiments]({{site.baseurl}}public/files/BayesianAB.pdf) ([Slides]({{site.baseurl}}public/files/OBA.pdf))    
+    Alex Deng. WWW 2015, The 1st Workshop on Offline and Online Evaluation of Web-based Services
+-   [Diluted Treatment Effect Estimation for Trigger Analysis in Online Controlled Experiments]({{site.baseurl}}public/files/wsdm2015-dilution.pdf) ([Slides]({{site.baseurl}}public/files/WSDM2015DilutionTalk.pdf))
+    Alex Deng and Victor Hu. WSDM 2015.  
 -   [Seven Rules of Thumb for Web Site Experimenters](http://www.exp-platform.com/Pages/SevenRulesofThumbforWebSiteExperimenters.aspx)    
     Ron Kohavi, Alex Deng, Roger Longbotham, and Ya Xu. KDD 2014.
 -   [Statistical Inference in Two-stage Online Controlled Experiments with Treatment Selection and Validation](http://www.exp-platform.com/Documents/p609-deng.pdf)  
@@ -22,13 +29,13 @@ title: Publications
     Hock Peng Chan, Shaojie Deng and Tze-Leung Lai. Advances in Applied Probability 2012.
 
 
-## Working papers
--   Diluted Treatment Effect Estimation for Trigger Analysis in Online Controlled Experiments  
-    Alex Deng and Victor Hu. Submitted.  
--   Crossover Design in online experimentation  
-    Yu Guo and Alex Deng. Working paper
+## Preprints And Working Papers
+-   Continuous Monitoring of A/B Tests without Pain: Optional Stopping in Bayesian Testing  
+    Alex Deng, Jiannan Lu and Shouyuan Chen. [ArXiv](http://arxiv.org/abs/1602.05549)
+-   Flexible Online Repeated Measures Experiment  
+    Yu Guo and Alex Deng. [ArXiv](http://arxiv.org/abs/1501.00450)
 
-## Other 
+## Other (non-peer-reviewed) 
 -   [Finite User Pool Effect in Two Sample t-test of Controlled Experiments on the Web]({{site.baseurl}}public/files/interface2011-deng.pdf)    
     Shaojie Deng. Interface 2011.
 -   [Choice of the Randomization Unit in Online Controlled Experiment]({{site.baseurl}}public/files/jsm2011-deng.pdf)  

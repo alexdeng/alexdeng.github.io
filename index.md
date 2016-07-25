@@ -17,6 +17,10 @@ I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequenti
 
 
 ## Selected Publications (newest first)
+-   [Data-Driven Metric Development for Online Controlled Experiments: Seven Lessons Learned](http://www.kdd.org/kdd2016/papers/files/adf0853-dengA.pdf)
+    Alex Deng, Xiaolin Shi. KDD 2016.
+-   [Demystifying the Bias from Selective Inference: a Revisit to Dawid's Treatment Selection Problem](http://arxiv.org/abs/1601.05835) 
+    Jiannan Lu, Alex Deng. Statistics and Probability Letters.
 -   [Objective Bayesian Two Sample Hypothesis Testing for Online Controlled Experiments]({{site.baseurl}}public/files/BayesianAB.pdf) ([Slides]({{site.baseurl}}public/files/OBA.pdf))    
     Alex Deng. WWW 2015, The 1st Workshop on Offline and Online Evaluation of Web-based Services
 -   [Diluted Treatment Effect Estimation for Trigger Analysis in Online Controlled Experiments]({{site.baseurl}}public/files/wsdm2015-dilution.pdf) ([Slides]({{site.baseurl}}public/files/WSDM2015DilutionTalk.pdf))
@@ -49,7 +53,7 @@ I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequenti
 -   [Essential Causual Inference Using Observational Data](http://rpubs.com/alexdeng/EssentialDnA)
 
 
-## Other
+## Other (non-peer-reviewed) 
 -   [Finite User Pool Effect in Two Sample t-test of Controlled Experiments on the Web]({{site.baseurl}}public/files/interface2011-deng.pdf)    
     Shaojie Deng. Interface 2011.
 -   [Choice of the Randomization Unit in Online Controlled Experiment]({{site.baseurl}}public/files/jsm2011-deng.pdf)  
