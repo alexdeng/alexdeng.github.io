@@ -17,10 +17,12 @@ I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequenti
 
 
 ## Selected Publications (newest first)
+-   [Continuous monitoring of A/B tests without pain: Optional stopping in Bayesian testing]({{site.baseurl}}public/files/continuousMonitoring.pdf) ([ArXiv ver.](http://arxiv.org/abs/1602.05549))    
+    Alex Deng, Jiannan Lu, Shouyuan Chen. DSAA 2016.
 -   [Data-Driven Metric Development for Online Controlled Experiments: Seven Lessons Learned](http://www.kdd.org/kdd2016/papers/files/adf0853-dengA.pdf)  
     Alex Deng, Xiaolin Shi. KDD 2016.
 -   [Demystifying the Bias from Selective Inference: a Revisit to Dawid's Treatment Selection Problem](http://arxiv.org/abs/1601.05835)  
-    Jiannan Lu, Alex Deng. Statistics and Probability Letters.
+    Jiannan Lu, Alex Deng. Statistics and Probability Letters, 2016.
 -   [Objective Bayesian Two Sample Hypothesis Testing for Online Controlled Experiments]({{site.baseurl}}public/files/BayesianAB.pdf) ([Slides]({{site.baseurl}}public/files/OBA.pdf))      
     Alex Deng. WWW 2015, The 1st Workshop on Offline and Online Evaluation of Web-based Services
 -   [Diluted Treatment Effect Estimation for Trigger Analysis in Online Controlled Experiments]({{site.baseurl}}public/files/wsdm2015-dilution.pdf) ([Slides]({{site.baseurl}}public/files/WSDM2015DilutionTalk.pdf))  
