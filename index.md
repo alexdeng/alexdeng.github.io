@@ -17,6 +17,8 @@ I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequenti
 
 
 ## Selected Publications (newest first)
+-   [Trustworthy analysis of online A/B tests: Pitfalls, challenges and solutions (Draft Version)]({{site.baseurl}}public/files/WSDM2017draft.pdf)    
+    Alex Deng, Jiannan Lu, Jonathan Litz. To appear in WSDM 2017. 
 -   [Continuous monitoring of A/B tests without pain: Optional stopping in Bayesian testing]({{site.baseurl}}public/files/continuousMonitoring.pdf) ([ArXiv ver.](http://arxiv.org/abs/1602.05549))    
     Alex Deng, Jiannan Lu, Shouyuan Chen. DSAA 2016.
 -   [Data-Driven Metric Development for Online Controlled Experiments: Seven Lessons Learned](http://www.kdd.org/kdd2016/papers/files/adf0853-dengA.pdf)  
@@ -44,8 +46,8 @@ I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequenti
 
 
 ## Preprints And Working Papers
--   Continuous Monitoring of A/B Tests without Pain: Optional Stopping in Bayesian Testing  
-    Alex Deng, Jiannan Lu and Shouyuan Chen. [ArXiv](http://arxiv.org/abs/1602.05549)
+-   Concise Summarization of Heterogeneous Treatment Effect Using Total Variation Regularized Regression    
+    Alex Deng, Pengchuan Zhang, Shouyuan Chen, Dong Woo Kim and Jiannan Lu. [ArXiv](https://arxiv.org/abs/1610.03917)
 -   Flexible Online Repeated Measures Experiment  
     Yu Guo and Alex Deng. [ArXiv](http://arxiv.org/abs/1501.00450)
 

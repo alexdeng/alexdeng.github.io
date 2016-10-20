@@ -5,6 +5,8 @@ title: Publications
 
 
 ## Selected Publications (newest first)
+-   [Continuous monitoring of A/B tests without pain: Optional stopping in Bayesian testing]({{site.baseurl}}public/files/continuousMonitoring.pdf) ([ArXiv ver.](http://arxiv.org/abs/1602.05549))    
+    Alex Deng, Jiannan Lu, Shouyuan Chen. DSAA 2016.
 -   [Data-Driven Metric Development for Online Controlled Experiments: Seven Lessons Learned](http://www.kdd.org/kdd2016/papers/files/adf0853-dengA.pdf)  
     Alex Deng, Xiaolin Shi. KDD 2016.
 -   [Demystifying the Bias from Selective Inference: a Revisit to Dawid's Treatment Selection Problem](http://arxiv.org/abs/1601.05835)  
@@ -30,8 +32,8 @@ title: Publications
 
 
 ## Preprints And Working Papers
--   Continuous Monitoring of A/B Tests without Pain: Optional Stopping in Bayesian Testing  
-    Alex Deng, Jiannan Lu and Shouyuan Chen. [ArXiv](http://arxiv.org/abs/1602.05549)
+-   Concise Summarization of Heterogeneous Treatment Effect Using Total Variation Regularized Regression    
+    Alex Deng, Pengchuan Zhang, Shouyuan Chen, Dong Woo Kim and Jiannan Lu. [ArXiv](https://arxiv.org/abs/1610.03917)
 -   Flexible Online Repeated Measures Experiment  
     Yu Guo and Alex Deng. [ArXiv](http://arxiv.org/abs/1501.00450)
 
