@@ -22,7 +22,7 @@ factorial designs]({{site.baseurl}}public/files/STAPRO_7848_final.pdf)
 Jiannan Lu, Alex Deng. Statistics and Probability Letters, 2017. 
 -   [Trustworthy analysis of online A/B tests: Pitfalls, challenges and solutions (Draft Version)]({{site.baseurl}}public/files/WSDM2017draft.pdf)  
     Alex Deng, Jiannan Lu, Jonathan Litz. To appear in WSDM 2017. 
--   [Continuous monitoring of A/B tests without pain: Optional stopping in Bayesian testing]({{site.baseurl}}public/files/continuousMonitoring.pdf) ([ArXiv ver.](http://arxiv.org/abs/1602.05549))    
+-   [Continuous monitoring of A/B tests without pain: Optional stopping in Bayesian testing]({{site.baseurl}}public/files/continuousMonitoring.pdf)  ([ArXiv ver.](http://arxiv.org/abs/1602.05549))    
     Alex Deng, Jiannan Lu, Shouyuan Chen. DSAA 2016.
 -   [Data-Driven Metric Development for Online Controlled Experiments: Seven Lessons Learned](http://www.kdd.org/kdd2016/papers/files/adf0853-dengA.pdf)  
     Alex Deng, Xiaolin Shi. KDD 2016.
