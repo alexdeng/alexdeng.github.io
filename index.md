@@ -20,7 +20,7 @@ I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequenti
 -   [On randomization-based causal inference for matched-pair
 factorial designs]({{site.baseurl}}public/files/STAPRO_7848_final.pdf)  
 Jiannan Lu, Alex Deng. Statistics and Probability Letters, 2017. 
--   [Trustworthy analysis of online A/B tests: Pitfalls, challenges and solutions (Draft Version)]({{site.baseurl}}public/files/WSDM2017draft.pdf)  
+-   [Trustworthy analysis of online A/B tests: Pitfalls, challenges and solutions]({{site.baseurl}}public/files/wsdm2017-rup.pdf)  
     Alex Deng, Jiannan Lu, Jonathan Litz. To appear in WSDM 2017. 
 -   [Continuous monitoring of A/B tests without pain: Optional stopping in Bayesian testing]({{site.baseurl}}public/files/continuousMonitoring.pdf)  ([ArXiv ver.](http://arxiv.org/abs/1602.05549))    
     Alex Deng, Jiannan Lu, Shouyuan Chen. DSAA 2016.
