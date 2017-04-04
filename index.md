@@ -55,6 +55,7 @@ Jiannan Lu, Alex Deng. Statistics and Probability Letters, 2017.
     Yu Guo and Alex Deng. [ArXiv](http://arxiv.org/abs/1501.00450)
 
 ## Other Talks/Slides 
+-   [Trustworthy A/B Tests]({{site.baseurl}}public/files/ExpediaTestSummit.pdf)
 -   [A/B Testing for the Next Decade: challenges, competitions and opportunities (Netflix U Talk)]({{site.baseurl}}public/files/NetflixUTalk.pdf)
 -   [Challenges in A/B Testing (Amazon Tech Talk)]({{site.baseurl}}public/files/Amazon%20Tech%20Talk.pdf)
 -   [Essential Causual Inference Using Observational Data](http://rpubs.com/alexdeng/EssentialDnA)
