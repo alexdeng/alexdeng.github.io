@@ -50,8 +50,7 @@
         </section>
 
         <section id="causal-inference">
-          <span class="text-muted">Making good decisions and predictions requires</span>
-          <h2>causal inference</h2>
+          <h2>Making good decisions nees more than correlation</h2> 
           <p>
             <span class="fragment">Americans and English eat a lot of fat food. There is a high rate of cardiovascular diseases in US and UK.</span><br/>
             <span class="fragment">French eat a lot of fat food, but they have a low(er) rate of cardiovascular diseases.</span><br/>
@@ -89,7 +88,7 @@
           <span class="text-muted">The fundamental problem of</span>
           <h2>causal inference</h2>
           <ol>
-            <li class="fragment">Missing Data: We cannot expose units to both treatments <mark>simultaneously</mark></li>
+            <li class="fragment">Missing Data: We cannot expose units to both treatments <mark>simultaneously</mark>. We don't observe the <mark>counterfactual</mark></li>
             <li class="fragment">Noises: We don't directly observe <mark>underlying</mark> probabilities. Observations are noisy. </li>
             <li class="fragment">Sampling: We don't observe everyone. Only a sample. </li>
           </ol>
@@ -117,6 +116,20 @@
           <span class="fragment" data-method="toggle_repeat" trigger-hidden><small class="text-very-muted"><i class="glyphicon glyphicon-forward"></i></small></span>
         </section>
 
+        <section data-markdown id="explanation">
+          <script type="text/template">
+              - Each repeated experiment gives an estimated treatment effect
+              - In each experiment, counterfactuals are missing
+              - Randomization ensures they are missing completely at random, so partial data and full data follows the same distribution!
+              - For each individual, the expectation of the yes cases will be the true underlying probability
+
+              <p class="fragment">
+                The average treatment effect can be <mark>IDENTIFIED</mark> through randomization in expectation.
+              </p>              
+          </script>
+
+        </section>   
+
         <section id="app-expectation">
           <h3>Repeating the same experiment <small>(Expectation)</small></h3>
           <simulation v-bind:effect="0.1" display_true_effect display_observed_effect reveal_enabled></simulation>
@@ -126,25 +139,17 @@
           <span class="fragment" data-method="toggle_repeat" trigger-hidden><small class="text-very-muted"><i class="glyphicon glyphicon-forward"></i></small></span>
         </section>
 
-        <section id="expectation">
-          <span class="text-muted">Our answers will be correct</span>
-          <h2>in expectation</h2>
-          <p>
-            <span class="fragment">If we show A and B to random samples of the population,</span>
-            <span class="fragment">then on average the fraction of yes in both groups will be equal to the true underlying means,</span>
-            <span class="fragment">and on average across replications of the experiment the difference between the means will be equal to the <mark>average treatment effect</mark></span>
-          </p>
+        <section data-markdown id="noises">
+          <script type="text/template">
+              Randomzation gives us an identification strategy for the causal effect only in a form of expectation. 
+              
+              Our estimate for the treatment effect is still random due to other source of randomness.             
 
-          <aside class="notes">
-            - In expectation, the average of a random sample will approximate true mean of the population. i.e. Missing at random!
-            - In expectation, the fraction of yes will approximate underlying probability
-              - We do not need to observe the probabilities directly if we have the outcomes for individuals
-            - In expectation, the difference between averages will give us the ATE
-              - We do not need to measure the treatment effects of each individual participant
-          </aside>
-        </section>      
+              In reality we don't get to repeat the experiment so many times as we did in simulations. If we only observe one treatment effect estimate, what can we say about its unknown expectation?
+          </script>
+        </section>  
      
-        <section id="randomization">
+     <!--    <section id="randomization">
           <span class="text-muted">Randomization ensures only three things can</span>
           <h2>explain a difference</h2>
 
@@ -154,7 +159,7 @@
             <li class="fragment"><mark>Measurement error</mark> resulted in an unintended difference in results unrelated to user behaviour</li>
           </ol>
           <p class="fragment">Statistical methods help separate causation from noises</p>
-        </section>
+        </section> -->
 
         <section id="null-hypothesis">
           <span class="text-muted">We want to reject the</span>
@@ -357,10 +362,10 @@
             <p><small class="fragment">Jiannan Lu, Yixuan Qiu, Alex Deng 2018 "A note on type S/M errors in hypothesis testing"</small></p>
             </section>
         <section id="protocol">
-          <span class="text-muted">The importance of sticking to</span>
-          <h2>Protocol</h2>
+          <span class="text-muted">About Peeking and multiple testing</span>
+
           <p>
-            <span class="fragment">The methods described assume strict adherence to protocol;</span>
+            <span class="fragment">The methods described assume the PROTOCOL of testing one hypothesis with one analysis using one set of data;</span>
             <span class="fragment">violations of protocol such as <mark>peeking</mark> and <mark>multiple testing</mark> increase the type-I error rate</span>
           </p>
         </section>
@@ -417,6 +422,7 @@
             <li><small>Kohavi, R., Longbotham, R., Sommerfield, D. et al. 2009 “Controlled experiments on the web: survey and practical guide” Data Min Knowl Disc (2009) 18: 140. (<a href="http://bit.ly/expSurvey" target="_blank">link</a>)</small></li>
             <li><small>Alex Deng, Tianxi Li, Yu Guo 2014 “Statistical Inference in Two-Stage Online Controlled Experiments with Treatment Selection and Validation” WWW '14. 609–618.(<a href="http://www.exp-platform.com/Documents/p609-deng.pdf" target="_blank">link</a>)</small></li>
             <li><small>Jiannan Lu, Yixuan Qiu, Alex Deng 2018 "A note on type S/M errors in hypothesis testing"(<a href="https://psyarxiv.com/n53zs/download" target="_blank">link</a>)</small></li>
+            <li><small>Alex Deng, Jiannan Lu, Shouyuan Chen 2016 "Continuous monitoring of A/B tests without pain: Optional stopping in Bayesian testing"(<a href="https://arxiv.org/pdf/1602.05549" target="_blank">link</a>)</small></li>
           </ol>
         </section>
       </div>
@@ -456,12 +462,12 @@
       new Vue({ el: '#app-rubin-ate' });
 
       new Vue({ el: '#app-expectation' });
-      new Vue({ el: '#app-one-trial' });
-      new Vue({ el: '#app-one-trial-2' });
+      //new Vue({ el: '#app-one-trial' });
+      //new Vue({ el: '#app-one-trial-2' });
       new Vue({ el: '#app-type-i' });
       new Vue({ el: '#app-type-ii' });
       new Vue({ el: '#app-type-ii-2' });
-      new Vue({ el: '#app-type-ii-3' });
+      //new Vue({ el: '#app-type-ii-3' });
       new Vue({ el: '#app-type-ii-4' });
       new Vue({ el: '#app-type-m'});
       new Vue({ el: '#app-type-m2'});
@@ -469,7 +475,7 @@
       new Vue({ el: '#app-type-s'});
       new Vue({ el: '#app-multiple-testing' });
       new Vue({ el: '#app-multiple-testing-2' });
-      new Vue({ el: '#app-dice' });
+      //new Vue({ el: '#app-dice' });
 
       Reveal.addEventListener( 'fragmentshown', function( event ) {
         if (event.fragment.hasAttribute('data-method')) {
@@ -487,7 +493,7 @@
         EventBus.$emit('fragmentMethod', { id: 'app-type-i', method: 'toggle_repeat'});
         EventBus.$emit('fragmentMethod', { id: 'app-type-ii', method: 'toggle_repeat'});
         EventBus.$emit('fragmentMethod', { id: 'app-type-ii-2', method: 'toggle_repeat'});
-        EventBus.$emit('fragmentMethod', { id: 'app-type-ii-3', method: 'toggle_repeat'});
+        //EventBus.$emit('fragmentMethod', { id: 'app-type-ii-3', method: 'toggle_repeat'});
         EventBus.$emit('fragmentMethod', { id: 'app-type-ii-4', method: 'toggle_repeat'});
         EventBus.$emit('fragmentMethod', { id: 'app-type-m', method: 'toggle_repeat'});
         EventBus.$emit('fragmentMethod', { id: 'app-type-s', method: 'toggle_repeat'});
@@ -495,7 +501,7 @@
         EventBus.$emit('fragmentMethod', { id: 'app-type-m3', method: 'toggle_repeat'});
         EventBus.$emit('fragmentMethod', { id: 'app-multiple-testing', method: 'toggle_repeat'});
         EventBus.$emit('fragmentMethod', { id: 'app-multiple-testing-2', method: 'toggle_repeat'});
-        EventBus.$emit('fragmentMethod', { id: 'app-dice', method: 'toggle_repeat'});
+        //EventBus.$emit('fragmentMethod', { id: 'app-dice', method: 'toggle_repeat'});
       }
     </script>
   </body>
