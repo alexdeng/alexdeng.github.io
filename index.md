@@ -17,6 +17,8 @@ I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequenti
 
 
 ## Selected Publications (newest first)
+-   [A note on type S/M errors in hypothesis testing](https://onlinelibrary.wiley.com/doi/abs/10.1111/bmsp.12132)([psyarxiv](https://psyarxiv.com/n53zs/download?format=pdf))  
+    Jiannan Lu, Yixuan Qiu, Alex Deng. British Journal of Mathematical and Statistical Psychology 2018.
 -   [On randomization-based causal inference for matched-pair
 factorial designs]({{site.baseurl}}public/files/STAPRO_7848_final.pdf)  
 Jiannan Lu, Alex Deng. Statistics and Probability Letters, 2017. 
