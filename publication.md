@@ -5,13 +5,16 @@ title: Publications
 
 
 ## Selected Publications (newest first)
+-   [Applying the Delta Method in Metric Analytics: A Practical Guide with Novel Ideas]({{site.baseurl}}public/files/kdd2018-dm.pdf)  
+    Alex Deng, Ulf Knoblich, Jiannan Lu. KDD 2018.
+-   [The A/B Testing Problem](https://dl.acm.org/citation.cfm?id=3219204)  
+    Eduardo M Azevedo, Alex Deng, Jose Luis Montiel Olea, Justin Rao, E Glen Weyl. EC 2018
 -   [A note on type S/M errors in hypothesis testing](https://onlinelibrary.wiley.com/doi/abs/10.1111/bmsp.12132)([psyarxiv](https://psyarxiv.com/n53zs/download?format=pdf))  
     Jiannan Lu, Yixuan Qiu, Alex Deng. British Journal of Mathematical and Statistical Psychology 2018.
--   [On randomization-based causal inference for matched-pair
-factorial designs]({{site.baseurl}}public/files/STAPRO_7848_final.pdf)  
-Jiannan Lu, Alex Deng. Statistics and Probability Letters, 2017. 
+-   [On randomization-based causal inference for matched-pair factorial designs]({{site.baseurl}}public/files/STAPRO_7848_final.pdf)  
+    Jiannan Lu, Alex Deng. Statistics and Probability Letters, 2017. 
 -   [Trustworthy analysis of online A/B tests: Pitfalls, challenges and solutions]({{site.baseurl}}public/files/wsdm2017-rup.pdf)  
-    Alex Deng, Jiannan Lu, Jonathan Litz. To appear in WSDM 2017. 
+    Alex Deng, Jiannan Lu, Jonathan Litz. To appear in WSDM 2017.
 -   [Continuous monitoring of A/B tests without pain: Optional stopping in Bayesian testing]({{site.baseurl}}public/files/continuousMonitoring.pdf) ([ArXiv ver.](http://arxiv.org/abs/1602.05549))    
     Alex Deng, Jiannan Lu, Shouyuan Chen. DSAA 2016.
 -   [Data-Driven Metric Development for Online Controlled Experiments: Seven Lessons Learned](http://www.kdd.org/kdd2016/papers/files/adf0853-dengA.pdf)  

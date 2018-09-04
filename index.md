@@ -17,6 +17,10 @@ I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequenti
 
 
 ## Selected Publications (newest first)
+-   [Applying the Delta Method in Metric Analytics: A Practical Guide with Novel Ideas]({{site.baseurl}}public/files/kdd2018-dm.pdf)  
+    Alex Deng, Ulf Knoblich, Jiannan Lu. KDD 2018.
+-   [The A/B Testing Problem](https://dl.acm.org/citation.cfm?id=3219204)  
+    Eduardo M Azevedo, Alex Deng, Jose Luis Montiel Olea, Justin Rao, E Glen Weyl. EC 2018
 -   [A note on type S/M errors in hypothesis testing](https://onlinelibrary.wiley.com/doi/abs/10.1111/bmsp.12132)([psyarxiv](https://psyarxiv.com/n53zs/download?format=pdf))  
     Jiannan Lu, Yixuan Qiu, Alex Deng. British Journal of Mathematical and Statistical Psychology 2018.
 -   [On randomization-based causal inference for matched-pair
