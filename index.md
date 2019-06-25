@@ -11,12 +11,14 @@ markdown: kramdown
   <img src="{{ site.baseurl }}public/profile2_mono_sq.jpg" alt="Alex Shaojie Deng" title="Alex Deng" width="200px"/>
 </div>
 
-I'm a data and applied scientist on the [Microsoft Analysis and Experimentation Team](http://www.exp-platform.com). The Analysis and Experimentation team is responsible for one of the largest and best cutting-edge online experimentation system in the industry. I'm currently leading a team focusing on methodological improvements of the experimentation platform and tackling the related engineering challenges. [We are hiring!](http://www.exp-platform.com/Pages/hiring.aspx)
+I'm a data and applied scientist on the [Microsoft Analysis and Experimentation Team](http://www.exp-platform.com), part of the Cloud and AI platform. The Analysis and Experimentation team is responsible for one of the largest and best cutting-edge online experimentation system in the industry. I'm currently leading a team focusing on methodological improvements of the experimentation platform as well as tackling the related engineering challenges. My team and my works span the area of causal inference and online experimentation, Bayesian optimization, reinforcement learning, auto Machine Learning, recommender systems, high throughput distributed computing, compiler and data analysis pipelines.
 
-I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequential Monte Carlo with [Prof. Tze Lai](https://statistics.stanford.edu/people/tze-leung-lai). I have broad interests in all kinds of statistical methods, web programing, data visualization and physics. 
+I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequential Monte Carlo with [Prof. Tze Lai](https://statistics.stanford.edu/people/tze-leung-lai). 
 
 
 ## Selected Publications (newest first)
+-   [Empirical Bayes Estimation of Treatment Effects with Many A/B Tests: An Overview](http://www.joseluismontielolea.com/AEAPandP.pdf)  
+    Eduardo Azevedo, Alex Deng, Jose Montiel and Glen Weyl.  AEA Papers and Proceedings 2019
 -   [Applying the Delta Method in Metric Analytics: A Practical Guide with Novel Ideas]({{site.baseurl}}public/files/kdd2018-dm.pdf)  
     Alex Deng, Ulf Knoblich, Jiannan Lu. KDD 2018.
 -   [The A/B Testing Problem](https://dl.acm.org/citation.cfm?id=3219204)  
