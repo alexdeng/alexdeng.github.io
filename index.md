@@ -11,7 +11,7 @@ markdown: kramdown
   <img src="{{ site.baseurl }}public/profile2_mono_sq.jpg" alt="Alex Shaojie Deng" title="Alex Deng" width="200px"/>
 </div>
 
-I'm a data and applied scientist on the [Microsoft Analysis and Experimentation Team](http://www.exp-platform.com), part of the Cloud and AI platform. The Analysis and Experimentation team is responsible for one of the largest and best cutting-edge online experimentation system in the industry. I'm currently leading a team focusing on methodological improvements of the experimentation platform as well as tackling the related engineering challenges. My team and my works span the area of causal inference and online experimentation, Bayesian optimization, reinforcement learning, auto Machine Learning, recommender systems, high throughput distributed computing, compiler and data analysis pipelines.
+I'm a data and applied scientist on the [Microsoft Analysis and Experimentation Team](http://www.exp-platform.com), part of the Cloud and AI platform. The Analysis and Experimentation team is responsible for one of the largest and best cutting-edge online experimentation system in the industry. I'm currently leading a team focusing on methodological improvements of the experimentation platform as well as tackling the related engineering challenges. My team's and my works span the area of causal inference and online experimentation, Bayesian optimization, reinforcement learning, auto Machine Learning, recommender systems, high throughput distributed computing, compiler and data analysis pipelines.
 
 I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequential Monte Carlo with [Prof. Tze Lai](https://statistics.stanford.edu/people/tze-leung-lai). 
 
@@ -57,6 +57,8 @@ Jiannan Lu, Alex Deng. Statistics and Probability Letters, 2017.
 
 
 ## Preprints And Working Papers
+-   On Post-Selection Inference in A/B Tests    
+    Alex Deng, Yicheng Li and Jiannan Lu. [ArXiv](https://arxiv.org/abs/1910.03788)  
 -   Concise Summarization of Heterogeneous Treatment Effect Using Total Variation Regularized Regression    
     Alex Deng, Pengchuan Zhang, Shouyuan Chen, Dong Woo Kim and Jiannan Lu. [ArXiv](https://arxiv.org/abs/1610.03917)
 -   Flexible Online Repeated Measures Experiment  
