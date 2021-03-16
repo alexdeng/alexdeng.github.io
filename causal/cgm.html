@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Causal Graphical Model | Causal Inference and Its Applications in Online Industry</title>
+  <meta name="description" content="this is a draft book." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Causal Graphical Model | Causal Inference and Its Applications in Online Industry" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="this is a draft book." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Causal Graphical Model | Causal Inference and Its Applications in Online Industry" />
+  
+  <meta name="twitter:description" content="this is a draft book." />
+  
+
+<meta name="author" content="Alex Deng" />
+
+
+<meta name="date" content="2021-03-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="rcm.html"/>
+<link rel="next" href="regression-based-methods.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="libs/viz/viz.js"></script>
+<link href="libs/DiagrammeR-styles/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding/grViz.js"></script>
+
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Draft</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="part"><span><b>I Causal Inference: An Overview</b></span></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="simpson.html"><a href="simpson.html"><i class="fa fa-check"></i><b>2</b> Correlation and Simpson’s Paradox</a></li>
+<li class="chapter" data-level="3" data-path="randomintro.html"><a href="randomintro.html"><i class="fa fa-check"></i><b>3</b> Randomized Experiment</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="randomintro.html"><a href="randomintro.html#completerand"><i class="fa fa-check"></i><b>3.1</b> Complete Randomization</a></li>
+<li class="chapter" data-level="3.2" data-path="randomintro.html"><a href="randomintro.html#indrand"><i class="fa fa-check"></i><b>3.2</b> Independent Randomization</a></li>
+<li class="chapter" data-level="3.3" data-path="randomintro.html"><a href="randomintro.html#clusterrandomization"><i class="fa fa-check"></i><b>3.3</b> Clustered Randomization</a></li>
+<li class="chapter" data-level="3.4" data-path="randomintro.html"><a href="randomintro.html#aore"><i class="fa fa-check"></i><b>3.4</b> Analysis of Randomized Experiments as Two Sample Problem</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rcm.html"><a href="rcm.html"><i class="fa fa-check"></i><b>4</b> Potential Outcomes Framework</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="rcm.html"><a href="rcm.html#naive-estimation"><i class="fa fa-check"></i><b>4.1</b> Naive Estimation</a></li>
+<li class="chapter" data-level="4.2" data-path="rcm.html"><a href="rcm.html#randomization-and-unconfoundedness"><i class="fa fa-check"></i><b>4.2</b> Randomization and Unconfoundedness</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="rcm.html"><a href="rcm.html#matching"><i class="fa fa-check"></i><b>4.2.1</b> Conditional Unconfoundedness, Matching and Covariates Balancing</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="rcm.html"><a href="rcm.html#propensity-score"><i class="fa fa-check"></i><b>4.3</b> Propensity Score</a></li>
+<li class="chapter" data-level="4.4" data-path="rcm.html"><a href="rcm.html#sutva"><i class="fa fa-check"></i><b>4.4</b> SUTVA</a></li>
+<li class="chapter" data-level="4.5" data-path="rcm.html"><a href="rcm.html#missingdata"><i class="fa fa-check"></i><b>4.5</b> Missing Data and Weighted Samples</a></li>
+<li class="chapter" data-level="4.6" data-path="rcm.html"><a href="rcm.html#missing-data-mechanisms-and-ignorability"><i class="fa fa-check"></i><b>4.6</b> Missing Data Mechanisms and Ignorability</a></li>
+<li class="chapter" data-level="4.7" data-path="rcm.html"><a href="rcm.html#is"><i class="fa fa-check"></i><b>4.7</b> Importance Sampling</a></li>
+<li class="chapter" data-level="4.8" data-path="rcm.html"><a href="rcm.html#ipw"><i class="fa fa-check"></i><b>4.8</b> Inverse Propensity Score Weighting (IPW)</a></li>
+<li class="chapter" data-level="4.9" data-path="rcm.html"><a href="rcm.html#dr"><i class="fa fa-check"></i><b>4.9</b> Doubly Robust Estimation</a></li>
+<li class="chapter" data-level="4.10" data-path="rcm.html"><a href="rcm.html#bias-variance"><i class="fa fa-check"></i><b>4.10</b> Bias-Variance Trade off and Covariates Overlap</a></li>
+<li class="chapter" data-level="4.11" data-path="rcm.html"><a href="rcm.html#psmm"><i class="fa fa-check"></i><b>4.11</b> Other Propensity Score Modeling Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="cgm.html"><a href="cgm.html"><i class="fa fa-check"></i><b>5</b> Causal Graphical Model</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="cgm.html"><a href="cgm.html#structural-equation-model-causal-diagram-and-d-separation"><i class="fa fa-check"></i><b>5.1</b> Structural Equation Model, Causal Diagram and d-separation</a></li>
+<li class="chapter" data-level="5.2" data-path="cgm.html"><a href="cgm.html#the-do-operator"><i class="fa fa-check"></i><b>5.2</b> the <em>do</em> operator</a></li>
+<li class="chapter" data-level="5.3" data-path="cgm.html"><a href="cgm.html#the-back-door-criterion"><i class="fa fa-check"></i><b>5.3</b> The Back-door Criterion</a></li>
+<li class="chapter" data-level="5.4" data-path="cgm.html"><a href="cgm.html#causal-mechanism-and-the-front-door-criterion"><i class="fa fa-check"></i><b>5.4</b> Causal Mechanism and the Front-door Criterion</a></li>
+<li class="chapter" data-level="5.5" data-path="cgm.html"><a href="cgm.html#general-identification"><i class="fa fa-check"></i><b>5.5</b> General Identification Strategy</a></li>
+<li class="chapter" data-level="5.6" data-path="cgm.html"><a href="cgm.html#rcm-vs.-cgm"><i class="fa fa-check"></i><b>5.6</b> RCM vs. CGM</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="regression-based-methods.html"><a href="regression-based-methods.html"><i class="fa fa-check"></i><b>6</b> Regression-based Methods</a></li>
+<li class="part"><span><b>II Large Scale Online Controlled Experiments</b></span></li>
+<li class="chapter" data-level="7" data-path="abintro.html"><a href="abintro.html"><i class="fa fa-check"></i><b>7</b> A/B Testing: Beyond Randomized Experiments</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="abintro.html"><a href="abintro.html#specialaspects"><i class="fa fa-check"></i><b>7.1</b> Special Aspects of A/B Tests</a></li>
+<li class="chapter" data-level="7.2" data-path="abintro.html"><a href="abintro.html#telemetry"><i class="fa fa-check"></i><b>7.2</b> Instrumentation and Telemetry</a></li>
+<li class="chapter" data-level="7.3" data-path="abintro.html"><a href="abintro.html#common-pitfalls"><i class="fa fa-check"></i><b>7.3</b> Common Pitfalls</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="abstats.html"><a href="abstats.html"><i class="fa fa-check"></i><b>8</b> Statistical Analysis of A/B Tests</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="abstats.html"><a href="abstats.html#metric"><i class="fa fa-check"></i><b>8.1</b> Metric</a></li>
+<li class="chapter" data-level="8.2" data-path="abstats.html"><a href="abstats.html#randomization-unit-and-analysis-unit"><i class="fa fa-check"></i><b>8.2</b> Randomization Unit and Analysis Unit</a></li>
+<li class="chapter" data-level="8.3" data-path="abstats.html"><a href="abstats.html#abstatsover"><i class="fa fa-check"></i><b>8.3</b> Inference for Average Treatment Effect of A/B Tests</a></li>
+<li class="chapter" data-level="8.4" data-path="abstats.html"><a href="abstats.html#indvar"><i class="fa fa-check"></i><b>8.4</b> Independence Assumption and Variance Estimation</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="abstats.html"><a href="abstats.html#independence-assumption"><i class="fa fa-check"></i><b>8.4.1</b> Independence Assumption</a></li>
+<li class="chapter" data-level="8.4.2" data-path="abstats.html"><a href="abstats.html#variance-estimation-for-average-and-weighted-average"><i class="fa fa-check"></i><b>8.4.2</b> Variance Estimation for Average and Weighted Average</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="abstats.html"><a href="abstats.html#normalassumption"><i class="fa fa-check"></i><b>8.5</b> Central Limit Theorem and Normal Approximation</a></li>
+<li class="chapter" data-level="8.6" data-path="abstats.html"><a href="abstats.html#percentilevar"><i class="fa fa-check"></i><b>8.6</b> Confidence Interval and Variance Estimation for Percentile metrics</a></li>
+<li class="chapter" data-level="8.7" data-path="abstats.html"><a href="abstats.html#p-value-statistical-power-s-and-m-error"><i class="fa fa-check"></i><b>8.7</b> p-Value, Statistical Power, S and M Error</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="abstats.html"><a href="abstats.html#p-value"><i class="fa fa-check"></i><b>8.7.1</b> p-Value</a></li>
+<li class="chapter" data-level="8.7.2" data-path="abstats.html"><a href="abstats.html#statistical-power"><i class="fa fa-check"></i><b>8.7.2</b> Statistical Power</a></li>
+<li class="chapter" data-level="8.7.3" data-path="abstats.html"><a href="abstats.html#type-s-and-type-m-error"><i class="fa fa-check"></i><b>8.7.3</b> Type S and Type M Error</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="abstats.html"><a href="abstats.html#aoabchallenge"><i class="fa fa-check"></i><b>8.8</b> Statistical Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="abdiagnosis.html"><a href="abdiagnosis.html"><i class="fa fa-check"></i><b>9</b> System Diagnosis and Quality Checks for A/B Tests</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="abdiagnosis.html"><a href="abdiagnosis.html#system-validation-using-aa-test"><i class="fa fa-check"></i><b>9.1</b> System Validation using A/A Test</a></li>
+<li class="chapter" data-level="9.2" data-path="abdiagnosis.html"><a href="abdiagnosis.html#sample-ratio-mismatch"><i class="fa fa-check"></i><b>9.2</b> Sample Ratio Mismatch</a></li>
+<li class="chapter" data-level="9.3" data-path="abdiagnosis.html"><a href="abdiagnosis.html#trigger-and-filter-condition"><i class="fa fa-check"></i><b>9.3</b> Trigger and Filter Condition</a></li>
+<li class="chapter" data-level="9.4" data-path="abdiagnosis.html"><a href="abdiagnosis.html#interaction-detection"><i class="fa fa-check"></i><b>9.4</b> Interaction Detection</a></li>
+<li class="chapter" data-level="9.5" data-path="abdiagnosis.html"><a href="abdiagnosis.html#metric-denominator-mismatch"><i class="fa fa-check"></i><b>9.5</b> Metric Denominator Mismatch</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sensitivity.html"><a href="sensitivity.html"><i class="fa fa-check"></i><b>10</b> Improving Metric Sensitivity</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="sensitivity.html"><a href="sensitivity.html#metric-sensitivity-decomposition"><i class="fa fa-check"></i><b>10.1</b> Metric Sensitivity Decomposition</a></li>
+<li class="chapter" data-level="10.2" data-path="sensitivity.html"><a href="sensitivity.html#vrreg"><i class="fa fa-check"></i><b>10.2</b> Variance Reduction</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="sensitivity.html"><a href="sensitivity.html#cuped"><i class="fa fa-check"></i><b>10.2.1</b> Control Variates and CUPED</a></li>
+<li class="chapter" data-level="10.2.2" data-path="sensitivity.html"><a href="sensitivity.html#regadj"><i class="fa fa-check"></i><b>10.2.2</b> General Regression Adjustment and Doubly Robust Estimation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="misc-topics.html"><a href="misc-topics.html"><i class="fa fa-check"></i><b>11</b> Misc Topics</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="misc-topics.html"><a href="misc-topics.html#misc-deltamethod"><i class="fa fa-check"></i><b>11.1</b> Delta Method</a></li>
+<li class="chapter" data-level="11.2" data-path="misc-topics.html"><a href="misc-topics.html#misc-randomdenom"><i class="fa fa-check"></i><b>11.2</b> Random Denominator for Independent Randomization Experiments</a></li>
+<li class="chapter" data-level="11.3" data-path="misc-topics.html"><a href="misc-topics.html#misc-mestimator"><i class="fa fa-check"></i><b>11.3</b> M-Estimator and Z-Estimator</a></li>
+</ul></li>
+<li class="part"><span><b>III Appendix</b></span></li>
+<li class="chapter" data-level="12" data-path="probability-minimum.html"><a href="probability-minimum.html"><i class="fa fa-check"></i><b>12</b> Probability Minimum</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="probability-minimum.html"><a href="probability-minimum.html#probability"><i class="fa fa-check"></i><b>12.1</b> probability</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="probability-minimum.html"><a href="probability-minimum.html#app-conditional-ind"><i class="fa fa-check"></i><b>12.1.1</b> Conditional Independence</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://alexdeng.github.io" target="blank">Alex Deng</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Causal Inference and Its Applications in Online Industry</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="cgm" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Causal Graphical Model</h1>
+<p>Need more work to turn notes into readable chapter. Here is the outline of this section.</p>
+<ol style="list-style-type: decimal">
+<li>Law of physics is a set of formulas that allow us to model the causes and effects in a deterministic world. Structural equation model is the natural analogy that describes the data-generating-process of a set of random variables using a set of equations.<br />
+</li>
+<li>These models are often Markovian, i.e. each variable only affects its decedents and there is no cycles or loopy effect. Equivalently, any Markovian model can be factorized into a set of conditional probability models that corresponds to each structural equation.</li>
+<li>Many key information in a structural equation model can be visually encoded into a directed acyclic graph/Bayesian network, including many conditional and unconditional dependence relationships among these random variables. A useful tool called <em>d-separation</em> allows us to easily identify conditional and unconditional independence from the graph.</li>
+<li>The effect of changing a variable by intervention is called a <em>do</em> operation. <em>do</em> operation changes the factorized Markovian model into a truncated factorization. Knowing the truncated factorization allows us to study the effect of the <em>do</em> operation. The analysis of <em>do</em> operation is called <em>do</em> calculus. The goal of <em>do</em> calculus is to turn an expression with <em>do</em> operation into a <em>do-free</em> expression involving only observable variables so we can come up with an estimator.</li>
+<li>Front-door and Back-door criteria represents two different identification strategies and the morals of these two criteria can be extended to build up identification strategies for more complex graphs.</li>
+</ol>
+<div id="structural-equation-model-causal-diagram-and-d-separation" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Structural Equation Model, Causal Diagram and d-separation</h2>
+<p>A directed graph <span class="math inline">\(G\)</span> represents a set of vertices with arrowed connections. Mathematically it is a set of vertices <span class="math inline">\(V\)</span> and an edge set <span class="math inline">\(E\)</span> of
+<em>ordered</em> pairs of vertices where the ordering represents the direction of the arrow. Each vertex or node will correspond to a random variable. If the ordered pair <span class="math inline">\((X, Y)\in E\)</span> then there is an arrow pointing from <span class="math inline">\(X\)</span> to <span class="math inline">\(Y\)</span>, and we say <span class="math inline">\(X\)</span> is a <em>parent</em> of <span class="math inline">\(Y\)</span> and <span class="math inline">\(Y\)</span> is a <em>child</em> of <span class="math inline">\(X\)</span>. A <em>directed</em> path between two vertices is a path with arrows <em>all pointing to the same direction</em>. <span class="math inline">\(Z\)</span> is said to be a descendant of <span class="math inline">\(X\)</span> if there is a directed path leading from <span class="math inline">\(X\)</span> to <span class="math inline">\(Z\)</span>. A directed path that starts and ends with the same node is called a <em>cycle</em>. A directed graph is <em>acyclic</em> if it has no cycles. A directed graph <span class="math inline">\(G\)</span> without cycle is called a <em>directed acyclic graph</em> or <strong>DAG</strong>.</p>
+<p>For this chapter we forbid any cycles (loopy effect) and leave the analysis of feedback loops outside of our scope. From now on we only focus on DAG. A DAG <span class="math inline">\(G\)</span> with vertices <span class="math inline">\(V=(V_1,\dots,V_k)\)</span> is often associated with a Markovian model defined in the following.</p>
+
+<div class="definition">
+<span id="def:markovian" class="definition"><strong>Definition 5.1  (Markovian Model/Bayesian Belief Network)  </strong></span>If <span class="math inline">\(P\)</span> is distribution on <span class="math inline">\(V\)</span> with probability function <span class="math inline">\(f\)</span>, we say <span class="math inline">\(P\)</span> is
+<em>Markov to <span class="math inline">\(G\)</span></em>, or that <span class="math inline">\(G\)</span> represents <span class="math inline">\(P\)</span>, if
+<span class="math display" id="eq:markovfactorization">\[\begin{equation}
+f(v) = \prod_i f(v_i|\pi_i) \tag{5.1}
+\end{equation}\]</span>
+where <span class="math inline">\(\pi_i\)</span> is are parents of <span class="math inline">\(V_i\)</span>.
+</div>
+<p>Markovian models are also called Bayesian Networks or Belief Networks.</p>
+<p>When a distribution <span class="math inline">\(P\)</span> is Markov to a DAG <span class="math inline">\(G\)</span> ,the graph encodes part of the conditional independence structures. This means we can read conditional independences in the graph structure and these conditional independences must be true for the distribution. (We will show how to do that soon.) Unfortunately graph has limited expressiveness so it is <em>not</em> true that all conditional independences in a distribution <span class="math inline">\(P\)</span> can be represented in a graph, since some might depend on the special structure of <span class="math inline">\(f(v_i|p_i)\)</span>. Technically speaking, this makes the graph <span class="math inline">\(G\)</span> an <em>I-Map</em> of <span class="math inline">\(P\)</span> <span class="citation">(<a href="probability-minimum.html#ref-barber2012bayesian" role="doc-biblioref">D. Barber 2012</a>)</span>, meaning that the conditional independences induced by the graph is a subset of the set of all conditional independences for <span class="math inline">\(P\)</span>. We will shortly see that by adding more edges into a graph we will only reduce the set of conditional independences. So for any distribution <span class="math inline">\(P\)</span> we would like to find the <em>minimal</em> graph that is an <em>I-Map</em> of <span class="math inline">\(P\)</span>. Such graph is called a <em>minimal I-Map</em> — a graph that contains the most complete conditional independence relationships of <span class="math inline">\(P\)</span>.</p>
+<p>The type of conditional independences that can be expressed by the graph is the most important because it only requires the distribution to be factored as in Definition <a href="cgm.html#def:markovian">5.1</a> without extra assumptions on the specific factors <span class="math inline">\(f(v_i|\pi_i)\)</span> look like. In this sense the independence relationships represented by the graph is more general and robust.</p>
+<p>The complete study of DAG or even the loopy graph is the subject of graphical models. Interested readers with a taste for machine learning can refer to <span class="citation"><a href="probability-minimum.html#ref-barber2012bayesian" role="doc-biblioref">D. Barber</a> (<a href="probability-minimum.html#ref-barber2012bayesian" role="doc-biblioref">2012</a>)</span> or <span class="citation"><a href="probability-minimum.html#ref-Murphy2012" role="doc-biblioref">Murphy</a> (<a href="probability-minimum.html#ref-Murphy2012" role="doc-biblioref">2012</a>)</span> for a more detailed treatment of the subject. <span class="citation"><a href="probability-minimum.html#ref-allofstat" role="doc-biblioref">Wasserman</a> (<a href="probability-minimum.html#ref-allofstat" role="doc-biblioref">2003</a>)</span>, chap. 17 also provides a concise introduction. <span class="citation"><a href="probability-minimum.html#ref-lauritzen1996graphical" role="doc-biblioref">Lauritzen</a> (<a href="probability-minimum.html#ref-lauritzen1996graphical" role="doc-biblioref">1996</a>)</span> is more mathematics-heavy.</p>
+<p>The factorization property <a href="cgm.html#eq:markovfactorization">(5.1)</a> is equivalent to the following <em>Directed Local Markov Property</em> <span class="citation">(<a href="probability-minimum.html#ref-lauritzen1996graphical" role="doc-biblioref">Lauritzen 1996</a>)</span>.</p>
+
+<div class="theorem">
+<span id="thm:ld-markov" class="theorem"><strong>Theorem 5.1  (Directed Local Markov Property)  </strong></span>A distribution <span class="math inline">\(P\)</span> is Markov to a DAG <span class="math inline">\(G\)</span> <em>if and only if</em> for any variable <span class="math inline">\(V\)</span>
+<span class="math display" id="eq:markov-condition">\[\begin{equation}
+V \perp \! \! \! \! \perp nd(V) | \pi_V \tag{5.2}
+\end{equation}\]</span>
+where <span class="math inline">\(\pi_V\)</span> is parents of <span class="math inline">\(V\)</span> and <span class="math inline">\(nd(V)\)</span> is all other variables that are not <span class="math inline">\(V\)</span>’s descendants.
+</div>
+<p>A full proof can be found in <span class="citation">(<a href="probability-minimum.html#ref-lauritzen1996graphical" role="doc-biblioref">Lauritzen 1996</a>)</span>. But <a href="cgm.html#eq:markov-condition">(5.2)</a> is intuitively easy to understand. It confirms <span class="math inline">\(V\)</span> can only influence its descendants and also its dependency to its ancestors are only through its direct parents <span class="math inline">\(\pi_V\)</span>. So given <span class="math inline">\(\pi_V\)</span>, <span class="math inline">\(V\)</span> is independent of its non-descendants. Note that it is trivial that <a href="cgm.html#eq:markov-condition">(5.2)</a> is equivalent to
+<span class="math display">\[
+V \perp \! \! \! \! \perp nd(V)\backslash \pi_V | \pi_V
+\]</span>
+since <span class="math inline">\(\pi_V\)</span> is already given. We will give a proof of the <em>only if</em> part using d-separation in the end of this section.</p>
+<p>Next we will see how we can read conditional independences from a graph. No mater how complicated the DAG is, there are only 3 core patterns we need to know: The chain, the fork and the collider.</p>
+<p>The simplest form is the chain (Figure <a href="cgm.html#fig:mediation">5.1</a>), also known as “Mediation.”</p>
+<div class="figure"><span id="fig:mediation"></span>
+<div id="htmlwidget-fbfddd9e57de2ecc63ed" style="width:672px;height:80px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fbfddd9e57de2ecc63ed">{"x":{"diagram":"\ndigraph {\ngraph [layout = dot, overlap = false, rankdir = LR]\n  node [shape = circle, fontname = Helvetica]\n  A->B; B->C\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 5.1: The chain pattern.
+</p>
+</div>
+<p>In a chain as in Figure <a href="cgm.html#fig:mediation">5.1</a>, all information in A for predicting C has been included in B. We have the following conditional independence:
+<span class="math display">\[
+A \perp C | B.
+\]</span></p>
+<p>The second form is the fork (Figure <a href="cgm.html#fig:mutualdepend">5.2</a>). also known as “Mutual Dependence.”</p>
+<div class="figure"><span id="fig:mutualdepend"></span>
+<div id="htmlwidget-728436f732e10030d9ec" style="width:672px;height:200px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-728436f732e10030d9ec">{"x":{"diagram":"\ndigraph {\ngraph [layout = dot, overlap = false]\n  node [shape = circle, fontname = Helvetica]\n  A->B; A->C\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 5.2: The fork pattern.
+</p>
+</div>
+<p>We have already seen Figure <a href="cgm.html#fig:mutualdepend">5.2</a> earlier in an explanation of Simpson’s paradox where <span class="math inline">\(A\)</span> is a confounder. In a fork, conditioning on the common dependence/confounder <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> and <span class="math inline">\(C\)</span> are conditionally independent. But they are not marginally independent. In other words, <span class="math inline">\(B \perp C | A\)</span> but <span class="math inline">\(B \perp C\)</span> is generally not true. This is an example of</p>
+<p><em>Conditional Independence <span class="math inline">\(\nRightarrow\)</span> Marginal Independence!</em></p>
+<p>The last pattern is collider (Figure <a href="cgm.html#fig:mc">5.3</a>), also known as “Mutual Causation.” In Figure <a href="cgm.html#fig:mc">5.3</a>, <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are marginally independent and <span class="math inline">\(C\)</span>’s distribution is affected by values of <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> together.</p>
+<div class="figure"><span id="fig:mc"></span>
+<div id="htmlwidget-72aa91ca58e9e33373f2" style="width:672px;height:200px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-72aa91ca58e9e33373f2">{"x":{"diagram":"\ndigraph {\ngraph [layout = dot, overlap = false]\n  node [shape = circle, fontname = Helvetica]\n  A->C; B->C\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 5.3: The collider pattern.
+</p>
+</div>
+<p>This pattern is the most interesting as it provides a result that is a bit counter intuitive: <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are not independent conditioned on <span class="math inline">\(C\)</span> although without observing <span class="math inline">\(C\)</span> they are independent. This is an example of</p>
+<p><em>Marginal Independence <span class="math inline">\(\nRightarrow\)</span> Conditional Independence!</em></p>
+<p>The interpretation of why <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are conditionally dependent is often referred to as he <em>“explain away”</em> effect. We use an interesting example from <span class="citation"><a href="probability-minimum.html#ref-jordan2004graphical" role="doc-biblioref">Jordan</a> (<a href="probability-minimum.html#ref-jordan2004graphical" role="doc-biblioref">2004</a>)</span> to make the explanation more palatable.</p>
+<p>Your friend appears to be late for a meeting with you. There are two explanations: she was abducted by aliens or you forgot to set your watch ahead one hour for daylight savings time. Figure <a href="cgm.html#fig:mc-alien">5.4</a> shows this in a collider pattern.</p>
+<div class="figure"><span id="fig:mc-alien"></span>
+<div id="htmlwidget-3379a37820cbb49aeaa2" style="width:672px;height:200px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3379a37820cbb49aeaa2">{"x":{"diagram":"\ndigraph {\ngraph [layout = dot, overlap = false]\n  node [shape = circle, fontname = Helvetica]\n  Alien->Late; Watch->Late\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 5.4: The alien abduction example <span class="citation">(<a href="probability-minimum.html#ref-jordan2004graphical" role="doc-biblioref">Jordan 2004</a>)</span>.
+</p>
+</div>
+<p>In a world where Alien abduction is possible although unlikely. Let’s say that the probability of your friend showing up late due to alien abduction is extremely small. However, if you also realized that you have forgotten to set your watch to adjust for daylight saving time, you will be almost certain that this is the reason why your friend showing up “late” and the probability of your friend being abducted by alien is further reduced. The fact that your forgot to set your watch <em>explained away</em> the other potential cause of an alien abduction. On the contrary, if you check your watch and realize that you have already set your watch, and for illustration purpose let’s assume there is no other possible cause of your friend being late except alien abduction, then you are certain that your friend has been abducted by alien, no matter how small the chance it originally was. :</p>
+<blockquote>
+<p>Once you eliminate the impossible, whatever remains, no matter how improbable, must be the truth.</p>
+<p>— Sherlock Holmes</p>
+</blockquote>
+<p>In this example, conditioned on the fact that your friend showed up late (<span class="math inline">\(C\)</span>), information of whether you have set your watch (<span class="math inline">\(A\)</span>) changes your belief of whether your friend has been taken by aliens (<span class="math inline">\(B\)</span>). This means the conditional distribution of <span class="math inline">\(B\)</span> given <span class="math inline">\(A\)</span> and <span class="math inline">\(C\)</span> is different from the distribution of <span class="math inline">\(B\)</span> given <span class="math inline">\(C\)</span> alone — <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is not independent given <span class="math inline">\(C\)</span>!</p>
+<p>These three patterns are all we need to identify conditional and unconditional dependence in a Causal Diagram, as shown in the next Theorem.</p>
+
+<div class="theorem">
+<p><span id="thm:d-separation" class="theorem"><strong>Theorem 5.2  (d-separation)  </strong></span>A set <span class="math inline">\(S\)</span> of vertices is said to <em>block</em> a path <span class="math inline">\(p\)</span> if either of the following two condition is satisfied:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(p\)</span> contains at least one arrow-emitting node (middle node in a chain or a fork pattern) that is in <span class="math inline">\(S\)</span>.</li>
+<li><span class="math inline">\(p\)</span> contains at least one collision node (middle node in a collider pattern) that is outside <span class="math inline">\(S\)</span> and has no descendant in <span class="math inline">\(S\)</span>.</li>
+</ol>
+<p>If <span class="math inline">\(S\)</span> blocks all paths from <span class="math inline">\(X\)</span> to <span class="math inline">\(Y\)</span>, it is said to “d-separate <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.” Two set <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are said to be d-separated by <span class="math inline">\(S\)</span> if any pair <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> from the two sets are d-separated by <span class="math inline">\(S\)</span>. If so, then we have the following <em>directed global Markov property</em>:
+<span class="math display" id="eq:dgmp">\[\begin{equation}
+A \perp \! \! \! \! \perp B | S \tag{5.3}
+\end{equation}\]</span></p>
+<span class="math inline">\(S\)</span> can be an empty set and the independence becomes unconditional.
+</div>
+<p>The first condition of d-separation basically says information can flow through a chain or a fork and the only way to block it is to condition on the arrow-emitting node. The second condition is somewhat the opposite, it says for a collider pattern information is naturally blocked unless the collision node or any of its descendant is observed and creates the “explained away” effect previously introduced. For make two sets of variable <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> independent we need to condition on a blocking set <span class="math inline">\(S\)</span> that blocks all paths from <span class="math inline">\(X\)</span> to <span class="math inline">\(Y\)</span>. d-separation is hence very natural and intuitive once we master the three basic pattern and understand the special case of the collider pattern.</p>
+<p>It can be shown <span class="citation">(<a href="probability-minimum.html#ref-lauritzen1996graphical" role="doc-biblioref">Lauritzen 1996</a>)</span> that the global Markov property <a href="cgm.html#eq:dgmp">(5.3)</a> and the local Markov property <a href="cgm.html#eq:markov-condition">(5.2)</a> are all equivalent to the factorization property <a href="cgm.html#eq:markovfactorization">(5.1)</a>. Here we show Theorem <a href="cgm.html#thm:d-separation">5.2</a> implies <a href="cgm.html#eq:markov-condition">(5.2)</a> to illustrate the usage of d-separation.</p>
+<p>Let <span class="math inline">\(\widetilde{V}\)</span> be <span class="math inline">\(nd(V) \backslash \pi_V\)</span>. Any path connecting <span class="math inline">\(\widetilde{V}\)</span> and <span class="math inline">\(V\)</span> must be either through a back-door path (starting with an arrow pointing to <span class="math inline">\(V\)</span>), or a front-door path (starting with an arrow emitting from <span class="math inline">\(V\)</span>). All back-door paths are blocked by <span class="math inline">\(\pi_V\)</span> already. For front-door paths, since <span class="math inline">\(\widetilde{V}\)</span> has no descendants of <span class="math inline">\(V\)</span>, there is no directed path from <span class="math inline">\(V\)</span> to <span class="math inline">\(\widetilde{V}\)</span>. Because front-door paths start with arrow emitting from <span class="math inline">\(X\)</span>, any path that is <em>not directed</em> connecting <span class="math inline">\(V\)</span> to <span class="math inline">\(\widetilde{V}\)</span> must have a collider vertex which is a descendant of <span class="math inline">\(V\)</span>. This vertex and all its descendants are also descendants of <span class="math inline">\(V\)</span> hence cannot be part of <span class="math inline">\(\widetilde{V}\)</span>. So all front-door paths are also d-separated. We have shown all paths connecting <span class="math inline">\(V\)</span> and <span class="math inline">\(\widetilde{V}\)</span> are d-separated by <span class="math inline">\(\pi_V\)</span>. By Theorem <a href="cgm.html#thm:d-separation">5.2</a>, this proves <span class="math inline">\(V \perp \! \! \! \! \perp nd(V)\backslash \pi_V | \pi_V\)</span> which is equivalent to <a href="cgm.html#eq:markov-condition">(5.2)</a>.</p>
+</div>
+<div id="the-do-operator" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> the <em>do</em> operator</h2>
+<p>The central difference of the causal graphical model (CGM) and the potential framework is how the concept of change with intervention is modeled. In potential framework, we augment the probability distribution by hypothesizing a counterfactual pair that represents all potential outcomes when different interventions were to be applied. This way we conceptually circumvent the issue of understanding how forcing a change through intervention will affect the joint distribution <span class="math inline">\(P\)</span> itself. In CGM, because the factorization of a distribution <span class="math inline">\(P\)</span> encodes how random variables locally affects each other, we can <em>directly</em> analyze the probability distribution generated by the intervention. We call this generated distribution the <em>post-intervention distribution</em>. The intervention operation is called the <em>do</em> operator.</p>
+<p>If we know how to handle the <em>do</em> operator and can calculate <span class="math inline">\(P(Y|do(X=x))\)</span> for all <span class="math inline">\(x\)</span>, then we can answer any causal question about the change of <span class="math inline">\(X\)</span> to <span class="math inline">\(Y\)</span>. For example, ATE of changing <span class="math inline">\(X\)</span> from <span class="math inline">\(X_0\)</span> to <span class="math inline">\(X_1\)</span> is just
+<span class="math display">\[
+E(Y|do(X=x_1)) - E(Y|do(X=x_0)).
+\]</span>
+The calculations involving the <em>do</em> operator is called <em>do</em> calculus. The goal of <em>do</em> calculus is to transform an expression with <em>do</em> operator into a <em>do-free</em> expression which only involves observable variables. This is analogous to potential outcomes framework where we need to transform expressions involving counterfactuals into a counterfactual-free expression.</p>
+<p>To handle the <em>do</em> operator, we need to understand the post-intervention distribution. The following theorem characterizes the post-intervention distribution <span class="math inline">\(P(V|do(X=x))\)</span>, i.e. the new probability distribution governs <span class="math inline">\(V\)</span> after we manually fix <span class="math inline">\(X\)</span> to be <span class="math inline">\(x\)</span>.</p>
+
+<div class="theorem">
+<p><span id="thm:truncated-fac" class="theorem"><strong>Theorem 5.3  (Truncated factorization)  </strong></span>For any distribution <span class="math inline">\(P\)</span> (with probability function <span class="math inline">\(f\)</span>) Markov to a DAG <span class="math inline">\(G\)</span>, the post-intervention distribution <span class="math inline">\(P^*\)</span> generated by an intervention <span class="math inline">\(do(X=x)\)</span> has its probability function <span class="math inline">\(f^*\)</span> given by the truncated factorization
+<span class="math display" id="eq:truncated-fac">\[\begin{equation}
+ f^*(v_1,\dots,v_k) =\prod_{i|V_i\notin X} f(v_i|\pi_i)|_{X=x}, \tag{5.4}
+\end{equation}\]</span>
+where <span class="math inline">\(f(v_i|\pi_i)|_{X=x}\)</span> is the original conditional probability of <span class="math inline">\(v_i\)</span> given its parents <span class="math inline">\(\pi\)</span> with any parents in <span class="math inline">\(X\)</span> is fixed according to the intervention <span class="math inline">\(X=x\)</span>.</p>
+Graphically, the effect of <span class="math inline">\(do(X=x)\)</span> is to remove all arrow from <span class="math inline">\(X\)</span>’s parents to <span class="math inline">\(X\)</span> in <span class="math inline">\(G\)</span> and then condition on <span class="math inline">\(X=x\)</span>. <a href="cgm.html#eq:truncated-fac">(5.4)</a> is equivalent to the following
+<span class="math display" id="eq:truncated-fac2">\[\begin{equation}
+P(v_1,\dots,v_k|do(X=x)) = \frac{P(v_1,\dots,v_k)}{P(X=x|\pi_X)}, \tag{5.5}
+\end{equation}\]</span>
+where the denominator <span class="math inline">\(P(X=x|\pi_X)\)</span> is the removed arrow.
+</div>
+<p>With Theorem <a href="cgm.html#thm:truncated-fac">5.3</a>, it seems the problem of causal inference in a DAG has been solved because we have derived the post-intervention distribution only using the factors <span class="math inline">\(f(v_i|\pi_i)\)</span> in the original distribution. If we know these factors, we can perform any <em>do</em> calculus with ease.</p>
+<p>Conceptually the answer is yes. But practically Theorem <a href="cgm.html#thm:truncated-fac">5.3</a> alone can rarely be useful as a formula for <span class="math inline">\(P(Y|do(X=x))\)</span>. To use the truncated factorization, we need to observe all random variables in the DAG or at least the sub graph that contains all ancestors and descendants of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span><a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a>. But in reality we are always limited by the amount of measurements we can gather and there are almost always nodes in the DAG that are not observed. Many vertices and edges are added to the graph to account for unknown dependency links and to register the existence of certain unknown confounder. It is often true that for the purpose of studying causal relationship for two nodes <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, many details in the graph are irrelevant and can be simplified or ignored. For this reason, a simple identification strategy requiring only a small set of observations is desired.</p>
+<p>In the potential outcome framework, we have seen that the key is to condition on a set of covariates <span class="math inline">\(X\)</span> that meets the conditional unconfoundedness condition (Definition <a href="rcm.html#def:ignorability">4.3</a>). In CGM, with a DAG and the understanding of the <em>post-intervention</em> distribution, a similar idea is to find a set <span class="math inline">\(S\)</span> such that <span class="math inline">\(P(Y|do(X=x),S=s) = P(Y|X=x, S=s)\)</span>. This is called the back-door criterion. A different strategy called the front-door criterion identifies a set <span class="math inline">\(S\)</span> such that <span class="math inline">\(P(Y|do(X=x),S=s) = P(Y|do(S=s))\)</span> where <span class="math inline">\(P(Y|do(S=s))\)</span> can be easily identified.</p>
+<p>The back-door and front-door criterion are special cases or more general methods based on rules of <em>do</em> operations. We introduce back-door and front-door criterion in the next two sections. These two criterion have conceptual importance and can be directly applied for causal effect identification in many simple graphs. They also help building up intuitions to facilitate our discussion of more general strategies.</p>
+</div>
+<div id="the-back-door-criterion" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> The Back-door Criterion</h2>
+<p>We first introduce the Back-door criterion which is closely related to conditional unconfoundedness in the potential outcome framework.</p>
+<p>Equation <a href="cgm.html#eq:truncated-fac2">(5.5)</a> shows the only changes a <em>do</em> operation make on <span class="math inline">\(P\)</span> beyond conditioning <span class="math inline">\(X\)</span> on a fixed value is to remove all arrows from <span class="math inline">\(X\)</span>’s parents <span class="math inline">\(\pi_X\)</span> to <span class="math inline">\(X\)</span>. Denote the post-intervention distribution by <span class="math inline">\(P(\cdot|do(X=x))\)</span>. There are two simple facts we can directly derive from <a href="cgm.html#eq:truncated-fac2">(5.5)</a>:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(P(\pi_X=t|do(X=x)) = P(\pi_X=t)\)</span>;</li>
+<li><span class="math inline">\(P(\cdot|do(X=x),\pi_X = t) = P(\cdot|X=x, \pi_X=t)\)</span>, where <span class="math inline">\(P(\cdot|do(X=x),\pi_X = t)\)</span> is the conditional distribution of the post-intervention distribution given <span class="math inline">\(\pi_X=t\)</span>: <span class="math display">\[P(\cdot|do(X=x),\pi_X = t) = \frac{P(\cdot,\pi_X=t|do(X=x))}{P(\pi_X=t|do(X=x))}.\]</span></li>
+</ol>
+<p>The first result trivially implies the <em>do</em> operation has no effect on its parents. The second says if we further condition on <span class="math inline">\(\pi_X\)</span>, then the conditional distribution <span class="math inline">\(P(\cdot|do(X=x), \pi_X=t)\)</span> is the same as <span class="math inline">\(P(\cdot|X=x, \pi_X=t)\)</span> because the existence of arrows between <span class="math inline">\(\pi_X\)</span> and <span class="math inline">\(X\)</span> has no effect when we are already given the values of <span class="math inline">\(\pi_X\)</span> and <span class="math inline">\(X\)</span>.</p>
+<p>If we are interested in <span class="math inline">\(P(Y|do(X=x)\)</span>, then
+<span class="math display">\[\begin{align*}
+P(Y|do(X=x)) &amp; = \sum_{t} P(Y|do(X=x),\pi_X = t)\times P(\pi_X=t|do(X=x)).
+\end{align*}\]</span>
+Together with <span class="math inline">\(P(Y|do(X=x),\pi_X=t) = P(Y|X=x,\pi_X=t)\)</span> and <span class="math inline">\(P(\pi_X=t|do(X=x)) = P(\pi_X=t)\)</span>, we have proven the following:</p>
+
+<div class="theorem">
+<span id="thm:doparentadj" class="theorem"><strong>Theorem 5.4  (Adjustment by Parents)  </strong></span><span class="math display">\[\begin{equation}
+P(Y|do(X=x)) = \sum_t P(Y|X=x,\pi_X = t) \times P(\pi_X=t)
+\end{equation}\]</span>
+</div>
+<p>Theorem <a href="cgm.html#thm:doparentadj">5.4</a> successfully turns a <em>do</em> expression into a <em>do-free</em> expression by conditioning/adjustment on the set <span class="math inline">\(\pi_X\)</span>. Paths connecting <span class="math inline">\(X\)</span> to <span class="math inline">\(Y\)</span> starting with an arrow pointing to <span class="math inline">\(X\)</span> from one of its parents are called <em>back-door</em> paths. Back-door paths are all blocked by <span class="math inline">\(\pi_X\)</span> because the path through <span class="math inline">\(\pi_X\)</span> can be either a chain or a fork and not a collider. Turns out, together with d-separation, this result can be easily generalized from using all parents of <span class="math inline">\(X\)</span> as the adjustment set into using any sets that blocks all back-door paths without involving any descendants of <span class="math inline">\(X\)</span>. This is the Back-door Criterion.</p>
+
+<div class="theorem">
+<p><span id="thm:backdoor" class="theorem"><strong>Theorem 5.5  (Back-door Criterion)  </strong></span>A set <span class="math inline">\(S\)</span> in a DAG <span class="math inline">\(G\)</span> is admissible or sufficient for adjustment if two conditions hold:</p>
+<ol style="list-style-type: decimal">
+<li>No vertex in <span class="math inline">\(S\)</span> is a descendant of <span class="math inline">\(X\)</span></li>
+<li><span class="math inline">\(S\)</span> blocks all back-door paths (all paths end with an arrow pointing to <span class="math inline">\(X\)</span>) from <span class="math inline">\(X\)</span> to <span class="math inline">\(Y\)</span>.</li>
+</ol>
+<p>For any admissible set <span class="math inline">\(S\)</span>,
+<span class="math display" id="eq:backdooradj">\[\begin{equation}
+P(Y|do(X=x)) = \sum_s P(Y|X=x, S=s)P(S=s) \tag{5.6}
+\end{equation}\]</span>
+provides an identification strategy for <span class="math inline">\(P(Y|do(X=x))\)</span>.</p>
+In particular, when <span class="math inline">\(S\)</span> is the empty set, <span class="math inline">\(P(Y|do(X=x)) = P(Y|X=x)\)</span>.
+</div>
+
+<div class="proof">
+<p> <span class="proof"><em>Proof. </em></span> By Theorem <a href="cgm.html#thm:doparentadj">5.4</a> we can always adjust by parents of <span class="math inline">\(X\)</span>. We can always further conditioning on <span class="math inline">\(S\)</span>. This leads to
+<span class="math display" id="eq:backdoor-proof">\[\begin{align}
+&amp; P(Y|do(X=x)) \notag \\ 
+= &amp;\sum_t P(Y|X=x, \pi_X=t)P(\pi_X=t) \notag \\
+= &amp;\sum_t\left[\left(\sum_s P(Y|X=x, \pi_X=t, S=s) P(S=s|X=x, \pi_X=t)\right) P(\pi_X=t) \right]. \tag{5.7}
+\end{align}\]</span></p>
+<p>We make the following two claims (proofs will follow):</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(X\)</span> and <span class="math inline">\(S\)</span> are d-separated by <span class="math inline">\(\pi_X\)</span>,</li>
+<li><span class="math inline">\(\pi_X\)</span> and <span class="math inline">\(Y\)</span> are d-separated by <span class="math inline">\(S\)</span> and <span class="math inline">\(X\)</span>.</li>
+</ol>
+<p>So by Theorem <a href="cgm.html#thm:d-separation">5.2</a>,</p>
+<p><span class="math display">\[
+P(S=s|X=x,\pi_X=t) = P(S=s|\pi_X=t),
+\]</span>
+<span class="math display">\[
+P(Y|X=x,\pi_X=t, S=s) = P(Y|X=x, S=s)
+\]</span></p>
+<p>Plugging the two above into <a href="cgm.html#eq:backdoor-proof">(5.7)</a> and switching the order of two summations leads to
+<span class="math display">\[\begin{align*}
+&amp; P(Y|do(X=x)) = \sum_t\left[(\sum_s P(Y|X=x, S=s) P(S=s|\pi_X=t)) P(\pi_X=t)\right] \\
+ = &amp; \sum_s P(Y|X=x, S=s) \sum_t \left[P(S=s|\pi_X=t)P(\pi_X=t)\right] \\
+= &amp; \sum_s P(Y|X=x, S=s) P(S=s).
+\end{align*}\]</span></p>
+<p>The proof is complete if we can prove the two claims above. The first is a direct result of the first Back-door condition that <span class="math inline">\(S\)</span> does not contain any descendants of <span class="math inline">\(X\)</span> and the Markov Property <a href="cgm.html#eq:markov-condition">(5.2)</a> saying <span class="math inline">\(X\)</span> is conditionally independent of all its non-descendants given its parents.</p>
+For the second claim, if <span class="math inline">\(Y\)</span> and a vertex <span class="math inline">\(R\)</span> in <span class="math inline">\(\pi_X\)</span> are d-connected by a path <span class="math inline">\(p\)</span>. Then the path
+<span class="math display">\[
+X \longleftarrow R  \leftarrow \overset{p}{---} \rightarrow Y
+\]</span>
+must also d-connect <span class="math inline">\(X\)</span> with <span class="math inline">\(Y\)</span> and it is a back-door path. This contradicts the second condition of <span class="math inline">\(S\)</span> blocking all back-door paths and complete the proof.
+</div>
+<p>We use Graph <a href="cgm.html#fig:backdoor-graph">5.5</a> to illustrate how to use the back-door criterion. The double arrow dashed line means we don’t assume any details of the path between two vertices other than they are connected. There are two admissible sets <span class="math inline">\(S\)</span> possible in this case. First choice is to block on <span class="math inline">\(C\)</span> by noticing all back-door paths must go through <span class="math inline">\(C\)</span> to reach <span class="math inline">\(Y\)</span> and the fact that <span class="math inline">\(C\)</span> has a emitting arrow to <span class="math inline">\(Y\)</span> so the path through <span class="math inline">\(C\)</span> to <span class="math inline">\(Y\)</span> can only be a chain or a fork. Another choice is to block on both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>. <span class="math inline">\(B\)</span> blocks all back-door paths through <span class="math inline">\(B\)</span> because it is not a collider. <span class="math inline">\(A\)</span> blocks all back-door paths through <span class="math inline">\(A\)</span> because <span class="math inline">\(A\)</span> cannot be a collider for paths like <span class="math inline">\(X \longleftarrow A \leftarrow --- \rightarrow C \longrightarrow Y\)</span>. There are no other possible back-door paths so they are all blocked.</p>
+<div class="figure"><span id="fig:backdoor-graph"></span>
+<div id="htmlwidget-2488ea54f289e92ef0dd" style="width:672px;height:400px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2488ea54f289e92ef0dd">{"x":{"diagram":"digraph {\ngraph [layout = dot size = 7 ratio = 0.7]\n  node [shape = circle width=.3 fixedsize=true fontname = Helvetica]\n  {rank=same A C}\n  {rank=same B X Y}\n\n  B->A [dir=both style=dashed]\n  A->C [dir=both style=dashed label=\"             \"]\n  X->Y [label=\"             \"]\n  B->X [label=\"             \"]\n  A->X  C->Y\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 5.5: A causal diagram illustrating the back-door criterion. The two double arrow dashed line means we don’t assume any details of the path between two vertices other than they are connected. Here all back-door paths from <span class="math inline">\(X\)</span> to <span class="math inline">\(Y\)</span> can be blocked by either conditioning on <span class="math inline">\(C\)</span> or both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>.
+</p>
+</div>
+<p>When using the back-door criterion, beyond the obvious need for observing <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, we only need to further observe <span class="math inline">\(C\)</span> or <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> to identify the causal effect of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span>.</p>
+<p>Next we prove a simple result which says <em>do</em> operation on a vertex only have effects on its descendants. In other words, the arrows in the DAG dictates the direction of possible causal effect.</p>
+
+<div class="theorem">
+<span id="thm:causalarrow" class="theorem"><strong>Theorem 5.6  (The Arrow of Causal Effect)  </strong></span>If there is no directed path from <span class="math inline">\(X\)</span> to <span class="math inline">\(Y\)</span>. Then
+<span class="math display">\[
+P(Y|do(X=x)) = P(Y).
+\]</span>
+That is, <span class="math inline">\(X\)</span> has no causal effect on <span class="math inline">\(Y\)</span>. So for <span class="math inline">\(X\)</span> to have causal effect on <span class="math inline">\(Y\)</span>, <span class="math inline">\(X\)</span> must be <span class="math inline">\(Y\)</span>’s ancestor.
+</div>
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span> By the directed local Markov Property <a href="cgm.html#eq:markov-condition">(5.2)</a> and the fact that <span class="math inline">\(Y\in nd(X)\)</span>,
+<span class="math display">\[
+X \perp \!\!\!\! \perp Y | \pi_X.
+\]</span>
+So <span class="math inline">\(P(Y|X=x, \pi_X=t) = P(Y|\pi_X=t)\)</span> and
+<span class="math display">\[\begin{align*}
+&amp; P(Y|do(X=x)) = \sum_t P(Y|X=x, \pi_X=t)P(\pi_X=t) \\
+= &amp; \sum_t P(Y|\pi_X=t)P(\pi_X=t) = P(Y).
+\end{align*}\]</span>
+</div>
+<p>It should be clear that the back-door adjustment by conditioning on a set of variables <span class="math inline">\(S\)</span> such that
+<span class="math display">\[
+Y \perp \!\!\!\! \perp X | S
+\]</span>
+is very similar to the conditional unconfoundedness assumption in the potential outcome framework which posits
+<span class="math display">\[
+(Y(1),Y(0)) \perp \!\!\!\! \perp X | S.
+\]</span>
+The requirement of <span class="math inline">\(S\)</span> not containing any descendant of <span class="math inline">\(X\)</span> together with Theorem <a href="cgm.html#thm:causalarrow">5.6</a> guarantees <span class="math inline">\(X\)</span> cannot have causal effect on any variable in <span class="math inline">\(S\)</span> so <span class="math inline">\(S\)</span> are indeed covariates.</p>
+</div>
+<div id="causal-mechanism-and-the-front-door-criterion" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> Causal Mechanism and the Front-door Criterion</h2>
+<p>Back-door criterion does not directly work for the following basic confounder pattern when confounder <span class="math inline">\(U\)</span> is not observed.</p>
+<div class="figure"><span id="fig:nosolution"></span>
+<div id="htmlwidget-05ac4b965c11ccd61500" style="width:672px;height:200px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-05ac4b965c11ccd61500">{"x":{"diagram":"digraph {\ngraph [layout = dot size = 7 ratio = 0.7]\n  node [shape = circle width=.3 fixedsize=true fontname = Helvetica]\n  U[style=dashed]\n  U->X[style=dashed] U->Y [style=dashed]\n  X->Y\n  {rank=same X Y}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 5.6: Back-door path not blocked when <span class="math inline">\(U\)</span> is not observed. Dashed vertex and edges indicates unobservable confounding effect.
+</p>
+</div>
+<p>In fact, if the diagram <a href="cgm.html#fig:nosolution">5.6</a> is all we know about the relationship of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> and we know there exists some confounder <span class="math inline">\(U\)</span> that is not observable, there is fundamentally no way for us to be able to differentiate the true causal effect from the confounding effect. This pattern, also called the <em>bow</em> pattern <span class="citation">(<a href="probability-minimum.html#ref-pearl1995causal" role="doc-biblioref">Pearl 1995</a>)</span>, is the basis of Fisher’s defense of smoking not necessarily causing lung cancer even though a 1950 study showed a positive association between smoking tobacco and lung cancer. He hypothesized a confounder (of a genetic trait) that is linked to lung cancer but also make one more likely to enjoy smoking. The causal link between tobacco usage and lung cancer was finally recognized by the medical community only after people discovered the tobacco residue, also known as tar, when in lung, coats the cilia causing them to stop working and eventually die and allows toxic particles in tobacco smoke to enter the alveoli directly. These toxic particles including carcinogens such as benzene, acrylamide and acrylonitrile that can be commonly found in tar. In other words, people have discovered the <em>mechanism</em> of how tobacco smoking can cause lung cancer, which is through the forming of toxic tar in the lung. It is even believed that 90 percent of lung cases could be attributed to smoking.<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a></p>
+<p>The above deduction using mechanism can be abstracted into the following diagram. Here <span class="math inline">\(X\)</span> take an effect on <span class="math inline">\(Y\)</span> <em>exclusively</em> through <span class="math inline">\(M\)</span>.</p>
+<div class="figure"><span id="fig:mechanism"></span>
+<div id="htmlwidget-a6c2abd99633a16457bb" style="width:672px;height:200px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a6c2abd99633a16457bb">{"x":{"diagram":"digraph {\ngraph [layout = dot size = 7 ratio = 0.7]\n  node [shape = circle width=.3 fixedsize=true fontname = Helvetica]\n  U[style=dashed]\n  U-> X[style=dashed] U-> Y[style=dashed]\n  X-> M M-> Y \n  {rank=same X M Y}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 5.7: <span class="math inline">\(X\)</span> take an effect on <span class="math inline">\(Y\)</span> exclusively through <span class="math inline">\(M\)</span> and all back-door paths from <span class="math inline">\(M\)</span> to <span class="math inline">\(Y\)</span> are blocked by <span class="math inline">\(X\)</span>.
+</p>
+</div>
+<p>The identification strategy can be described in two steps. Recall <span class="math inline">\(U\)</span> is not observed in Figure <a href="cgm.html#fig:mechanism">5.7</a>. But there is no back-door path from <span class="math inline">\(X\)</span> to <span class="math inline">\(M\)</span> and the only back-door path from <span class="math inline">\(M\)</span> to <span class="math inline">\(Y\)</span> can be blocked by <span class="math inline">\(X\)</span>. In other words, both <span class="math inline">\(P(M|do(X=x))\)</span> and <span class="math inline">\(P(Y|do(M=m))\)</span> can be identified using back-door criterion. The second step relies on the argument that <span class="math inline">\(X\)</span> can impact <span class="math inline">\(Y\)</span> only through <span class="math inline">\(M\)</span>, therefore <em>intuitively</em>
+<span class="math display" id="eq:do-propagation">\[\begin{equation}
+P(Y|do(X=x)) = \sum_m P(M=m|do(X=x))P(Y|do(M=m)). \tag{5.8}
+\end{equation}\]</span>
+With <a href="cgm.html#eq:do-propagation">(5.8)</a>, an <em>do-free</em> expression of <span class="math inline">\(P(Y|do(X=x))\)</span> can be obtained by replacing <span class="math inline">\(P(M=m|do(X=x))\)</span> and <span class="math inline">\(P(Y|do(M=m))\)</span> with their corresponding <em>do-free</em> expressions. We call <a href="cgm.html#eq:do-propagation">(5.8)</a> <em>do propagation</em>.</p>
+
+<div class="theorem">
+<p><span id="thm:frontdoor" class="theorem"><strong>Theorem 5.7  (Front-door Criterion)  </strong></span>A set of nodes <span class="math inline">\(M\)</span> is said to satisfy the front-door criterion for an ordered pair <span class="math inline">\((X,Y)\)</span> if:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(M\)</span> intercepts all directed paths from <span class="math inline">\(X\)</span> to <span class="math inline">\(Y\)</span>;</li>
+<li>all back-door paths from <span class="math inline">\(M\)</span> to <span class="math inline">\(Y\)</span> are blocked by <span class="math inline">\(X\)</span>.</li>
+<li>there is no back-door paths from <span class="math inline">\(X\)</span> to <span class="math inline">\(M\)</span>;</li>
+</ol>
+When such a set <span class="math inline">\(M\)</span> exists,
+<span class="math display">\[
+P(Y|do(X=x)) =\sum_m P(M=m|X=x)\left(\sum_x&#39; P(Y|X=x&#39;,M=m) P(X=x&#39;)\right)
+\]</span>
+is a valid identification strategy.
+</div>
+<p>Condition 2 and 3 ensures the two sub-mechanisms <span class="math inline">\(M \rightarrow Y\)</span> and <span class="math inline">\(X\rightarrow M\)</span> are identifiable by back-door criterion. It remains to prove <a href="cgm.html#eq:do-propagation">(5.8)</a>. The following Lemma shows condition 1 and 2 together justify <em>do propagation</em> <a href="cgm.html#eq:do-propagation">(5.8)</a>.</p>
+
+<div class="lemma">
+<p><span id="lem:dopropagation" class="lemma"><strong>Lemma 5.1  (do propagation)  </strong></span>For a DAG <span class="math inline">\(G\)</span> there is a directed path from <span class="math inline">\(X\)</span> to <span class="math inline">\(M\)</span> and then <span class="math inline">\(Y\)</span>. A sufficient condition for
+<span class="math display">\[
+P(Y|do(X=x)) = \sum_m P(M=m|do(X=x))P(Y|do(M=m))
+\]</span>
+is that</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(M\)</span> intercepts all directed paths from <span class="math inline">\(X\)</span> to <span class="math inline">\(Y\)</span>;</li>
+<li>all back-door paths from <span class="math inline">\(M\)</span> to <span class="math inline">\(Y\)</span> are blocked by <span class="math inline">\(X\)</span></li>
+</ol>
+</div>
+
+<div class="proof">
+<p> <span class="proof"><em>Proof. </em></span> Because post-intervention distribution is still a probability distribution which satisfies the law of total probability:
+<span class="math display">\[
+P(Y|do(X=x)) = \sum_m P(M=m|do(X=x))P(Y|do(X=x),M=m).
+\]</span>
+Lemma <a href="cgm.html#lem:dopropagation">5.1</a> is proven once we show the following:
+<span class="math display">\[
+P(Y|do(X=x),M=m) = P(Y|do(X=x),do(M=m)) = P(Y|do(M=m)).
+\]</span></p>
+<p>The first equality follows from applying the back-door criterion on an empty set to identify the causal effect of <span class="math inline">\(M\)</span> on <span class="math inline">\(Y\)</span> under the post-intervention distribution <span class="math inline">\(P(\cdot|do(X=x)\)</span>. In the <span class="math inline">\(do(X)\)</span> distribution, all back-door arrows of <span class="math inline">\(X\)</span> is already removed, and because of condition 2, there is no back-door path remains from <span class="math inline">\(M\)</span> to <span class="math inline">\(Y\)</span>. So without any adjustment, we can replace <em>do</em> operator <span class="math inline">\(do(M=m)\)</span> by simple observation conditioning.</p>
+The second equality is a result of Theorem <a href="cgm.html#thm:causalarrow">5.6</a> and condition 1. In the post <span class="math inline">\(do(M=m)\)</span> distribution, <span class="math inline">\(Y\)</span> is no longer a descendant of <span class="math inline">\(X\)</span> because <span class="math inline">\(M\)</span> intercepts all directed path from <span class="math inline">\(X\)</span> to <span class="math inline">\(Y\)</span> and these paths are broken with all back-door edges of <span class="math inline">\(M\)</span> removed.
+</div>
+<p>In the do-calculus above we use the back-door criterion Theorem <a href="cgm.html#thm:backdoor">5.5</a> to show the equivalence of the operation <span class="math inline">\(do(M=m)\)</span> and conditioning on <span class="math inline">\(M=m\)</span>. We further use Theorem <a href="cgm.html#thm:causalarrow">5.6</a> to remove the do operation <span class="math inline">\(do(X=x)\)</span>. These are two of Pearl’s three rules of do calculus<span class="citation">(<a href="probability-minimum.html#ref-pearl1995causal" role="doc-biblioref">Pearl 1995</a>)</span> and the other one is related to d-separation. See Section <a href="cgm.html#general-identification">5.5</a>.</p>
+<p>Front-door criterion, and more generally, the idea of identifying causal effect using combinations of <em>do propagation</em> together with a chain of identifiable <em>do</em> expressions, are very inspiring. It allows us to search for identification strategy in very complicated graphs using divide and conquer. If we can find a chain <span class="math inline">\(M_0=X,M_1,\dots,M_K=Y\)</span> with every <span class="math inline">\(P(M_k|do(M_{k-1}=m))\)</span> identifiable and do propagation can be recursively applied to transform <span class="math inline">\(P(Y|do(X=x))\)</span> into only using sub-mechanisms <span class="math inline">\(P(M_k|do(M_{k-1}=m))\)</span>, then <span class="math inline">\(P(Y|do(X=x))\)</span> can be identified.</p>
+<p>Some authors call Condition 1 in Theorem <a href="cgm.html#thm:frontdoor">5.7</a> the <em>exhaustion</em> condition and the other two conditions <em>isolation</em> condition <span class="citation">(<a href="probability-minimum.html#ref-counterfac" role="doc-biblioref">Morgan and Winship 2014</a>)</span>. Although the two <em>isolation</em> conditions imply identification of the two sub-mechanisms <span class="math inline">\(P(Y|do(M=m))\)</span> and <span class="math inline">\(P(M|do(X=x))\)</span>, it is <em>not</em> generally true that the the <em>exhaustion</em> condition alone guarantees the <em>do propogation</em> equation <a href="cgm.html#eq:do-propagation">(5.8)</a>. This is why we need one additional condition beyond the <em>exhaustion</em> condition in Lemma <a href="cgm.html#lem:dopropagation">5.1</a>. Figure <a href="cgm.html#fig:exhaustion-insufficient">5.8</a> presents a example with only the <em>exhaustion</em> condition. But there is a back-door path from <span class="math inline">\(M\)</span> to <span class="math inline">\(Y\)</span> that is not blocked by <span class="math inline">\(X\)</span>. As a result, it is no longer true that <span class="math inline">\(P(Y|do(X=x),do(M=m)) = P(Y|do(X=x), M=m)\)</span>. On the other hand, <span class="math inline">\(P(Y|do(X=x),do(M=m)) = P(Y|do(M=m))\)</span>. Hence <span class="math inline">\(P(Y|do(M=m))\neq P(Y|do(X=x), M=m)\)</span>.</p>
+<div class="figure"><span id="fig:exhaustion-insufficient"></span>
+<div id="htmlwidget-f90c7abffc5d9870a7e1" style="width:672px;height:300px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f90c7abffc5d9870a7e1">{"x":{"diagram":"\ndigraph {\ngraph [layout = dot size = 7 ratio = 0.7 rankdir=TB]\n  node [shape = circle width=.3 fixedsize=true fontname = Helvetica]\n  U[style=dashed]\n  U -> M [style=dashed] U->Y[style=dashed]\n  X -> M M -> Y[label=\"         \"]\n  {rank=same X M Y}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 5.8: <span class="math inline">\(M\)</span> satisfies the exhaustion condition but the do propagation <a href="cgm.html#eq:do-propagation">(5.8)</a> is not true.
+</p>
+</div>
+<p>It is worthwhile to note that <span class="math inline">\(M\)</span> in the front-door criterion can be more than one node. In Figure <a href="cgm.html#fig:frontdoor-graph2">5.9</a>, effect of <span class="math inline">\(X\)</span> on <span class="math inline">\(M\)</span> and <span class="math inline">\(N\)</span> both can be identified and all back-door path from <span class="math inline">\(M\)</span> or <span class="math inline">\(N\)</span> to <span class="math inline">\(Y\)</span> are through <span class="math inline">\(X\)</span>. If <span class="math inline">\(M\)</span> is observed but not <span class="math inline">\(N\)</span>, then the front-door mechanism breaks and we can only learn the <em>partial</em> effect of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span> through <span class="math inline">\(M\)</span>. Partial effect can sometimes be interesting in its own right.</p>
+<div class="figure"><span id="fig:frontdoor-graph2"></span>
+<div id="htmlwidget-ccdd15e4e76bda7a01a3" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ccdd15e4e76bda7a01a3">{"x":{"diagram":"digraph {\ngraph [layout = dot size = 7 ratio = 0.7]\n  node [shape = circle width=.3 fixedsize=true fontname = Helvetica]\n  U M X Y N\n  \n  U->Y U->X\n  X->M M->Y\n  X->N N->Y\n  U->M [style=invis]\n  {rank=same X Y}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 5.9: A causal diagram illustrating the front-door criterion. Here the causal mechanism is <span class="math inline">\(X\)</span> affecting <span class="math inline">\(M\)</span> and <span class="math inline">\(N\)</span> and then to <span class="math inline">\(Y\)</span>. All back-door path from <span class="math inline">\(M\)</span> to <span class="math inline">\(Y\)</span> and <span class="math inline">\(N\)</span> to <span class="math inline">\(Y\)</span> are blocked by <span class="math inline">\(X\)</span>.
+</p>
+</div>
+</div>
+<div id="general-identification" class="section level2" number="5.5">
+<h2><span class="header-section-number">5.5</span> General Identification Strategy</h2>
+<p>A do expression has a form <span class="math inline">\(P(\cdot|\text{actions and observations})\)</span> where actions are <span class="math inline">\(do\)</span> operations and observations are just conditioning. <span class="citation"><a href="probability-minimum.html#ref-pearl1995causal" role="doc-biblioref">Pearl</a> (<a href="probability-minimum.html#ref-pearl1995causal" role="doc-biblioref">1995</a>)</span> introduced <em>do</em> calculus with three fundamental rules. These rules defines necessary conditions for three basic transformations on a do expression. Any identification strategy for a causal effect <span class="math inline">\(P(Y|do(X=x)\)</span> must follow from a series of these three operations together with basic probability equalities that transforms <span class="math inline">\(P(Y|do(X=x)\)</span> into a do free expression.</p>
+<p>The three basic operations are:</p>
+<ol style="list-style-type: decimal">
+<li>Insertion/deletion of observations</li>
+<li>Action-observation exchange</li>
+<li>Insertion/deletion of actions</li>
+</ol>
+<p>We have already seen theorems justifying these operations in previous sections. For example, d-separation <a href="cgm.html#thm:d-separation">5.2</a> allows us to delete observation from a conditional probability expression via conditional independence. Back-door criterion <a href="cgm.html#thm:backdoor">5.5</a> allows us to replace a do operation with observation. The Arrow of Causal Effect Theorem <a href="cgm.html#thm:causalarrow">5.6</a> dictates action can be removed for any causal effect on a non-descendant. These three theorems are all special cases of Pearl’s three rules, and interestingly, contains the essence of the three rules. We introduce Pearl’s three rules and explain why they are simple extensions of the three theorems.</p>
+<p>Let <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span>, <span class="math inline">\(Z\)</span> be any disjoint set of vertices in a causal diagram <span class="math inline">\(G\)</span>. Denote by <span class="math inline">\(G_{\overline{X}}\)</span> the graph obtained by removing all back-door arrows from parents of <span class="math inline">\(X\)</span> pointing to <span class="math inline">\(X\)</span>, and denote by <span class="math inline">\(G_{\underline{X}}\)</span> the graph obtained by removing all front-door arrows of <span class="math inline">\(X\)</span> that are emitting from <span class="math inline">\(X\)</span>. <span class="math inline">\(G_{\overline{X}\underline{Z}}\)</span> is the graph obtained by removing all back-door arrows of <span class="math inline">\(X\)</span> and front-door arrows of <span class="math inline">\(Z\)</span>. For any DAG <span class="math inline">\(G\)</span>, <span class="math inline">\((X\perp \!\!\!\!\perp Y |Z)_G\)</span> is interpreted as <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are d-separated given <span class="math inline">\(Z\)</span> in <span class="math inline">\(G\)</span>.</p>
+
+<div class="theorem">
+<p><span id="thm:threerules" class="theorem"><strong>Theorem 5.8  (3 Rules of do calculus)  </strong></span>Rule 1 (Insertion/deletion of observations):
+<span class="math display">\[
+P(Y|do(X=x),Z=z,W=w) = P(Y|do(X=x),W=w) \quad \text{if} \ (Y\perp \!\!\!\! \perp Z|X,W)_{G_{\overline{X}}}
+\]</span></p>
+<p>Rule 2 (Action-observation exchange):
+<span class="math display">\[
+P(Y|do(X=x),do(Z=z),W=w) = P(Y|do(X=x),Z=z,W=w) \quad \text{if} \  (Y\perp \!\!\!\! \perp Z|X,W)_{G_{\overline{X}\underline{Z}}}
+\]</span></p>
+Rule 3 (Insertion/deletion of actions):
+<span class="math display">\[
+P(Y|do(X=x),do(Z=z),W=w) = P(Y|do(X=x),W=w) \quad \text{if} \ (Y\perp \!\!\!\! \perp Z|X,W)_{G_{\overline{X}\overline{Z(W)}}}
+\]</span>
+where <span class="math inline">\(Z(W)\)</span> is the set of <span class="math inline">\(Z\)</span> vertices that are not ancestors of <span class="math inline">\(W\)</span> in <span class="math inline">\(G_{\overline{X}}\)</span>.
+</div>
+<p>Rule 1 is basically d-separation in the post <span class="math inline">\(do(X=x)\)</span> distribution.</p>
+<p>Rule 2 is back-door criterion applied to the post <span class="math inline">\(do(X=x)\)</span> distribution. To see that, post <span class="math inline">\(do(X=x)\)</span> distribution is Markov to <span class="math inline">\(G_{\overline{X}}\)</span> plus observation <span class="math inline">\(X=x\)</span>. Compare to <span class="math inline">\(G_{\overline{X}}\)</span>, <span class="math inline">\(G_{\overline{X}\underline{Z}}\)</span> further removes front-door edges of <span class="math inline">\(Z\)</span>. <span class="math inline">\(Y\)</span> and <span class="math inline">\(Z\)</span> d-separated in <span class="math inline">\(G_{\overline{X}\underline{Z}}\)</span> by <span class="math inline">\(X\)</span> and <span class="math inline">\(W\)</span> means all <em>back-door</em> path from <span class="math inline">\(Z\)</span> to <span class="math inline">\(X\)</span> are blocked by <span class="math inline">\(X\)</span> and <span class="math inline">\(W\)</span>. By the back-door criterion, we can exchange <span class="math inline">\(do(Z=z)\)</span> with observation <span class="math inline">\(Z=z\)</span> in the post <span class="math inline">\(do(X=x)\)</span> distribution with observations of <span class="math inline">\(X=x\)</span> and <span class="math inline">\(W=w\)</span>.</p>
+<p>Rule 3 is generalization of the arrow of causal effect <a href="cgm.html#thm:causalarrow">5.6</a>. Again we start with the post <span class="math inline">\(do(X=x\)</span> distribution represented by <span class="math inline">\(G_{\overline{X}}\)</span>. First let’s assume <span class="math inline">\(W\)</span> is empty set. <span class="math inline">\(Y\)</span> and <span class="math inline">\(Z\)</span> d-separated in <span class="math inline">\(G_{\overline{X}\overline{Z}}\)</span> by <span class="math inline">\(X\)</span> means there is no front-door path from <span class="math inline">\(Z\)</span> to <span class="math inline">\(Y\)</span> after conditioning by <span class="math inline">\(X\)</span>. This means <span class="math inline">\(Y\)</span> cannot be a descendant of <span class="math inline">\(Z\)</span> after conditioning by <span class="math inline">\(X\)</span>, otherwise there must be a directed path from <span class="math inline">\(Z\)</span> to <span class="math inline">\(Y\)</span> that is not blocked by <span class="math inline">\(X\)</span> which has to be also a front-door path. Theorem <a href="cgm.html#thm:causalarrow">5.6</a> says there is no additional effect of <span class="math inline">\(do(Z=z)\)</span> when <span class="math inline">\(do(X=x)\)</span> is already there. Now if we add additional observations <span class="math inline">\(W\)</span>, will the previous argument still be valid?</p>
+<p>Figure <a href="cgm.html#fig:rule3illustration">5.10</a> explains the danger of conditioning on any descendant of <span class="math inline">\(Z\)</span>. In this simple graph of <span class="math inline">\(Y \rightarrow Z \rightarrow W\)</span>, it is clear that <span class="math inline">\(P(Y|do(Z=z),W=w) = P(Y)\)</span>. However, <span class="math inline">\(P(Y|W=w)\neq P(Y)\)</span>. The reason is that observation <span class="math inline">\(W\)</span> will impact <span class="math inline">\(Y\)</span> (back-propagation of information), but <span class="math inline">\(do(Z=z)\)</span> will block this effect.</p>
+<p>On the other hand, for any <span class="math inline">\(W\)</span> that is not descendant of <span class="math inline">\(Z\)</span>, then any path between <span class="math inline">\(Z\)</span> to <span class="math inline">\(W\)</span> must have a collider pattern in the middle, or <span class="math inline">\(W\)</span> is an ancestor of <span class="math inline">\(Z\)</span> and <span class="math inline">\(Z\)</span> itself must be a collider. Therefore <span class="math inline">\(Y\)</span> and <span class="math inline">\(W\)</span> becomes d-separated and <span class="math inline">\(P(Y|W=w)=P(Y) = P(Y|do(Z=z),W=w)\)</span>.</p>
+<p>The discussion above explains why we need <span class="math inline">\(Z(W)\)</span> in Rule 3. The arrow of causal effect holds when conditioning on <span class="math inline">\(W\)</span> that are not descendants of <span class="math inline">\(Z\)</span>. It will break if any <span class="math inline">\(W\)</span> conditioned is a descendant of <span class="math inline">\(Z\)</span>. <span class="math inline">\(Z(W)\)</span> is a subset of <span class="math inline">\(Z\)</span> so the difference of <span class="math inline">\(G_{\overline{X}\overline{Z(W)}}\)</span> and <span class="math inline">\(G_{\overline{X}\overline{Z}}\)</span> is the former could have certain back-door edges of <span class="math inline">\(Z\)</span> from ancestors of <span class="math inline">\(W\)</span> not removed. In other word, <span class="math inline">\(W\)</span> might <em>activates</em> some back-door paths from <span class="math inline">\(Z\)</span> to <span class="math inline">\(Y\)</span> that should otherwise be blocked.</p>
+<div class="figure"><span id="fig:rule3illustration"></span>
+<div id="htmlwidget-5e24940c35cfbc38f69c" style="width:672px;height:200px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5e24940c35cfbc38f69c">{"x":{"diagram":"\ndigraph {\ngraph [layout = dot size = 7 ratio = 0.7 rankdir=LR]\n  node [shape = circle width=.3 fixedsize=true fontname = Helvetica]\n   Z->W\n   Y->Z\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 5.10: Illustration of why in Rule 3 we need to be careful about conditioning on descendants of <span class="math inline">\(Z\)</span>. <span class="math inline">\(P(Y|do(Z=z),W=w) eq P(Y|W=w)\)</span> in this case even though <span class="math inline">\(Y\)</span> is not a descendant of <span class="math inline">\(X\)</span>.
+</p>
+</div>
+<p>Now let’s talk about general identification strategy for <span class="math inline">\(P(Y|do(X=x))\)</span>. If there is no back-door path from <span class="math inline">\(X\)</span> to <span class="math inline">\(Y\)</span>, we can just apply Rule 2 to change the above into a conditional probability. If not, we can pick any set <span class="math inline">\(S\)</span> such that <span class="math inline">\(P(S|do(X=x))\)</span> is identifiable and use law of total probability
+<span class="math display">\[
+P(Y|do(X=x)) = \sum_s P(Y|do(X=x),S=s)P(S=s|do(X=x)).
+\]</span>
+We have an identification strategy if we can change <span class="math inline">\(P(Y|do(X=x),S=s)\)</span> into something identifiable. We then have three choices,</p>
+<ol style="list-style-type: decimal">
+<li>Back-door adjustment to exchange action-observation using Rule 2: <span class="math inline">\(P(Y|do(X=x),S=s) = P(Y|X=x,S=s)\)</span></li>
+<li>Front-door mechanism with Rule 2 and Rule 3 to facilitate the following transition <span class="math inline">\(P(Y|do(X=x),S=s) = P(Y|do(X=x),do(S=s)) = P(Y|do(S=s)\)</span>.</li>
+<li>Expand <span class="math inline">\(P(Y|do(X=x),S=s)\)</span> further using the law of total probability.</li>
+</ol>
+<p>In all options, we breaks <span class="math inline">\(P(Y|do(X=x))\)</span> up into smaller problems of identification which should be easier. We repeat this procedure recursively.</p>
+<p>As an example, let’s look at the graph in Figure <a href="cgm.html#fig:frontbackdoor">5.11</a>. We immediately identify <span class="math inline">\(P(M|do(X=x))\)</span> identifiable using front-door criterion with <span class="math inline">\(N\)</span> being the only mechanism. We can let <span class="math inline">\(M\)</span> to be our <span class="math inline">\(S\)</span> when using law of total probability. We then focus on <span class="math inline">\(P(Y|do(X=x),M=m)\)</span>. It is also obvious that <span class="math inline">\(M\)</span> blocks all back-door path from <span class="math inline">\(X\)</span> to <span class="math inline">\(Y\)</span>, which means <span class="math inline">\(P(Y|do(X=x),M=m) = P(Y|X=x,M=m)\)</span> by Rule 2. Putting front-door identification of <span class="math inline">\(P(M|do(X=x))\)</span> and <span class="math inline">\(P(Y|X=x,M=m)\)</span> together solves the problem.</p>
+<div class="figure"><span id="fig:frontbackdoor"></span>
+<div id="htmlwidget-d50807ee2adc7fcca75a" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d50807ee2adc7fcca75a">{"x":{"diagram":"\ndigraph {\ngraph [layout = dot size = 7 ratio = 0.7 rankdir=TB]\n  node [shape = circle width=.3 fixedsize=true fontname = Helvetica]\n  U[style=dashed]\n  U -> X [style=dashed] U->M[style=dashed]\n  X -> N N-> M\n  X->Y M -> Y\n  {rank=same X N M}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 5.11: A case where front-door criterion and back-door criterion are combined together.
+</p>
+</div>
+<p>Note that Figure <a href="cgm.html#fig:frontbackdoor">5.11</a> is very similar to the back-door criterion, except that <span class="math inline">\(M\)</span> blocks all back-door path from <span class="math inline">\(X\)</span> to <span class="math inline">\(Y\)</span> but <span class="math inline">\(M\)</span> is also a descendant of <span class="math inline">\(X\)</span> itself. Since back-door criterion is closely related to conditional unconfoundedness in potential outcomes framework where adjustment can only be taken on covariates unaffected by the change. Here <span class="math inline">\(X\)</span> do have effect on <span class="math inline">\(M\)</span> and yet adjustment by <span class="math inline">\(M\)</span> is still useful. We see that <em>do calculus</em> can provide identification strategy that the potential outcome framework cannot, with extra assumption of a Markovian model.</p>
+<p>In Figure <a href="cgm.html#fig:complexfrontdoor">5.12</a>, both <span class="math inline">\(P(M|do(X=x)\)</span> and <span class="math inline">\(P(Y|do(M=m))\)</span> can be identified using front-door criterion. However, because of the back-door path <span class="math inline">\(M\leftarrow W \rightarrow Y\)</span>, we cannot apply do propagation <a href="cgm.html#eq:do-propagation">(5.8)</a> to combine the two sub-mechanisms into an identification strategy for <span class="math inline">\(P(Y|do(X=x))\)</span>. Also, because of the unblockable back-door path <span class="math inline">\(X \leftarrow U \rightarrow Y\)</span>, there exists no simple back-door adjustment. Nonetheless, we can first condition on <span class="math inline">\(W\)</span>. <span class="math inline">\(P(W|do(X=x)) = P(W)\)</span> by rule 3 since <span class="math inline">\(W\)</span> is ancestor of <span class="math inline">\(X\)</span>. For <span class="math inline">\(P(Y|do(X=x),W=w)\)</span>, we can identify sub-mechanisms <span class="math inline">\(P(Y|do(M=m),W=w)\)</span> and <span class="math inline">\(P(M|do(X=x),W=w)\)</span> using rule 2 because <span class="math inline">\(X\)</span> and <span class="math inline">\(W\)</span> blocks all back-door paths from <span class="math inline">\(M\)</span> to <span class="math inline">\(Y\)</span> and <span class="math inline">\(W\)</span> blocks all from <span class="math inline">\(X\)</span> to <span class="math inline">\(M\)</span>. We claim the do propagation is now valid since the only back-door path from <span class="math inline">\(M\)</span> to <span class="math inline">\(Y\)</span> not through <span class="math inline">\(X\)</span> is now blocked by <span class="math inline">\(W\)</span>. To be specific, <span class="math inline">\(P(Y|do(X=x),M=m,W=w) = P(Y|do(X=x),do(M=m),W=w)\)</span> by rule 2. And then <span class="math inline">\(P(Y|do(X=x),do(M=m),W=w) = P(Y|do(M=m),W=w\)</span> by rule 3.</p>
+<div class="figure"><span id="fig:complexfrontdoor"></span>
+<div id="htmlwidget-7192e79ed3230b9279b4" style="width:672px;height:480px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7192e79ed3230b9279b4">{"x":{"diagram":"\ndigraph {\ngraph [layout = dot size = 7 ratio = 0.7]\n  node [shape = circle width=.3 fixedsize=true fontname = Helvetica]\n  W\n  X A M B Y\n  U[style=dashed]\n  W->X X->A[label=\"      \"] A->M[label=\"      \"] M->B[label=\"      \"] B->Y[label=\"      \"] W->M W->Y\n  U->X [style=dashed]  U->Y [style=dashed]\n  {rank=same X A M B Y}\n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 5.12: Front-door criterion applies only with conditioning.
+</p>
+</div>
+<p>To close our discussion on CGM and identification strategy, an interesting result shows that the key to the identification problem is to make sure there exists no bow pattern from <span class="math inline">\(X\)</span> to all its local children.</p>
+
+<div class="theorem">
+<span id="thm:tian-pearl" class="theorem"><strong>Theorem 5.9  (Tian and Pearl)  </strong></span>A sufficient condition for identifying the causal effect <span class="math inline">\(P(y|do(x))\)</span> is that every path between <span class="math inline">\(X\)</span> and any of its children traces at least one arrow emanating from a measured variable.
+</div>
+<p>Test for existence of any identification strategy in a CGM is a solved problem in the literature. A necessary and sufficient condition and algorithm for identification is discovered in <span class="citation"><a href="probability-minimum.html#ref-shpitser2012identification" role="doc-biblioref">Shpitser and Pearl</a> (<a href="probability-minimum.html#ref-shpitser2012identification" role="doc-biblioref">2012</a>)</span> together with computer algorithm to find the strategy when exists.</p>
+</div>
+<div id="rcm-vs.-cgm" class="section level2" number="5.6">
+<h2><span class="header-section-number">5.6</span> RCM vs. CGM</h2>
+<p>To do: Discuss pros and cons</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="13">
+<li id="fn13"><p>In fact only ancestors of <span class="math inline">\(Y\)</span> is needed, see Theorem <a href="cgm.html#thm:causalarrow">5.6</a>.<a href="cgm.html#fnref13" class="footnote-back">↩︎</a></p></li>
+<li id="fn14"><p><a href="https://en.wikipedia.org/wiki/Tar_(tobacco_residue)" class="uri">https://en.wikipedia.org/wiki/Tar_(tobacco_residue)</a><a href="cgm.html#fnref14" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="rcm.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regression-based-methods.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 Statistical Analysis of A/B Tests | Causal Inference and Its Applications in Online Industry</title>
+  <meta name="description" content="this is a draft book." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 Statistical Analysis of A/B Tests | Causal Inference and Its Applications in Online Industry" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="this is a draft book." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 Statistical Analysis of A/B Tests | Causal Inference and Its Applications in Online Industry" />
+  
+  <meta name="twitter:description" content="this is a draft book." />
+  
+
+<meta name="author" content="Alex Deng" />
+
+
+<meta name="date" content="2021-03-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="abintro.html"/>
+<link rel="next" href="abdiagnosis.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="libs/viz/viz.js"></script>
+<link href="libs/DiagrammeR-styles/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding/grViz.js"></script>
+
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Draft</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="part"><span><b>I Causal Inference: An Overview</b></span></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="simpson.html"><a href="simpson.html"><i class="fa fa-check"></i><b>2</b> Correlation and Simpson’s Paradox</a></li>
+<li class="chapter" data-level="3" data-path="randomintro.html"><a href="randomintro.html"><i class="fa fa-check"></i><b>3</b> Randomized Experiment</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="randomintro.html"><a href="randomintro.html#completerand"><i class="fa fa-check"></i><b>3.1</b> Complete Randomization</a></li>
+<li class="chapter" data-level="3.2" data-path="randomintro.html"><a href="randomintro.html#indrand"><i class="fa fa-check"></i><b>3.2</b> Independent Randomization</a></li>
+<li class="chapter" data-level="3.3" data-path="randomintro.html"><a href="randomintro.html#clusterrandomization"><i class="fa fa-check"></i><b>3.3</b> Clustered Randomization</a></li>
+<li class="chapter" data-level="3.4" data-path="randomintro.html"><a href="randomintro.html#aore"><i class="fa fa-check"></i><b>3.4</b> Analysis of Randomized Experiments as Two Sample Problem</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rcm.html"><a href="rcm.html"><i class="fa fa-check"></i><b>4</b> Potential Outcomes Framework</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="rcm.html"><a href="rcm.html#naive-estimation"><i class="fa fa-check"></i><b>4.1</b> Naive Estimation</a></li>
+<li class="chapter" data-level="4.2" data-path="rcm.html"><a href="rcm.html#randomization-and-unconfoundedness"><i class="fa fa-check"></i><b>4.2</b> Randomization and Unconfoundedness</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="rcm.html"><a href="rcm.html#matching"><i class="fa fa-check"></i><b>4.2.1</b> Conditional Unconfoundedness, Matching and Covariates Balancing</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="rcm.html"><a href="rcm.html#propensity-score"><i class="fa fa-check"></i><b>4.3</b> Propensity Score</a></li>
+<li class="chapter" data-level="4.4" data-path="rcm.html"><a href="rcm.html#sutva"><i class="fa fa-check"></i><b>4.4</b> SUTVA</a></li>
+<li class="chapter" data-level="4.5" data-path="rcm.html"><a href="rcm.html#missingdata"><i class="fa fa-check"></i><b>4.5</b> Missing Data and Weighted Samples</a></li>
+<li class="chapter" data-level="4.6" data-path="rcm.html"><a href="rcm.html#missing-data-mechanisms-and-ignorability"><i class="fa fa-check"></i><b>4.6</b> Missing Data Mechanisms and Ignorability</a></li>
+<li class="chapter" data-level="4.7" data-path="rcm.html"><a href="rcm.html#is"><i class="fa fa-check"></i><b>4.7</b> Importance Sampling</a></li>
+<li class="chapter" data-level="4.8" data-path="rcm.html"><a href="rcm.html#ipw"><i class="fa fa-check"></i><b>4.8</b> Inverse Propensity Score Weighting (IPW)</a></li>
+<li class="chapter" data-level="4.9" data-path="rcm.html"><a href="rcm.html#dr"><i class="fa fa-check"></i><b>4.9</b> Doubly Robust Estimation</a></li>
+<li class="chapter" data-level="4.10" data-path="rcm.html"><a href="rcm.html#bias-variance"><i class="fa fa-check"></i><b>4.10</b> Bias-Variance Trade off and Covariates Overlap</a></li>
+<li class="chapter" data-level="4.11" data-path="rcm.html"><a href="rcm.html#psmm"><i class="fa fa-check"></i><b>4.11</b> Other Propensity Score Modeling Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="cgm.html"><a href="cgm.html"><i class="fa fa-check"></i><b>5</b> Causal Graphical Model</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="cgm.html"><a href="cgm.html#structural-equation-model-causal-diagram-and-d-separation"><i class="fa fa-check"></i><b>5.1</b> Structural Equation Model, Causal Diagram and d-separation</a></li>
+<li class="chapter" data-level="5.2" data-path="cgm.html"><a href="cgm.html#the-do-operator"><i class="fa fa-check"></i><b>5.2</b> the <em>do</em> operator</a></li>
+<li class="chapter" data-level="5.3" data-path="cgm.html"><a href="cgm.html#the-back-door-criterion"><i class="fa fa-check"></i><b>5.3</b> The Back-door Criterion</a></li>
+<li class="chapter" data-level="5.4" data-path="cgm.html"><a href="cgm.html#causal-mechanism-and-the-front-door-criterion"><i class="fa fa-check"></i><b>5.4</b> Causal Mechanism and the Front-door Criterion</a></li>
+<li class="chapter" data-level="5.5" data-path="cgm.html"><a href="cgm.html#general-identification"><i class="fa fa-check"></i><b>5.5</b> General Identification Strategy</a></li>
+<li class="chapter" data-level="5.6" data-path="cgm.html"><a href="cgm.html#rcm-vs.-cgm"><i class="fa fa-check"></i><b>5.6</b> RCM vs. CGM</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="regression-based-methods.html"><a href="regression-based-methods.html"><i class="fa fa-check"></i><b>6</b> Regression-based Methods</a></li>
+<li class="part"><span><b>II Large Scale Online Controlled Experiments</b></span></li>
+<li class="chapter" data-level="7" data-path="abintro.html"><a href="abintro.html"><i class="fa fa-check"></i><b>7</b> A/B Testing: Beyond Randomized Experiments</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="abintro.html"><a href="abintro.html#specialaspects"><i class="fa fa-check"></i><b>7.1</b> Special Aspects of A/B Tests</a></li>
+<li class="chapter" data-level="7.2" data-path="abintro.html"><a href="abintro.html#telemetry"><i class="fa fa-check"></i><b>7.2</b> Instrumentation and Telemetry</a></li>
+<li class="chapter" data-level="7.3" data-path="abintro.html"><a href="abintro.html#common-pitfalls"><i class="fa fa-check"></i><b>7.3</b> Common Pitfalls</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="abstats.html"><a href="abstats.html"><i class="fa fa-check"></i><b>8</b> Statistical Analysis of A/B Tests</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="abstats.html"><a href="abstats.html#metric"><i class="fa fa-check"></i><b>8.1</b> Metric</a></li>
+<li class="chapter" data-level="8.2" data-path="abstats.html"><a href="abstats.html#randomization-unit-and-analysis-unit"><i class="fa fa-check"></i><b>8.2</b> Randomization Unit and Analysis Unit</a></li>
+<li class="chapter" data-level="8.3" data-path="abstats.html"><a href="abstats.html#abstatsover"><i class="fa fa-check"></i><b>8.3</b> Inference for Average Treatment Effect of A/B Tests</a></li>
+<li class="chapter" data-level="8.4" data-path="abstats.html"><a href="abstats.html#indvar"><i class="fa fa-check"></i><b>8.4</b> Independence Assumption and Variance Estimation</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="abstats.html"><a href="abstats.html#independence-assumption"><i class="fa fa-check"></i><b>8.4.1</b> Independence Assumption</a></li>
+<li class="chapter" data-level="8.4.2" data-path="abstats.html"><a href="abstats.html#variance-estimation-for-average-and-weighted-average"><i class="fa fa-check"></i><b>8.4.2</b> Variance Estimation for Average and Weighted Average</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="abstats.html"><a href="abstats.html#normalassumption"><i class="fa fa-check"></i><b>8.5</b> Central Limit Theorem and Normal Approximation</a></li>
+<li class="chapter" data-level="8.6" data-path="abstats.html"><a href="abstats.html#percentilevar"><i class="fa fa-check"></i><b>8.6</b> Confidence Interval and Variance Estimation for Percentile metrics</a></li>
+<li class="chapter" data-level="8.7" data-path="abstats.html"><a href="abstats.html#p-value-statistical-power-s-and-m-error"><i class="fa fa-check"></i><b>8.7</b> p-Value, Statistical Power, S and M Error</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="abstats.html"><a href="abstats.html#p-value"><i class="fa fa-check"></i><b>8.7.1</b> p-Value</a></li>
+<li class="chapter" data-level="8.7.2" data-path="abstats.html"><a href="abstats.html#statistical-power"><i class="fa fa-check"></i><b>8.7.2</b> Statistical Power</a></li>
+<li class="chapter" data-level="8.7.3" data-path="abstats.html"><a href="abstats.html#type-s-and-type-m-error"><i class="fa fa-check"></i><b>8.7.3</b> Type S and Type M Error</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="abstats.html"><a href="abstats.html#aoabchallenge"><i class="fa fa-check"></i><b>8.8</b> Statistical Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="abdiagnosis.html"><a href="abdiagnosis.html"><i class="fa fa-check"></i><b>9</b> System Diagnosis and Quality Checks for A/B Tests</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="abdiagnosis.html"><a href="abdiagnosis.html#system-validation-using-aa-test"><i class="fa fa-check"></i><b>9.1</b> System Validation using A/A Test</a></li>
+<li class="chapter" data-level="9.2" data-path="abdiagnosis.html"><a href="abdiagnosis.html#sample-ratio-mismatch"><i class="fa fa-check"></i><b>9.2</b> Sample Ratio Mismatch</a></li>
+<li class="chapter" data-level="9.3" data-path="abdiagnosis.html"><a href="abdiagnosis.html#trigger-and-filter-condition"><i class="fa fa-check"></i><b>9.3</b> Trigger and Filter Condition</a></li>
+<li class="chapter" data-level="9.4" data-path="abdiagnosis.html"><a href="abdiagnosis.html#interaction-detection"><i class="fa fa-check"></i><b>9.4</b> Interaction Detection</a></li>
+<li class="chapter" data-level="9.5" data-path="abdiagnosis.html"><a href="abdiagnosis.html#metric-denominator-mismatch"><i class="fa fa-check"></i><b>9.5</b> Metric Denominator Mismatch</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sensitivity.html"><a href="sensitivity.html"><i class="fa fa-check"></i><b>10</b> Improving Metric Sensitivity</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="sensitivity.html"><a href="sensitivity.html#metric-sensitivity-decomposition"><i class="fa fa-check"></i><b>10.1</b> Metric Sensitivity Decomposition</a></li>
+<li class="chapter" data-level="10.2" data-path="sensitivity.html"><a href="sensitivity.html#vrreg"><i class="fa fa-check"></i><b>10.2</b> Variance Reduction</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="sensitivity.html"><a href="sensitivity.html#cuped"><i class="fa fa-check"></i><b>10.2.1</b> Control Variates and CUPED</a></li>
+<li class="chapter" data-level="10.2.2" data-path="sensitivity.html"><a href="sensitivity.html#regadj"><i class="fa fa-check"></i><b>10.2.2</b> General Regression Adjustment and Doubly Robust Estimation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="misc-topics.html"><a href="misc-topics.html"><i class="fa fa-check"></i><b>11</b> Misc Topics</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="misc-topics.html"><a href="misc-topics.html#misc-deltamethod"><i class="fa fa-check"></i><b>11.1</b> Delta Method</a></li>
+<li class="chapter" data-level="11.2" data-path="misc-topics.html"><a href="misc-topics.html#misc-randomdenom"><i class="fa fa-check"></i><b>11.2</b> Random Denominator for Independent Randomization Experiments</a></li>
+<li class="chapter" data-level="11.3" data-path="misc-topics.html"><a href="misc-topics.html#misc-mestimator"><i class="fa fa-check"></i><b>11.3</b> M-Estimator and Z-Estimator</a></li>
+</ul></li>
+<li class="part"><span><b>III Appendix</b></span></li>
+<li class="chapter" data-level="12" data-path="probability-minimum.html"><a href="probability-minimum.html"><i class="fa fa-check"></i><b>12</b> Probability Minimum</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="probability-minimum.html"><a href="probability-minimum.html#probability"><i class="fa fa-check"></i><b>12.1</b> probability</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="probability-minimum.html"><a href="probability-minimum.html#app-conditional-ind"><i class="fa fa-check"></i><b>12.1.1</b> Conditional Independence</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://alexdeng.github.io" target="blank">Alex Deng</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Causal Inference and Its Applications in Online Industry</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="abstats" class="section level1" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Statistical Analysis of A/B Tests</h1>
+<p>In Chapter <a href="randomintro.html#randomintro">3</a> we introduced the two sample problem and used two sample t-test and z-test to analyze a randomized experiment. Statistical analyses of A/B tests are based on the same ideas. But in order to cover various randomization designs and extend metrics beyond simple average, we have to extend classic two sample tests with relaxed assumptions.</p>
+<p>In this chapter, after a short discussion of metrics as statistics, we review the two sample problem under more general settings. We discuss various practical aspects, including randomization and analysis units, justifying independence assumption, sample size requirement for the central limit theorem and variance estimation for different randomization designs. For interpretation of results, we review confidence interval, p-value, statistical power, and introduce Type S and M error. We end this chapter with a brief discussion of a few common challenges arise in statistical analysis, for which we will revisit later.</p>
+<div id="metric" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> Metric</h2>
+<p>In a data-driven culture, people talk about metric all the time. Many people treat metric value as just another number on a Business Intelligence (BI) report or a dashboard. For example, we can chart those numbers over time to identify trend and try to make forecast. They can also be used for anomaly detection, alerting and insight discovery. More sophisticated usages of metrics require us to understand the statistical properties of them. How noisy is a metric value? How confident can one trust the pattern recognized from looking at the plot? In A/B testing, we focus on comparing two metric values observed from two different groups. The crux is to know whether the observed difference of the two is due to noise or signifies a true effect of a treatment/intervention. This is where statistical concepts like variance, hypothesis testing, p-value, confidence interval are useful. There is more to the statistical perspective of a metric. For metric designers, there are a lot of basic questions on metric definition: why use average, why use percentile, why use double averaging, why do we need weighted average and is this metric definition even make sense. The choices we made in metric definition will also impact the way statistical analysis should be carried. We define metric as the following.</p>
+<blockquote>
+<p>A Metric is an estimator for a statistical quantity of a probability distribution.</p>
+</blockquote>
+<p>First, a metric is always designed to help understand certain business related characteristic of a <em>population</em>. Why do we care about this metric called visits per user? Because this gives us the idea of our user population’s engagement level in terms of their visiting frequency. What about page error rate for Chrome browser users? This metric measures, for the (sub)population of Chrome browser users, how frequently they encounter any error on a webpage.</p>
+<p><em>Population</em> is an important concept because a lot of things implicitly depend on it. Strictly speaking, a metric and any conclusion drawn from it can only be applied to the population upon which the metric is defined. Conclusion made on the Unites States market cannot directly be extended to other international markets. Similarly, conclusion made from weekend data cannot be naively extended to weekdays. If we change the population we are technically looking at a potentially very different metric. There is also a leap of faith when we assume what we learned from the data collected now can be apply to the near future. Issues related to the change of population are called <em>external validity</em>.</p>
+<p>Second, a metric is for a statistical quantity of interest. A statistical quantity characterize certain property of a probability distribution and the random variable associated with that probability distribution. The two most commonly used (and probably also the two most important) statistical quantities are mean and variance. Median and other percentiles are also frequently used to define a metric. The mean of a distribution characterized the central location of the distribution. It is also called the expectation because it is “on average” what people would expect a random outcome from that distribution would be. The variance of a distribution captures magnitude of the noise. In multivariate case, we also care about the correlation or covariance between a few random variables.</p>
+<p>Third, a metric is an <em>estimator</em>. An estimator is a <em>rule</em> for calculating an estimate of a given statistical quantity based on observations. That is, an estimator is a function of observations that we use to estimate the true underlying statistical quantity of a probability distribution. Common estimators for mean and variance are average (sample mean) and sample variance. For percentile, sample percentile is an estimator. Maximum Likelihood Estimator ((MLE) is a type of estimator with good large sample properties when the distribution is known to be from a parametric family. An estimator is also a random variable due to random sampling. The distribution for an estimator is called the sampling distribution.</p>
+<p>For A/B tests, most metric definitions can be classified as one the following:</p>
+<ol style="list-style-type: decimal">
+<li>Single average. These metrics are estimators for a population mean. When the observations are binary, the population mean is often called a rate, and the metric is a rate metric. Examples include visits per user, revenue per user, click-through-rate, etc.</li>
+<li>Double average. Sometimes it is useful to take an average over another average. Click-through-rate is often defined as number of clicks per page-view and thought as a single average. Another flavor of click-through-rate is to compute the rate for each user, and then take average over users. The main distinction between the two flavors is that in the latter double average flavor all users will have the same weight to influence the average, and in the single average flavor users with more page-views will influence the metric more. This can be seen from
+<span class="math display">\[
+\frac{\sum_i C_i}{\sum_i P_i} = \frac{(C_i/P_i) \times P_i}{\sum_i P_i}
+\]</span>
+where <span class="math inline">\(C_i\)</span> and <span class="math inline">\(P_i\)</span> is the number of clicks and page-views for the i-th user, and the RHS is a weighted average of click-through-rate per user <span class="math inline">\(C_i/P_i\)</span> with weight <span class="math inline">\(P_i\)</span>.</li>
+<li>Weighted Average. In some cases metric designer can assign explicit weight to different units. Double average metric can be considered a special case of weighted average.<br />
+</li>
+<li>Percentile. Median is a more robust metric for the center of a distribution. Percentile at tail are a way to study the tail behavior, and they are popular metrics in performance/velocity community. Page-loading-time at 75%, 95% and even 99% are common percentile metrics to use.</li>
+</ol>
+<p>Can we define metrics beyond using average or percentile? There is no definitive answer here. For example Min and Max can be used to define very useful estimators as in the German Tank Problem<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a>. Sum and Count are used for reporting and monitoring purposes, but neither is an estimator for a statistical quantity of a distribution. In A/B tests we haven’t seen usage of metrics beyond average (including weighted average) and percentile. Therefore, we focus on average and percentile only.</p>
+</div>
+<div id="randomization-unit-and-analysis-unit" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> Randomization Unit and Analysis Unit</h2>
+<p>Randomization unit is the unit to be randomized into different variant groups. In Section <a href="abintro.html#telemetry">7.2</a> we mentioned that we apply a fast hash function on a string representation of the randomization unit into an integer in a large range such as 0 to 999 for 1000 buckets.</p>
+<p>Randomization unit determines the granularity of the assignments, and corresponding experiences. The majority of experiments are randomize by user because we want to keep a user’s experience as consistent as possible<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a>. For experiments where the treatment change is invisible to the users and response is instant (e.g. backend algorithm tweak and very subtle user interface change), swapping users experience between treatment and control will not confuse users and keeping a consistent experience for a user is not deemed to be important. For these scenarios impression or page-view level randomization is also used. Randomization unit can also be each visit or session. A mobile app can create a unique id each time the application is opened (or wake up after a long period being a background task) and use that as the randomization unit.</p>
+<p>Analysis unit is the unit a metric is defined on. Recall a metric is to estimate a statistical quantity for a distribution, and it is typically in a form of an average, weighted average or percentile. The analysis unit is the unit that the average or percentile is defined. In other words, each observation at the analysis unit is an observation from the distribution for which we want to infer its mean or percentile.</p>
+<p>The two units can (and often) be the same. When randomized by user, by user metrics like visits per user is an average over user level observations — its analysis unit is also user. The two units may differ. We may randomize by user but define a impression level metrics like page-load-time per page-view, or page-load-time at 95%. Both metrics uses impression as the analysis unit.</p>
+<p>The distinction between the two are very important. As a rule of thumb,</p>
+<ol style="list-style-type: decimal">
+<li>Randomization unit can not be more granular than analysis unit.</li>
+<li>Observations at the Randomization unit level can often be treated as independent and identically distributed.</li>
+</ol>
+<p>The first rule of thumb is obvious. If randomization unit is more granular, then for each analysis unit, the observation may contain various experiences from different treatments or control. Define metrics at this level cannot separate effects from different experiences. The second rule of thumb is quite deep, and we will discuss more in the next section. But an important remark is when analysis unit is not the same as the randomization unit, we cannot simply treat observations at the analysis unit level to be independent! Failing to realize this will result in invalid statistical analyses.</p>
+</div>
+<div id="abstatsover" class="section level2" number="8.3">
+<h2><span class="header-section-number">8.3</span> Inference for Average Treatment Effect of A/B Tests</h2>
+<p>In this section we review frequentist hypothesis testing and point estimation for ATE with our eyes on a general setting to apply to A/B tests. Without loss of generality, we consider only one treatment group and one control group. Let <span class="math inline">\(Y_1^{(t)},\dots,Y^{(t)}_{N_t}\)</span> are random variables representing observations at the analysis unit level for treatment and similarly <span class="math inline">\(Y_1^{(c)},\dots,Y^{(c)}_{N_c}\)</span> for the control group. Let <span class="math inline">\(M_t, M_c\)</span> be the metrics defined from the two groups. Recall metrics are estimators so they are both random variables in a form of average, weighted average or percentile.</p>
+<p>Generally speaking, the distribution of <span class="math inline">\(M_t\)</span> and <span class="math inline">\(M_c\)</span> will heavily depend on the distribution of individual <span class="math inline">\(Y^{(t)}\)</span> and <span class="math inline">\(Y^{(c)}\)</span>. In the classic two sample t-test, they are assumed to be independent and identically distributed normal distribution. In A/B tests, both assumptions of independence and normality are too restrictive. First, these observations are at the analysis unit level and there is no guarantee they are independent when the randomization unit is different from the analysis unit. Second, the distribution of the observations are quite often far away from normal distribution. They are often binary/bernoulli, integer valued and could be highly skewed.</p>
+<p>Fortunately, A/B tests have big data and we have the large sample/asymptotic theory to our aid. When the sample size is large, <span class="math inline">\(M_t\)</span> and <span class="math inline">\(M_c\)</span> can both be approximated by a normal distribution, even when individual distributions of <span class="math inline">\(Y_i\)</span> are not normally distributed and not necessarily independent of each other! The issue of independence and normal approximation will be the topic of Section <a href="abstats.html#indvar">8.4</a> and Section <a href="abstats.html#normalassumption">8.5</a>. For now, assuming</p>
+<p><span class="math display">\[
+n_t \left (M_t - \mu_t \right)  \xrightarrow{d} \text{Normal}(0,\sigma_t^2)\,, \\
+n_c \left (M_c - \mu_c \right)  \xrightarrow{d} \text{Normal}(0,\sigma_c^2)\,,
+\]</span>
+where <span class="math inline">\(n_t\)</span> and <span class="math inline">\(n_c\)</span> is the count of the randomization units in each group, <span class="math inline">\(\mu_t\)</span> and <span class="math inline">\(\mu_c\)</span> are the true mean or percentile of the distribution. Note that we didn’t define <span class="math inline">\(\sigma_t^2\)</span> and <span class="math inline">\(\sigma_c^2\)</span> as variances of <span class="math inline">\(Y^{(t)}\)</span> and <span class="math inline">\(Y^{(c)}\)</span>, because this is not always the case. It is true for a simple average metric when the analysis unit is the same as the randomization unit. For general case, we have to wait until Section <a href="abstats.html#indvar">8.4</a> to discuss how to estimate <span class="math inline">\(\sigma_t^2\)</span> and <span class="math inline">\(\sigma_c^2\)</span>. For now, all we know is <span class="math inline">\(\sigma_t^2/n_t\)</span> and <span class="math inline">\(\sigma_c^2/n_c\)</span> are the asymptotic variances of the two metrics <span class="math inline">\(M_t\)</span> and <span class="math inline">\(M_c\)</span>.</p>
+<p>For Average Treatment Effect, the population average treatment effect is <span class="math inline">\(\delta = \mu_t - \mu_c\)</span> and a unbiased estimator for <span class="math inline">\(\delta\)</span> is the observed difference between the two metric values
+<span class="math display">\[
+\widehat \delta = \Delta = M_t - M_c\,,
+\]</span>
+and from the asymptotic normal distribution of <span class="math inline">\(M_t\)</span> and <span class="math inline">\(M_c\)</span> we know <span class="math inline">\(\Delta\)</span> also has an approximately normal distribution such that
+<span class="math display">\[
+\frac{\Delta - \delta}{\sqrt{\sigma_t^2/n_t + \sigma_c^2/n_c}}  \xrightarrow{d} \text{Normal}(0,1)\,.
+\]</span></p>
+<p>Under the null hypothesis <span class="math inline">\(H_0\)</span> that <span class="math inline">\(\delta = 0\)</span>,
+<span class="math display" id="eq:abzstat">\[\begin{equation}
+\frac{\Delta}{\sqrt{\sigma_t^2/n_t + \sigma_c^2/n_c}}  \xrightarrow{d} \text{Normal}(0,1)\,. \tag{8.1}
+\end{equation}\]</span>
+If we assume <span class="math inline">\(\sigma_t\)</span> and <span class="math inline">\(\sigma_c\)</span> are known and both <span class="math inline">\(n_t\)</span> and <span class="math inline">\(n_c\)</span> are fixed, Equation <a href="abstats.html#eq:abzstat">(8.1)</a> is the z-statistics with null distribution being the standard normal distribution. This allows us to easily construct a rejection region for a two-sided size <span class="math inline">\(\alpha\)</span> test:
+<span class="math display">\[
+|\Delta| &gt; z_{\alpha/2}\cdot \sqrt{\sigma_t^2/n_t + \sigma_c^2/n_c}\,.
+\]</span>
+And one-sided size <span class="math inline">\(\alpha\)</span> rejection region for <span class="math inline">\(H_0: \delta &lt;0\)</span> is <span class="math inline">\(\Delta &gt; z_{\alpha}\cdot \sqrt{\sigma_t^2/n_t + \sigma_c^2/n_c}\)</span> and for <span class="math inline">\(H_0: \delta &gt; 0\)</span> is <span class="math inline">\(\Delta &lt; -z_{\alpha}\cdot \sqrt{\sigma_t^2/n_t + \sigma_c^2/n_c}\)</span>.</p>
+<p>If we want to have a point-estimation with confidence interval, the unbiased estimation of <span class="math inline">\(\delta\)</span> is <span class="math inline">\(\Delta\)</span> and <span class="math inline">\(1-\alpha\)</span> two-sided confidence interval is
+<span class="math display">\[
+\Delta \pm z_{\alpha/2} \cdot \sqrt{\sigma_t^2/n_t + \sigma_c^2/n_c}\,.
+\]</span></p>
+<p>The main results so far in this section is similar to the analysis of randomized experiments in Section <a href="randomintro.html#aore">3.4</a>, but with a few notable differences:</p>
+<ol style="list-style-type: decimal">
+<li>In Section <a href="randomintro.html#aore">3.4</a> and our earlier discussion of causal inference, the notion of the (population) average treatment effect is defined strictly for the average of the individual treatment effect. This is the same as the difference of the population means of the counterfactual pair, which in the randomized setting is the same as the difference of the population mean of observations between treatment and control groups. In this section, we generalized (or slightly abused) the notion of ATE to also include other two types of metrics: weighted average and percentile metrics.</li>
+<li>Analysis of A/B tests relies heavily on large sample theory and normal approximation based on the central limit theorem. Small sample t-test with strong assumption of normal distribution of <span class="math inline">\(Y\)</span> is practically not applicable.</li>
+<li>There is no assumption as in Section <a href="randomintro.html#aore">3.4</a> about observations <span class="math inline">\(Y_i\)</span> to be i.i.d. for both treatment and control groups.</li>
+<li>Variance estimation of <span class="math inline">\(\sigma_t^2\)</span> and <span class="math inline">\(\sigma_c^2\)</span> are also more general and often not as simple as using the standard sample variance.</li>
+</ol>
+<p>We have left many unsolved puzzles in this section to unravel later in this chapter. How should we make independence assumption? How to estimate <span class="math inline">\(\sigma_t^2\)</span> and <span class="math inline">\(\sigma_c^2\)</span>? How large sample is needed for central limit theorem to work? What about percentile metrics? We will unravel them one by one.</p>
+</div>
+<div id="indvar" class="section level2" number="8.4">
+<h2><span class="header-section-number">8.4</span> Independence Assumption and Variance Estimation</h2>
+<p>Independence assumption is one of the most fundamental assumptions for many statistical analyses. In theoretical research, independence assumption are often stated as part of a data generating process taken as a prerequisite for some results. While it is easy to start with a data generating process with strong independence assumption and derive nice results, applying the results to a real world problem almost always requires us to verify why the data generating process is an appropriate abstraction or simplification of the real world. What justifies independence assumption for a real world problem?</p>
+<p>In online experimentation, a user is often regarded as the basic unit of autonomy and hence commonly used as the randomization unit. Under what conditions can users be treated as i.i.d.? In user-randomized A/B tests, people routinely treat users as i.i.d. without much questioning, but users’ behavior obviously could be correlated by many factors such as gender, age group, location, organization, etc. Does this invalidate the user-level i.i.d. assumption?</p>
+<p>A general rule of thumb says that we can always treat the randomization unit as i.i.d. We name this the <em>randomization unit principle</em> (RUP). For example, when an experiment is randomized by user, page-view <span class="citation">(<a href="probability-minimum.html#ref-choiceofexp" role="doc-biblioref">S. Deng et al. 2011</a>)</span>, cookie-day <span class="citation">(<a href="probability-minimum.html#ref-googlesurvey" role="doc-biblioref">Tang et al. 2010</a>)</span> or session/visit, RUP suggests it is reasonable to assume observations at each of these levels respectively are i.i.d. There were no previous published work that explicitly stated RUP. But it is widely used in analyses of A/B tests by the community, and the importance of RUP has been mentioned <span class="citation">(<a href="probability-minimum.html#ref-googlesurvey" role="doc-biblioref">Tang et al. 2010</a>; <a href="probability-minimum.html#ref-chamandy2015teaching" role="doc-biblioref">Chamandy, Muralidharan, and Wager 2015</a>; <a href="probability-minimum.html#ref-Kohavi2010" role="doc-biblioref">Kohavi, Longbotham, and Walker 2010</a>)</span>. However, there is nothing inherent to the randomization process that justifies treating randomization unit level observations as i.i.d. When we randomize by page-view, are page-views from a single user not correlated?</p>
+<p>We define the unit at which observations can be treated as independent to be <em>independent unit</em>. The purpose of this section is to answer the following questions:</p>
+<ol style="list-style-type: decimal">
+<li>What justifies independence assumption?</li>
+<li>Is RUP a valid rule of thumb to use? That is, is the randomization unit also an independent unit?</li>
+<li>How to estimate variance of a metric (and the ATE estimator <span class="math inline">\(\Delta\)</span>) for metrics in forms of average, weighted average and percentile?</li>
+</ol>
+<div id="independence-assumption" class="section level3" number="8.4.1">
+<h3><span class="header-section-number">8.4.1</span> Independence Assumption</h3>
+<p>In probability theory, independence is clearly defined. In plain language, if two events are independent, knowing that one of those events occurred does not help to predict whether the other event occurs. In practice, independence is rarely absolute and instead always depends on context. Consider the following puzzle.</p>
+<blockquote>
+<p>There is an urn filled with numbered balls. You pull a ball from the urn, read its number, and place it back in the urn. If you do this repeatedly, are the outcomes independent?</p>
+</blockquote>
+<p>Surprisingly, such a seemingly simple question does not have a definitive answer. We asked this question to various group of students, data scientists and engineers, there were always disagreements. Here are the collected arguments from both sides. Recall if the outcomes are independent, then previous outcomes have no predictive power for the next outcome. If you have no prior knowledge of the distribution of the numbers on the balls in the urn, then as you see more balls you develop a better understanding of this distribution and therefore a better prediction for the next outcome. In this line of thinking the outcomes are dependent. Alternatively, assume you know the distribution of the numbers on the balls (e.g., uniform from 1 to 500). Then pulling balls from the urn with replacement bears no new information, and the outcomes are independent. To summarize, the observed numbers are conditionally independent given the distribution of the numbers in the urn, but unconditionally dependent.</p>
+<p>This simple example shows that the notion of independence requires a context. The context in the example above is the distribution of numbers in the urn. Whether this context is a public information that can be treated as known information or not will change the answer. In real world applications, natural unconditional independence is very rare and most independence assumptions will rely on a common context and only conditionally independent. See <span class="citation"><a href="probability-minimum.html#ref-allofstat" role="doc-biblioref">Wasserman</a> (<a href="probability-minimum.html#ref-allofstat" role="doc-biblioref">2003</a>)</span>,<span class="citation"><a href="probability-minimum.html#ref-Murphy2012" role="doc-biblioref">Murphy</a> (<a href="probability-minimum.html#ref-Murphy2012" role="doc-biblioref">2012</a>)</span> or <span class="citation"><a href="probability-minimum.html#ref-barber2012bayesian" role="doc-biblioref">D. Barber</a> (<a href="probability-minimum.html#ref-barber2012bayesian" role="doc-biblioref">2012</a>)</span> for more on conditional independence vs. independence.</p>
+<p>The question is: who decides the context? In the previous example, who gets to say whether the distribution of the numbers on the balls are a publicly known fact or unknown? The answer is there is no single answer. Different contexts give different data generating processes which then affect both the inference procedure and also impact the interpretation of results. If we treat the distribution of numbers as a known fact, then we do inference under the data generating process where the numbers follow exactly the prescribed distribution, and any results we obtained will be limited to this context. If we treat the distribution as unknown, then the data generating process will allow this distribution to vary, and our inference will take the uncertainty of this distribution into account. The results will then be more general, as the data generating processes are less specified compared to fixing the distribution of numbers on the urns. But there is no free lunch. Doing so will make observations from the urns not independent, and as a general rule of thumb, dependencies among observations makes inference harder and less accurate.</p>
+<p>Let us further explore this idea using another example appeared in <span class="citation"><a href="probability-minimum.html#ref-Deng2017WSDM" role="doc-biblioref">Alex Deng, Lu, and Litz</a> (<a href="probability-minimum.html#ref-Deng2017WSDM" role="doc-biblioref">2017</a>)</span>. We know users can be correlated by various factors such as gender, age, occupation, etc. Taking gender as an example, it is known that the heights of men and women follow different distributions. When the proportion of men and women in the population is treated as fixed, we can create the overall adult height distribution from the two gender specific distributions using weights from the gender ratio. From this point of view, heights of randomly sampled adults are i.i.d. drawn from a single mixture distribution — the “All Adults” density in Figure <a href="abstats.html#fig:gender">8.1</a>. The observed heights are conditionally independent given the gender ratio. We might then extend this reasoning to other factors and convince ourselves that the i.i.d. assumption for users is reasonable.</p>
+<div class="figure"><span id="fig:gender"></span>
+<img src="images/gender.png" alt="Height distribution for men, women and all adults." width="70%" />
+<p class="caption">
+Figure 8.1: Height distribution for men, women and all adults.
+</p>
+</div>
+<p>But the above reasoning hinges on the existence of a fixed mixture distribution, which requires the mixture ratio of all those factors to be fixed. What justifies treating the gender mixture as fixed? What if we want to make inferences about subsets of the population that may have different gender ratios? When we consider the possibility that the gender ratio might not be fixed, we are implicitly talking about extending the results from the current dataset to a future dataset that might have a different gender ratio. That is, we want to know if treating the gender ratio as fixed will affect the <em>external validity</em> of inferences made from the current data.</p>
+<p>In A/B tests, external validity often concerns <em>bias</em> resulting from differences between the population from which the inference was drawn and the population upon which the inference will be later applied. When extending externally, inferences can be made invalid due to an <em>under-estimation of uncertainty</em>. Imagine that we sample students from 2 of 20 local 7th grade classes at random to estimate the average height of all local 7th graders. We assume that the height distributions of boys and girls in the 20 schools are the same. If we also assume the gender ratios in the 20 schools are fixed, then we can assume heights of sampled students are i.i.d. from a single mixture distribution and form a confidence interval for the mean of height. But what if even though the gender ratio is close to 50/50 in the whole school district, there exist large differences in gender ratios at different schools? Then it is possible that the two randomly chosen schools have significantly more boys than girls, or vice versa. Under this scenario, the confidence interval we get by assuming a fixed gender ratio and i.i.d. heights will be too narrow because it does not account for the variability of gender ratios among the 20 schools. In other words, the gender ratio for a sample we got may not be “representative” for the general population we want our results to apply to. To make the result externally valid, we must treat gender ratio as a random variable.</p>
+<p>The following simulation illustrates this point. Table <a href="abstats.html#tab:school">8.1</a> shows female and male student counts in 20 hypothetical schools. It is constructed such that:</p>
+<ol style="list-style-type: decimal">
+<li>Each school has exactly 1,000 student.</li>
+<li>School #1 has 690 female and 310 male students. Each incremental school has 20 fewer females and 20 more males than the previous school. School #20 has 310 female and 690 male students.<br />
+</li>
+<li>In total, the gender ratio is balanced with exactly 10,000 female students and 10,000 male students.</li>
+</ol>
+<table>
+<caption><span id="tab:school">Table 8.1: </span> Female and male students configuration in a hypothetical 20 school district.</caption>
+<thead>
+<tr class="header">
+<th align="center">School</th>
+<th align="center">Female Count</th>
+<th align="center">Male Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">690</td>
+<td align="center">310</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">670</td>
+<td align="center">330</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">650</td>
+<td align="center">350</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">630</td>
+<td align="center">370</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">610</td>
+<td align="center">390</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\cdots\)</span></td>
+<td align="center"><span class="math inline">\(\cdots\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">15</td>
+<td align="center">410</td>
+<td align="center">590</td>
+</tr>
+<tr class="even">
+<td align="center">16</td>
+<td align="center">390</td>
+<td align="center">610</td>
+</tr>
+<tr class="odd">
+<td align="center">17</td>
+<td align="center">370</td>
+<td align="center">630</td>
+</tr>
+<tr class="even">
+<td align="center">18</td>
+<td align="center">350</td>
+<td align="center">650</td>
+</tr>
+<tr class="odd">
+<td align="center">19</td>
+<td align="center">330</td>
+<td align="center">670</td>
+</tr>
+<tr class="even">
+<td align="center">20</td>
+<td align="center">310</td>
+<td align="center">690</td>
+</tr>
+</tbody>
+</table>
+<p>We generate male heights from a normal distribution with mean 175cm and standard deviation 10cm. Female heights are generated from a normal distribution with mean 160cm and standard deviation 10cm. This simulated data is assumed to be the true heights for each of the 20,000 students. In this dataset, the true average height over the 20,000 students is 167.46. The goal is to sample 200 students out of the 20,000 students to estimate the average height.</p>
+<p>Table <a href="abstats.html#tab:schoolcov">8.2</a> shows the results from the 4 sampling methods. In Case 1 we randomly sample 200 students from the combined 20,000 students. For Cases 2 to 4, we use a two-stage sampling. For Case 2 we first sample 2 schools from the 20 schools, and then sample 100 students from each of the 2 chosen schools. In cases 3 and 4 we sample 5 and 10 schools, then 40 students and 20 students for each chosen school, respectively. In all cases we sample 200 students. For each case, after we sampled 200 students, we compute the sample average and also standard deviation from the standard variance formula assuming i.i.d. observations. We used that to compute the 95% confidence interval and recorded whether the true average 167.46 was within the interval. We repeated this process 2,000 times and then compute the coverage, average estimated standard error from the standard formula, and standard deviation of the 2,000 sample averages (which approximates the true standard error of the mean).</p>
+<p>Table <a href="abstats.html#tab:schoolcov">8.2</a> shows that case 1 has the correct coverage at 95% and the standard variance formula produces a standard error that is very close to the truth. In all other cases, coverages are all lower than the promised 95%, true standard errors are all larger than those given by standard formula, confirming variance under-estimation. In fact, in all cases the standard formula gives very similar standard errors. This is because it assumes i.i.d. sampled heights. However, when samples are from a small number of randomly selected schools, there is extra variation in the population due to the fluctuation of gender ratio, making the true standard error larger than under the i.i.d. assumption. We saw as the number of schools sampled in the first stage increased from 2 to 10, the true standard deviation decreased and coverage got better. In cases 2-4, if we assume sample observations are i.i.d. and use the standard variance formula, then the inference is only valid for the average height of the chosen schools and cannot be extended to all 20 schools. If we want to make the extended inference, we need to correctly account for additional “between school” variance.</p>
+<table>
+<caption><span id="tab:schoolcov">Table 8.2: </span> Comparison of 4 sampling mechanisms. The first is a random sample from all students; the other 3 cases select 2, 5 and 10 schools respectively and then sample students from the chosen schools. Results show that the standard variance formula (assuming i.i.d. observations) under-estimates the true variance and gives lower coverage than the promised 95% level.</caption>
+<thead>
+<tr class="header">
+<th>Case</th>
+<th>#School</th>
+<th align="center">Coverage</th>
+<th align="center">SE with standard formula</th>
+<th align="center">True SE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>20</td>
+<td align="center">0.949</td>
+<td align="center">0.879</td>
+<td align="center">0.880</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>2</td>
+<td align="center">0.753</td>
+<td align="center">0.877</td>
+<td align="center">1.446</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>5</td>
+<td align="center">0.866</td>
+<td align="center">0.878</td>
+<td align="center">1.141</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>10</td>
+<td align="center">0.916</td>
+<td align="center">0.879</td>
+<td align="center">0.976</td>
+</tr>
+</tbody>
+</table>
+<p>From both the numbers in an urn and estimating student’s height examples, we summarize the reasoning of independence (or lack thereof) in the following steps:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Sampling</strong>: We identify an unit from which we can randomly sample from.</li>
+<li><strong>Hierarchical Model and Conditional Independence</strong>: In reality, observations at the level of the sampling unit are often considered to be dependent on certain higher level factors (e.g. same gender, age, location for users) and many units share a similar value of those factors form clusters. Under this hierarchical model, conditioned on these factors, the sampling unit are independent within each cluster.<br />
+</li>
+<li><strong>Factor Mixture and Independence</strong>: When the mixture of the factors (e.g. gender ratio, etc.) in the population is considered to be fixed and not varying. The whole distribution of the observations from the sampling unit can be modeled as independently drawn from a mixture distribution.</li>
+<li><strong>External Validity</strong>: Independence assumption relies on treating factor mixture as fixed and not varying. Therefore any results under the independence assumption is tied to the population with a particular mixture of the factors. These results cannot be extended to another population with a very different factor mixture.</li>
+</ol>
+<p>Let us apply the steps to the unit of user — the commonly assumed unit of independence. Ignoring any practical user tracking issue and assuming we can always identify a user, we can certainly randomly sample users from the whole population of users. For any observation at user level, the higher level factors determining the distribution of such observations has a mixture for the population of users from which we sample from in a given period of time. When we treat this mixture as fixed, we can assume observations at user level to be i.i.d. What is the price to pay to treat the mixture as fixed? The price is we can only derive results for the specific set of user population and the specific period of time when we run the experiment. That is, external validity implies that results from today’s experiment to predict tomorrow’s behavior may not perfect, and results should always be interpreted within the tested population. If we want to allow the population mixture to change and need our results to incorporate this uncertainty, then we cannot assume users to be i.i.d. and our estimation of average treatment effect will have bigger variance and wider confidence intervals than the estimations when users are assumed to be i.i.d. There is no free lunch, the more uncertainties we want to include in our analyses, the less accuracy our estimation will be.</p>
+<p>By connecting the i.i.d. assumption with external validity, we now understand that the i.i.d. assumption is ultimately not justified by theory, but by <em>choice</em>. In other words, we can make conscious choices to limit the external validity of the results we get, in exchange for independence assumption. This means the question of independence can often be flipped to be a question of external validity. We can apply this argument to units like users, groups or community of users, locations, devices and many other units to justify independence assumption. However, reasoning with external validity may be very subtle in some cases and deemed a bit subjective. For example, if we randomly sample page-views, what is the factor mixture and what does it mean to external validity by fixing this mixture? In practice, many A/B testing practitioners uses the following rule of thumb:</p>
+<blockquote>
+<p>Observations at the level of the randomization unit can be treated as independent.</p>
+</blockquote>
+<p>We call this <em>randomization unit principle</em> (RUP). The most common randomization unit is user, and we just applied the external validity argument to justify treating it as independent unit. But we have ignored the issues of user tracking. When user tracking uses cookie, we know the real same user can appear as multiple “users.” Other popular randomization units include visit/session, page-view/impression. These units are all more granular than user. In the next section, we will justify RUP from a different angle by showing the following result.</p>
+<blockquote>
+<p>For any randomization unit more granular than an independent unit, we can approximately compute the variance of the ATE estimator assuming randomization unit is independent.</p>
+</blockquote>
+<p>This result means RUP for variance estimation only relies on the existence of an independent unit less granular than the randomization unit. That is, we do not necessarily need to wrestle with external validity for independence assumption of the randomization unit itself, we only need to assume <em>some</em> independent unit exists above the randomization unit!</p>
+</div>
+<div id="variance-estimation-for-average-and-weighted-average" class="section level3" number="8.4.2">
+<h3><span class="header-section-number">8.4.2</span> Variance Estimation for Average and Weighted Average</h3>
+<p>Variance estimation is directly impacted by the data generating process and independence assumption. If the metric is an average of <span class="math inline">\(Y_i,i=1,\dots, N\)</span>, the variance of the metric is <span class="math inline">\(\mathrm{Var}(Y)/N\)</span> only when <span class="math inline">\(Y_i\)</span> are independent. Using the variance formula for the independent case to cases where observations are not independent often lead to wild miss-estimation of the variance and invalidate the whole analysis.</p>
+<p>We already introduced the three different units:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\mathcal{I}\)</span>: the Independent unit.</li>
+<li><span class="math inline">\(\mathcal{R}\)</span>: the randomization unit.</li>
+<li><span class="math inline">\(\mathcal{A}\)</span>: the analysis unit.</li>
+</ol>
+<p>We posit the existence of an independent unit <span class="math inline">\(\mathcal{I}\)</span>. In the previous section we explained the justification of independence is deeply connected with external validity and we argued units like user can usually be treated as independent unit.</p>
+<p>Randomization unit <span class="math inline">\(\mathcal{R}\)</span> is the unit we use to randomize. When <span class="math inline">\(\mathcal{R}\)</span> is less granular than <span class="math inline">\(\mathcal{I}\)</span> (randomization units are clusters of <span class="math inline">\(\mathcal{I}\)</span> and the clustering is random), the randomization unit is itself an independent unit. Therefore, only three cases are relevant:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\mathcal{I} = \mathcal{R} = \mathcal{A}\)</span></li>
+<li><span class="math inline">\(\mathcal{I} = \mathcal{R} &gt; \mathcal{A}\)</span></li>
+<li><span class="math inline">\(\mathcal{I} &gt; \mathcal{R} \ge \mathcal{A}\)</span></li>
+</ol>
+<p>We provide variance estimations for the ATE estimator <span class="math inline">\(\Delta =M_t - M_c\)</span> for all the three cases.</p>
+<p><strong>Case 1: <span class="math inline">\(\mathcal{I} = \mathcal{R} = \mathcal{A}\)</span></strong>.
+Consider metrics defined as an average. Since the analysis unit is also an independent unit, both the treatment and control metric <span class="math inline">\(M_t\)</span> and <span class="math inline">\(M_c\)</span> are average of independent observations <span class="math inline">\(Y_i\)</span>. Also, as the randomization unit is also the independent unit, the two metric values <span class="math inline">\(M_t\)</span> and <span class="math inline">\(M_c\)</span> are independent because treatment and control groups are independent. We have,</p>
+<p><span class="math display">\[\begin{align*}
+\mathrm{Var}_\text{S}(\Delta) &amp; = \mathrm{Var}(\overline{Y^{t}})+ \mathrm{Var}(\overline{Y^{c}}) \\
+&amp; = \frac{\sigma_t^2}{n_t} + \frac{\sigma_c^2}{n_c}, 
+\end{align*}\]</span>
+where the subscript <span class="math inline">\(S\)</span> means the “simple” case, <span class="math inline">\(\sigma_t^2\)</span> and <span class="math inline">\(\sigma_c^2\)</span> are variance of the independent observations <span class="math inline">\(Y_i\)</span> for treatment and control groups respectively, and <span class="math inline">\(n_t\)</span> and <span class="math inline">\(n_c\)</span> are count of the observations.</p>
+<p><span class="math inline">\(\sigma_t^2\)</span> and <span class="math inline">\(\sigma_c^2\)</span> are to be estimated using sample variance formula
+<span class="math display">\[
+\widehat{\sigma_g}^2 = \frac{\sum_i (Y^{(g)}_i - \overline{Y^{(g)}})^2}{N_g-1},\quad g = t,c\,.
+\]</span></p>
+<p>Consider metrics defined as weighted average. Let <span class="math inline">\(w_i\)</span> be the weight for the i-th observation. The treatment metric has the form
+<span class="math display">\[
+M_t = \frac{\sum_i w_i^{(t)} Y^{(t)}_i}{\sum_i w_i^{(t)}}\,.
+\]</span></p>
+<p>This is a ratio of two sums, which also have an asymptotic normal distribution thanks to the delta method <span class="citation">(<a href="probability-minimum.html#ref-casella2002statistical" role="doc-biblioref">Casella and Berger 2002</a>; <a href="probability-minimum.html#ref-Deng2018kdd" role="doc-biblioref">Alex Deng, Knoblich, and Lu 2018</a>)</span>. The variance of <span class="math inline">\(\Delta\)</span> is
+<span class="math display">\[\begin{align*}
+\mathrm{Var}_\text{D}(\Delta) &amp; = \mathrm{Var}\left (\frac{\sum_i w_i^{(t)} Y^{(t)}_i}{\sum_i w_i^{(t)}}\right) + \mathrm{Var}\left(\frac{\sum_i w_i^{(c)} Y^{(c)}_i}{\sum_i w_i^{(c)}}\right)\\
+&amp; = \frac{\xi_t^2}{n_t} + \frac{\xi_c^2}{n_c}
+\end{align*}\]</span>
+where the subscript <span class="math inline">\(D\)</span> means delta method was used, <span class="math inline">\(\xi_t^2\)</span> and <span class="math inline">\(\xi_c^2\)</span> are the delta method variance. To estimate the two delta method variance, let <span class="math inline">\(S_i^{(g)} = w_i\cdot Y_i^{(g)}\)</span> for both groups <span class="math inline">\(g=t,c\)</span>.
+<span class="math display" id="eq:deltavar">\[\begin{equation}
+\xi_g^2 = \frac{1}{\mathrm{E}(w^{(g)})^2}\mathrm{Var}(S^{(g)}) + \frac{\mathrm{E}(S^{(g)})^2}{\mathrm{E}(w^{(g)})^4}\mathrm{Var}(w^{(g)})\\
+- 2 \frac{\mathrm{E}(S^{(g)})}{\mathrm{E}(w^{(g)})^3} \mathrm{Cov}(S^{(g)},w^{(g)})\,,\quad g=t,c \tag{8.2}
+\end{equation}\]</span>
+where all the expectations, variances and covariance can be estimated using sample mean, sample variance and sample covariance. The details of the delta method is included in the appendix <a href="misc-topics.html#misc-randomdenom">11.2</a>. See <span class="citation"><a href="probability-minimum.html#ref-Deng2018kdd" role="doc-biblioref">Alex Deng, Knoblich, and Lu</a> (<a href="probability-minimum.html#ref-Deng2018kdd" role="doc-biblioref">2018</a>)</span> for more applications of the delta method in A/B testing.</p>
+<p><strong>Case 2: <span class="math inline">\(\mathcal{I} = \mathcal{R} &gt; \mathcal{A}\)</span></strong>.
+When the analysis unit <span class="math inline">\(\mathcal{A}\)</span> is more granular than the independent and randomization unit <span class="math inline">\(\mathcal{R}\)</span>, the observations <span class="math inline">\(Y_i\)</span> and weights <span class="math inline">\(w_i\)</span> are not independent anymore. We need to modify the notation a little. We will keep using <span class="math inline">\(i\)</span> as the index for independent (and in this case randomization) unit, and use <span class="math inline">\(j\)</span> to index the observations at the analysis unit level. Observations are now denoted as <span class="math inline">\(Y_{ij}^{g}, i = 1,\dots,n_g, j = 1,\dots,N_i^{g}, g = t,c\)</span>. Also let <span class="math inline">\(N_g = \sum_i N_i^{(g)}\)</span> to be the total count of analysis unit for each group.</p>
+<p>Using a concrete example, if randomization unit is user and analysis unit is page-view. <span class="math inline">\(Y_{ij}^{(g)}\)</span> is the j-th page-view level observation for the i-th user, <span class="math inline">\(n_g\)</span> is the number of users, and <span class="math inline">\(N_g\)</span> is the number of page-views.</p>
+<p>Average metrics have the form
+<span class="math display">\[
+\overline{Y^{(g)}} = \frac{\sum_i \sum_j Y_{ij}^{(g)}}{\sum_i N_i^{(g)}}\,.
+\]</span>
+Let <span class="math inline">\(S_i^{(g)} = \sum_j Y_{ij}^{(g)}\)</span>,
+<span class="math display">\[
+\overline{Y^{(g)}} = \frac{\sum_i S_i^{(g)}}{\sum_i N_i^{(g)}}\,.
+\]</span>
+This is again a ratio of sum of independent unit level observations — the same form we have seen in Case 1 for weighted average.</p>
+<p>We show the weighted average for this case also have a similar form. Let <span class="math inline">\(w_{ij}^{(g)}\)</span> be the weight and
+<span class="math display">\[
+\overline{Y^{(g)}} = \frac{\sum_i \sum_j w_{ij}^{(g)}Y_{ij}^{(g)}}{\sum_i \sum_j w_{ij}^{(g)}} = = \frac{\sum_i S_i^{(g)}}{\sum_i W_i^{(g)}}\,.
+\]</span>
+where <span class="math inline">\(S_i^{(g)} = \sum_j W_{ij}^{(g)}Y_{ij}^{(g)}\)</span>, <span class="math inline">\(W_i^{g} = \sum_j w_{ij}^{(g)}\)</span>.</p>
+<p>Therefore, for both average and weighted average metrics, they can be expressed as a ratio of sum of i.i.d. observations (at the independent unit level). Their variance can be estimated using the delta method similar to Equation <a href="abstats.html#eq:deltavar">(8.2)</a>.</p>
+<p><strong>Case 3: <span class="math inline">\(\mathcal{I} &gt; \mathcal{R} \ge \mathcal{A}\)</span></strong>.
+This is the most complicated case, as the same independent unit can be further split between the treatment and control group. We will use i to index independent unit, and j to index the randomization unit. In Case 2, we saw that both average and weighted average metrics have the same form
+<span class="math display">\[
+\widehat{Y^{(g)}} = \frac{\sum_i S_i^{(g)}}{\sum_i W_i^{(g)}}\,,
+\]</span>
+where <span class="math inline">\(S_i^{(g)}\)</span> and <span class="math inline">\(W_i^{(g)}\)</span> are both observations at the randomization unit level, and both have a form as a sum of analysis unit level observations.</p>
+<p>Unlike Case 2 where observations <span class="math inline">\((S_i^{(g)}, W_i^{(g)})\)</span> for treatment group and control group are independent, and we can apply the delta method to the two groups separately and then add the two estimated variance up to get the estimated variance for the <span class="math inline">\(\Delta\)</span>. In Case 3 the same independent unit contains observations in both groups so there is dependency between the treatment and control groups!</p>
+<p>Let <span class="math inline">\((S_i^{(t)}, W_i^{(t)},S_i^{(c)}, W_i^{(c)}),i=1,\dots,n\)</span> be independent observation vectors, the ATE estimator is
+<span class="math display">\[
+\Delta = \frac{\sum_i S_i^{(t)}}{\sum_i W_i^{(t)}} - \frac{\sum_i S_i^{(c)}}{\sum_i W_i^{(c)}}\,.
+\]</span>
+The multivariate version of the central limit theorem says the sample mean of the 4-d vector <span class="math inline">\((S_i^{(t)}, W_i^{(t)},S_i^{(c)}, W_i^{(c)}),i=1,\dots,n\)</span> converge in distribution to a multivariate normal distribution. Since <span class="math inline">\(\Delta\)</span> is a continuous function of the sums (or sample mean) of <span class="math inline">\((S_i^{(t)}, W_i^{(t)},S_i^{(c)}, W_i^{(c)})\)</span>, we can again apply the delta method to get a formula for <span class="math inline">\(\mathrm{Var}_{\text{G}}(\Delta)\)</span>, where the subscript G stands for “general” since Case 3 is the most general case as this formula contains the other two cases as special cases.</p>
+<p>The delta method can also be interpreted as the following. Asymptotically, <span class="math inline">\(\sqrt{n}(\Delta - \delta)\)</span> has the same normal distribution as the <em>average</em> of
+<span class="math display" id="eq:gvar">\[\begin{equation}
+\frac{{S_{i}^{(t)} - W_{i}^{(t)}\cdot \mu_t}}{p \mu_w} - \frac{{S_{i}^{(c)} - W_{i}^{(c)} \cdot \mu_c}}{(1 - p)\mu_w}\,,i=1,\dots,n\,, \tag{8.3}
+\end{equation}\]</span>
+where
+<span class="math display">\[
+\mu_t = \frac{\mathrm{E}(S^{(t)})}{\mathrm{E}(W^{(t)})}\,,\mu_c = \frac{\mathrm{E}(S^{(c)})}{\mathrm{E}(W^{(c)})}\,,\\
+\mu_w = \mathrm{E}(W^{(t)}+W^{(c)})
+\]</span>
+can all be estimated accordingly, and <span class="math inline">\(p\)</span> is the randomization probability for the treatment group. This is an average of i.i.d. random variables and its variance can be estimated using sample variance formula.</p>
+<p>Using the the general variance formula, <span class="citation"><a href="probability-minimum.html#ref-Deng2017WSDM" role="doc-biblioref">Alex Deng, Lu, and Litz</a> (<a href="probability-minimum.html#ref-Deng2017WSDM" role="doc-biblioref">2017</a>)</span> studied the difference between the general variance formula result, to the RUP results where <span class="math inline">\(\mathcal{R}\)</span> is assumed to also be independent. Note that if we assume <span class="math inline">\(\mathcal{R}\)</span> to be an independent level, then there is no dependency between the two groups, which simplifies the variance estimation quite a lot. Here are a summary of their key results.</p>
+<ol style="list-style-type: decimal">
+<li>The RUP results and the general formula are not exactly the same. RUP may under-estimate the variance.</li>
+<li>The difference is 0 when the treatment effect at each independent unit level, defined as <span class="math inline">\(\tau_i = E(Y_{ij}^{(t)})\)</span>-<span class="math inline">\(E(Y_{ij}^{(c)})\)</span> is a constant. That is, when all individual treatment effects are the same and there is no treatment effect heterogeneity, RUP agrees with the general formula. Note that this is also true under the sharp null hypothesis that there is no treatment effect for every independent unit.</li>
+<li>The under-estimation of the standard error by RUP is the same order of the treatment effect. When the treatment effect is small, the under-estimation is also small.</li>
+</ol>
+<p>This result gives us another way to justify RUP. When the effect is large, because of large sample sizes in A/B tests, inferences are robust against underestimation of the variance. In fact, a percent effect more than 5% is considered a large effect in A/B testing. But a 5% underestimation of the standard error has a much smaller impact to the trustworthiness of the inference comparing to the caveat of external validity. The practical implication of this result is that we only need to posit the existence of an independent unit for which the induced external validity implication are acceptable, and any randomization unit equal or more granular than that independent unit can practically be treated also as independent for the purpose of variance computation.</p>
+<p>Another application of the general variance formula for Case 3 is for cases where the randomization unit are not recorded properly or intentionally removed from the data. Why do we want to remove the randomization unit info from the data? For privacy! Sometimes it is required that the data needs to be anonymized so that we cannot identify a user from the data and map a user’s strong identifier such as user name or email address by a pseudo random GUID is not enough and we have to mix multiple users into the same GUID so that it is impossible to differentiate users with the same GUID apart. When doing so, this new GUID can be treated as independent unit and all we need to apply the general variance formula (for example, see Equation <a href="abstats.html#eq:gvar">(8.3)</a>) is to be able to compute <span class="math inline">\((S_i^{(t)}, W_i^{(t)},S_i^{(c)}, W_i^{(c)}),i=1,\dots,n\)</span> for each independent unit. That is, we can still perform statistical analysis without the user identifier in the data to preserve anonymity.</p>
+<p><strong>Clustered Randomization</strong>.
+Case 2 <span class="math inline">\(\mathcal{I} = \mathcal{R} &gt; \mathcal{A}\)</span> is also referred to as clustered randomization. We first introduced clustered randomization in Section <a href="randomintro.html#clusterrandomization">3.3</a>. Because analysis units are not sampled individually, but grouped by clusters, the variance of metrics will be larger than Case 1 where randomization unit is the analysis unit. Fail to correctly apply the delta method to estimate the variance results in underestimation of the variance and larger real false positive rate (Type I error) than the nominal significance level.</p>
+<p>Under strict assumptions, closed-form variance formula for a sample average <span class="math inline">\(\overline{Y}\)</span> with clustered randomization exists <span class="citation">(<a href="probability-minimum.html#ref-donner1987statistical" role="doc-biblioref">Donner 1987</a>; <a href="probability-minimum.html#ref-klar2001current" role="doc-biblioref">Klar and Donner 2001</a>)</span>. For example, when the number of observations in each cluster <span class="math inline">\(N_i = m\)</span> are all the same and the conditional variance of observations within each cluster <span class="math inline">\(\sigma_i^2 = \sigma^2\)</span> are also the same for all <span class="math inline">\(i,\)</span>
+<span class="math display" id="eq:donner">\[\begin{equation}
+    \mathrm{Var}(\bar{Y}) = \frac{\sigma^2+\tau^2}{nm}\{1+(m-1)\rho\}, \tag{8.4}
+\end{equation}\]</span>
+where <span class="math inline">\(\tau^2 = \mathrm{Var}(\mu_i)\)</span> is the  variance and <span class="math inline">\(\rho = \tau^2 / (\sigma^2+\tau^2)\)</span> is the <em>coefficient of intra-cluster correlation</em>, which quantifies the contribution of between-cluster variance to the total variance. To facilitate understanding of the variance formula , two extreme cases are worth mentioning:</p>
+<ol style="list-style-type: decimal">
+<li>If <span class="math inline">\(\sigma=0,\)</span> then for each <span class="math inline">\(i=1,\dots,K\)</span> and all <span class="math inline">\(j = 1, \ldots, N_i,\)</span> <span class="math inline">\(Y_{ij} = \mu_i.\)</span> In this case, <span class="math inline">\(\rho=1\)</span> and <span class="math inline">\(\mathrm{Var}(\overline{Y})=\tau^2/K;\)</span></li>
+<li>If <span class="math inline">\(\tau=0\)</span>, then <span class="math inline">\(\mu_i = \mu\)</span> for all <span class="math inline">\(i=1, \ldots, K,\)</span> and therefore the observations <span class="math inline">\(Y_{ij}\)</span>’s are in fact i.i.d. In this case, <span class="math inline">\(\rho=0\)</span> and Equation <a href="abstats.html#eq:donner">(8.4)</a> reduces to <span class="math inline">\(\mathrm{Var}(\overline{Y})=\sigma^2/(nm) = \sigma^2/N\)</span>.</li>
+</ol>
+<p>Unlike the delta method variance estimator Equation <a href="abstats.html#eq:deltavar">(8.2)</a>, Equation  has only limited practical value because the assumptions it makes are unrealistic. In reality, the cluster sizes <span class="math inline">\(N_i\)</span> and distributions of <span class="math inline">\(Y_{ij}\)</span> for each cluster <span class="math inline">\(i\)</span> are different, which means that <span class="math inline">\(\mu_i\)</span> and <span class="math inline">\(\sigma_i^2\)</span> are different. But it did illustrate that the coefficient of intra-cluster correlation is one of the reason why clustered randomization has larger variance.</p>
+<p>If we look closer to the delta method variance Equation <a href="abstats.html#eq:deltavar">(8.2)</a>, the second term is
+<span class="math display">\[
+\frac{\mathrm{E}(S^{(g)})^2}{\mathrm{E}(w^{(g)})^4}\mathrm{Var}(w^{(g)})
+\]</span>
+where <span class="math inline">\(\mathrm{E}(w^{(g)})\)</span> and <span class="math inline">\(\mathrm{Var}(w^{(g)})\)</span> are the mean and variance of the total weights in a cluster. For simple average total weights for the i-th cluster is just <span class="math inline">\(N_i\)</span> — the number of analysis units within each cluster. Equation <a href="abstats.html#eq:deltavar">(8.2)</a> tells us not only the <em>coefficient of intra-cluster correlation</em> plays a role, but also the variance of the cluster size! To reduce variance of the metric, clusters with more homogeneous sizes are preferred to clusters with very different sizes.</p>
+<p>Another common approach to study clustered randomization is to use a mixed effect model, also known as multi-level/hierarchical regression <span class="citation">(<a href="probability-minimum.html#ref-dagelman" role="doc-biblioref">Gelman and Hill 2006</a>)</span>. In a such model, we model the observations at analysis unit level <span class="math inline">\(Y_{ij}\)</span> to be conditionally independent with mean and variance <span class="math inline">\(\mu_i\)</span> and <span class="math inline">\(\sigma_i^2\)</span> for each cluster, while the parameters themselves follow a higher order distribution represents heterogeneity of clusters. Under this setting, we can infer the treatment effect as the “fixed” effect for the treatment indicator term<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a>. <em>Stan</em> <span class="citation">(<a href="probability-minimum.html#ref-carpenter2016stan" role="doc-biblioref">Carpenter et al. 2016</a>)</span> implements a Markov Chain Monte Carlo (MCMC) solution to infer the posterior distribution of those parameters, but this needs significant computational effort when data is big. Moreover, the estimated ATE, i.e., the coefficient for the treatment assignment indicator, is for the randomization unit (i.e., cluster) but not the analysis unit level, because it treats all clusters with equal weights and can be viewed as similar to the double average <span class="math inline">\(\sum_i (\sum_j Y_{ij} / N_j) / n,\)</span> which is usually different than the population average <span class="math inline">\(\overline Y\)</span> <span class="citation">(<a href="probability-minimum.html#ref-Deng:2016b" role="doc-biblioref">A. Deng and Shi 2016</a>)</span>. This distinction doesn’t make a systematic difference when effects across clusters are homogeneous. However, in reality the treatment effects are often heterogeneous, and using mixed effect model estimates without further adjustment steps could lead to biases. Proper reweighting adjustment does exists <span class="citation">(<a href="probability-minimum.html#ref-Deng2018kdd" role="doc-biblioref">Alex Deng, Knoblich, and Lu 2018</a>)</span>.</p>
+
+</div>
+</div>
+<div id="normalassumption" class="section level2" number="8.5">
+<h2><span class="header-section-number">8.5</span> Central Limit Theorem and Normal Approximation</h2>
+<p>So far we have been assuming the sampling distribution of a metric <span class="math inline">\(M\)</span>, being either average, weighted average or percentile, can be approximated by a normal distribution once the sample size (of independent observations) is large enough. This is from the central limit theorem (CLT), which says for i.i.d. random variables <span class="math inline">\(X_i,i=1,\dots,n\)</span> with mean <span class="math inline">\(\mu\)</span> and finite variance <span class="math inline">\(\sigma^2\)</span>,
+<span class="math display">\[
+\sqrt{n} \left( \overline{X} - \mu \right) \xrightarrow{d} \text{Normal}(0,\sigma^2) \,,
+\]</span>
+where the convergence is in the sense of convergence in distribution <span class="citation">(<a href="probability-minimum.html#ref-VanderVaart2000" role="doc-biblioref">Van der Vaart 2000</a>)</span>. When <span class="math inline">\(X\)</span> has vector value, such as in the weighted average and clustered randomization case where <span class="math inline">\(\mathcal{R}&gt;\mathcal{A}\)</span>, the multivariate version of CLT
+<span class="math display">\[
+\sqrt{n} \left( \overline{X} - \mu \right) \xrightarrow{d} \text{Normal}(0,\Sigma) \,,
+\]</span>
+is used, where <span class="math inline">\(\mu\)</span> is the mean vector and <span class="math inline">\(\Sigma\)</span> is the covariance matrix.</p>
+<p>To apply the classic CLT, we need both i.i.d. and finite variance. Finite variance can be usually justified because most observations used to define metrics are naturally bounded. For potentially unbounded metrics, such as time-to-click, in practice we will always cap it (winsorize) by a practical bound. This will both gives us finite variance, and also crucial to tame the variance of the metric so it can achieve a reasonable statistical power. For the i.i.d. assumption, we justified it by connecting it to external validity and the randomization unit principle.</p>
+<p>However, being an asymptotic result, CLT does not tell us how fast is the convergence to normal distribution and how large of sample size is needed.</p>
+<p>The answer to this question varies. One rule of thumb and widely adopted opinion is normal approximation works for <span class="math inline">\(n&gt;30\)</span>. This seems to be easily achievable in A/B tests where sample sizes are typically at least in thousands. In this section, we will look closer and suggest a required sample size to be at the order of <span class="math inline">\(100s^2\)</span>, where
+<span class="math display">\[
+s = \frac{\mathrm{E}((X-\mu)^3)}{\sigma^3}
+\]</span>
+is the skewness of <span class="math inline">\(X\)</span>.</p>
+<p>The key to study the convergence to normal is to use Edgeworth series <span class="citation">(<a href="probability-minimum.html#ref-hall2013bootstrap" role="doc-biblioref">Hall 2013</a>)</span> that further explore the residual terms beyond the normal approximation. Let
+<span class="math inline">\(F(x)\)</span> be the cumulative distribution function of <span class="math inline">\(\sqrt{n} ( \overline{X} - \mu )/\sigma\)</span> and <span class="math inline">\(\Phi(x)\)</span> and <span class="math inline">\(\phi(x)\)</span> be the cumulative distribution function and density function for the standard normal. <span class="citation"><a href="probability-minimum.html#ref-boos2000large" role="doc-biblioref">Boos and Hughes-Oliver</a> (<a href="probability-minimum.html#ref-boos2000large" role="doc-biblioref">2000</a>)</span> showed that<br />
+<span class="math display" id="eq:boosz">\[\begin{equation}
+F(x) = \Phi(x) - \frac{6}{\sqrt{n}}s(x^2 - 1)\phi(x)+ O(1/n) \tag{8.5}
+\end{equation}\]</span></p>
+<p>Three comments:</p>
+<ol style="list-style-type: decimal">
+<li>The first error term involves the skewness s and is in the order of <span class="math inline">\(n^{-1/2}\)</span>.</li>
+<li>The second error term is in the order of <span class="math inline">\(1/n\)</span> and the constant term not shown above actually involves the 4th standardized moment kurtosis as well as skewness.</li>
+<li>If skewness is 0, e.g. when <span class="math inline">\(X\)</span> is symmetric, converge to normal increases from <span class="math inline">\(1/\sqrt{n}\)</span> to <span class="math inline">\(1/n\)</span> — an order of <span class="math inline">\(n^{1/2}\)</span> faster.</li>
+</ol>
+<p>Let us focus on the first error term <span class="math inline">\(\frac{6}{\sqrt{n}}s(x^2 - 1)\phi(x)\)</span>. For a typical 95% two-sided confidence interval, we look at the 2.5% and 97.5% percentile, and they are very close to -1.96 and 1.96 for the standard normal distribution. Let <span class="math inline">\(x = \pm 1.96\)</span> and if we want this error term to be less than 0.25%, then we will be getting <span class="math inline">\(n &gt; 122.56s^2\)</span>. For a true 95% confidence interval, the probability of missing the true mean at the right and at the left are both 2.5%. With <span class="math inline">\(n &gt; 122.56s^2\)</span> independent samples, ignoring higher order error terms, the actual probability of missing the true mean at the right and left are below 2.75%. That is, we need a sample size of the order of <span class="math inline">\(100s^2\)</span> if we want true missing out rate to be within 10% of the designed level. <span class="citation"><a href="probability-minimum.html#ref-boos2000large" role="doc-biblioref">Boos and Hughes-Oliver</a> (<a href="probability-minimum.html#ref-boos2000large" role="doc-biblioref">2000</a>)</span> also showed error term for a t-statistic when the variance is unknown. It is similar to the know variance case and they only differ by a constant term and error is bigger due to the unknown variance. <span class="citation"><a href="probability-minimum.html#ref-Kohavi2014SevenRules" role="doc-biblioref">Kohavi et al.</a> (<a href="probability-minimum.html#ref-Kohavi2014SevenRules" role="doc-biblioref">2014</a>)</span> derived <span class="math inline">\(355s^2\)</span> based on similar calculation for the unknown variance case. Overall we think the order of <span class="math inline">\(100s^2\)</span> is a better rule of thumb than <span class="math inline">\(n&gt;30\)</span>.</p>
+<p>Most metrics don’t have a large skewness more than 5, and the required sample size is less than 2,500. <span class="citation"><a href="probability-minimum.html#ref-Kohavi2014SevenRules" role="doc-biblioref">Kohavi et al.</a> (<a href="probability-minimum.html#ref-Kohavi2014SevenRules" role="doc-biblioref">2014</a>)</span> reported revenue per user to have a skewness of 17.9 from one of their dataset, and more than 30,000 sample size to get to the desired error limit based on our <span class="math inline">\(100s^2\)</span> rule. However, once a proper capping was applied, that is to apply the function <span class="math inline">\(f(x) = min(x,c)\)</span> for a cap c, the skewness dropped to 5 and the required sample size dropped to 2,500!</p>
+<p>Surprisingly, the most common example of high skewness metric does not even involve large metric value. In fact, a Bernoulli distribution with <span class="math inline">\(p\)</span> close to either 0 or 1 can have huge skewness. If we have a metric that tracks occurrence of certain rare events, such as client error rate. The metric itself is average of binary observations and the skewness of a Bernoulli(<span class="math inline">\(p\)</span>) distribution is <span class="math inline">\(\frac{1-2p}{pq}\)</span> where <span class="math inline">\(q=1-p\)</span>. When <span class="math inline">\(p\)</span> is close to 0, this is about <span class="math inline">\(1/\sqrt{p}\)</span>. A (not so rare) event with <span class="math inline">\(p\)</span> around <span class="math inline">\(10^{-4}\)</span> can lead to a skewness of 100!</p>
+<p>Figure <a href="abstats.html#fig:skewness1">8.2</a> show the sampling distribution of a mean of 50,000 i.i.d. Bernoulli random variables with p=<span class="math inline">\(10^{-4}\)</span>. Our recommended sample would be <span class="math inline">\(10^6\)</span> and 50,000 is still very much short of that. As expected, the distribution is far from normal and right-skewed, as easily seen from the QQ plot. We also observed that the distribution is still very discrete, because <span class="math inline">\(np\)</span> in this case is only about 5.</p>
+<div class="figure"><span id="fig:skewness1"></span>
+<img src="images/rareeventsSkewness.PNG" alt="Right: Sampling distribution of sample mean of 50,000 i.i.d. Bernoulli random variables with p=$10^{-4}$. Left: QQ-Norm plot. Right: Histogram. The distribution is discrete and severely right-skewed." width="70%" />
+<p class="caption">
+Figure 8.2: Right: Sampling distribution of sample mean of 50,000 i.i.d. Bernoulli random variables with p=<span class="math inline">\(10^{-4}\)</span>. Left: QQ-Norm plot. Right: Histogram. The distribution is discrete and severely right-skewed.
+</p>
+</div>
+<p>What should we do in cases like this? There are two approaches. The practical approach is to use a balanced design where treatment and control are of the same sample size. The alternative is to adjust the confidence interval or approximate the cumulative distribution function directly using Equation <a href="abstats.html#eq:boosz">(8.5)</a> with the error term. We focus on balanced design first and will introduce two simple adjustment methods for the Bernoulli case.</p>
+<p>The reason balanced design mitigates the issue and require much less sample size for normal approximation to work is because we will be looking at the confidence interval of the ATE estimator <span class="math inline">\(\Delta\)</span>. When the sample size of treatment and control groups are exactly the same, <span class="math inline">\(\Delta\)</span> is sample average of i.i.d. random variable <span class="math inline">\(Z = X - Y\)</span> where X and Y are the random variable for observations in treatment group and control group respectively. The rationale is the skewness of <span class="math inline">\(Z\)</span> is much smaller than <span class="math inline">\(X-Y\)</span>. In the sharp null hypothesis case where there is no individual treatment effect, X and Y have the same distribution and X-Y is symmetric with 0 skewness! When skewness is 0, the convergence to normal is <span class="math inline">\(\sqrt{n}\)</span> faster, roughly meaning the sample size needed is square root of the sample size needed when skewness is the leading term. But even when skewness of Z is not exactly 0, reducing it by a factor of 10 reduces the sample size needed by a factor of 100! Figure <a href="abstats.html#fig:balancedskewness">8.3</a> shows the sampling distribution for <span class="math inline">\(\Delta\)</span> of two sample means of 50,000 i.i.d. Bernoulli random variables with p=<span class="math inline">\(10^{-4}\)</span>. This time we saw the distribution is much closer to normal, with only a little fatter tail. Figure <a href="abstats.html#fig:imbalancedskewness">8.4</a> shows if the sample size is imbalanced, then the one with larger sample size will be closer to normal (90,000 samples in the example, close to 100,000 needed by <span class="math inline">\(100s^2\)</span> rule) and the one with less sample size still shows strong skewness and discrete spikes, therefore <span class="math inline">\(\Delta\)</span> behaves like mixture of many normal distribution with many modes. Because balanced design is often also optimal for the best statistical power, the normal approximation sample size requirement gives another reason to use a balanced design for high skewness metrics.</p>
+<div class="figure"><span id="fig:balancedskewness"></span>
+<img src="images/balancedSkewness.PNG" alt="Right: Sampling distribution of the difference of two sample mean of 50,000 i.i.d. Bernoulli random variables with p=$10^{-4}$. Left: QQ-Norm plot. Right: Histogram. The distribution of the difference is much closer to normal even though each sample mean is severely skewed." width="70%" />
+<p class="caption">
+Figure 8.3: Right: Sampling distribution of the difference of two sample mean of 50,000 i.i.d. Bernoulli random variables with p=<span class="math inline">\(10^{-4}\)</span>. Left: QQ-Norm plot. Right: Histogram. The distribution of the difference is much closer to normal even though each sample mean is severely skewed.
+</p>
+</div>
+<div class="figure"><span id="fig:imbalancedskewness"></span>
+<img src="images/10-90skewness.PNG" alt="Right: Sampling distribution of the difference of two sample means of Bernoulli random variables with p=$10^{-4}$, one with 10,000 i.i.d. sample and the other with 90,000. Left: QQ-Norm plot. Right: Histogram. The distribution is multi-model as a mixture of normal distributions." width="70%" />
+<p class="caption">
+Figure 8.4: Right: Sampling distribution of the difference of two sample means of Bernoulli random variables with p=<span class="math inline">\(10^{-4}\)</span>, one with 10,000 i.i.d. sample and the other with 90,000. Left: QQ-Norm plot. Right: Histogram. The distribution is multi-model as a mixture of normal distributions.
+</p>
+</div>
+<p>The adjustment of confidence interval using Edgeworth expansion is known as the Cornish–Fisher expansion <span class="citation">(<a href="probability-minimum.html#ref-fisher1960percentile" role="doc-biblioref">S. R. A. Fisher and Cornish 1960</a>)</span>. Also see <span class="citation"><a href="probability-minimum.html#ref-hall2013bootstrap" role="doc-biblioref">Hall</a> (<a href="probability-minimum.html#ref-hall2013bootstrap" role="doc-biblioref">2013</a>)</span>. We found for high skewness due to large value, capping is the most effective and also improve statistical power. For Bernoulli rare event case, we introduce two simple and easy to implement adjustment methods. Both methods still use normal approximation but correct both the sample mean and the estimated variance. In both methods the derived confidence interval will have wider range and closer to the nominal coverage.</p>
+<p>Let the total sample size be <span class="math inline">\(n\)</span> and the sum of i.i.d. Bernoulli random variables <span class="math inline">\(n_1\)</span>. For small p <span class="math inline">\(n_1\)</span> is small.
+The first adjustment is <em>Laplace Smoothing</em>, which artificially add one positive binary outcome to the Bernoulli samples. With this adjustment, the “sample mean” becomes <span class="math inline">\((n_1+1)/(n+1)\)</span> and the estimated variance will also use the new adjusted “sample mean.”</p>
+<p>The second adjustment is proposed in <span class="citation"><a href="probability-minimum.html#ref-agresti1998approximate" role="doc-biblioref">Agresti and Coull</a> (<a href="probability-minimum.html#ref-agresti1998approximate" role="doc-biblioref">1998</a>)</span> and known as <em>Agresti-Coull</em> correction. Like Laplace smoothing, it adds artificial observations to the samples. For two-sided confidence interval of <span class="math inline">\(1-\alpha\)</span>, let <span class="math inline">\(z_{\alpha/2}\)</span> be the <span class="math inline">\(1-\alpha/2\)</span> percentile of standard normal, Agresti-Coull adds <span class="math inline">\(z_{\alpha/2}^2\)</span> artificial samples with half of them positive. The new “sample mean” becomes <span class="math inline">\(\tilde{p} = \frac{n_1+z_{\alpha/2}^2/2}{n+z_{\alpha/2}^2}\)</span>, and the variance of the approximate normal distribution for the sample mean is <span class="math inline">\(\frac{\tilde{p}(1-\tilde{p})}{n+z_{\alpha/2}^2}\)</span>. For 95% confidence interval, <span class="math inline">\(z_{\alpha/2}\)</span> is about 2 and the adjustment is to simply add 4 instances with 2 successes.</p>
+</div>
+<div id="percentilevar" class="section level2" number="8.6">
+<h2><span class="header-section-number">8.6</span> Confidence Interval and Variance Estimation for Percentile metrics</h2>
+<p>Percentile (also called quantiles) metrics are widely used to focus on tails of distributions. This is very common for performance measurements, where we not only care about an average user’s experience, but even more care about those who suffer from the slowest responses. Within the web performance community, percentiles (of, for example, page loading time) at 75%, 95% or 99% often take the spotlight. In addition, the 50% quantile (median) is sometimes used to replace the mean, because it is more robust to outlier observations (e.g., due to errors in instrumentation and telemetry). This section focuses on estimating the variances of percentile metrics.</p>
+<p>Suppose we have <span class="math inline">\(n\)</span> i.i.d. observations <span class="math inline">\(Y_1,\dots,Y_n,\)</span> generated by a cumulative distribution function <span class="math inline">\(F(Y) = P(Y\le y)\)</span> and a density function <span class="math inline">\(f(y)\)</span><a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a>. The theoretical p-th percentile for the distribution <span class="math inline">\(F\)</span> is defined as <span class="math inline">\(F^{-1}(p)\)</span>. Let
+<span class="math inline">\(Y_{(1)}, \dots, Y_{(n)}\)</span> be the ascending <em>ordering</em> of the original observations. The sample percentile at <span class="math inline">\(p\)</span> is <span class="math inline">\(Y_{(np)}\)</span> if <span class="math inline">\(np\)</span> is an integer. Otherwise, let <span class="math inline">\(\lfloor np\rfloor\)</span> be the floor of <span class="math inline">\(np\)</span>, then the sample quantile can be defined as any number between <span class="math inline">\(Y_{(\lfloor np\rfloor)}\)</span> and <span class="math inline">\(Y_{(\lfloor np\rfloor +1)}\)</span> or a linear interpolation of the two<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a>. For simplicity here we use <span class="math inline">\(Y_{(\lfloor np\rfloor)},\)</span> which will not affect any asymptotic results when <span class="math inline">\(n\)</span> is sufficiently large. It is a well-known fact that, if <span class="math inline">\(Y_1, \ldots, Y_n\)</span> are i.i.d. observations, following the central limit theorem and a rather straightforward application of the Delta method, the sample percentile is approximately normal <span class="citation">(<a href="probability-minimum.html#ref-casella2002statistical" role="doc-biblioref">Casella and Berger 2002</a>; <a href="probability-minimum.html#ref-VanderVaart2000" role="doc-biblioref">Van der Vaart 2000</a>)</span>:
+<span class="math display" id="eq:quantileclt">\[\begin{equation}
+\sqrt{n}
+\left\{
+Y_{\lfloor np\rfloor} - F^{-1}(p)
+\right\}
+ \xrightarrow{d}
+N
+\left[
+0, \frac{\sigma^2}{f \left\{F^{-1}(p)\right\}^2}
+\right], \tag{8.6}
+\end{equation}\]</span>
+where
+<span class="math inline">\(\sigma^2 = p(1-p).\)</span>
+However, unfortunately, in practice we may not have i.i.d. observations when randomization unit is not the same as the analysis unit. For site performance, randomizations are usually on users or devices but analysis unit are at each page-view/impression level.</p>
+<p>Let <span class="math inline">\(I_i = I \{ Y_i \le F^{-1}(p) \},\)</span> where <span class="math inline">\(I\)</span> is the indicator function. The proof of Equation <a href="abstats.html#eq:quantileclt">(8.6)</a> involves a key step to compute <span class="math inline">\(\mathrm{Var}(\overline I)\)</span>.<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a> When <span class="math inline">\(Y_i\)</span> are not independent, we use the delta method to compute <span class="math inline">\(\mathrm{Var}(\overline I)\)</span> and the only change in the result would be to replace <span class="math inline">\(\sigma^2 = p(1-p)\)</span> by the adjusted standard deviation. That is, Equation <a href="abstats.html#eq:quantileclt">(8.6)</a> still holds in the clustered case with <span class="math inline">\(\sigma^2 = n \mathrm{Var}(\overline I)\)</span>. This generalizes the i.i.d. case where <span class="math inline">\(n\mathrm{Var}(\overline I) = p(1-p)\)</span>.</p>
+<p>It is still difficult to apply Equation <a href="abstats.html#eq:quantileclt">(8.6)</a> in practice because the denominator <span class="math inline">\(f \{ F^{-1}(p) \}\)</span> involves the <em>unknown</em> density function <span class="math inline">\(f\)</span> at the <em>unknown</em> true quantile <span class="math inline">\(F^{-1}(p).\)</span> A straightforward approach is to estimate <span class="math inline">\(f\)</span> from the observed <span class="math inline">\(Y_i\)</span> using non-parametric methods such as kernel density estimation <span class="citation">(<a href="probability-minimum.html#ref-allofstat" role="doc-biblioref">Wasserman 2003</a>)</span>. However, any non-parametric density estimation method is trading off between bias and variance. To reduce variance, more aggressive smoothing and hence larger bias need to be introduced to the procedure. This issue is less critical for quantiles at the body of the distribution, e.g. median, where density is high and more data exists around the quantile to make the variance smaller. As we move to the tail, e.g. 90%, 95% or 99%, the noise of the density estimation gets bigger, so we have to introduce more smoothing and more bias. Because the density shows up in the denominator and density in the tail often decays to <span class="math inline">\(0\)</span>, a small bias in estimated density can lead to a big bias for the estimated variance (<span class="citation"><a href="probability-minimum.html#ref-brown1983estimation" role="doc-biblioref">Brown and Wolfe</a> (<a href="probability-minimum.html#ref-brown1983estimation" role="doc-biblioref">1983</a>)</span> raised similar criticisms with their simulation study). A second approach is to bootstrap, re-sampling the whole dataset many times and computing quantiles repeatedly. Unlike an average, computing quantiles requires sorting, and sorting in distributed systems (data is distributed in the network) requires data shuffling between nodes, which incurs costly network I/O. Thus, bootstrap works well for small scale data but tends to be too expensive in large scale in its original form (efficient bootstrap on massive data is a research area of its own <span class="citation">(<a href="probability-minimum.html#ref-kleiner2014scalable" role="doc-biblioref">Kleiner et al. 2014</a>)</span>).</p>
+<p><span class="citation"><a href="probability-minimum.html#ref-Deng2018kdd" role="doc-biblioref">Alex Deng, Knoblich, and Lu</a> (<a href="probability-minimum.html#ref-Deng2018kdd" role="doc-biblioref">2018</a>)</span> introduced a novel idea to estimate percentile variance without estimating the unknown density function. Recall that <span class="math inline">\(I_i = I \{Y_i \le F^{-1}(p) \}\)</span>. <span class="math inline">\(\sum I_i\)</span> is the count of observations no greater than the quantile. Consider the independent case where <span class="math inline">\(I_i\)</span> are i.i.d., <span class="math inline">\(\sum I_i\)</span> follows a binomial distribution. Consequently, when <span class="math inline">\(n\)</span> is large <span class="math inline">\(\sqrt{n}(\overline I-p) \approx \text{Normal}(0, \sigma^2)\)</span>
+where <span class="math inline">\(\sigma^2 = p(1-p)\)</span>. If the quantile value <span class="math inline">\(F^{-1}(p) \in [Y_{(r)},Y_{(r+1)}),\)</span>
+then <span class="math inline">\(\overline I = r/n\)</span>. The above equation can be inverted into a <span class="math inline">\(100(1-\alpha)\%\)</span> confidence interval for <span class="math inline">\(r/n:\)</span> <span class="math inline">\(p \pm z_{\alpha/2}\sigma/\sqrt{n}\)</span>. This means with 95% probability the true percentile is between the lower rank <span class="math inline">\(L = n(p-z_{\alpha/2}\sigma/\sqrt{n})\)</span> and upper rank <span class="math inline">\(U = n(p+z_{\alpha/2}\sigma/\sqrt{n})+1\)</span>!
+Now consider the general case where <span class="math inline">\(I_i\)</span> are not independent. <span class="math inline">\(\sum I_i\)</span> would not follow a binomial distribution but the central limit theorem stills applies and the variance of <span class="math inline">\(\overline{I}\)</span> can be estimated using the delta method. The above procedure still works with a small adjustment to make: we can no longer assume <span class="math inline">\(\sigma^2 = p(1-p)\)</span> as in the independent case and instead need to do an extra step of delta method to estimate <span class="math inline">\(\sigma^2\)</span>.</p>
+<p>To summarize, the confidence interval for a percentile can be computed in the following steps:</p>
+<ol style="list-style-type: decimal">
+<li>Fetch the quantile <span class="math inline">\(Y_{(\lfloor np\rfloor)}\)</span>.</li>
+<li>Compute <span class="math inline">\(I_i = I \{Y_i \le Y_{(\lfloor np\rfloor)}\)</span>}.</li>
+<li>Apply the delta method to estimate <span class="math inline">\(\mathrm{Var}(\overline{I})\)</span>.</li>
+<li>Compute <span class="math inline">\(\sigma\)</span> by setting <span class="math inline">\(\sigma^2/n\)</span> equal to the estimated variance of <span class="math inline">\(\overline{I}\)</span>.</li>
+<li>Compute <span class="math inline">\(L,U = n(p \pm z_{\alpha/2}\sigma)\)</span>.</li>
+<li>Fetch the two ranks <span class="math inline">\(X_{(L)}\)</span> and <span class="math inline">\(X_{(U)}\)</span>.</li>
+</ol>
+<p>We call this percentile CI with pre-adjustment<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a>. This method reduces the complexity of computing a percentile and its confidence interval into a Delta method step and subsequently fetching three “ntiles.” <span class="citation"><a href="probability-minimum.html#ref-Deng2018kdd" role="doc-biblioref">Alex Deng, Knoblich, and Lu</a> (<a href="probability-minimum.html#ref-Deng2018kdd" role="doc-biblioref">2018</a>)</span> also proposed a slightly different percentile CI with post-adjustment method that has some computational advantages over the pre-adjustment method:</p>
+<ol style="list-style-type: decimal">
+<li>Compute <span class="math inline">\(L,U = n(p \pm z_{\alpha/2}\sqrt{p(1-p)/n})\)</span>.</li>
+<li>Fetch <span class="math inline">\(Y_{(\lfloor np\rfloor)}\)</span>, <span class="math inline">\(Y_{(L)}\)</span> and <span class="math inline">\(Y_{(U)}\)</span>.</li>
+<li>Compute <span class="math inline">\(I_i = I \{Y_i \le Y_{(\lfloor np\rfloor)}\)</span>}.</li>
+<li>Apply the delta method to estimate <span class="math inline">\(\mathrm{Var}(\overline{I})\)</span>.</li>
+<li>Compute <span class="math inline">\(\sigma\)</span> by setting <span class="math inline">\(\sigma^2/n\)</span> equal to the estimated variance of <span class="math inline">\(\overline{I}\)</span>.</li>
+<li>Compute the (multiplicative) correction factor <span class="math inline">\(\sigma / \sqrt{p(1-p)}\)</span> and apply it to <span class="math inline">\(X_{(L)}\)</span> and <span class="math inline">\(X_{(U)}\)</span>.</li>
+</ol>
+<p>The post-adjustment method computes the percentile CI pretending <span class="math inline">\(Y\)</span> to be independent. Because Equation <a href="abstats.html#eq:quantileclt">(8.6)</a> tell us the only change we need to make from independent to clustered randomization case is to adjust the variance of the asymptotic normal distribution by a rescale factor of <span class="math inline">\(\frac{\sigma^2}{p(1-p)}\)</span>, the confidence interval should also be adjusted accordingly by a rescale of <span class="math inline">\(\frac{\sigma}{\sqrt{p(1-p)}}\)</span>!</p>
+<p>Using CLT and assuming sample percentile is approximately normally distributed, we can then convert any <span class="math inline">\(1-\alpha\)</span> two-sided confidence interval to the variance of sample percentile. Note that confidence interval from the percentile CI method might not be exactly symmetric. In practice we can make it symmetric by picking the larger width of the two sides as the half width of a symmetric interval.</p>
+</div>
+<div id="p-value-statistical-power-s-and-m-error" class="section level2" number="8.7">
+<h2><span class="header-section-number">8.7</span> p-Value, Statistical Power, S and M Error</h2>
+<p>The whole large sample theory of A/B testing<a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a> for ATE is based on the asymptotic normality of <span class="math inline">\(\Delta\)</span>,
+<span class="math display">\[
+\frac{\Delta - \delta}{\sqrt{\sigma_t^2/n_t + \sigma_c^2/n_c}}  \xrightarrow{d} \text{Normal}(0,1)\,.
+\]</span>
+We spent a few sections in this chapter digesting components of this result: the independent assumptions, the sample size needed for the normal approximation and variance estimation — all are critical to ensure trustworthy inferences. In this section we use it to summarize results and interpret them.</p>
+<div id="p-value" class="section level3" number="8.7.1">
+<h3><span class="header-section-number">8.7.1</span> p-Value</h3>
+<p>Let <span class="math inline">\(Z = \frac{\Delta}{\sqrt{\sigma_t^2/n_t + \sigma_c^2/n_c}}\)</span> be the observed z-score. Given a pre-specified Type I error bound <span class="math inline">\(\alpha\)</span>, we can derive the two-sided rejection region to be <span class="math inline">\(|Z| &gt; z_{\alpha/2}\)</span>. This is because under null hypothesis <span class="math inline">\(\delta=0\)</span>, <span class="math inline">\(Z\)</span> follows a standard normal distribution. Let <span class="math inline">\(\mathcal{Z}\)</span> be the standard normal random variable,
+<span class="math display">\[
+P(|Z| \ge z_{\alpha/2}|H_0) = P(|\mathcal{Z}|\ge z_{\alpha/2}) = \alpha\,.
+\]</span>
+We say this rejection region controls the Type I error, also called false rejection or false positive rate.</p>
+<p>Rejection by a pre-specified Type I error bound and the corresponding rejection region is a binary decision. In practice, people prefer to use a continuous quantity. One choice is to just use the observed Z-score. A more common approach is to map Z-score to p-value defined as
+<span class="math display">\[
+P(|\mathcal{Z}|\ge|Z|)\,.
+\]</span>
+Here the observed Z-score <span class="math inline">\(Z\)</span> was considered to be <em>fixed</em> and p-value represents the probability that under the null hypothesis we will get a Z-score (absolute value in two-sided test case) more extreme than or equal to the observed one. p-value is always between 0 and 1 and p-value of <span class="math inline">\(\alpha\)</span> corresponds to a Z-score of <span class="math inline">\(z_{\alpha/2}\)</span>.</p>
+<p>p-value is more popular than Z-score because it has the scale of a probability and it has a probabilistic meaning. For Type I error bound of <span class="math inline">\(\alpha\)</span>, the rejection region can be defined simply for all p-values less than <span class="math inline">\(\alpha\)</span>. For a given experiment, the smaller a p-value is, the stronger the evidence against the null hypothesis based on the observations we got. However, the probabilistic nature and the seemingly simple definition makes p-value notoriously easy to be misinterpreted! <span class="citation"><a href="probability-minimum.html#ref-goodman2008dirty" role="doc-biblioref">Goodman</a> (<a href="probability-minimum.html#ref-goodman2008dirty" role="doc-biblioref">2008</a>)</span> documented 12 common misunderstandings. We summarize two patterns here.</p>
+<p><strong>Misunderstanding 1.</strong> A p-value of 5% means the null hypothesis has only a 5% chance of being true.</p>
+<p>This statement is false because p-value does not tell us the probability of null hypothesis being true. The definition of p-value is a conditional probability of observing certain statistic given the null hypothesis is true. Roughly speaking, it is similar to <span class="math inline">\(P(Data|H_0)\)</span>. (<span class="math inline">\(P(Data|H_0)\)</span> is the likelihood of observing the data under the null hypothesis. This is different from the probability of observing a z-score beyond the observed one. But they represents similar idea in the current context.) This is very different from <span class="math inline">\(P(H_0|Data)\)</span>, which is the probability the null hypothesis being true given what have been observed. In an extreme case where the null hypothesis is always true, <span class="math inline">\(P(H_0|Data) = 1\)</span>. What kind of p-value can we expect? Because the null hypothesis is always correct, the Z-score will follow standard normal distribution and the p-value will follow a uniform distribution! That is, we expect to have 5% chance seeing a p-value less than 5%. But the null hypothesis <span class="math inline">\(H_0\)</span> is 100% true no matter how low p-value is. To get <span class="math inline">\(P(H_0|Data)\)</span>, we have to use the Bayes theorem
+<span class="math display" id="eq:posth0">\[\begin{equation}
+P(H_0|Data) = \frac{P(Data|H_0)P(H_0)}{P(Data|H_0)P(H_0)+P(Data|H_1)P(H_1)}\,. \tag{8.7}
+\end{equation}\]</span>
+To really know <span class="math inline">\(P(H_0|Data)\)</span>, we need to know the prior probability <span class="math inline">\(P(H_0)\)</span> that a null hypothesis is true. And also <span class="math inline">\(P(Data|H_1)\)</span> — the likelihood under alternative hypothesis. We leave a deeper discussion of this when we talk about Bayesian A/B testing in Chapter <a href="#bayesianab"><strong>??</strong></a>. The source of the misunderstanding is p-value represents a probability that is in the wrong direction people normally want to make their decision upon. Many people expect <span class="math inline">\(P(H_0|Data)\)</span>, but p-value tells <span class="math inline">\(P(Data|H_0)\)</span>.</p>
+<p>A closely related misunderstanding states that if you reject the null hypothesis based on a 5% p-value, the probability of making a Type I error (false positive error) is only 5%. The mistake is that to make a Type I error or false positive, the null hypothesis needs to be false, so the probability of making a Type I error given 5% p-value is really <span class="math inline">\(P(H_0|\text{p-value}\le 5\%)\)</span>, which is different from <span class="math inline">\(P(\text{p-value} \le 5\%|H_0)\)</span>!. The latter <span class="math inline">\(P(\text{p-value} \le 5\%|H_0)\)</span> is 5% from the definition of p-value, but the former <span class="math inline">\(P(H_0|\text{p-value}\le5\%)\)</span> is not and in particular relies on the prior probability <span class="math inline">\(P(H_0)\)</span>. When we say Type I error or positive rate is bounded by <span class="math inline">\(\alpha\)</span>, these are all conditioned on <span class="math inline">\(H_0\)</span> being true. Real life is when we make decision we have to consider both null and alternative have a chance to being true.</p>
+<p><strong>Misunderstanding 2.</strong> Studies with the same p-value provide the same evidence against the null hypothesis.</p>
+<p>This misunderstanding happens when we expect p-value to fully represent the degree of evidence we have against the null. Using Bayesian theorem, we see the odds of the alternative against the null given the observations is
+<span class="math display" id="eq:postodds">\[\begin{equation}
+\frac{P(H_1|Data)}{P(H_0|Data)} = \frac{P(Data|H_1)}{P(Data|H_0)}\times \frac{P(H_1)}{P(H_0)}\,. \tag{8.8}
+\end{equation}\]</span>
+The term <span class="math inline">\(\frac{P(H_1)}{P(H_0)}\)</span> is the prior odds, which only depends on the two hypotheses and not on the observations. The term
+<span class="math display">\[
+\frac{P(Data|H_1)}{P(Data|H_0)}
+\]</span>
+is the likelihood ratio represents the evidence from the observations comparing the null hypothesis to the alternative. p-value only represents <span class="math inline">\(P(Data|H_0)\)</span>. <span class="math inline">\(P(Data|H_1)\)</span> is the second component in this term related to statistical power. The evidence from the observations need to always compare the likelihood under both hypotheses, not under null hypothesis alone. The difficulty lies in the ambiguity of the alternative hypothesis. If the null hypothesis is the ATE <span class="math inline">\(\delta\)</span> equals 0. What is the alternative <span class="math inline">\(\delta\)</span>? Define the alternative <span class="math inline">\(H_1\)</span> to be <span class="math inline">\(\delta\neq 0\)</span> does not help us evaluate <span class="math inline">\(P(Data|H_1)\)</span>.</p>
+</div>
+<div id="statistical-power" class="section level3" number="8.7.2">
+<h3><span class="header-section-number">8.7.2</span> Statistical Power</h3>
+<p>Most of the emphases in the null hypothesis testing framework has been put on the null hypothesis alone. For instance, we derive the distribution of a test statistics, e.g. a z-score, under the null hypothesis and call this the null distribution of the test statistic. A p-value is computed from the null distribution to be the probability of observing a more extreme test statistic under the null hypothesis. In Equation <a href="abstats.html#eq:postodds">(8.8)</a> when we think about the evidence comparing the alternative hypothesis to the null hypothesis, we found the complete evidence from observed data consists of two terms, one conditioned under the null hypothesis and one under the alternative hypothesis. This means both hypotheses are on an equal footing when we want to access the strength of evidence comparing the two.</p>
+<p>However, in the (frequentist) null hypothesis testing framework, <span class="math inline">\(P(Data|H_1)\)</span> does not show up unless <span class="math inline">\(H_1\)</span> is specified to be a fixed value. In fact, we can only compute <span class="math inline">\(P(Data|H_0)\)</span> and <span class="math inline">\(P(Data|H_1)\)</span> when the hypothesis is simple and not composite. A simple hypothesis specifies the value of the parameter such as <span class="math inline">\(\delta\)</span> being tested, while a composite hypothesis only specifies a set or range of values for the parameter. When the parameter is not fixed, the whole idea of conditional probability like <span class="math inline">\(P(Data|H_1)\)</span> is ill-defined unless we posit a prior distribution <span class="math inline">\(P(\delta|H_1)\)</span> for the parameter under each hypothesis. When we do that, we are no longer in frequentist territory but thinking like a Bayesian. In frequentist method, the closest thing to <span class="math inline">\(P(Data|H_1)\)</span> is statistical power, defined as the probability of rejecting the null hypothesis if the alternative hypothesis is true.</p>
+<p>First, statistical power depends on the rejection level <span class="math inline">\(\alpha\)</span> — the intended Type I error bound under null hypothesis. Second, it depends on the true parameter value. In A/B tests, we need to specify the true ATE <span class="math inline">\(\delta\)</span>, and the power is
+<span class="math display">\[
+P(|\mathcal{Z}|&gt;z_{\alpha/2})\,
+\]</span>
+where the random variable <span class="math inline">\(\mathcal{Z}\)</span> is no longer a standard normal but has a shift in mean and approximately <span class="math inline">\(\text{Normal}\left(\frac{\delta}{\sqrt{\sigma_t^2/n_t + \sigma_c^2/n_c}},1\right)\)</span>. If we fix <span class="math inline">\(\alpha\)</span>, the statistical power is a function of the true parameter <span class="math inline">\(\delta\)</span> and is hence called the <em>power curve</em>. When <span class="math inline">\(\delta=0\)</span>, this is the null hypothesis and the probability of rejection is <span class="math inline">\(\alpha\)</span>. As <span class="math inline">\(\left|\frac{\delta}{\sqrt{\sigma_t^2/n_t + \sigma_c^2/n_c}}\right|\)</span> becomes larger, the statistical power increases to 100%. For <span class="math inline">\(\delta\neq 0\)</span>, statistical power represents the probability of successfully reject the null hypothesis when it is false. And it increases when <span class="math inline">\(|\delta|\)</span> increases or <span class="math inline">\(\sigma_t^2/n_t + \sigma_c^2/n_c\)</span> decreases.</p>
+<p>Because statistical power is the probability of reject the null hypothesis given a true parameter <span class="math inline">\(\delta\)</span> under the alternative hypothesis, it is often used as a measure of <em>sensitivity</em> of a test. 1- power is the false negative rate, or Type II error rate. We saw statistical power depends on <span class="math inline">\(\delta\)</span> and <span class="math inline">\(\sigma_t^2/n_t + \sigma_c^2/n_c\)</span>. When <span class="math inline">\(\sigma_t^2\)</span> and <span class="math inline">\(\sigma_c^2\)</span> are considered to be known and fixed, and <span class="math inline">\(\delta\)</span> considered to be out of the experimenter’s control, the only way to change the statistical power for a prescribed <span class="math inline">\(\alpha\)</span> is to increase the sample sizes <span class="math inline">\(n_t\)</span> and <span class="math inline">\(n_c\)</span>. Therefore, we can compute the sample sizes needed to reach a certain level of statistical power for a given <span class="math inline">\(\delta\)</span>. This computation is known as <em>power analysis</em>. When <span class="math inline">\(\sigma_t\)</span> and <span class="math inline">\(\sigma_c\)</span> are assumed to be equal, it is easy to see for a fixed total sample size <span class="math inline">\(n = n_t+n_c\)</span>, the balanced split where <span class="math inline">\(n_t=n_c=n/2\)</span> gives the smallest <span class="math inline">\(\sigma_t^2/n_t + \sigma_c^2/n_c\)</span> and hence highest power.</p>
+<hr />
+<p>Exercise: Prove the balanced sample size split gives the best power for a given total sample size.</p>
+<hr />
+<p>For many practitioners of A/B test, power analysis might seem subjective to some extent. There is only a power curve, and the power depends on not only sample size, but also the assumed true parameter value. When we say we want to compute sample size needed to reach to a certain power level, e.g. 80%, which parameter value should we use? Indeed, we don’t know the true effect <span class="math inline">\(\delta\)</span>. In practice, there are two approaches.</p>
+<ol style="list-style-type: decimal">
+<li>For a given sample size, we can invert the power calculation to show the minimum parameter value <span class="math inline">\(\delta\)</span> needed to reach a power level. We can think this minimum parameter value as the <em>resolution</em> of the test, in the sense that any effect less than this is hard to detect. If this minimum value is deemed to be too large, the resolution is not good enough and we need to increase sample size at experiment design time.</li>
+<li>For A/B testing, there is always a cost in ship a new change. Many new feature requires additional cost. Some new functionality may need extra hardware to support, or simply adding new code to existing codebase would add code maintenance cost (“software debt”). Hence to ship a change its benefit has to meet a criterion. Using this minimum criterion as the parameter value in power analysis provide a starting point.</li>
+</ol>
+<p>A common malpractice in power analysis is to use the observed effect <span class="math inline">\(\Delta\)</span> in place of the real effect <span class="math inline">\(\delta\)</span>. The result is often called observed power or post-hoc power <span class="citation">(<a href="probability-minimum.html#ref-hoenig2001abuse" role="doc-biblioref">Hoenig and Heisey 2001</a>)</span>. It can be shown that the observed power is a function of p-value. Because p-value is from the likelihood under the null hypothesis, observed power as a function of p-value does not provide any insight about the likelihood under the alternative hypothesis. It is misleading to use observed power as a surrogate of the real power.</p>
+<p>Because the complexity in computing or even talking about the statistical power as it depends on both real parameter value and sample size, it does not always receive enough attention as p-value and Type I error get. This is a big mistake as we have argued above that <span class="math inline">\(P(Data|H_1)\)</span> and <span class="math inline">\(P(Data|H_0)\)</span> are equally important as representing the evidence from the observed data comparing the two hypotheses. We call experiments fail to run with enough sample size to meet power requirement low power experiments. Low power experiments are very problematic and need to be avoided for a few reasons:</p>
+<ol style="list-style-type: decimal">
+<li>The treatment may have a positive effect and the experiment failed to detect (reject null hypothesis) that due to the lack of power.</li>
+<li>The treatment may have a negative effect and the experiment failed to detect. And experimenter decided to launch the treatment by the argument of “no hurt,” that is the treatment not worse than the control.</li>
+<li>The treatment may have a positive effect detected, but it may also have unexpected negative effects on some key metrics that were not detected due to lack of power.</li>
+</ol>
+<p>It is important to have enough sample size to make sure appropriate statistical power is reached for metrics the experiment is designed to move, and also for all key metrics even if the experiment is not expected to move these metrics.</p>
+<p>Another common misunderstanding of power is that it is only relevant before the experiment, after the experiment if we observe a low p-value and can call the result statistically significant, power does not mean anything. This is to say even the power analysis gives a 50% or lower power, if experimenters are willing to take the chance, they may well find a p-value less than 5%. Given the observed p-value, then we can ignore the lower power warning. A win is a win, no matter how unlikely the odds were, right? No! Statistical power is still important for the following reasons:</p>
+<ol style="list-style-type: decimal">
+<li>For a mature product such that a change is less likely to have an effect, the strength of evidence for a low powered experiment is weak unless p-value is extremely small. In particular, borderline p-values around 0.05 in a low powered experiment is very weak.</li>
+<li>ATE estimated from a low powered analysis with less than 50% power can be overly exaggerated on an average of more than 40%!</li>
+</ol>
+<p>We will explain the second point in the next section when we talk about Type M Error. For the first point, consider a product with a prior odds <span class="math inline">\(P(H_1)/P(H_0)\)</span> of 1:4. That is, about only 20% of changes truly make a difference. In Table <a href="abstats.html#tab:powertoposterior">8.3</a> we substitute power as <span class="math inline">\(P(Data|H_1)\)</span> and p-value as <span class="math inline">\(P(Data|H_0)\)</span> into Equation <a href="abstats.html#eq:postodds">(8.8)</a> (This is not exactly correct as we explained earlier, but the spirit is not far from the truth.). Also let us assume the alternative <span class="math inline">\(H_1\)</span> is a simple hypothesis with a fixed parameter value of <span class="math inline">\(\delta\)</span>. We found that for p-value of 5%, which is commonly used as the threshold of statistically significant, 80% power is needed to make the probability of alternative being true to be 80%. For a 1% p-value, 40% power means more than 90% probability of alternative being true and 80% power gives about 95%. Interestingly, a common misunderstanding of p-value is think 5% p-value means 95% probability of the alternative being true. The simplified computation here shows this is far from the truth when prior odds is 1:4. A p-value threshold of 1% is much stronger, but still does not mean 99% confidence of the alternative being true. <span class="citation"><a href="probability-minimum.html#ref-benjamin2018redefine" role="doc-biblioref">Benjamin et al.</a> (<a href="probability-minimum.html#ref-benjamin2018redefine" role="doc-biblioref">2018</a>)</span> suggested replacing 0.05 by 0.005 as the <span class="math inline">\(\alpha\)</span> threshold for hypothesis testing.</p>
+<table>
+<caption><span id="tab:powertoposterior">Table 8.3: </span> Rough approximation of <span class="math inline">\(P(H_1|Data)\)</span> using power and p-value to compute the likelihood ratio, with prior odds <span class="math inline">\(P(H_1)/P(H_0) = 1/4\)</span>.</caption>
+<thead>
+<tr class="header">
+<th align="center">Power</th>
+<th align="center">p-value</th>
+<th align="center"><span class="math inline">\(P(H_1|Data)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">10%</td>
+<td align="center">5%</td>
+<td align="center">33.3%</td>
+</tr>
+<tr class="even">
+<td align="center">20%</td>
+<td align="center">5%</td>
+<td align="center">50%</td>
+</tr>
+<tr class="odd">
+<td align="center">40%</td>
+<td align="center">5%</td>
+<td align="center">66.7%</td>
+</tr>
+<tr class="even">
+<td align="center">80%</td>
+<td align="center">5%</td>
+<td align="center">80%</td>
+</tr>
+<tr class="odd">
+<td align="center">10%</td>
+<td align="center">1%</td>
+<td align="center">71.4%</td>
+</tr>
+<tr class="even">
+<td align="center">20%</td>
+<td align="center">1%</td>
+<td align="center">83.3%</td>
+</tr>
+<tr class="odd">
+<td align="center">40%</td>
+<td align="center">1%</td>
+<td align="center">91%</td>
+</tr>
+<tr class="even">
+<td align="center">80%</td>
+<td align="center">1%</td>
+<td align="center">95.2%</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="type-s-and-type-m-error" class="section level3" number="8.7.3">
+<h3><span class="header-section-number">8.7.3</span> Type S and Type M Error</h3>
+<p><span class="citation"><a href="probability-minimum.html#ref-gelman2014beyond" role="doc-biblioref">Gelman and Carlin</a> (<a href="probability-minimum.html#ref-gelman2014beyond" role="doc-biblioref">2014</a>)</span> introduced two new errors beyond the classic Type I and Type II errors for standard two-sided test. They are called Type S (Sign) error and Type M (magnitude) error. Type S error rate is defined as the following: under the alternative hypothesis (<span class="math inline">\(\delta\neq 0\)</span>) and given we reject the null at significant level <span class="math inline">\(\alpha\)</span>, the probability that we observe a Z-score with the opposite sign to true effect <span class="math inline">\(\delta\)</span>. Similarly, under alternative hypothesis, the expected Type M error (exaggeration ratio) is defined as the expectation of <span class="math inline">\(|\Delta|/\delta\)</span> — the ratio of observed effect to the true effect in magnitude, given that we rejected the null at significant level <span class="math inline">\(\alpha\)</span>. Both error are complements of the statistical power, which only considers the probability of rejecting the null hypothesis when the alternative hypothesis is true. Type S and M error considers when the rejection happens, what is the chance that we make mistakes in sign for the estimated effect and what is the average error in magnitude of the estimation?</p>
+<div class="figure"><span id="fig:smerror"></span>
+<img src="images/smerror.PNG" alt="(Appeared in @lu2018note) Illustration of S and M error from 5000 simulations of a low power (8%) study at the significance level $0.05$ with small positive true effect. The grey round points correspond to statistically insignificance. The black triangular points correspond to occurrences of the type S error. The black (triangular and squared) points together correspond to occurrences of the type M error (statistically significant but over-estimates the magnitude of the effect)" width="80%" />
+<p class="caption">
+Figure 8.5: (Appeared in <span class="citation"><a href="probability-minimum.html#ref-lu2018note" role="doc-biblioref">Lu, Qiu, and Deng</a> (<a href="probability-minimum.html#ref-lu2018note" role="doc-biblioref">2018</a>)</span>) Illustration of S and M error from 5000 simulations of a low power (8%) study at the significance level <span class="math inline">\(0.05\)</span> with small positive true effect. The grey round points correspond to statistically insignificance. The black triangular points correspond to occurrences of the type S error. The black (triangular and squared) points together correspond to occurrences of the type M error (statistically significant but over-estimates the magnitude of the effect)
+</p>
+</div>
+<p>Figure <a href="abstats.html#fig:smerror">8.5</a> illustrated the two errors. Note that both errors only focus on cases where a rejection decision is made. It can be shown that both errors are a function of power for the two-sided test of ATE. Table <a href="abstats.html#tab:powertomerror">8.4</a> shows the mapping for moderate powers more than 50% to high powers of 95% in a two-sided test with <span class="math inline">\(\alpha=5\%\)</span>. Type S Error is only an issue when power is very small and practically 0% for moderate power. In fact to illustrate S error in Figure <a href="abstats.html#fig:smerror">8.5</a>, the simulation was done with a very low power of only 8%. However, M error is still large for power between 50% to 70%. At 50% power, the exaggeration ratio (M error on average) is 40%! This means at this error, when we observe an estimated ATE <span class="math inline">\(\Delta\)</span> that rejects the null hypothesis, this <span class="math inline">\(\Delta\)</span> is on average 40% more than the true ATE <span class="math inline">\(\delta\)</span>. It has a positive bias due to the hypothesis testing selection! Even with a 80% power, the exaggeration ratio is still more than 10%. We found more than 95% power gives 3% exaggeration ratio. If we chose to use a lower p-value threshold <span class="math inline">\(\alpha=0.005\)</span>, as suggested by <span class="citation"><a href="probability-minimum.html#ref-benjamin2018redefine" role="doc-biblioref">Benjamin et al.</a> (<a href="probability-minimum.html#ref-benjamin2018redefine" role="doc-biblioref">2018</a>)</span>. Table <a href="abstats.html#tab:powertomerror2">8.5</a> shows the exaggeration ratio decreased from 40% to 28% at power 50%, but a power of more than 80% is still needed to keep exaggeration ratio below 10%. This result indicates that if the estimated ATE <span class="math inline">\(\Delta\)</span> is also important for decision making, the statistical power of 80% is required not just to have a fair chance of detect the effect but also to avoid large over-estimation of the true effect due to the selection bias of picking statistically significant results.</p>
+<table>
+<caption><span id="tab:powertomerror">Table 8.4: </span> Mapping from power to exaggeration ratio (expected M Error) and S Error Rate when <span class="math inline">\(\alpha=0.05\)</span>.</caption>
+<thead>
+<tr class="header">
+<th align="center">Power</th>
+<th align="center">Exaggeration Ratio</th>
+<th align="center">S Error Rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">50%</td>
+<td align="center">40%</td>
+<td align="center">&lt;0.01%</td>
+</tr>
+<tr class="even">
+<td align="center">60%</td>
+<td align="center">29%</td>
+<td align="center"><span class="math inline">\(\approx\)</span> 0%</td>
+</tr>
+<tr class="odd">
+<td align="center">70%</td>
+<td align="center">20%</td>
+<td align="center"><span class="math inline">\(\approx\)</span> 0%</td>
+</tr>
+<tr class="even">
+<td align="center">80%</td>
+<td align="center">13%</td>
+<td align="center"><span class="math inline">\(\approx\)</span> 0%</td>
+</tr>
+<tr class="odd">
+<td align="center">85%</td>
+<td align="center">9%</td>
+<td align="center"><span class="math inline">\(\approx\)</span> 0%</td>
+</tr>
+<tr class="even">
+<td align="center">90%</td>
+<td align="center">6%</td>
+<td align="center"><span class="math inline">\(\approx\)</span> 0%</td>
+</tr>
+<tr class="odd">
+<td align="center">95%</td>
+<td align="center">3%</td>
+<td align="center"><span class="math inline">\(\approx\)</span> 0%</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption><span id="tab:powertomerror2">Table 8.5: </span> Mapping from power to exaggeration ratio (expected M Error) and S Error Rate when <span class="math inline">\(\alpha=0.005\)</span>.</caption>
+<thead>
+<tr class="header">
+<th align="center">Power</th>
+<th align="center">Exaggeration Ratio</th>
+<th align="center">S Error Rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">50%</td>
+<td align="center">28%</td>
+<td align="center"><span class="math inline">\(\approx\)</span> 0%</td>
+</tr>
+<tr class="even">
+<td align="center">60%</td>
+<td align="center">21%</td>
+<td align="center"><span class="math inline">\(\approx\)</span> 0%</td>
+</tr>
+<tr class="odd">
+<td align="center">70%</td>
+<td align="center">15%</td>
+<td align="center"><span class="math inline">\(\approx\)</span> 0%</td>
+</tr>
+<tr class="even">
+<td align="center">80%</td>
+<td align="center">9.5%</td>
+<td align="center"><span class="math inline">\(\approx\)</span> 0%</td>
+</tr>
+<tr class="odd">
+<td align="center">85%</td>
+<td align="center">7%</td>
+<td align="center"><span class="math inline">\(\approx\)</span> 0%</td>
+</tr>
+<tr class="even">
+<td align="center">90%</td>
+<td align="center">5%</td>
+<td align="center"><span class="math inline">\(\approx\)</span> 0%</td>
+</tr>
+<tr class="odd">
+<td align="center">95%</td>
+<td align="center">2.4%</td>
+<td align="center"><span class="math inline">\(\approx\)</span> 0%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="aoabchallenge" class="section level2" number="8.8">
+<h2><span class="header-section-number">8.8</span> Statistical Challenges</h2>
+<p>In this last section of the chapter, we briefly discuss a few challenges arise in statistical analyses and results interpretation of A/B tests. Challenges listed here are by no means an exhaustive list and many of these challenges also exist in other areas of statistical analysis and not exclusive to A/B tests. Nevertheless, A/B testing really manifested these issues due to its scale, agility, rich data and fluid analysis. Here, we introduce the challenges and mention some existing researches without going into details. More details will be given for some of the challenges in the following chapters.</p>
+<p><strong>Multiple Testing.</strong> The first challenge is the problem of multiple comparison, or multiple testing. The significance level <span class="math inline">\(\alpha\)</span> in a null hypothesis testing procedure means if the null hypothesis is true, each test has <span class="math inline">\(\alpha\)</span> of false rejection. When many tests are done simultaneously, we expect on average a proportion of <span class="math inline">\(\alpha\)</span> of true null hypotheses being falsely rejected.</p>
+<p>Multiplicity in A/B tests takes multiple dimensions. The first is the number of metrics. Each metric represents a different statistical quantity of interest to compare. It is common to have more than 100 metrics and even thousands of metrics. The second dimension is segmentation. The analysis of one metric can be further divide into different tests for different subgroups of the population. The third dimension is number of variant group comparisons. One A/B test can involve more than one pair of comparison when there are multiple treatments (sometimes called an A/B/n test). This is particularly common for early stage experiments, where experimenters want to assess a large number of ideas and filter the candidates down to only a few promising ones. Another dimension is time. Because of the continuous arrivals of new data, the analysis can also be done sequentially. Multiplicity due to time is also known as the issue of <strong>Continuous monitoring and Sequential Testing</strong>.</p>
+<p>There are many known multiple testing adjustment methods, the most well-known and straightforward being the Bonferroni correction, which is to multiply the p-value by the number of multiplicity. These methods are often over-conservative and significantly reduce the sensitivity of a test due to the extremely large number of multiplicity in A/B tests. Methods like false discovery rate <span class="citation">(<a href="probability-minimum.html#ref-benjamini1995controlling" role="doc-biblioref">Benjamini and Hochberg 1995</a>)</span> control are less conservative, but the adjustment procedure depends on results of all the tests. In particular, the adjusted results might change if an experimenter decides to add some new segments to analyze.</p>
+<p>For continuous monitoring of A/B tests, peaking the results and stop experiment opportunistically is one of the common malpractices. Correct inference has to take each interim analysis into account and in statistics literature this line of researches is called sequential analysis <span class="citation">(<a href="probability-minimum.html#ref-bartroff2012sequential" role="doc-biblioref">Bartroff, Lai, and Shih 2012</a>)</span>. <span class="citation"><a href="probability-minimum.html#ref-johari2017peeking" role="doc-biblioref">Johari et al.</a> (<a href="probability-minimum.html#ref-johari2017peeking" role="doc-biblioref">2017</a>)</span> applied SPRT (sequential probability ratio test) to the scenario of continuous monitoring in A/B testing and also combined this with multiplicities from other dimensions like the number of metrics being tested simultaneously. <span class="citation"><a href="probability-minimum.html#ref-deng2016continuous" role="doc-biblioref">Alex Deng, Lu, and Chen</a> (<a href="probability-minimum.html#ref-deng2016continuous" role="doc-biblioref">2016</a>)</span> studied this problem from a Bayesian angle.</p>
+<p><strong>Selection Bias and Winner’s curse</strong>. Multiple testing can be considered as a special case of a broader issue of selective inference. That is, we cast a wide net of a large number of questions to ask, and only choose to pay attention on a small subset of them that are the “most interesting” selected by certain criteria. Typical selection procedures used in A/B tests include looking at results with low p-values, looking through results using different segments or optionally add new segments to create new analyses, checking a group of metrics only when another metric shows “interesting” results, etc. Inference using the same data that the selection was made is problematic similar to the notion of data snooping is bad in machine learning.</p>
+<p>Like the training error generally underestimated the true error, post-selection estimates are usually biased. From all metric results from a A/B test, if we select only those with small p-values, the ATE estimator <span class="math inline">\(\Delta\)</span> are no longer unbiased as it would be without the selection. We introduced Type M error as one way to quantify this bias and we have seen this selection-bias can be quite significant unless the experiment is sufficiently powered to 80% or more. Because of the selection-bias, if we rerun the same experiment again and look at the same <span class="math inline">\(\Delta\)</span>, it is more likely to be smaller in magnitude than the previous run. This phenomenon is also known as “the winner’s curse.”</p>
+<p>Correct the selection-bias and more generally provide new statistical inference techniques that take selection and data snooping into account is getting a lot of attention in the statistics community because the trend of big data and cheap computation making post-selection inference a salient issue instead of a “silent scandal.” Researches reinvestigated the Bayesian framework [<span class="citation"><a href="probability-minimum.html#ref-Senn2008" role="doc-biblioref">Senn</a> (<a href="probability-minimum.html#ref-Senn2008" role="doc-biblioref">2008</a>)</span>;<span class="citation"><a href="probability-minimum.html#ref-ludeng2016" role="doc-biblioref">Lu and Deng</a> (<a href="probability-minimum.html#ref-ludeng2016" role="doc-biblioref">2016</a>)</span>;<span class="citation"><a href="probability-minimum.html#ref-efron2011tweedie" role="doc-biblioref">Efron</a> (<a href="probability-minimum.html#ref-efron2011tweedie" role="doc-biblioref">2011</a>)</span>;] and proposed new frequentist inference techniques like bias estimation and correction [<a href="mailto:reid2017post;@lee2018winner" class="email">reid2017post;@lee2018winner</a>], data splitting and data carving <span class="citation">(<a href="probability-minimum.html#ref-wager2017estimation" role="doc-biblioref">Wager and Athey 2017</a>; <a href="probability-minimum.html#ref-fithian2014optimal" role="doc-biblioref">Fithian, Sun, and Taylor 2014</a>; <a href="probability-minimum.html#ref-taylor2015statistical" role="doc-biblioref">Taylor and Tibshirani 2015</a>)</span>, and applications to high-dimensional statistical model selection <span class="citation">(<a href="probability-minimum.html#ref-taylor2018post" role="doc-biblioref">Taylor and Tibshirani 2018</a>; <a href="probability-minimum.html#ref-taylor2015statistical" role="doc-biblioref">Taylor and Tibshirani 2015</a>; <a href="probability-minimum.html#ref-barber2016knockoff" role="doc-biblioref">R. F. Barber and Candes 2016</a>)</span> all came out in recent years.</p>
+<p><strong>Heterogeneous Treatment Effect</strong>.
+Although the average treatment effect for a metric is often the first thing experimenters care about and so far we have been focusing on ATE estimator <span class="math inline">\(\Delta\)</span> in this chapter, it is common sense that individual treatment effect varies: Different subjects reacts to the same change in a different way. Individual treatment effects can vary in magnitude, and also in direction. It is very valuable for experiments to be able to understand how treatment effect varies across several dimensions of the subjects, and be able to find insights explaining why different sub-populations respond to the same change in opposite directions.</p>
+<p>Time is another important dimension. Many changes have different effect in week days and weekends, and also during work hours and after-work hours. Some treatment might also display novelty effect. A common novelty effect is when a big change is introduced and users need some time to learn the change, in that case initially there might be increased usage such as visits and clicks but the effect decays after users get used to the change. Novelty effect is important because it is not unusual for a change to initially attracts more usage but eventually reduce to mediocre or even negative effect.</p>
+<p>There are several challenges in detecting and explaining Heterogeneous treatment effect (HTE):</p>
+<ol style="list-style-type: decimal">
+<li>High dimension with low signal noise ratio. There are many ways to split the total population into different sub-populations. Because A/B testing typically have low signal noise ratio and we even struggle to improve sensitivity to detect the average treatment effect for the whole population, analyze a large number of sub-populations both decrease the signal noise ratio (since sample sizes are smaller for sub-populations) and increase multiplicity in the multiple testing challenge.</li>
+<li>Interoperability and actionability. In an experiment with a lot of metrics, experimenters are dealing with large streams of information from each A/B test. Introducing HTE will further introduce more insights for experimenters to consume. It is crucial for these insights to be actionable, that is the experimenters can interpret the results and know how to take action based on the insight. This means the HTE results need to be high fidelity and low chance of being a noise, and the HTE structure is memorable and make sense.</li>
+</ol>
+<p><strong>Long-Term Effect and Feedback Loop</strong>.
+Novelty effect is a time-dependent heterogeneous treatment effect that can be studied in a short period experiment such as weeks. Long-term effect considers the effect of a change after a longer period of months. It is expected that some types of behavior can only be changed through a long time of exposure to a change. <span class="citation"><a href="probability-minimum.html#ref-longterm43887" role="doc-biblioref">Hohnhold, O’Brien, and Tang</a> (<a href="probability-minimum.html#ref-longterm43887" role="doc-biblioref">2015</a>)</span> gave an example that improving ads quality by removing lower quality ads in search engine results can reduce users’ “ads blindness” and encourage them to click ads more. The effect of removing low quality ads have a negative effect on the revenue in the short-term, but pays off in the long-term when user clicks high quality ads more. <span class="citation"><a href="probability-minimum.html#ref-gomez2016netflix" role="doc-biblioref">Gomez-Uribe and Hunt</a> (<a href="probability-minimum.html#ref-gomez2016netflix" role="doc-biblioref">2016</a>)</span> also mentioned that certain changes may have a long feedback loop where a change also impacts other components in the system that can eventually impact the effect of the initial change itself. Take online ads as an example, changing ads quality threshold also will change click-through-rate prediction algorithm, which can also impact the ads defect rate estimation algorithm. Feedback loop can also be external. Because one is often not the only player in the market, an introduced change can cause a shock in the market and takes time to reach to a new equilibrium. Understanding long-term effect is difficult. Running a long experiment of months is against agility, and takes bigger effort to make sure the experiment won’t be polluted by various data quality issues, human errors like interaction and conflict with other experiments, as well as technical issue such as cookie churn being a much bigger problem.</p>
+<p><strong>Violation of SUTVA Assumption, Leakage and Network Effect</strong>.
+The stable unit treatment value assumption (SUTVA) is an important assumption in the potential outcome framework. It is the reason why we usually can talk about a counterfactual <em>pair</em> instead of a counterfactual <em>vector</em>. Under SUTVA, the potential outcomes of one unit cannot be affected by the assignment of other units, and hence a unit’s potential outcomes only has the degree of freedom equal to that of the treatment assignments. When there is only one treatment, the potential outcomes for any unit is only a pair. Without SUTVA, the potential outcomes for each unit depends on the whole treatment assignment configuration of <em>all units</em>! For a study of n units, one treatment and control creates <span class="math inline">\(2^n\)</span> different assignment configurations, and we need to consider a potential outcome vector of dimension <span class="math inline">\(2^n\)</span>! What a life saver the SUTVA is!</p>
+<p>However, there are known cases when SUTVA is considered too restrictive and not appropriate. The most notable example is network effect. When there is a network structure connecting a population, the treatment effect for a unit may depend on behaviors of units in the neighborhood, and their behaviors are affected by their treatment assignments! The ideal treatment effect we want to infer is to compare the counterfactual where all units are assigned treatment to the other extreme when all units are in control.</p>
+<p>Another issue is leakage effect, where SUTVA is violated in the way that units assigned to control will be affected by treatment units. For example, in skill matching of an online shooting game, any change in the matching algorithm will affect all gamers matched together. If the treatment algorithm tweak a stronger gamer into a lower skill level, they will get an easier game but other gamers at that level will be facing harder opponents. Another example is when the treatment and control are running in a combined environment with shared hardware resources, a treatment using more hardware resources can negatively affect control by starving its resources. In this case both treatment and control will be slowed down.</p>
+<p><strong>External Validity</strong>. All A/B testing relies on a leap of faith in External validity. That is, we believe the results we learned in one experiment will carry over into the future for the same population we experimented at a different time. Nevertheless, there are cases we intentionally run experiment on one population and want to project the result to a different population. For one example, beta users are willing to participate in active software or firmware update which make them a good population to test client side software such as operation system. But beta users are very different from the general public users. They probably are more technically savvy, have better hardware and network, or the devices joined the beta program are simply not mission critical. In these cases, external validity remains a big issue and we need to adjust the estimation to account for the differences in populations.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="17">
+<li id="fn17"><p><a href="http://en.wikipedia.org/wiki/German_tank_problem" class="uri">http://en.wikipedia.org/wiki/German_tank_problem</a><a href="abstats.html#fnref17" class="footnote-back">↩︎</a></p></li>
+<li id="fn18"><p>Due to the limitation of user tracking, when cookie is used for user tracking, some level of experience fragmentation is still expected. But at least that experience discontinuity only happens when users change browsers or devices.<a href="abstats.html#fnref18" class="footnote-back">↩︎</a></p></li>
+<li id="fn19"><p>Y <span class="math inline">\(\sim\)</span> Treatment + (1|User) in <em>lme4</em> notation. A detailed discussion is beyond the scope of this paper; see <span class="citation"><a href="probability-minimum.html#ref-dagelman" role="doc-biblioref">Gelman and Hill</a> (<a href="probability-minimum.html#ref-dagelman" role="doc-biblioref">2006</a>)</span>,<span class="citation"><a href="probability-minimum.html#ref-bates2014fitting" role="doc-biblioref">Bates et al.</a> (<a href="probability-minimum.html#ref-bates2014fitting" role="doc-biblioref">2014</a>)</span>.<a href="abstats.html#fnref19" class="footnote-back">↩︎</a></p></li>
+<li id="fn20"><p>We do not consider cases when <span class="math inline">\(Y\)</span> has discrete mass, and <span class="math inline">\(F\)</span> will have jumps. In this case the percentile can take many values and is not well defined. In practice this case can be seen as continuous case with simple discrete correction.<a href="abstats.html#fnref20" class="footnote-back">↩︎</a></p></li>
+<li id="fn21"><p>When p is 0.5, the 50% quantile, or median, is often defined as the average of the middle two numbers if we have even number of observations.<a href="abstats.html#fnref21" class="footnote-back">↩︎</a></p></li>
+<li id="fn22"><p>The rigorous proof involves a rather technical next step that is beyond our scope. A formal proof can be found in <span class="citation"><a href="probability-minimum.html#ref-VanderVaart2000" role="doc-biblioref">Van der Vaart</a> (<a href="probability-minimum.html#ref-VanderVaart2000" role="doc-biblioref">2000</a>)</span>.<a href="abstats.html#fnref22" class="footnote-back">↩︎</a></p></li>
+<li id="fn23"><p><span class="citation"><a href="probability-minimum.html#ref-Deng2018kdd" role="doc-biblioref">Alex Deng, Knoblich, and Lu</a> (<a href="probability-minimum.html#ref-Deng2018kdd" role="doc-biblioref">2018</a>)</span> called it outer-CI as the independent case is related to the outer-CI method <span class="citation">(<a href="probability-minimum.html#ref-krewski1976distribution" role="doc-biblioref">Krewski 1976</a>; <a href="probability-minimum.html#ref-meyer1987outer" role="doc-biblioref">Meyer 1987</a>)</span>.<a href="abstats.html#fnref23" class="footnote-back">↩︎</a></p></li>
+<li id="fn24"><p>Both Frequentist and Bayesian.<a href="abstats.html#fnref24" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="abintro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="abdiagnosis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

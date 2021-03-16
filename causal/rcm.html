@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Potential Outcomes Framework | Causal Inference and Its Applications in Online Industry</title>
+  <meta name="description" content="this is a draft book." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Potential Outcomes Framework | Causal Inference and Its Applications in Online Industry" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="this is a draft book." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Potential Outcomes Framework | Causal Inference and Its Applications in Online Industry" />
+  
+  <meta name="twitter:description" content="this is a draft book." />
+  
+
+<meta name="author" content="Alex Deng" />
+
+
+<meta name="date" content="2021-03-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="randomintro.html"/>
+<link rel="next" href="cgm.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="libs/viz/viz.js"></script>
+<link href="libs/DiagrammeR-styles/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding/grViz.js"></script>
+
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Draft</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="part"><span><b>I Causal Inference: An Overview</b></span></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="simpson.html"><a href="simpson.html"><i class="fa fa-check"></i><b>2</b> Correlation and Simpson’s Paradox</a></li>
+<li class="chapter" data-level="3" data-path="randomintro.html"><a href="randomintro.html"><i class="fa fa-check"></i><b>3</b> Randomized Experiment</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="randomintro.html"><a href="randomintro.html#completerand"><i class="fa fa-check"></i><b>3.1</b> Complete Randomization</a></li>
+<li class="chapter" data-level="3.2" data-path="randomintro.html"><a href="randomintro.html#indrand"><i class="fa fa-check"></i><b>3.2</b> Independent Randomization</a></li>
+<li class="chapter" data-level="3.3" data-path="randomintro.html"><a href="randomintro.html#clusterrandomization"><i class="fa fa-check"></i><b>3.3</b> Clustered Randomization</a></li>
+<li class="chapter" data-level="3.4" data-path="randomintro.html"><a href="randomintro.html#aore"><i class="fa fa-check"></i><b>3.4</b> Analysis of Randomized Experiments as Two Sample Problem</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rcm.html"><a href="rcm.html"><i class="fa fa-check"></i><b>4</b> Potential Outcomes Framework</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="rcm.html"><a href="rcm.html#naive-estimation"><i class="fa fa-check"></i><b>4.1</b> Naive Estimation</a></li>
+<li class="chapter" data-level="4.2" data-path="rcm.html"><a href="rcm.html#randomization-and-unconfoundedness"><i class="fa fa-check"></i><b>4.2</b> Randomization and Unconfoundedness</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="rcm.html"><a href="rcm.html#matching"><i class="fa fa-check"></i><b>4.2.1</b> Conditional Unconfoundedness, Matching and Covariates Balancing</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="rcm.html"><a href="rcm.html#propensity-score"><i class="fa fa-check"></i><b>4.3</b> Propensity Score</a></li>
+<li class="chapter" data-level="4.4" data-path="rcm.html"><a href="rcm.html#sutva"><i class="fa fa-check"></i><b>4.4</b> SUTVA</a></li>
+<li class="chapter" data-level="4.5" data-path="rcm.html"><a href="rcm.html#missingdata"><i class="fa fa-check"></i><b>4.5</b> Missing Data and Weighted Samples</a></li>
+<li class="chapter" data-level="4.6" data-path="rcm.html"><a href="rcm.html#missing-data-mechanisms-and-ignorability"><i class="fa fa-check"></i><b>4.6</b> Missing Data Mechanisms and Ignorability</a></li>
+<li class="chapter" data-level="4.7" data-path="rcm.html"><a href="rcm.html#is"><i class="fa fa-check"></i><b>4.7</b> Importance Sampling</a></li>
+<li class="chapter" data-level="4.8" data-path="rcm.html"><a href="rcm.html#ipw"><i class="fa fa-check"></i><b>4.8</b> Inverse Propensity Score Weighting (IPW)</a></li>
+<li class="chapter" data-level="4.9" data-path="rcm.html"><a href="rcm.html#dr"><i class="fa fa-check"></i><b>4.9</b> Doubly Robust Estimation</a></li>
+<li class="chapter" data-level="4.10" data-path="rcm.html"><a href="rcm.html#bias-variance"><i class="fa fa-check"></i><b>4.10</b> Bias-Variance Trade off and Covariates Overlap</a></li>
+<li class="chapter" data-level="4.11" data-path="rcm.html"><a href="rcm.html#psmm"><i class="fa fa-check"></i><b>4.11</b> Other Propensity Score Modeling Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="cgm.html"><a href="cgm.html"><i class="fa fa-check"></i><b>5</b> Causal Graphical Model</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="cgm.html"><a href="cgm.html#structural-equation-model-causal-diagram-and-d-separation"><i class="fa fa-check"></i><b>5.1</b> Structural Equation Model, Causal Diagram and d-separation</a></li>
+<li class="chapter" data-level="5.2" data-path="cgm.html"><a href="cgm.html#the-do-operator"><i class="fa fa-check"></i><b>5.2</b> the <em>do</em> operator</a></li>
+<li class="chapter" data-level="5.3" data-path="cgm.html"><a href="cgm.html#the-back-door-criterion"><i class="fa fa-check"></i><b>5.3</b> The Back-door Criterion</a></li>
+<li class="chapter" data-level="5.4" data-path="cgm.html"><a href="cgm.html#causal-mechanism-and-the-front-door-criterion"><i class="fa fa-check"></i><b>5.4</b> Causal Mechanism and the Front-door Criterion</a></li>
+<li class="chapter" data-level="5.5" data-path="cgm.html"><a href="cgm.html#general-identification"><i class="fa fa-check"></i><b>5.5</b> General Identification Strategy</a></li>
+<li class="chapter" data-level="5.6" data-path="cgm.html"><a href="cgm.html#rcm-vs.-cgm"><i class="fa fa-check"></i><b>5.6</b> RCM vs. CGM</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="regression-based-methods.html"><a href="regression-based-methods.html"><i class="fa fa-check"></i><b>6</b> Regression-based Methods</a></li>
+<li class="part"><span><b>II Large Scale Online Controlled Experiments</b></span></li>
+<li class="chapter" data-level="7" data-path="abintro.html"><a href="abintro.html"><i class="fa fa-check"></i><b>7</b> A/B Testing: Beyond Randomized Experiments</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="abintro.html"><a href="abintro.html#specialaspects"><i class="fa fa-check"></i><b>7.1</b> Special Aspects of A/B Tests</a></li>
+<li class="chapter" data-level="7.2" data-path="abintro.html"><a href="abintro.html#telemetry"><i class="fa fa-check"></i><b>7.2</b> Instrumentation and Telemetry</a></li>
+<li class="chapter" data-level="7.3" data-path="abintro.html"><a href="abintro.html#common-pitfalls"><i class="fa fa-check"></i><b>7.3</b> Common Pitfalls</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="abstats.html"><a href="abstats.html"><i class="fa fa-check"></i><b>8</b> Statistical Analysis of A/B Tests</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="abstats.html"><a href="abstats.html#metric"><i class="fa fa-check"></i><b>8.1</b> Metric</a></li>
+<li class="chapter" data-level="8.2" data-path="abstats.html"><a href="abstats.html#randomization-unit-and-analysis-unit"><i class="fa fa-check"></i><b>8.2</b> Randomization Unit and Analysis Unit</a></li>
+<li class="chapter" data-level="8.3" data-path="abstats.html"><a href="abstats.html#abstatsover"><i class="fa fa-check"></i><b>8.3</b> Inference for Average Treatment Effect of A/B Tests</a></li>
+<li class="chapter" data-level="8.4" data-path="abstats.html"><a href="abstats.html#indvar"><i class="fa fa-check"></i><b>8.4</b> Independence Assumption and Variance Estimation</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="abstats.html"><a href="abstats.html#independence-assumption"><i class="fa fa-check"></i><b>8.4.1</b> Independence Assumption</a></li>
+<li class="chapter" data-level="8.4.2" data-path="abstats.html"><a href="abstats.html#variance-estimation-for-average-and-weighted-average"><i class="fa fa-check"></i><b>8.4.2</b> Variance Estimation for Average and Weighted Average</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="abstats.html"><a href="abstats.html#normalassumption"><i class="fa fa-check"></i><b>8.5</b> Central Limit Theorem and Normal Approximation</a></li>
+<li class="chapter" data-level="8.6" data-path="abstats.html"><a href="abstats.html#percentilevar"><i class="fa fa-check"></i><b>8.6</b> Confidence Interval and Variance Estimation for Percentile metrics</a></li>
+<li class="chapter" data-level="8.7" data-path="abstats.html"><a href="abstats.html#p-value-statistical-power-s-and-m-error"><i class="fa fa-check"></i><b>8.7</b> p-Value, Statistical Power, S and M Error</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="abstats.html"><a href="abstats.html#p-value"><i class="fa fa-check"></i><b>8.7.1</b> p-Value</a></li>
+<li class="chapter" data-level="8.7.2" data-path="abstats.html"><a href="abstats.html#statistical-power"><i class="fa fa-check"></i><b>8.7.2</b> Statistical Power</a></li>
+<li class="chapter" data-level="8.7.3" data-path="abstats.html"><a href="abstats.html#type-s-and-type-m-error"><i class="fa fa-check"></i><b>8.7.3</b> Type S and Type M Error</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="abstats.html"><a href="abstats.html#aoabchallenge"><i class="fa fa-check"></i><b>8.8</b> Statistical Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="abdiagnosis.html"><a href="abdiagnosis.html"><i class="fa fa-check"></i><b>9</b> System Diagnosis and Quality Checks for A/B Tests</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="abdiagnosis.html"><a href="abdiagnosis.html#system-validation-using-aa-test"><i class="fa fa-check"></i><b>9.1</b> System Validation using A/A Test</a></li>
+<li class="chapter" data-level="9.2" data-path="abdiagnosis.html"><a href="abdiagnosis.html#sample-ratio-mismatch"><i class="fa fa-check"></i><b>9.2</b> Sample Ratio Mismatch</a></li>
+<li class="chapter" data-level="9.3" data-path="abdiagnosis.html"><a href="abdiagnosis.html#trigger-and-filter-condition"><i class="fa fa-check"></i><b>9.3</b> Trigger and Filter Condition</a></li>
+<li class="chapter" data-level="9.4" data-path="abdiagnosis.html"><a href="abdiagnosis.html#interaction-detection"><i class="fa fa-check"></i><b>9.4</b> Interaction Detection</a></li>
+<li class="chapter" data-level="9.5" data-path="abdiagnosis.html"><a href="abdiagnosis.html#metric-denominator-mismatch"><i class="fa fa-check"></i><b>9.5</b> Metric Denominator Mismatch</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sensitivity.html"><a href="sensitivity.html"><i class="fa fa-check"></i><b>10</b> Improving Metric Sensitivity</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="sensitivity.html"><a href="sensitivity.html#metric-sensitivity-decomposition"><i class="fa fa-check"></i><b>10.1</b> Metric Sensitivity Decomposition</a></li>
+<li class="chapter" data-level="10.2" data-path="sensitivity.html"><a href="sensitivity.html#vrreg"><i class="fa fa-check"></i><b>10.2</b> Variance Reduction</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="sensitivity.html"><a href="sensitivity.html#cuped"><i class="fa fa-check"></i><b>10.2.1</b> Control Variates and CUPED</a></li>
+<li class="chapter" data-level="10.2.2" data-path="sensitivity.html"><a href="sensitivity.html#regadj"><i class="fa fa-check"></i><b>10.2.2</b> General Regression Adjustment and Doubly Robust Estimation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="misc-topics.html"><a href="misc-topics.html"><i class="fa fa-check"></i><b>11</b> Misc Topics</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="misc-topics.html"><a href="misc-topics.html#misc-deltamethod"><i class="fa fa-check"></i><b>11.1</b> Delta Method</a></li>
+<li class="chapter" data-level="11.2" data-path="misc-topics.html"><a href="misc-topics.html#misc-randomdenom"><i class="fa fa-check"></i><b>11.2</b> Random Denominator for Independent Randomization Experiments</a></li>
+<li class="chapter" data-level="11.3" data-path="misc-topics.html"><a href="misc-topics.html#misc-mestimator"><i class="fa fa-check"></i><b>11.3</b> M-Estimator and Z-Estimator</a></li>
+</ul></li>
+<li class="part"><span><b>III Appendix</b></span></li>
+<li class="chapter" data-level="12" data-path="probability-minimum.html"><a href="probability-minimum.html"><i class="fa fa-check"></i><b>12</b> Probability Minimum</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="probability-minimum.html"><a href="probability-minimum.html#probability"><i class="fa fa-check"></i><b>12.1</b> probability</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="probability-minimum.html"><a href="probability-minimum.html#app-conditional-ind"><i class="fa fa-check"></i><b>12.1.1</b> Conditional Independence</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://alexdeng.github.io" target="blank">Alex Deng</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Causal Inference and Its Applications in Online Industry</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="rcm" class="section level1" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Potential Outcomes Framework</h1>
+<p>Consider a binary <span class="math inline">\(Z= 0, 1\)</span> for control and treatment and we are interested in knowing the effect of <span class="math inline">\(Z\)</span> on an outcome variable <span class="math inline">\(Y\)</span>. The potential outcome framework, also called Rubin-Causal-Model (RCM), augments the joint distribution of <span class="math inline">\((Z,Y)\)</span> by two random variables <span class="math inline">\((Y(1),Y(0))\)</span> — the potential outcome pair of <span class="math inline">\(Y\)</span> when <span class="math inline">\(Z\)</span> is <span class="math inline">\(1\)</span> and <span class="math inline">\(0\)</span> respectively.<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a> Since <span class="math inline">\(Y\)</span> is the observed outcome and by definition we have
+<span class="math display" id="eq:counterfactual">\[\begin{equation}
+Y = \left \{
+\begin{array}{ll}
+      Y(1) &amp; \quad \text{if } Z = 1, \\
+      Y(0) &amp; \quad \text{if } Z = 0
+\end{array} \tag{4.1}
+\right.
+\end{equation}\]</span>
+When <span class="math inline">\(Z=1\)</span>, <span class="math inline">\(Y(0)\)</span> is not observed and is the counterfactual, and when <span class="math inline">\(Z=0\)</span>, <span class="math inline">\(Y(1)\)</span> is the counterfactual. Some authors prefer to use <span class="math inline">\(Y^{\textrm{obs}}\)</span> in place of plain <span class="math inline">\(Y\)</span> to emphasize it is the observable and the above equation can be made more compact as
+<span class="math display">\[\begin{equation*}
+Y^{\textrm{obs}} = Z\cdot Y(1) + (1-Z)\cdot Y(0).
+\end{equation*}\]</span></p>
+<p>At the first look the introduction of counterfactual seems useless because it represents something that we don’t and can’t observe. They will not help us directly to estimate causal effect because we won’t be able to use any formula made of <span class="math inline">\(((Y(1),Y(0))\)</span> if we don’t have observations to plug into the formula. Nevertheless, the introduction of potential outcome allows statisticians to conduct rigorous causal inference under the familiar joint probability distribution. Under the potential outcomes framework, the problem of identifying a causal effect becomes the challenge of inferring quantities about unobserved counterfactual using only observed.</p>
+<p>As the first step, now we can define causal effect rigorously. In the binary <span class="math inline">\(Z\)</span> case, we call state <span class="math inline">\(1\)</span> treatment and <span class="math inline">\(0\)</span> control, and let
+<span class="math display" id="eq:tf">\[\begin{equation}
+\tau = Y(1) - Y(0), \tag{4.2}
+\end{equation}\]</span>
+to be the treatment effect of changing <span class="math inline">\(X\)</span> from control to treatment, or simply the treatment effect of <span class="math inline">\(Z\)</span>.</p>
+<p>It should be noticed that potential outcome pair is a pair of random variables and treatment effect <span class="math inline">\(\tau\)</span> is also random. Usually <span class="math inline">\(Y\)</span> represents certain measurement for an individual subject or unit, such as a person. When we randomly sample a unit from a population, the observation, denoted by <span class="math inline">\(Y\)</span>, is random. The treatment effect <span class="math inline">\(\tau\)</span> of <span class="math inline">\(Z\)</span> on <span class="math inline">\(Y\)</span> is also random. We define the (population) average treatment effect (ATE) to be
+<span class="math display" id="eq:ate">\[\begin{equation}
+\mathrm{E^*}(\tau) = \mathrm{E^*}\left(Y(1) - Y(0)\right) \tag{4.3}
+\end{equation}\]</span></p>
+<p>We emphasize again Equation <a href="rcm.html#eq:ate">(4.3)</a> cannot be directly used because we do not observe <span class="math inline">\(Y(1)\)</span> and <span class="math inline">\(Y(0)\)</span> simultaneously. We only observe <span class="math inline">\(Y(1)\)</span> for treatment and <span class="math inline">\(Y(0)\)</span> for control. In <a href="rcm.html#eq:ate">(4.3)</a> we used the superscript <span class="math inline">\(*\)</span> as a reminder that the expectation is taken under the <em>augmented</em> joint distribution <span class="math inline">\(P^*\)</span>, not the original joint distribution <span class="math inline">\(P\)</span>.</p>
+<p>ATE is the most common causal estimand used in practice, as it stands for the expected effect for a random units in a population. When given a sample of <span class="math inline">\(N\)</span> units <span class="math inline">\(Y_i, i=1,\dots,N\)</span>, we define the sample average treatment effect (SATE) to be
+<span class="math display" id="eq:sate">\[\begin{equation}
+\sum_i\left(Y_i(1) - Y_i(0)\right) /N \tag{4.4}.
+\end{equation}\]</span>
+SATE is the population average treatment effect (PATE) when the population is fixed to be the given sample. SATE is still a popular causal estimand in literature largely influenced by statistics pioneers like Fisher and Neyman in the complete randomized experiment setting. In this chapter we use ATE almost exclusively for population average treatment effect (PATE) <a href="rcm.html#eq:ate">(4.3)</a>.</p>
+<div id="naive-estimation" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Naive Estimation</h2>
+<p>A naive attempt to estimate The ATE <span class="math inline">\(\mathrm{E^*}(\tau)\)</span> is to use the following
+<span class="math display" id="eq:naivedelta">\[\begin{equation}
+\widehat{\tau}_\text{naive} := \overline{Y_T} - \overline{Y_C} \tag{4.5},
+\end{equation}\]</span>
+where <span class="math inline">\(\overline{Y_T}\)</span> is the average of treatment observations and <span class="math inline">\(\overline{Y_C}\)</span> for control. We call <a href="rcm.html#eq:naivedelta">(4.5)</a> the naive estimation.</p>
+<p><span class="math inline">\(\overline{Y_T}\)</span> is an unbiased estimate of <span class="math inline">\(\mathrm{E}(Y|Z = 1)\)</span> and <span class="math inline">\(\overline{Y_C}\)</span> is an unbiased estimate of <span class="math inline">\(\mathrm{E}(Y|Z = 0)\)</span>. Therefore the naive estimation <a href="rcm.html#eq:naivedelta">(4.5)</a> is an unbiased estimator of
+<span class="math display" id="eq:association">\[\begin{equation}
+\mathrm{E}(Y|Z = 1) - \mathrm{E}(Y|Z = 0) \tag{4.6}.
+\end{equation}\]</span></p>
+<p><a href="rcm.html#eq:association">(4.6)</a> is called the <em>association effect</em> of <span class="math inline">\(Z\)</span> on <span class="math inline">\(Y\)</span>. Unlike the <em>causal effect</em> <a href="rcm.html#eq:ate">(4.3)</a>, association can be defined using the observed joint distribution <span class="math inline">\(P\)</span>.</p>
+<p>In general, association <a href="rcm.html#eq:association">(4.6)</a> and causation <a href="rcm.html#eq:ate">(4.3)</a> are different, because <span class="math inline">\(\mathrm{E^*}(Y(z))\)</span> and <span class="math inline">\(\mathrm{E}(Y|Z = z)\)</span> are not the same. This is just another version of correlation does not imply causation. Associations can be caused by many confounders other than the cause of interest <span class="math inline">\(Z\)</span>. Figure <a href="rcm.html#fig:confounder2">4.1</a> demonstrates this using causal graphical models. We will wait until section <a href="cgm.html#cgm">5</a> to introduce causal graphical model. But the idea is very clear in Figure <a href="rcm.html#fig:confounder2">4.1</a>. There is a potential causal link from <span class="math inline">\(Z\)</span> to <span class="math inline">\(Y\)</span>. But there might exist confounder <span class="math inline">\(U\)</span> which can impact <span class="math inline">\(Z\)</span> and <span class="math inline">\(Y\)</span> simultaneously.</p>
+<div class="figure"><span id="fig:confounder2"></span>
+<div id="htmlwidget-c9d8c393aa0faf7f961c" style="width:672px;height:200px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c9d8c393aa0faf7f961c">{"x":{"diagram":"\ndigraph {\ngraph [layout = dot size = 7 ratio = 0.7]\n  node [shape = circle width=.3 fixedsize=true fontname = Helvetica]\n  subgraph {\n  rank = same; Z; Y;\n  }\n  U -> {Z Y}\n  Z -> Y\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 4.1: Confounder.
+</p>
+</div>
+<p>Confounders are the main hurdle of causal inference and why causal inference without randomized experiments are difficult. It is now a common belief that smoking can cause lung cancer. The link between smoking and lung cancer had been suspected for a long time based on many observational studies. But none of them are as definitive as a randomized experiment because it is just impossible to randomize people and force them to smoke or not smoke. Fisher, who popularized randomized experiments in statistics and well understood correlation does not imply causation, publicly spoke out against a 1950 study showing a positive association between smoking tobacco and lung cancer <span class="citation">(<a href="probability-minimum.html#ref-fisher1958cigarettes" role="doc-biblioref">R. Fisher 1958</a>)</span>. One of his arguments, is that there may be a genetic predisposition to smoke and that genetic predisposition is presumably also linked to lung cancer. In other words, there might exist a gene, a confounder that both increase a person’s tendency of smoking and the likelihood of developing lung cancer.</p>
+</div>
+<div id="randomization-and-unconfoundedness" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Randomization and Unconfoundedness</h2>
+<p>Despite not generally applicable, the naive estimation is the basis of more sophisticated method. Equipped with the potential outcome framework, we not only can clearly see the difference between association and causation, but are also able to further develop methods that can help us isolate confounding effects to recover causal effect. The distinction of <span class="math inline">\(P\)</span> and <span class="math inline">\(P^*\)</span>, hence <span class="math inline">\(\mathrm{E^*}\)</span> and <span class="math inline">\(\mathrm{E}\)</span> is precisely what we need to conquer.</p>
+<p>Fortunately, under certain conditions, we can rewrite a causal quantity defined with counterfactuals in the <em>augemented world</em>, e.g. involving <span class="math inline">\(P^*\)</span> and <span class="math inline">\(\mathrm{E^*}\)</span>, into a form that only involves <span class="math inline">\(P\)</span>(and/or <span class="math inline">\(\mathrm{E}\)</span>). The latter can in turn can be estimated with observations since they were drawn from <span class="math inline">\(P\)</span>. In these cases, we say the causal quantity of interest can be <em>identified</em> and we have an <em>identification strategy</em>.</p>
+We already know randomization dispels all confounders and naive estimation works in randomized experiments. We first generalize the idea of randomization in the following definition of unconfoundedness, also called ignorability.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>
+
+<div class="definition">
+<span id="def:ignorability0" class="definition"><strong>Definition 4.1  (Unconfoundedness/Ignorability)  </strong></span>The treatment indicator <span class="math inline">\(Z\)</span> is said to be <em>unconfounded</em> or <em>ignorable</em> if in the potential outcome augmented distribution <span class="math inline">\(P^*\)</span>,
+<span class="math display" id="eq:unconfounded">\[\begin{equation}
+(Y(1),Y(0))\perp \! \! \! \! \perp Z \tag{4.7}.
+\end{equation}\]</span>
+</div>
+<p>First, randomization implies unconfoundedness. Recall independence means <span class="math inline">\(Z\)</span> is irrelevant for predicting <span class="math inline">\((Y(1),Y(0))\)</span>. For all three randomization mechanisms mentioned earlier, treatment assignment <span class="math inline">\(Z\)</span> is produced using an exogenous procedure (complete randomization, independent randomization, cluster randomization) totally unrelated to anything else. Knowing the value of <span class="math inline">\(Z\)</span> lends us no extra knowledge toward predicting <span class="math inline">\((Y(1),Y(0))\)</span> since the distribution of potential outcomes in different treatment groups are still the same. Unconfoundedness <a href="rcm.html#eq:unconfounded">(4.7)</a> is the mathematical incarnation of <em>all-other-thing-being-equal</em>!</p>
+<p>Secondly, association implies causation without confounding. To see that,
+<span class="math display">\[\begin{equation*}
+\mathrm{E}(Y|Z = 1)  =  \mathrm{E^*}(Y(1)|Z = 1)  = \mathrm{E^*}(Y(1)),
+\end{equation*}\]</span>
+where the first equality is from the definition <a href="rcm.html#eq:counterfactual">(4.1)</a> and the second is from <span class="math inline">\(Z\)</span> independent of <span class="math inline">\(Y(1)\)</span>. Similarly,
+<span class="math display">\[\begin{equation*}
+\mathrm{E}(Y|Z = 0) = \mathrm{E^*}(Y(0)).
+\end{equation*}\]</span>
+Put them together,
+<span class="math display">\[\begin{equation*}
+\mathrm{E^*}(\tau) = \mathrm{E^*}\left(Y(1) - Y(0)\right) = \mathrm{E}(Y|Z = 1) - \mathrm{E}(Y|Z = 1).
+\end{equation*}\]</span>
+We’ve derived the equivalence between causation <a href="rcm.html#eq:ate">(4.3)</a> and association <a href="rcm.html#eq:association">(4.6)</a>. Since naive estimation <a href="rcm.html#eq:naivedelta">(4.5)</a> unbiasedly estimate association, it also is unbiased for ATE, under the condition of unconfoundedness.</p>
+<p>Let us take a second look at the simple proof as it contains the essence of potential outcome framework. The ATE <a href="rcm.html#eq:ate">(4.3)</a>, defined with counterfactual, can be rewritten as the difference of two conditional expectations involving only observables. This key transition hinges on the additional assumption being made regarding the independence between <span class="math inline">\(Z\)</span> and <span class="math inline">\((Y(1),Y(0))\)</span>. As we will shortly see, <span class="math inline">\(Z\)</span> and <span class="math inline">\((Y(1),Y(0))\)</span> being independent is not the only condition that allows such transition from potential outcome distribution <span class="math inline">\(P^*\)</span> to observation distribution <span class="math inline">\(P\)</span>.</p>
+<div id="matching" class="section level3" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Conditional Unconfoundedness, Matching and Covariates Balancing</h3>
+<p>Unconfoundedness seems too restrictive to be applicable to anything beyond randomized experiments. In most observational studies, confounders do exist. Such cases require us to isolate confounding effects. This can be achieved by conditioning on confounders, leading to the concept of conditional unconfoundedness.</p>
+
+<div class="definition">
+<span id="def:covariate" class="definition"><strong>Definition 4.2  (Covariates)  </strong></span>A random variable <span class="math inline">\(X\)</span> is a covariate if the treatment <span class="math inline">\(Z\)</span> is known to have no effect on <span class="math inline">\(X\)</span>.
+</div>
+<p>Covariate is often very easy to find as they generally represent side (exogenous) or baseline or pre-treatment information. For this reason they are also called <em>attributes</em> or <em>pre-treatment variables</em>. In the kidney stone example, patients’ stone size prior to being treated is a pre-treatment variable, and therefore cannot be affected by the choice of treatments. Discrete covariates are also commonly referred to as segments or strata.</p>
+
+<div class="definition">
+<span id="def:ignorability" class="definition"><strong>Definition 4.3  (Conditional Unconfoundedness/Strong Ignorability)  </strong></span>The treatment indicator <span class="math inline">\(Z\)</span> is said to be <em>conditionally unconfounded</em> or <em>strongly ignorable</em> given a set of covariates <span class="math inline">\(X\)</span> if in the potential outcome augmented distribution <span class="math inline">\(P^*\)</span>,
+<span class="math display" id="eq:ignorability">\[\begin{equation}
+(Y(1),Y(0))\perp \! \! \! \! \perp Z | X   \tag{4.8}.
+\end{equation}\]</span>
+</div>
+<p>As the name suggests, Definition <a href="rcm.html#def:ignorability">4.3</a> is a conditional version of Definition <a href="rcm.html#def:ignorability0">4.1</a>. Conditional unconfoundedness means <strong>all</strong> confounders have already been identified and accounted for by the set of covariates <span class="math inline">\(X\)</span>.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a> When covariates <span class="math inline">\(X\)</span> are all discrete, within any given stratum <span class="math inline">\(X = x\)</span>, there is no confounding effect remains and causal effect can be identified by naive estimation. The overall ATE can be identified by aggregating over all strata. The procedure of forming strata and using naive estimation within each strata is called <em>matching</em>. The following derivation assuming discrete <span class="math inline">\(Z\)</span> and <span class="math inline">\(X\)</span> provides a rigorous proof<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a>.</p>
+<p>Under the assumption of conditional unconfoundedness,
+<span class="math display" id="eq:magic1">\[\begin{align}
+P^*(Y(1) = y) &amp; = \sum_x P^*(Y(1)=y |X=x)P^*(X=x) \notag \\
+&amp; = \sum_x P^*(Y(1)=y |X=x, Z=1)P^*(X=x) \notag  \\
+&amp; = \sum_x P^*(Y = y |X=x, Z=1)P^*(X=x) \notag  \\
+&amp; = \sum_x P(Y = y |X=x, Z=1)P(X=x). \tag{4.9}
+\end{align}\]</span>
+The second equality is from <a href="rcm.html#eq:ignorability">(4.8)</a>. The last equality is from the fact that <span class="math inline">\(P\)</span> and <span class="math inline">\(P^*\)</span> are the same for all observables <span class="math inline">\(X\)</span>, <span class="math inline">\(Z\)</span> and <span class="math inline">\(Y\)</span>. Similarly
+<span class="math display" id="eq:magic0">\[\begin{equation}
+P^*(Y(0) = y) = \sum_x P(Y = y |X=x, Z=0)P(X=x). \tag{4.10}
+\end{equation}\]</span></p>
+<p>For ATE <span class="math inline">\(\mathrm{E^*}\left(Y(1) - Y(0)\right)\)</span>, from <a href="rcm.html#eq:magic1">(4.9)</a> and <a href="rcm.html#eq:magic0">(4.10)</a>
+<span class="math display" id="eq:matchtheory">\[\begin{align}
+&amp;\mathrm{E^*}\left(Y(1) - Y(0)\right) \notag \\
+&amp; = \sum_x \left(\mathrm{E}(Y = y |X=x, Z=1) - \mathrm{E}(Y = y |X=x, Z=0)\right)\times P(X=x). \tag{4.11}
+\end{align}\]</span></p>
+<p>Let <span class="math inline">\(\overline{Y_T(x)}\)</span> and <span class="math inline">\(\overline{Y_C(x)}\)</span> be the sample average of observed <span class="math inline">\(Y\)</span> in treatment and control groups for a stratum <span class="math inline">\(X = x\)</span> and <span class="math inline">\(\widehat{\mu}_\text{naive}(x) = \overline{Y_T(x)} - \overline{Y_C(x)}\)</span> be the naive estimation on the stratum. Also let <span class="math inline">\(\widehat{p}(x)\)</span> be the proportion of stratum <span class="math inline">\(X = x\)</span> in the total observations. An unbiased estimate for ATE in the form of <a href="rcm.html#eq:matchtheory">(4.11)</a> is
+<span class="math display" id="eq:matchest">\[\begin{equation}
+\widehat{\mu}_\text{match} : = \sum_x \widehat{\mu}_\text{naive}(x) \times \widehat{p}(x). \tag{4.12}
+\end{equation}\]</span></p>
+<p>We call Equation <a href="rcm.html#eq:matchest">(4.12)</a> the (exact) matching estimate. It is a sum of naive estimations weighted by the observed proportion of each stratum <span class="math inline">\(X=x\)</span>. Intuitively we are <em>matching</em> subjects having the same covariates <span class="math inline">\(X\)</span>.</p>
+<p>In the kidney stone example, we already identified pre-treatment stone size as a possible confounder. Matching on kidney stone means comparing two treatment on each stone size group separately and then aggregate up to get an overall estimate for all patients. This will resolve the Simpson’s paradox as shown in Table <a href="simpson.html#tab:kidneystone">2.1</a>.</p>
+<p>The obvious challenges regarding matching estimator <a href="rcm.html#eq:matchest">(4.12)</a> is that naive estimation for each stratum requires a reasonable number of units in each stratum. In other words, how many units can we match together for each different values of <span class="math inline">\(X\)</span>. If the matching produce sparse strata, i.e. those with small number of units either from treat or control group. The naive estimation for these strata would have high variance, making the overall ATE estimation high variance too. This kind of sparseness can easily happen if one covariate have too many levels or be continuous, or if we put too many discrete covariates in <span class="math inline">\(X\)</span> so the total number of combinations is large.</p>
+<p>To overcome sparseness after matching, one approach is to notice that it is not necessary to match perfectly on every individual levels of <span class="math inline">\(X\)</span>. The rationale behind matching is that when confounders exist, we want to isolate confounding effects so that any correlation (association) between <span class="math inline">\(Z\)</span> and <span class="math inline">\(Y\)</span> cannot be attributed by correlation of <span class="math inline">\(Z\)</span> and any confounder. Fixing the value of confounder by exact conditioning certainly can make sure <span class="math inline">\(Z\)</span> is independent of all confounders (any random variable is independent of a fixed value). But this is sufficient but not necessary. All we need to make sure is <span class="math inline">\(Z\)</span> is independent of confounders <span class="math inline">\(X\)</span>. When <span class="math inline">\(Z\)</span> is independent of <span class="math inline">\(X\)</span>, the distribution <span class="math inline">\(X\)</span> and conditional distribution of <span class="math inline">\(X\)</span> given <span class="math inline">\(Z\)</span> are the same. Equivalently speaking, the distribution of <span class="math inline">\(X\)</span> for control group <span class="math inline">\(Z=0\)</span> and the distribution for treatment group <span class="math inline">\(Z=1\)</span> are the same. In this sense there should be no difference in the distribution of any confounders in <span class="math inline">\(X\)</span> between the two groups and the two groups should be <em>balanced</em> for covariates <span class="math inline">\(X\)</span>. This suggests it is sufficient to form strata such that distribution of covariates <span class="math inline">\(X\)</span> is <em>balanced</em> between treatment and control and conditioning on the strata.</p>
+
+<div class="definition">
+<span id="def:balancingscore" class="definition"><strong>Definition 4.4  (Balancing Score)  </strong></span>A balancing score <span class="math inline">\(b(X)\)</span> is a function of covariates <span class="math inline">\(X\)</span> such that
+<span class="math display" id="eq:balancingscore">\[\begin{equation}
+X\perp \! \! \! \! \perp Z | b(X)   \tag{4.13}.
+\end{equation}\]</span>
+A trivial balancing score is <span class="math inline">\(b(X)\)</span> = X.
+</div>
+
+<div class="theorem">
+<span id="thm:balancethm" class="theorem"><strong>Theorem 4.1  </strong></span>If covariates <span class="math inline">\(X\)</span> ensure conditional unconfoundedness <a href="rcm.html#eq:ignorability">(4.8)</a>, e.g. 
+<span class="math display">\[\begin{equation*}
+(Y(1),Y(0))\perp \! \! \! \! \perp Z | X,
+\end{equation*}\]</span>
+and <span class="math inline">\(b(X)\)</span> is a balancing score. Then
+<span class="math display">\[\begin{equation*}
+(Y(1),Y(0))\perp \! \! \! \! \perp Z | b(X).
+\end{equation*}\]</span>
+In other words, <span class="math inline">\(b(X)\)</span> also ensure conditional unconfoundedness.
+</div>
+
+<div class="proof">
+ <span class="proof"><em>Proof. </em></span> Since <span class="math inline">\(b(X)\)</span> is a function of <span class="math inline">\(X\)</span>,
+<span class="math display">\[
+(Y(1),Y(0))\perp \! \! \! \! \perp Z | X \implies (Y(1),Y(0))\perp \! \! \! \! \perp Z | X , b(X).
+\]</span>
+From the definition of balancing score,
+<span class="math display">\[
+X \perp \! \! \! \! \perp Z | b(X). 
+\]</span>
+Combine the two together with the contraction rule of conditional independence in Appendix <a href="probability-minimum.html#app-conditional-ind">12.1.1</a> entails,
+<span class="math display">\[
+(Y(1),Y(0)) \perp \! \! \! \! \perp Z , X | b(X),
+\]</span>
+which implies
+<span class="math display">\[
+(Y(1),Y(0)) \perp \! \! \! \! \perp Z | b(X)
+\]</span>
+from the rule of decomposition.
+</div>
+<p>Being a function of <span class="math inline">\(X\)</span>, <span class="math inline">\(b(X)\)</span> will be coarser than <span class="math inline">\(X\)</span>. When <span class="math inline">\(X\)</span> are all discrete, <span class="math inline">\(b(X)\)</span> is also discrete and will have less number of levels than <span class="math inline">\(X\)</span>. Theorem <a href="rcm.html#thm:balancethm">4.1</a> says <span class="math inline">\(b(X)\)</span> is all we need to condition on for naive estimation to work. For the purpose of matching, we only need to match on a balancing score <span class="math inline">\(b(X)\)</span>.</p>
+<p>Note <span class="math inline">\(b(X)\)</span> might not be univariate. (e.g. The trivial case <span class="math inline">\(b(X) = X\)</span> when <span class="math inline">\(X\)</span> is multivariate.) When <span class="math inline">\(X\)</span> are discrete, we derive a special balancing score called <em>propensity score</em>. In the next section we show how to extend propensity score to general continuous case and prove the optimal property of propensity score as the coarsest balancing score.</p>
+<p>Let <span class="math inline">\(N_T(x), N_C(x), N(x)\)</span> be the sample sizes of treatment, control, and total size for the stratum <span class="math inline">\(X = x\)</span>. Let <span class="math inline">\(N\)</span> be the total sample size. Then <span class="math inline">\(\widehat{p}(x) = N(x)/N\)</span>.</p>
+<p>Define the <em>propensity score</em> <span class="math inline">\(e(x)\)</span> to be <span class="math inline">\(N_T(x)/N(x)\)</span>. <span class="math inline">\(e(x)\)</span> is the proportion of samples within the stratum <span class="math inline">\(X = x\)</span> that are in the treatment group. Let <span class="math inline">\(N(e)\)</span>, <span class="math inline">\(N_T(e)\)</span> and <span class="math inline">\(N_C(e)\)</span> be sample sizes when stratified by the propensity score, i.e. 
+<span class="math display">\[\begin{equation*}
+N_T(e) = \sum_{e(x) = e} N_T(x),\quad N_C(e) = \sum_{e(x) = e} N_C(x), \\
+N(e) = \sum_{e(x) = e} N(x).
+\end{equation*}\]</span>
+We can reorganize the matching estimator as the following. Let <span class="math inline">\((X_i, Z_i, Y_i), i=1,\dots,N\)</span> be the observations.
+<span class="math display" id="eq:discreteipw">\[\begin{align}
+\sum_x &amp; \widehat{\mu}_\text{naive}(x) \times \frac{N(x)}{N} = \frac{1}{N} \sum_x \left (\frac{\sum_{X_i = x, Z_i = 1} Y_i}{N_T(x)/N(x)} - \frac{\sum_{X_i = x, Z_i = 0} Y_i}{N_C(x)/N(x)}\right) \notag \\
+&amp; = \frac{1}{N}\left ( \sum_{Z_i = 1} \frac{Y_i}{e(X_i)} - \sum_{Z_i = 0} \frac{Y_i}{1-e(X_i)}   \right). \tag{4.14}
+\end{align}\]</span>
+We now regroup samples by their values of <span class="math inline">\(e(X_i)\)</span>, and noting <span class="math inline">\(N_T(e)/N(e) = e\)</span>, <span class="math inline">\(N_C(e)/N(e) = 1-e\)</span>, <a href="rcm.html#eq:discreteipw">(4.14)</a> equals
+<span class="math display" id="eq:discretepropensitymatch">\[\begin{align}
+&amp; \frac{1}{N}\sum_e\left ( \sum_{e(X_i) = e, Z_i = 1} \frac{Y_i}{e} - \sum_{e(X_i) = e, Z_i = 0} \frac{Y_i}{1-e} \right)\notag\\
+&amp; = \frac{1}{N}\sum_e\left ( \sum_{e(X_i) = e, Z_i = 1} \frac{Y_i}{N_T(e)/N(e)} - \sum_{e(X_i) = e, Z_i = 0} \frac{Y_i}{N_C(e)/N(e)} \right)\notag \\
+&amp; = \sum_e\left ( \left (  \frac{\sum_{e(X_i) = e, Z_i = 1} Y_i}{N_T(e)} -  \frac{\sum_{e(X_i) = e, Z_i = 0} Y_i}{N_C(e)} \right) \times \frac{N(e)}{N} \right) \notag \\
+&amp; = \sum_e \left (\widehat{\mu}_\text{naive}(e) \times \frac{N(e)}{N} \right ).\tag{4.15}
+\end{align}\]</span>
+<a href="rcm.html#eq:discretepropensitymatch">(4.15)</a> is the exact matching estimator when matched by <span class="math inline">\(e(X)\)</span> instead of <span class="math inline">\(X\)</span> directly. <a href="rcm.html#eq:discreteipw">(4.14)</a> has a form of weighted average of <span class="math inline">\(Y_i\)</span>. Make a note of this form as we will return to this very soon.</p>
+<p>There is an intuitive connection between propensity score stratification and randomized experiment. We have seen unconfoundedness allows us to treat the observed data as if it were collected from a randomized experiment and use the naive estimation to unbiasedly estimate ATE. Conditional unconfoundedness is weaker for that unconfoundedness holds only for every stratum <span class="math inline">\(X = x\)</span>. Within each stratum, we can pretend the data to be collected from a randomized experiment using independent randomization, with probability <span class="math inline">\(e(X)\)</span> to be assigned to treatment. In this connection, conditional unconfoundedness allows us to pretend the data set <span class="math inline">\((Y_i, X_i, Z_i)\)</span> was collected using a conditional randomized experiment, in which for each given <span class="math inline">\(X\)</span>, a unit has a probability <span class="math inline">\(e(X)\)</span> to be assigned to treatment. It is easy to see that we can reduce the complexity of these conditional randomized experiments by combining strata with the same <span class="math inline">\(e(X)\)</span> together as one randomized experiment because the assignment probabilities are the same. This reduction is also the optimal in the sense we cannot combine two randomized experiment with two different assignment probabilities together. <a href="rcm.html#eq:discretepropensitymatch">(4.15)</a> is a direct consequence from the conditional randomized experiment view.</p>
+</div>
+</div>
+<div id="propensity-score" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Propensity Score</h2>
+<p>Under the conditional unconfoundedness assumption <a href="rcm.html#eq:ignorability">(4.8)</a>, define <em>propensity score</em> to be a function of covariates <span class="math inline">\(X\)</span> as
+<span class="math display" id="eq:propensity">\[\begin{equation}
+e(X) := P(Z = 1 | X) \tag{4.16}.
+\end{equation}\]</span>
+That is, <span class="math inline">\(e(X)\)</span> is the probability a unit will be associated with <span class="math inline">\(Z=1\)</span> (be treated) conditioned on the given <span class="math inline">\(X\)</span>. It is also the expected proportion of units with <span class="math inline">\(Z=1\)</span> among units with the same value of <span class="math inline">\(X\)</span>. The following theorem says propensity score is the best balancing score.</p>
+
+<div class="theorem">
+<span id="thm:propensity" class="theorem"><strong>Theorem 4.2  (Optimality of Propensity Score)  </strong></span><span class="math inline">\(e(X)\)</span> is a balancing score. That is,
+<span class="math display">\[\begin{equation*}
+X \perp \! \! \! \! \perp Z | e(X).
+\end{equation*}\]</span>
+Moreover, <span class="math inline">\(b(X)\)</span> is a balancing score if and only if <span class="math inline">\(e(X)\)</span> is a function of <span class="math inline">\(b(X)\)</span>.
+</div>
+<p>Theorem <a href="rcm.html#thm:propensity">4.2</a> says not only is the propensity score <span class="math inline">\(e(X)\)</span> a balancing score, it is the coarsest one possible. Also this definition works for both discrete or continuous covariates.</p>
+
+<div class="proof">
+<p> <span class="proof"><em>Proof. </em></span> We only need to prove the second part. The first part follows directly from the second part by realizing <span class="math inline">\(e(X)\)</span> is <span class="math inline">\(\mathit{id}(e(X))\)</span> for the identify function <span class="math inline">\(\mathit{id}\)</span>.</p>
+<p>For the if part, if <span class="math inline">\(e(X) = f(b(X))\)</span>, we need to show the distribution of <span class="math inline">\(Z\)</span> given <span class="math inline">\(X\)</span> and <span class="math inline">\(e(X)\)</span> is the same as the distribution of <span class="math inline">\(Z\)</span> given only <span class="math inline">\(e(X)\)</span>. Since <span class="math inline">\(Z\)</span> is binary, we only need to show
+<span class="math display" id="eq:balanceproof">\[\begin{equation}
+P(Z = 1 | X, e(X)) = P(Z=1|e(X)). \tag{4.17}
+\end{equation}\]</span>
+For the LHS <span class="math inline">\(P(Z=1|X, e(X)) = P(Z = 1 | X) = e(X)\)</span> because <span class="math inline">\(e(X)\)</span> is redundant given <span class="math inline">\(X\)</span>.</p>
+<p>For the RHS,
+<span class="math display">\[\begin{align*}
+P(Z=1|e(X)) = \mathrm{E}\left( \mathbf{1}_{Z=1} | e(X) \right) = \mathrm{E}\left( \mathrm{E}\left( \mathbf{1}_{Z=1} | X, e(X) \right) |e(X) \right) \\
+= \mathrm{E}\left( e(X) | e(X)\right) = e(X).
+\end{align*}\]</span>
+LHS = RHS, hence <span class="math inline">\(e(X)\)</span> is a balancing score.</p>
+<p>For the only if part. If <span class="math inline">\(e(X)\)</span> is not a function of <span class="math inline">\(b(X)\)</span>, then there must exists two <span class="math inline">\(x\)</span> and <span class="math inline">\(x&#39;\)</span> such that <span class="math inline">\(b(x) = b(x&#39;)\)</span> but <span class="math inline">\(e(x)\neq e(x&#39;)\)</span>.</p>
+<p>We proved the RHS of <a href="rcm.html#eq:balanceproof">(4.17)</a> is <span class="math inline">\(e(X)\)</span>. So RHS is <em>not</em> the same for <span class="math inline">\(X = x\)</span> and <span class="math inline">\(X = x&#39;\)</span>.</p>
+<p>The LHS of <a href="rcm.html#eq:balanceproof">(4.17)</a> is <span class="math inline">\(P(Z = 1 |X)\)</span> and by definition of balancing score, <span class="math inline">\(P(Z = 1 |X) = P(Z = 1 |b(X))\)</span>. Therefore LHS for <span class="math inline">\(X = x\)</span> and <span class="math inline">\(X = x&#39;\)</span> must be the same if <span class="math inline">\(b(x) = b(x&#39;)\)</span>.</p>
+We have reached a contradiction. Hence <a href="rcm.html#eq:balanceproof">(4.17)</a> must be false.
+</div>
+<p>Propensity score plays a central role in matching and covariate balancing. Under the conditional unconfoundedness assumption, matching on the propensity score is equally good at removing confounding effect as matching on all confounders. It reduces the dimension of matching from arbitrary high dimension to only one dimension. Being the coarsest balancing score, propensity score provides the largest sample size for each matched stratum.</p>
+<p>When <span class="math inline">\(X\)</span> is continuous, <span class="math inline">\(e(X)\)</span> could still be continuous. Exact matching on even a univariate continuous scale is sparse.</p>
+<p>There are two options in general. First option is to forgo exact matching. Approximate matching can be performed using a distance metric such as Mahalanobis distance to match each unit with its nearest neighbors. For a univariate matching score, simple discretization is also used. In both cases the unbiasedness property of the matching estimator will be disturbed and it is a price to pay for more robust estimator. More on bias-variance trade off in Section <a href="rcm.html#bias-variance">4.10</a>.</p>
+<p>Fortunately, propensity score can also be used beyond exact matching. We can treat propensity score, or more exactly the inverse of propensity score, as a reweighting of samples. This perspective is closely connected to importance sampling in Monte Carlo simulation, and missing data perspective of the potential outcome framework. See Section <a href="rcm.html#ipw">4.8</a>.</p>
+<p>In the next section, we have to talk about the single most important assumption underneath the potential outcome framework — the Stable Unit Treatment Value Assumption, or SUTVA.</p>
+</div>
+<div id="sutva" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> SUTVA</h2>
+Potential outcome framework naturally extends to non-binary treatment <span class="math inline">\(Z\)</span> and even continuous <span class="math inline">\(Z\)</span>. In this case we define <span class="math inline">\(Y_z\)</span> as the potential outcome of <span class="math inline">\(Y\)</span> if <span class="math inline">\(Z = z\)</span>. Equation <a href="rcm.html#eq:counterfactual">(4.1)</a> becomes
+<span class="math display">\[
+Z = z \Rightarrow Y_z = Y.
+\]</span>
+Keen readers may have sensed the potential outcome framework as we presented seems to be oversimplified. Indeed it is not complete unless we bring up the following key assumption called stable unit treatment value assumption.
+
+<div class="definition">
+<span id="def:sutva" class="definition"><strong>Definition 4.5  (SUTVA)  </strong></span>The potential outcomes for any unit(observation) do not vary with the treatments assigned to other units.
+</div>
+<p>In a nutshell, SUTVA means there is no interference between different observations. Let <span class="math inline">\(X\)</span> be binary for illustration and there are two observations <span class="math inline">\((Y_1, Z_1)\)</span> and <span class="math inline">\((Y_2,Z_2)\)</span>. If the potential outcomes of the first observation depends not only on <span class="math inline">\(Z_1\)</span> but also on <span class="math inline">\(Z_2\)</span>, then there are 4 total scenarios! We would need 4 potential outcomes for <span class="math inline">\(Y_1\)</span>, and similarly for <span class="math inline">\(Y_2\)</span>. Often the total number of observations can be much larger, leading to a huge number of treatment assignment scenarios — all combinations of the assignment vector <span class="math inline">\(\mathbf{Z}\)</span>. Without SUTVA, the dimensionality of potential outcomes for each unit can be easily unmanageable even for a handful of observations. Moreover, it also increases when number of units increase. Both the model and math required to analyze it easily gets complicated and unwieldy. For this reason, SUTVA is the implicit assumption underneath most results developed under the potential outcome framework. When there is no mention of SUTVA, we should still treat SUTVA as an assumption when using potential outcome framework, unless interference or violation of SUTVA is explicitly called out.</p>
+<p>SUTVA should not be confused with independent observations assumption. For a simple example, consider a binary treatment with constant treatment effect. e.g. <span class="math inline">\(Y(1) = Y(0) + \mu\)</span>. SUTVA is satisfied here even when <span class="math inline">\(Y(0)\)</span> of different units can be dependent and therefore observation <span class="math inline">\(Y_i\)</span>s are not independent of each other.</p>
+<p>In practice, independence is still a common and reasonable assumption to make, or at least we assume independence at some level that might be different from the original analysis unit. For example in cluster randomized experiment, clusters are typically assumed to be independent of each other, even though the clustering might introduce dependencies between analysis units.</p>
+</div>
+<div id="missingdata" class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> Missing Data and Weighted Samples</h2>
+<p>In the previous sections we’ve seen how the potential outcome framework work leads us to the matching estimator <a href="rcm.html#eq:matchest">(4.12)</a>. We relies a bit on rigorous mathematical derivations and didn’t spend much time explaining the natural intuition. Here is a recap of what we did</p>
+<ol style="list-style-type: decimal">
+<li>We introduced potential outcomes by augmented the joint distribution of observed by unobserved counterfactuals.</li>
+<li>We defined causal effect such as ATE under the augmented joint distribution <span class="math inline">\(P^*\)</span>.</li>
+<li>We identified conditional unconfoundedness as the condition under which we can express ATE using only the joint distribution <span class="math inline">\(P\)</span> for the observed, leading to matching estimator.</li>
+<li>We show exact matching can be relaxed to matching on a balancing score. Propensity score is the coarsest balancing score.</li>
+</ol>
+<p>Starting from this section we take another look at potential outcomes using a slightly different, more intuitive yet mathematically equivalent view. Instead of focusing on the distinction between the augmented joint distribution <span class="math inline">\(P^*\)</span> and original distribution <span class="math inline">\(P\)</span>, we just treat <span class="math inline">\(P^*\)</span> as the only joint distribution governs all observations. However, we treat the unobserved counterfactuals as <em>missing data</em>! To be specific, we assume there is an oracle that observed all potential outcomes. But after she observed everything, she will remove all counterfactuals and keep only the potential outcome associated with the observed assignment.</p>
+<p>What’s the difference between the two views? Mathematically they are equivalent, just two different ways of telling the story of the same data-generating-process. In the augmented joint distribution view, we need to keep two distributions in check. We use <span class="math inline">\(P^*\)</span> to define causal estimands, and <span class="math inline">\(P\)</span> to form estimates. And we need to consciously keep track of whether we can re-express any estimands defined in <span class="math inline">\(P^*\)</span> using <span class="math inline">\(P\)</span>. In the missing data perspective, there is only one distribution — <span class="math inline">\(P^*\)</span> to keep in mind. The difficulty lies in the fact some observations are missing and we need to do inference about <span class="math inline">\(P^*\)</span> using observed data only.</p>
+<p>In the authors’ subjective opinion, there are a few advantages of the missing data perspective:</p>
+<ol style="list-style-type: decimal">
+<li>The idea of missing data is easier to apprehend and convey without using heavy math notations. Concepts like <em>missing completely at random</em> speaks for itself.</li>
+<li>Missing data is an important problem occurring in many fields. There are many theories and results existed.</li>
+<li>Missing data naturally connects the concepts of randomness (missing at random), sample reweighting, and missing data imputation together.</li>
+</ol>
+</div>
+<div id="missing-data-mechanisms-and-ignorability" class="section level2" number="4.6">
+<h2><span class="header-section-number">4.6</span> Missing Data Mechanisms and Ignorability</h2>
+<p>Let <span class="math inline">\(Z\)</span> be the indicator of missingness for an observation <span class="math inline">\(Y\)</span>. <span class="math inline">\(Z=1\)</span> if <span class="math inline">\(Y\)</span> is observed and <span class="math inline">\(Z=0\)</span> if missing.</p>
+
+<div class="definition">
+<span id="def:mcar" class="definition"><strong>Definition 4.6  (Missing Completely at Random)  </strong></span>A data missing mechanism is Missing Completely at Random (MCAR) if the event of a value missing occurs entirely at random. In this case the missingness of any data is independent of everything else.<br />
+In particular, <span class="math inline">\(Y \perp \! \! \! \! \perp Z\)</span>.
+</div>
+
+<div class="definition">
+<span id="def:mar" class="definition"><strong>Definition 4.7  (Missing at Random)  </strong></span>A data missing mechanism is Missing at Random (MAR) if the missing data mechanism is entirely at random, or conditionally at random after conditioning on a set of completely observed variables <span class="math inline">\(X\)</span>.
+In particular, <span class="math inline">\(Y \perp \! \! \! \! \perp Z | X\)</span>.
+</div>
+<p>There is a clear connection between MCAR and unconfoundedness <a href="rcm.html#eq:unconfounded">(4.7)</a>, and MAR and conditional unconfoundedness <a href="rcm.html#eq:ignorability">(4.8)</a>. The difference is there is no potential outcome pair <span class="math inline">\((Y(1),Y(0))\)</span>, just one <span class="math inline">\(Y\)</span>. More specifically, when counterfactuals are MAR, both <span class="math inline">\(Y(1)\)</span> and <span class="math inline">\(Y(0)\)</span> are MAR. Therefore,
+<span class="math display">\[
+Y(1) \perp \! \! \! \! \perp Z | X, \quad \text{and} \quad Y(0) \perp \! \! \! \! \perp Z | X,
+\]</span>
+which is weaker than the conditional unconfoundedness condition
+<span class="math display">\[
+(Y(1),Y(0)) \perp \! \! \! \! \perp Z | X,
+\]</span>
+but is equally powerful for majority of cases.</p>
+<hr />
+<p>Exercise: Show <span class="math inline">\(A \perp \! \! \! \! \perp X\)</span> and <span class="math inline">\(B \perp \! \! \! \! \perp X\)</span> does not imply <span class="math inline">\(A,B \perp \! \! \! \! \perp X\)</span>.</p>
+<hr />
+<p>The name ignorability for unconfoundedness and strong ignorability for conditional unconfoundedness are better understood using missing data perspective. In both cases it refers to the notion that the fact there are missing data can be ignored as if they are complete data. This is obvious if missing data is MCAR because the observed data distribution is the same as the complete data distribution. For MAR, the missing data is ignorable within each stratum. But the probability of missing may vary from stratum to stratum. This means for MAR, within each stratum, the distribution of observed data represents the distribution of the complete data. But when all strata combined together, the proportion or weight of each stratum for observed data is different from that of the complete data, because some strata have more data missing while some have less. In other words the weights of different strata are skewed due to different impact of data missing. If we can <em>correct</em> the observed weights into their original weights in the complete data, then we will be able to correct the distribution of observed data so that it faithfully represents the complete data distribution. How should each stratum be reweighted? If the missing rate for a stratum is higher than average, then it is more impacted by the missing event, and hence under-represented in the observed data. If missing rate is lower than average, this stratum will be over-represented. This is the key observation leads to the inverse propensity score weighting (IPW).</p>
+<p>The idea of reweighting comes from importance sampling in Monte Carlo simulation. It is an essential concept and a must-have tool in every data scientist’s toolbox. We will talk about it first before returning to inverse propensity score weighting in Section <a href="rcm.html#ipw">4.8</a>.</p>
+<p>Here is a short summary of connections among randomized experiments, unconfoundedness and missing data we have observed so far:</p>
+<ol style="list-style-type: decimal">
+<li>Randomized Experiment <span class="math inline">\(\implies\)</span> unconfoundedness/ignorability <span class="math inline">\(\iff\)</span> <span class="math inline">\(Y(1)\)</span> and <span class="math inline">\(Y(0)\)</span> are MCAR</li>
+<li>Conditional Randomized Experiment <span class="math inline">\(\implies\)</span> conditional unconfoundedness/strong ignorability <span class="math inline">\(\iff\)</span> <span class="math inline">\(Y(1)\)</span> and <span class="math inline">\(Y(0)\)</span> are MAR</li>
+<li>If <span class="math inline">\(Y(1)\)</span> is MAR, the event of <span class="math inline">\(Y(1)\)</span> missing follows an independent Bernoulli distribution with the probability equal to the propensity score <span class="math inline">\(e(X) = P(Z = 1 |X)\)</span>. Similarly, <span class="math inline">\(Y(0)\)</span> follows the same distribution with probability <span class="math inline">\(1-e(X)\)</span> of missing.</li>
+<li>Under MCAR the fact that there are data missing can be ignored. For MAR, the impact of missing data is measured by the propensity score.</li>
+</ol>
+</div>
+<div id="is" class="section level2" number="4.7">
+<h2><span class="header-section-number">4.7</span> Importance Sampling</h2>
+
+<div class="definition">
+<span id="def:unnamed-chunk-3" class="definition"><strong>Definition 4.8  </strong></span>For any distribution <span class="math inline">\(P\)</span>, if a sample <span class="math inline">\(X_i, i = 1, \dots, n\)</span>, is drawn <span class="math inline">\(i.i.d.\)</span> from the distribution. The <span class="math inline">\(n\)</span> samples form a discrete distribution <span class="math inline">\(P_n\)</span> with <span class="math inline">\(n\)</span> point of masses. We call <span class="math inline">\(P_n\)</span> the empirical distribution.
+</div>
+<p>The idea is that the empirical distribution <span class="math inline">\(P_n\)</span> provide an unbiased <em>representation</em> of <span class="math inline">\(P\)</span> and it <em>converges</em> to <span class="math inline">\(P\)</span> as <span class="math inline">\(n\)</span> increases. A rigorous understanding of the <em>convergence</em> here requires theories like Glivenko–Cantelli theorem and Donsker’s theorem; see endnotes. Heuristically speaking, the histogram of <span class="math inline">\(X_i, i=1,\dots,n\)</span> must converge to the density function of <span class="math inline">\(P\)</span>. This heuristics suggest that for estimating any quantity defined by the theoretical distribution <span class="math inline">\(P\)</span>, a natural estimator is to replace <span class="math inline">\(P\)</span> with its empirical version <span class="math inline">\(P_n\)</span>. This estimator should be consistent, <em>i.e.</em>, it <em>converges</em> to the statistical quantity of interest and asymptotically unbiased if <span class="math inline">\(P_n\)</span> correctly <em>represents</em> <span class="math inline">\(P\)</span>. It is even better if the estimator after proper standardization could also be <em>asymptotically normal</em>. A set of very useful results from theoretical asymptotic statistics showed our naive wishes are mostly true under mild regularity conditions.</p>
+For causal inference, effect on mean and quantiles are of major interest. With <em>i.i.d.</em> sample from <span class="math inline">\(P\)</span>, estimating mean is straightforward.
+
+<div class="theorem">
+<span id="thm:simulation" class="theorem"><strong>Theorem 4.3  ((Naive) Simulation)  </strong></span>If <span class="math inline">\(X_i, i = 1, \dots, N\)</span>, is drawn <span class="math inline">\(i.i.d.\)</span> from distribution <span class="math inline">\(P\)</span>. Then for any function <span class="math inline">\(f\)</span> with finite expectation <span class="math inline">\(\mathrm{E_P}\left(f(X)\right)\)</span>, the simple average
+<span class="math display">\[
+\mathrm{E_{P_n}}\left (f(X)\right) = \overline{f(X)} = \frac{\sum_i f(X_i)}{N} 
+\]</span>
+is an unbiased estimator. Moreover,
+<span class="math display">\[
+\mathrm{E_{P_n}}\left (f(X)\right)  \to E_P\left(f(X)\right) \quad a.s.
+\]</span>
+</div>
+<p>Theorem <a href="rcm.html#thm:simulation">4.3</a> is a direct application of strong law of large numbers. It is the foundation of Monte Carlo Simulation/Integration. For any statistical quantify of interest that can be expressed as an expectation of a, the empirical expectation, i.e. the average <span class="math inline">\(\overline{f(X)}\)</span>, can be used as an unbiased estimator. We can also employ the central limit theorem to see <span class="math inline">\(\overline{f(X)}\)</span> will be asymptotically normal provided <span class="math inline">\(f(X)\)</span> has finite variance.</p>
+<p>Let <span class="math inline">\(F\)</span> be the distribution function of <span class="math inline">\(P\)</span> and <span class="math inline">\(F_n\)</span> be the empirical version. p-quantile is defined as <span class="math inline">\(F^{-1}(p)\)</span> and sample p-quantile can be defined as <span class="math inline">\(F_n^{-1}(p)\)</span>.</p>
+
+<div class="theorem">
+<span id="thm:quantilenormality" class="theorem"><strong>Theorem 4.4  </strong></span>If <span class="math inline">\(F\)</span> is differentiable at <span class="math inline">\(F^{-1}(p)\)</span> with positive density <span class="math inline">\(f(F^{-1}(p))\)</span>, then
+<span class="math display" id="eq:quantilenormality">\[\begin{equation}
+\sqrt{n}\left( F_n^{-1}(p) - F^{-1}(p) \right) \xrightarrow{d} Normal\left(0, \frac{p(1-p)}{f(F^{-1}(p))^2}\right) \tag{4.18}
+\end{equation}\]</span>
+</div>
+<p>Theorem <a href="rcm.html#thm:quantilenormality">4.4</a> says for continuous random variable with density function <span class="math inline">\(f\)</span>, the empirical quantile estimator is asymptotically unbiased with normality. For discrete random variable, the empirical quantile estimator is still asymptotically unbiased, but not asymptotically normal because empirical quantile is always discrete. However it should still be close to a normal distribution and we can use continuity correction to make it even closer.</p>
+<p>A unified view of both mean and quantile is to treat both as solutions of their own corresponding optimization problems.</p>
+
+<div class="theorem">
+<p><span id="thm:quantilemean" class="theorem"><strong>Theorem 4.5  </strong></span>Median of a random variable <span class="math inline">\(X\)</span> with distribution <span class="math inline">\(P\)</span> is the solution of the following optimization problem:
+<span class="math display">\[
+\min_{\theta} \mathrm{E_P}\left( |X - \theta| \right).
+\]</span></p>
+<p>More generally, the <span class="math inline">\(p\)</span>-quantile is the solution of
+<span class="math display">\[
+\min_{\theta} \mathrm{E_P}\left( \psi(X)\right),
+\]</span>
+where
+<span class="math display">\[\begin{equation*}
+\psi(x) = \left \{
+\begin{array}{ll}
+      (1-p)|x| &amp; \quad \text{if } x &lt; 0, \\
+      0 &amp; \quad \text{if } x = 0,\\
+      p|x| &amp; \quad \text{if } x &gt; 0
+\end{array} 
+\right.
+\end{equation*}\]</span></p>
+As a comparison, mean of a random variable <span class="math inline">\(X\)</span> with distribution <span class="math inline">\(P\)</span> is the solution of the following optimization problem:
+<span class="math display">\[
+\min_{\theta} \mathrm{E_P}\left( (X - \theta)^2 \right).
+\]</span>
+</div>
+<p>Proof of Theorem <a href="rcm.html#thm:quantilemean">4.5</a> is left as an exercise. Note that the derivative of <span class="math inline">\(\psi(x)\)</span> is <span class="math inline">\(-(1-p)\)</span> if <span class="math inline">\(x&lt;0\)</span>, <span class="math inline">\(p\)</span> if <span class="math inline">\(x&gt;0\)</span> and the subderivative for <span class="math inline">\(x=0\)</span> is <span class="math inline">\([-(1-p), p]\)</span>.</p>
+<p>Quantile and mean share the same empirical form as the solution of minimizing the expectation of a parameterized function <span class="math inline">\(\psi_\theta(x)\)</span> of a random variable. By simply replacing the theoretical distribution <span class="math inline">\(P\)</span> by its empirical version <span class="math inline">\(P_n\)</span>, solving the empirical version of the same minimization problems leads to the empirical mean and empirical quantile.</p>
+<p>By the heuristics of <span class="math inline">\(P_n\)</span> converging to <span class="math inline">\(P\)</span>, we expect the solutions of the empirical problem also converge to solutions of the theoretical problem. This is the topic of M-estimator (and closely related Z-estimator). M-estimators are asymptotically normal under mild assumptions. See Section <a href="misc-topics.html#misc-mestimator">11.3</a>.</p>
+<hr />
+<p>We saw empirical distribution can be a really powerful aid. But to get an empirical distribution, so far we have been assuming we know how to draw <span class="math inline">\(i.i.d.\)</span> samples from <span class="math inline">\(P\)</span>.<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a> In some cases drawing from a distribution <span class="math inline">\(P\)</span> might be very hard or even infeasible. In a nutshell, importance sampling allows us to represent a distribution empirically using samples drawn from another.</p>
+
+<div class="theorem">
+<p><span id="thm:changeofmeasure" class="theorem"><strong>Theorem 4.6  (Change of Measure/Radon–Nikodym)  </strong></span>If probability measure <span class="math inline">\(P\)</span> is <em>absolutely continuous</em> with respect to another probability measure <span class="math inline">\(Q\)</span>, then there exists a random variable <span class="math inline">\(LR\)</span> such that
+<span class="math display" id="eq:changeofmeasure">\[\begin{equation}
+\mathrm{E_P} \left(f(X)\right) = \mathrm{E_Q} \left( f(X) \times LR \right).\tag{4.19}
+\end{equation}\]</span>
+The random variable <span class="math inline">\(LR\)</span> is called the <em>Radon-Nikodym derivative</em> in measure theory. It is unique up to a null set of <span class="math inline">\(Q\)</span> (almost surely unique w.r.t. to <span class="math inline">\(Q\)</span>).</p>
+<p>The following special non-measure-theoretic form is sufficient for practice.</p>
+If both <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> have density function denoted by <span class="math inline">\(dP = p(x)\)</span> and <span class="math inline">\(dQ = q(x)\)</span>, and <span class="math inline">\(q(x) = 0\)</span> always implies <span class="math inline">\(p(x) = 0\)</span>, then
+<span class="math display">\[
+LR = \frac{dP(X)}{dQ(X)} = \frac{p(X)}{q(X)} \quad a.s.
+\]</span>
+<em>i.e.</em>, the Radon-Nykodym derivative is the likelihood ratio.
+</div>
+<p>Theorem <a href="rcm.html#thm:changeofmeasure">4.6</a> is called <em>change of measure</em> because is transform an expectation under <span class="math inline">\(P\)</span> using an expectation under <span class="math inline">\(Q\)</span> by <em>reweighting</em> random variable <span class="math inline">\(X\)</span> from <span class="math inline">\(Q\)</span> by the likelihood ratio. The idea is obvious but a rigorous proof requires measure theory and is beyond our scope nor is it essential for data scientists. See the endnotes of this chapter for further readings. Change of measure leads to importance sampling.</p>
+
+<div class="corollary">
+<p><span id="cor:isestimator" class="corollary"><strong>Corollary 4.1  (Importance Sampling)  </strong></span>If <span class="math inline">\(X_i, i = 1, \dots, N\)</span>, is drawn <span class="math inline">\(i.i.d.\)</span> from distribution <span class="math inline">\(Q\)</span> and
+<span class="math display">\[
+LR_i = L(X_i) = \frac{dP(X_i)}{dQ(X_i)}
+\]</span>
+be the likelihood ratio of <span class="math inline">\(P\)</span> to <span class="math inline">\(Q\)</span>. Then
+<span class="math display" id="eq:issimple">\[\begin{equation}
+\widehat{\mu}_\text{IS}:= \overline{f(X)\times LR} =  \frac{\sum_i f(X_i) \times LR_i}{N} \tag{4.20}
+\end{equation}\]</span>
+is an unbiased estimator for <span class="math inline">\(\mathrm{E_P}\left(f(X)\right)\)</span>.</p>
+If only given the likelihood ratio up to a constant, <em>i.e.</em>
+<span class="math display">\[
+w_i \propto LR_i = \frac{dP(X_i)}{dQ(X_i)}.
+\]</span>
+An asymptotically unbiased self-normalized estimator for <span class="math inline">\(\mathrm{E_P}\left(f(X)\right)\)</span> is
+<span class="math display" id="eq:is-sn">\[\begin{equation}
+\widehat{\mu}_\text{IS-SN} := \frac{\sum_i f(X_i) \times w_i}{\sum_i w_i} \tag{4.21}
+\end{equation}\]</span>
+</div>
+<p>The self-normalized estimator <span class="math inline">\(\widehat{\mu}_\text{IS-SN}\)</span> <a href="rcm.html#eq:is-sn">(4.21)</a> is a ratio estimator and is not finite sample unbiased. Nevertheless, it is asymptotically unbiased and converges to <span class="math inline">\(\mathrm{E}_P\left(f(X)\right)\)</span> almost surely. Both <a href="rcm.html#eq:issimple">(4.20)</a> and <a href="rcm.html#eq:is-sn">(4.21)</a> are asymptotically normal with additional mild (finite seond moment) conditions.</p>
+<p>Given <em>i.i.d.</em> weighted samples drawn from <span class="math inline">\(Q\)</span>, the variance for the importance sampling estimator <span class="math inline">\(\widehat{\mu}_\text{IS}\)</span> <a href="rcm.html#eq:issimple">(4.20)</a> is
+<span class="math display">\[\begin{equation*}
+\frac{1}{N}\left(\mathrm{E_Q}\left( f(X)^2LR^2\right) - \mu^2\right),
+\end{equation*}\]</span>
+where <span class="math inline">\(\mu = \mathrm{E}_P\left(f(X)\right)\)</span>. It can be estimated by <span class="math inline">\(\widehat{\sigma}^2/N\)</span>, where
+<span class="math display" id="eq:isvar-simple">\[\begin{equation}
+\widehat{\sigma}^2 = \frac{1}{N}\sum_{i=1}^N f(X_i)^2LR_i^2 - \overline{f(X)\times LR}^2. \tag{4.22}
+\end{equation}\]</span>
+The variance of the self-normalized estimator <span class="math inline">\(\widehat{\mu}_\text{IS-SN}\)</span> <a href="rcm.html#eq:is-sn">(4.21)</a> is trickier. Using the delta method, the asymptotic variance of <span class="math inline">\(\sqrt{N}(\widehat{\mu}_\text{IS-SN} - \mu)\)</span> is
+<span class="math display">\[
+\mathrm{E_Q} \frac{ \left( (f(X)W - \mu W)^2 \right) }{\mathrm{E_Q}(W)^2}
+\]</span>
+and can be estimated by
+<span class="math display" id="eq:isvar-sn">\[\begin{equation}
+\widehat{\sigma}^2_\text{SN} = \frac{\frac{1}{N} \sum_i w_i^2(f(X_i)-\widehat{\mu}_\text{IS-SN})^2 }{\left(\frac{1}{N}\sum_i w_i\right)^2}. \tag{4.23}
+\end{equation}\]</span>
+An approximate variance for <span class="math inline">\(\widehat{\mu}_\text{IS-SN}\)</span> <a href="rcm.html#eq:is-sn">(4.21)</a> is just <span class="math inline">\(\widehat{\sigma}^2_\text{SN}/N\)</span>.</p>
+<p>When using importance sampling (IS), each <span class="math inline">\(i.i.d.\)</span> observation comes together with a weight <span class="math inline">\(W_i\)</span> equals the likelihood ratio of the <em>target distribution</em> <span class="math inline">\(P\)</span> to the <em>operating distribution</em> <span class="math inline">\(Q\)</span>. We call them <em>weighted samples</em>. When weights are integers, this is conceptually equivalent to replicating each observation <span class="math inline">\(X_i\)</span> for <span class="math inline">\(W_i\)</span> copies. Note that this conceptual equivalence is only for unbiased representation of the target distribution <span class="math inline">\(Q\)</span>, not including independence since replicas are not independent. The non-integer weights can also be interpreted as replicates as long as you are comfortable with the idea of non-integer number of replicates.</p>
+<hr />
+<p>Exercise: how to define sample quantile using weighted samples?</p>
+<hr />
+<p>We use Figure <a href="rcm.html#fig:isdemo">4.2</a> to illustrate the effect of likelihood ratio reweighting. We first simulate 10,000 <em>i.i.d.</em> samples from Poisson(5) distribution. Top left in Figure <a href="rcm.html#fig:isdemo">4.2</a> shows the empirical distribution <span class="math inline">\(P_n\)</span> in its histogram. If we wish to turn this empirical distribution into a <span class="math inline">\(Q_n\)</span> that mimics Poisson(3), we need to give each sample <span class="math inline">\(X_i\)</span> a weight equal to the probability of observing <span class="math inline">\(X_i\)</span> under Poisson(3) to that under Poisson(5). This is shown in the two lower plots, where probability mass function of Poisson(5) and Poisson(3) are overlaid and the likelihood ratio is shown. The top right is the weighted histogram. We see its shape is very close to the probability mass function of a Poisson(3) distribution, marked by the black points.</p>
+<div class="figure"><span id="fig:isdemo"></span>
+<img src="causalonline_files/figure-html/isdemo-1.png" alt="Illustration of Importance Sampling to transform a Poisson(5) sample into a weighted sample representing Poisson(3). Top left: Histogram of 10,000 i.i.d. Poisson(5) samples. Top right: Histogram of the 10,000 samples weighted by likelihood ratio of Poisson(3) to Poisson(5) compared to the Poisson(3) density (black points). Lower left: overlay of Poisson(5) and Poisson(3) histograms. Lower right: Likelihood ratio of Poisson(3) to Poisson(5)." width="672" />
+<p class="caption">
+Figure 4.2: Illustration of Importance Sampling to transform a Poisson(5) sample into a weighted sample representing Poisson(3). Top left: Histogram of 10,000 i.i.d. Poisson(5) samples. Top right: Histogram of the 10,000 samples weighted by likelihood ratio of Poisson(3) to Poisson(5) compared to the Poisson(3) density (black points). Lower left: overlay of Poisson(5) and Poisson(3) histograms. Lower right: Likelihood ratio of Poisson(3) to Poisson(5).
+</p>
+</div>
+<p>Importance sampling and the concept of weighted samples are examples of simple yet powerful ideas. They are widely applied in different theoretical and applied disciplines and essential for every data scientist. We will see how inverse propensity score weighting could be considered as a special case of importance sampling.</p>
+</div>
+<div id="ipw" class="section level2" number="4.8">
+<h2><span class="header-section-number">4.8</span> Inverse Propensity Score Weighting (IPW)</h2>
+<p>Recall the missing data perspective postulate the complete data distribution <span class="math inline">\(P^*\)</span> where <span class="math inline">\(Y(1)\)</span> and <span class="math inline">\(Y(0)\)</span> are all observed no matter <span class="math inline">\(Z = 1\)</span> or <span class="math inline">\(Z = 0\)</span>. Let <span class="math inline">\(P\)</span> be the distribution of the observed. Under MAR, we know the observed distribution <span class="math inline">\(P\)</span> is a skewed version of the complete data distribution <span class="math inline">\(P^*\)</span> and we also know the mechanism of how it is skewed. IPW is to transform <span class="math inline">\(P\)</span> back to <span class="math inline">\(P^*\)</span>, so that we can estimate
+<span class="math display">\[
+\mathrm{E^*}\left( Y(1) \right)\ \text{and}\ \mathrm{E^*}\left( Y(0) \right).
+\]</span></p>
+<p>Let’s focus on <span class="math inline">\(Y(1)\)</span> first as <span class="math inline">\(Y(0)\)</span> is very similar. From the importance sampling perspective, our observations are samples from <span class="math inline">\(P\)</span> and our target distribution is <span class="math inline">\(P^*\)</span>. Let <span class="math inline">\(p\)</span> and <span class="math inline">\(p^*\)</span> be their densities. The weights should be equal to the likelihood ratio between the two <span class="math inline">\(\frac{dP^*}{dP} = \frac{p^*}{p}\)</span>.</p>
+<p>How do we compute the likelihood ratio of <span class="math inline">\(P^*\)</span> to <span class="math inline">\(P\)</span>? We need to use MAR. MAR means the data generating process for <span class="math inline">\(Y\)</span> given <span class="math inline">\(X\)</span> is independent of the missing process, so we can decompose the density <span class="math inline">\(p\)</span> as
+<span class="math display">\[
+p(x,y) \propto p^*(x,y,z=1) = p^*(x) \times p^*(y|x)\times P^*(z = 1|X=x) = p^*(x,y)\times e(x),
+\]</span>
+where <span class="math inline">\(e(x)\)</span> is the propensity score <span class="math inline">\(P^*(z=1|x)\)</span>. Reorganize this equation leads to
+<span class="math display">\[
+\frac{p^*(x,y)}{p(x,y)} \propto \frac{1}{e(x)}.
+\]</span></p>
+<p>We derived the likelihood ratio to transform <span class="math inline">\(P\)</span> to <span class="math inline">\(P^*\)</span> is proportional to the inverse of propensity score! If you are curious to know the normalzation constant, it is
+<span class="math display">\[
+\frac{p^*(x,y)}{p(x,y)} = \frac{1}{e(x)} \times P^*(Z = 1)
+\]</span></p>
+<p>A unbiased estimator for the normalization constant <span class="math inline">\(P^*(Z=1)\)</span> is simply <span class="math inline">\(N_T/N\)</span>.
+The importance sampling estimator for <span class="math inline">\(\mathrm{E^*}\left( Y(1)\right)\)</span> is
+<span class="math display" id="eq:ipwy1">\[\begin{equation}
+\widehat{\mu}_{IPW}(Y(1)) =  \frac{\sum_{Z=1}Y_i \times \frac{N_T/N}{e(X_i)}}{N_T} = \frac{\sum_{Z=1}{Y_i/e(X_i)}}{N} \tag{4.24}
+\end{equation}\]</span></p>
+<p>The self-normalized importance sampling estimator is
+<span class="math display" id="eq:ipwy1-sn">\[\begin{equation}
+\widehat{\mu}_{IPW-SN}(Y(1)) = \frac{\sum_{Z=1}Y_i/e(X_i)}{\sum_{Z=1} 1/e(X_i)}
+\tag{4.25}
+\end{equation}\]</span></p>
+<p>IPW estimator for <span class="math inline">\(\mathrm{E^*}\left( Y(0)\right)\)</span> is similar with the only notable difference being the likelihood ratio is the inverse of <span class="math inline">\(1-e(X_i)\)</span>, <em>i.e.</em>, the propensity of the control observation being missed. The IPW is <a href="rcm.html#eq:ipwy0">(4.26)</a> and the self-normalized IPW estimator is <a href="rcm.html#eq:ipwy0-sn">(4.27)</a>
+<span class="math display" id="eq:ipwy0-sn" id="eq:ipwy0">\[\begin{align}
+\widehat{\mu}_{IPW}(Y(0)) &amp; = \frac{\sum_{Z=0} Y_i \times \frac{N_C/N}{1-e(X_i)}}{N_C} = \frac{\sum_{Z=0}{Y_i/(1-e(X_i))}}{N} \quad \tag{4.26} \\
+\widehat{\mu}_{IPW-SN}(Y(0))&amp; = \frac{\sum_{Z=0} Y_i/(1-e(X_i))}{\sum_{Z=0} 1/(1-e(X_i))} \tag{4.27}
+\end{align}\]</span></p>
+<p>Unbiased estimator for the ATE can be derived using the difference of unbiased estimator for <span class="math inline">\(\mathrm{E^*}(Y(1))\)</span> and <span class="math inline">\(\mathrm{E^*}(Y(0))\)</span>. For example, the self-normalized IPW estimator for ATE is
+<span class="math display" id="eq:ipwest-sn">\[\begin{equation}
+\Delta_\text{IPW-SN} = \frac{\sum_{Z=1}Y_i/e(X_i)}{\sum_{Z=1} 1/e(X_i)} - \frac{\sum_{Z=0} Y_i/(1-e(X_i))}{\sum_{Z=0} 1/(1-e(X_i))} \tag{4.28}.
+\end{equation}\]</span></p>
+<p>The notion of weighted sample and importance sampling can easily allow us to derive causal estimands like average treatment effect of treated (ATT). Let <span class="math inline">\(P_T\)</span> be the distribution of treated units, i.e. <span class="math inline">\(P_T(X,Y(1),Y(0)) = P^*(X,Y(1),Y(0)|Z = 1)\)</span>. For <span class="math inline">\(Y(1)\)</span>, there is no missing data so IPW is not needed and sample average of treatment observations serves as an unbiased estimate. For <span class="math inline">\(Y(0)\)</span>, the observed distribution is <span class="math inline">\(P_C(X,Y(0)) = P^*(X, Y(0)|Z = 0)\)</span> and we want to estimate <span class="math inline">\(\mathrm{E_{P_C}}\left( Y(0)\right) = \mathrm{E^*}\left( Y(0) |Z=1\right)\)</span> using observations from <span class="math inline">\(P_C\)</span>. The likelihood ratio of <span class="math inline">\(P_T\)</span> to <span class="math inline">\(P_C\)</span> is
+<span class="math display">\[
+\frac{dP_T}{dP_C} \propto \frac{p^*(x)p^*(y|x)p^*(z=1|x)}{p^*(x)p^*(y|x)p^*(z=0|x)} = \frac{p^*(z=1|x)}{p^*(z=0|x)} = \frac{e(x)}{1-e(x)}.
+\]</span>
+We can easily transform from <span class="math inline">\(P_C\)</span> to <span class="math inline">\(P_T\)</span> by using (unnormalized) importance weight <span class="math inline">\(\frac{e(x)}{1-e(x)}\)</span>. The rest is left as an exercise.</p>
+<hr />
+<p>Exercise: Derive normalization constant for <span class="math inline">\(\frac{e(X)}{1-e(X)}\)</span> w.r.t. the distribution <span class="math inline">\(P_T\)</span>. Derive IPW and self-normalized IPW estimator of <span class="math inline">\(\mathrm{E_{P_T}}\left( Y(0)\right)\)</span>.</p>
+<hr />
+</div>
+<div id="dr" class="section level2" number="4.9">
+<h2><span class="header-section-number">4.9</span> Doubly Robust Estimation</h2>
+<p>In Section <a href="rcm.html#ipw">4.8</a> we have shown reweighting observed data using the inverse propensity score as weights transforms the observed data into a weighted sample representing the complete data distribution. The purpose of this reweighting/transformation is so that we can infer statistical quantities, <em>e.g.</em> mean and percentiles, of the complete data distribution. In the basic case when the missing data is missing completely at random, the observed data distribution and the complete data distribution are the same — corresponds to a single propensity score for all observed data. In randomized experiments, the designed proportion of each group is the common propensity score.</p>
+<p>Reweighting is a powerful tool, but it still relies on <em>missing at random</em> condition, given a set of completely observable covariates <span class="math inline">\(X\)</span>, and a good estimation of the propensity score <span class="math inline">\(e(X) = P(Z = 1|X)\)</span>. An even more naive idea to handle missing data is to impute the missing values, using covariates <span class="math inline">\(X\)</span> as predictors. For potential outcomes, we want to impute <span class="math inline">\(Y(1)\)</span> for control units and <span class="math inline">\(Y(0)\)</span> for treatment units.</p>
+<p>Since we do observe <span class="math inline">\(Y(1)\)</span> and <span class="math inline">\(X\)</span> for the treatment group, we can surely fit a regression model of <span class="math inline">\(Y(1)\)</span> on <span class="math inline">\(X\)</span>. For control group, we still observe <span class="math inline">\(X\)</span>. Can we apply the same model we just learned and apply it to the control group to impute missing <span class="math inline">\(Y(1)\)</span>? The answer is yes under MAR.</p>
+<p>Recall under MAR condition, <span class="math inline">\(Y(1)\)</span> is independent of <span class="math inline">\(Z\)</span> given <span class="math inline">\(X\)</span>. So knowing <span class="math inline">\(Z\)</span> will not help us better predicting <span class="math inline">\(Y(1)\)</span> using <span class="math inline">\(X\)</span>. This suggests that there is no point of applying different regression models of <span class="math inline">\(Y(1)\)</span> on <span class="math inline">\(X\)</span> for the cases of <span class="math inline">\(Z=1\)</span> and <span class="math inline">\(Z=0\)</span>!</p>
+<p>By the same argument, we can regress <span class="math inline">\(Y(0)\)</span> on <span class="math inline">\(X\)</span> using control data, and apply the same model to impute missing <span class="math inline">\(Y(0)\)</span> values for the treatment group.
+Table <a href="rcm.html#tab:impute">4.1</a> illustrates this idea.</p>
+<table>
+<caption><span id="tab:impute">Table 4.1: </span> Illustration of missing data imputation using regression function <span class="math inline">\(f_1\)</span> for predicting <span class="math inline">\(Y(1)\)</span> and <span class="math inline">\(f_0\)</span> for <span class="math inline">\(Y(0)\)</span>. Missing data are marked as NA.</caption>
+<thead>
+<tr class="header">
+<th align="center">i</th>
+<th align="center"><span class="math inline">\(Z\)</span></th>
+<th align="center"><span class="math inline">\(Y(1)\)</span></th>
+<th align="center"><span class="math inline">\(\widehat{Y(1)}\)</span></th>
+<th align="center"><span class="math inline">\(Y(0)\)</span></th>
+<th align="center"><span class="math inline">\(\widehat{Y(0)}\)</span></th>
+<th align="center"><span class="math inline">\(X\)</span></th>
+<th align="center">Inverse Propensity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center"><span class="math inline">\(Y_1(1)\)</span></td>
+<td align="center"><span class="math inline">\(f_1(X_1)\)</span></td>
+<td align="center">NA</td>
+<td align="center"><span class="math inline">\(f_0(X_1)\)</span></td>
+<td align="center"><span class="math inline">\(X_1\)</span></td>
+<td align="center"><span class="math inline">\(1/e(X_1)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center"><span class="math inline">\(Y_2(1)\)</span></td>
+<td align="center"><span class="math inline">\(f_1(X_2)\)</span></td>
+<td align="center">NA</td>
+<td align="center"><span class="math inline">\(f_0(X_2)\)</span></td>
+<td align="center"><span class="math inline">\(X_2\)</span></td>
+<td align="center"><span class="math inline">\(1/e(X_2)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">1</td>
+<td align="center"><span class="math inline">\(Y_3(1)\)</span></td>
+<td align="center"><span class="math inline">\(f_1(X_3)\)</span></td>
+<td align="center">NA</td>
+<td align="center"><span class="math inline">\(f_0(X_3)\)</span></td>
+<td align="center"><span class="math inline">\(X_3\)</span></td>
+<td align="center"><span class="math inline">\(1/e(X_3)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\cdots\)</span></td>
+<td align="center"><span class="math inline">\(\cdots\)</span></td>
+<td align="center"><span class="math inline">\(\cdots\)</span></td>
+<td align="center"><span class="math inline">\(\cdots\)</span></td>
+<td align="center"><span class="math inline">\(\cdots\)</span></td>
+<td align="center"><span class="math inline">\(\cdots\)</span></td>
+<td align="center"><span class="math inline">\(\cdots\)</span></td>
+<td align="center"><span class="math inline">\(\cdots\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\cdots\)</span></td>
+<td align="center"><span class="math inline">\(\cdots\)</span></td>
+<td align="center"><span class="math inline">\(\cdots\)</span></td>
+<td align="center"><span class="math inline">\(\cdots\)</span></td>
+<td align="center"><span class="math inline">\(\cdots\)</span></td>
+<td align="center"><span class="math inline">\(\cdots\)</span></td>
+<td align="center"><span class="math inline">\(\cdots\)</span></td>
+<td align="center"><span class="math inline">\(\cdots\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(N-2\)</span></td>
+<td align="center">0</td>
+<td align="center">NA</td>
+<td align="center"><span class="math inline">\(f_1(X_{N-2})\)</span></td>
+<td align="center"><span class="math inline">\(Y_{N-2}(0)\)</span></td>
+<td align="center"><span class="math inline">\(f_0(X_{N-2})\)</span></td>
+<td align="center"><span class="math inline">\(X_{N-2}\)</span></td>
+<td align="center"><span class="math inline">\(1/(1-e(X_{N-2}))\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(N-1\)</span></td>
+<td align="center">0</td>
+<td align="center">NA</td>
+<td align="center"><span class="math inline">\(f_1(X_{N-1})\)</span></td>
+<td align="center"><span class="math inline">\(Y_{N-1}(0)\)</span></td>
+<td align="center"><span class="math inline">\(f_0(X_{N-1})\)</span></td>
+<td align="center"><span class="math inline">\(X_{N-1}\)</span></td>
+<td align="center"><span class="math inline">\(1/(1-e(X_{N-1}))\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(N\)</span></td>
+<td align="center">0</td>
+<td align="center">NA</td>
+<td align="center"><span class="math inline">\(f_1(X_{N})\)</span></td>
+<td align="center"><span class="math inline">\(Y_{N}(0)\)</span></td>
+<td align="center"><span class="math inline">\(f_0(X_N)\)</span></td>
+<td align="center"><span class="math inline">\(X_N\)</span></td>
+<td align="center"><span class="math inline">\(1/(1-e(X_{N}))\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The regression is unbiased if it recover the theoretical regression conditional expectation for all <span class="math inline">\(X\)</span>. If we have unbiased prediction for both <span class="math inline">\(Y(1)\)</span> and <span class="math inline">\(Y(0)\)</span>, <em>i.e.</em>
+<span class="math display">\[
+f_0(X) = \mathrm{E}(Y(0)|X), \ \text{and} \ f_1(X) = \mathrm{E}(Y(1)|X), \quad a.s. ,
+\]</span>
+then by taking expectation over covariates <span class="math inline">\(X\)</span>,
+<span class="math display">\[
+\mathrm{E}(Y(0)) = \mathrm{E}(f_0(X)) \ \text{and} \ \mathrm{E}(Y(1)) = \mathrm{E}(f_1(X)).
+\]</span>
+We can just use <span class="math inline">\(\overline{f_1(X)}\)</span> and <span class="math inline">\(\overline{f_0(X)}\)</span> to unbiasedly estimate <span class="math inline">\(\mathrm{E}(Y(1))\)</span> and <span class="math inline">\(\mathrm{E}(Y(0))\)</span>, and hence
+<span class="math display">\[
+\Delta_\text{Reg} := \overline{f_1(X)} - \overline{f_0(X)}
+\]</span>
+is an unbiased estimator for the average treatment effect.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a></p>
+<p>We call <span class="math inline">\(\Delta_\text{Reg}\)</span> the regression estimator. The regression model can be learn by fitting two regression models using treatment and control group data separately. There are no constraints on what kind of regression model to use. It can be linear or nonlinear, parametric or nonparametric, even ensemble methods.</p>
+<p>Consider the linear regression models
+<span class="math display">\[
+Y_i(1) \sim  \beta_0(1) + \beta(1)\times X
+\]</span>
+and
+<span class="math display">\[
+Y_i(0) \sim \beta_0(0)+ \beta(0)\times X.
+\]</span>
+They can be combined together as one linear regression model with
+<span class="math display">\[
+Y_i(Z_i) \sim \beta_0 + \alpha_0 Z_i+ (\beta + \alpha Z)\times X,
+\]</span>
+which is a linear model with interaction between treatment assignment <span class="math inline">\(Z\)</span> and covariates <span class="math inline">\(X\)</span>.</p>
+<p>Assuming any regression model to be unbiased is a strong assumption. The true regression models are rarely linear and two complicated nonlinear model with high degree of freedom can lead to severe over-fit. To make the unbiasedness of <span class="math inline">\(Y\)</span> model even more difficult, we can only fit <span class="math inline">\(f_1\)</span> using treatment data and we want the model to work for both treatment and control data! This is like training a model in one data set and hope this model works the same on a test data set which is known to be different from the training data. Therefore in practice it is a bad idea to rely on unbiasedness of the <span class="math inline">\(Y\)</span> model and just apply regression model to estimate causal effect on an observational data. On the other hand, IPW requires us to have a good estimate for propensities <span class="math inline">\(e(X) = P(Z=1|X)\)</span>, and does not rely on predicting performance of <span class="math inline">\(Y\)</span> using <span class="math inline">\(X\)</span>. Can we combine these two orthogonal modeling approaches, where one tries to predict <span class="math inline">\(Z\)</span> and the other tries to predict <span class="math inline">\(Y\)</span>? Turns out, by combining two, we can get the better of both. The result estimator will be (asymptotically) unbiased if either the <span class="math inline">\(Y\)</span> model, or the propensity <span class="math inline">\(e\)</span> model is unbiased. Moreover, doubly robust estimator can also be more efficient, reducing variance compared to IPW estimator when <span class="math inline">\(e\)</span> model is unbiased.</p>
+<p>There are different ways to construct a doubly robust estimator (and there are different estimators with the DR property). Here we introduce one from a bias correction perspective. Suppose we have fit <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_0\)</span> as in Table <a href="rcm.html#tab:impute">4.1</a>. If both models are unbiased, we can just use <span class="math inline">\(\Delta_\text{Reg}\)</span>. If they might be not, we want to correct the bias of <span class="math inline">\(\overline{f_1(X)}\)</span> and <span class="math inline">\(\overline{f_0(X)}\)</span>.</p>
+<p>Let us consider <span class="math inline">\(\overline{f_1(X)}\)</span> first. We do observe <span class="math inline">\(Y_i(1)\)</span> for those in the treatment group, and can get the residuals <span class="math inline">\(\epsilon_i = Y_i(1)-f_1(X)\)</span>. <span class="math inline">\(\overline{\epsilon}\)</span> is the empirical estimator for the bias on the treatment group. Recall that we want <span class="math inline">\(\overline{f_1(X)}\)</span> to be unbiased not only for treatment group by for both treatment and control. To do that we need to transform the empirical distribution of those residuals from the treatment group into one that represents both groups. We’ve already used IPW to transform <span class="math inline">\(Y_i(1)\)</span> and we can use the same on residual <span class="math inline">\(\epsilon_i(1) = Y_i(1)-f_1(X)\)</span>! This leads to the bias corrected regression estimator of <span class="math inline">\(\mathrm{E}(Y(1))\)</span>:
+<span class="math display">\[
+\overline{f_1(X_i)} + \frac{\sum \epsilon_i(1) /e(X_i)}{\sum 1/e(X_i) }.
+\]</span>
+Similarly for <span class="math inline">\(\mathrm{E}(Y(0))\)</span> we have
+<span class="math display">\[
+\overline{f_0(X_i)} + \frac{\sum \epsilon_i(0) /(1-e(X_i))}{\sum 1/(1-e(X_i))}.
+\]</span>
+The DR estimator for average treatment effect is<br />
+<span class="math display" id="eq:drresidual">\[\begin{equation}
+\Delta_\text{DR} := \left(\overline{f_1(X_i)} - \overline{f_0(X_i)} \right)+ \left(\frac{\sum \epsilon_i(1) /e(X_i)}{\sum 1/e(X_i) } - \frac{\sum \epsilon_i(0) /(1-e(X_i))}{\sum 1/(1-e(X_i))}\right).  \tag{4.29}
+\end{equation}\]</span></p>
+<p>To see <a href="rcm.html#eq:drresidual">(4.29)</a> is doubly robust. When <span class="math inline">\(Y\)</span> model is unbiased, residual <span class="math inline">\(\epsilon_i(1)\)</span> and <span class="math inline">\(\epsilon_i(0)\)</span> have <span class="math inline">\(0\)</span> mean for each <span class="math inline">\(X_i\)</span> so the two correction terms both have mean <span class="math inline">\(0\)</span> conditioned on <span class="math inline">\(X_i,i=1,\dots,N\)</span> (and hence conditioned on <span class="math inline">\(e(X_i)\)</span>). As a result the unconditional mean is also <span class="math inline">\(0\)</span>. So the correction terms both have mean <span class="math inline">\(0\)</span> and <span class="math inline">\(\Delta_\text{DR}\)</span> has the same mean of <span class="math inline">\(\Delta_\text{Reg}\)</span> and are both unbiased with unbiased <span class="math inline">\(Y\)</span> model.</p>
+<p>Now consider the case where only the propensity model <span class="math inline">\(e\)</span> model is unbiased. In this case by the property of IPW, <span class="math inline">\(\frac{\sum \epsilon_i(1) /e(X_i)}{\sum 1/e(X_i)}\)</span> converges to <span class="math inline">\(\mathrm{E}(Y(1)-f_1(X))\)</span> and similarly for <span class="math inline">\(\mathrm{E}(Y(0)-f_0(X))\)</span>. Therefore,
+<span class="math display">\[
+\mathrm{E}(\Delta_\text{DR}) = \mathrm{E}(f_1(X)) - \mathrm{E}(f_0(X)) - \mathrm{E}(Y(1)-f_1(X)) - \mathrm{E}(Y(0)-f_0(X)) = \mathrm{E}\left(Y(1)-Y(0)\right).
+\]</span></p>
+<p>There are more ways to combine IPW with regression. When training the <span class="math inline">\(Y\)</span> models, because we want both models to perform well on the complete data (treatment and control), we can train models on the IPW samples such that the reweighted raining data align better with the complete data. For linear regression, the model can be fit using weighted least square. Since the sum of residuals are always 0 in least square. Doing so means the correction terms <span class="math inline">\(\frac{\sum \epsilon_i(1) /e(X_i)}{\sum 1/e(X_i) }\)</span> and <span class="math inline">\(\frac{\sum \epsilon_i(0) /(1-e(X_i))}{\sum 1/(1-e(X_i))}\)</span> are both 0 so the correction term disappear. The weighted least square estimator is doubly robust without any further correction. This is not the case for general regression models. When the <span class="math inline">\(e\)</span> model is reasonablly close to the truth, training on weighted samples can significantly improve the model performance if treatment and control have very different distributions of <span class="math inline">\(X\)</span>.</p>
+<p>DR estimators not only improves consistency and asymptotic unbiasedness, they are also shown to be more efficient when either <span class="math inline">\(Y\)</span> model or <span class="math inline">\(e\)</span> model is correct. <span class="citation"><a href="probability-minimum.html#ref-robins1995semiparametric" role="doc-biblioref">Robins and Rotnitzky</a> (<a href="probability-minimum.html#ref-robins1995semiparametric" role="doc-biblioref">1995</a>)</span> showed DR estimate <a href="rcm.html#eq:drresidual">(4.29)</a> has the smallest asymptotic variance among all practically useful asymptotically unbiased estimator. (The technical term is Regular and Asymptotic Linear (RAL), also see <span class="citation"><a href="probability-minimum.html#ref-semipara" role="doc-biblioref">Tsiatis</a> (<a href="probability-minimum.html#ref-semipara" role="doc-biblioref">2006</a>)</span>.) This is a very strong result. Unfortunately this optimality property only holds when either <span class="math inline">\(Y\)</span> model or <span class="math inline">\(e\)</span> model is correct and results in @ref{kang2007demystifying} showed DR estimator can have poor performance and even worse than IPW when both <span class="math inline">\(Y\)</span> and <span class="math inline">\(e\)</span> models are misspecified.</p>
+<p>For randomized experiments, <span class="math inline">\(e\)</span> model is known to the experimenter as part of the design. Therefore, DR estimator <a href="rcm.html#eq:drresidual">(4.29)</a> is guaranteed to attain the best efficiency. Let <span class="math inline">\(n_1 = \sum_i Z_i\)</span> and <span class="math inline">\(n_0 = \sum_i (1-Z_i)\)</span>, <a href="rcm.html#eq:drestimator">(4.30)</a> becomes
+<span class="math display" id="eq:drestimator">\[\begin{equation}
+\overline{Y_T} - \overline{Y_C} - \sum_i (Z_i - \overline{Z})(f_1(X_i)/n_1 + f_0(X_0)/n_0)   \tag{4.30}
+\end{equation}\]</span>
+<a href="rcm.html#eq:drestimator">(4.30)</a> has been studied in <span class="citation"><a href="probability-minimum.html#ref-yangtsiatis" role="doc-biblioref">Yang and Tsiatis</a> (<a href="probability-minimum.html#ref-yangtsiatis" role="doc-biblioref">2001</a>)</span> where the authors showed simple linear regression model works surprisingly well in practice even when the true regression model is nonlinear. This technique of using a misspecified model to improve efficiency is called efficiency augmentation.</p>
+<hr />
+<p>Exercise: When <span class="math inline">\(e(X) = p\)</span> is fixed, show <a href="rcm.html#eq:drestimator">(4.30)</a> and <a href="rcm.html#eq:drresidual">(4.29)</a> are the same.</p>
+<hr />
+</div>
+<div id="bias-variance" class="section level2" number="4.10">
+<h2><span class="header-section-number">4.10</span> Bias-Variance Trade off and Covariates Overlap</h2>
+<p>The exact matching estimator <a href="rcm.html#eq:matchest">(4.12)</a> depends on the assumption that for every covariate <span class="math inline">\(X\)</span>, we can find samples from both treatment and control group (or every variant groups for cases of more than one treatment). Exact matching is impossible covariate is continuous or dimensionality of covariates is high. Propensity score reduces matching dimension down to 1, alleviating the high dimensionality issue. It also offers inverse propensity score weighting as an alternative to exact matching, solving the continuous matching problem. We can think of IPW as <em>fuzzy</em> or <em>soft</em> matching.</p>
+<p>However, propensity score and IPW has its own issue and practical application or propensity score rarely only use IPW.</p>
+<ol style="list-style-type: decimal">
+<li>Propensity model can be mis-specified and the score might be biased from <span class="math inline">\(P(Z=1|X)\)</span> making it unreliable to be used as weight.</li>
+<li>Because the weights are the inverse of propensity. When <span class="math inline">\(e(X)\)</span> is close to 0, <span class="math inline">\(1/e(X)\)</span> will be large. Similarly, when <span class="math inline">\(e(X)\)</span> is close to 1, <span class="math inline">\(1/(1-e(X))\)</span> will be large. Large weights lead to high variance of the IPW estimator <a href="rcm.html#eq:ipwest-sn">(4.28)</a>.</li>
+</ol>
+<p>For the first issue, instead of using inverse propensity score as weights directly, we can treat propensity score as a way of reducing dimensionality of high dimensional covariates so that we only need to match on the one dimensional propensity score. The rationale is matching on propensity score only rely on it being a <em>balancing score</em>. If the model is correct, then propensity score is a balancing score (and the optimal one). Even if the model might be misspecified, the propensity score might still be a valid balancing score if there exists a one to one mapping from the mis-specified score to the true propensity score. In other words, matching on the mis-specified score maps to matching on the true propensity score implicitly. In this sense using propensity scores for matching could be more robust than using it for weighting.</p>
+<p>The second issue is more fundamental. If the propensity model is not far from the truth, a propensity score close to either 0 or 1 indicates lack of overlapping between the two covariate distributions.</p>
+<div class="figure"><span id="fig:noneoverlap"></span>
+<img src="causalonline_files/figure-html/noneoverlap-1.png" alt="Two Distributions have large lack-of-overlapping areas with propensity function (of being from the distribution on the right). area outside the two vertical lines have propensity scores close to 0 or 1, indicating poor matching and high variance." width="672" />
+<p class="caption">
+Figure 4.3: Two Distributions have large lack-of-overlapping areas with propensity function (of being from the distribution on the right). area outside the two vertical lines have propensity scores close to 0 or 1, indicating poor matching and high variance.
+</p>
+</div>
+<p>Figure <a href="rcm.html#fig:noneoverlap">4.3</a> shows an example of two distribution that are apart. Outside of the central region between 4.5 and 7.5, propensity scores are less than 0.05 or larger than 0.95. A 0.05 propensity score means a 5:95 sample size ratio between the two distributions, and 0.95 propensity means 95:5. Either case shows a drastically imbalanced sample ratio.</p>
+<p>The problem of highly imbalanced sample ratio? High variance! For two sample t-test, since the variance of the <span class="math inline">\(\Delta\)</span> is proportional to
+<span class="math display">\[
+\frac{\sigma_T^2}{N_T}+\frac{\sigma_C^2}{N_C}
+\]</span>
+where <span class="math inline">\(\sigma_T\)</span> and <span class="math inline">\(\sigma_C\)</span> are standard deviation of the treatment and control distribution. For illustration purpose, let’s assume the two standard deviations are the same. Then the variance of the <span class="math inline">\(\Delta\)</span> is proportional to the sum of inverse
+<span class="math display">\[
+\frac{1}{N_T}+\frac{1}{N_C}.
+\]</span>
+For a fixed total size <span class="math inline">\(N = N_T+N_C\)</span>, Figure <a href="rcm.html#fig:harmonic-variance">4.4</a> plots the sum of inverse as a function of the proportion of <span class="math inline">\(N_T\)</span>. We see that it is smallest when <span class="math inline">\(N_T = N_C\)</span> and increase to infinity when <span class="math inline">\(N_T/N\)</span> is either close to 0 or 1.</p>
+<div class="figure"><span id="fig:harmonic-variance"></span>
+<img src="causalonline_files/figure-html/harmonic-variance-1.png" alt="$1/N_T+1/N_C$ as function of $N_T/N$ when $N=N_T+N_C$ is fixed." width="672" />
+<p class="caption">
+Figure 4.4: <span class="math inline">\(1/N_T+1/N_C\)</span> as function of <span class="math inline">\(N_T/N\)</span> when <span class="math inline">\(N=N_T+N_C\)</span> is fixed.
+</p>
+</div>
+<p>The connection to matching is obvious. Since the purpose of exact matching or propensity matching is such that for each matching stratum, the observed data are as if they were from a conditional randomized experiments where treatment and control are randomized according to <span class="math inline">\(e(X):(1-e(X))\)</span> ratio. We estimate the conditional average treatment effect (CATE) for each stratum and then aggregate to the ATE. The variance of ATE depends on variance of each CATEs. If one of it has high variance, the ATE will also be impacted. If some strata have <span class="math inline">\(e(X)\)</span> close to 0 or 1, the variance of the corresponding CATE will be much larger than those stratum where <span class="math inline">\(e(X)\)</span> is close to 1/2. Variance of ATE will be large and dominated by a few very large variances contributed by those small number of strata.</p>
+<p>In the extreme case of <span class="math inline">\(e(X)\)</span> equals 0 or 1, the matching fails completely. There exist either treatment group observations, or only control group observations, not both. This is equivalent to running a 100% vs. 0% randomized experiment and it is obvious in this total none-overlapping case that we cannot estimate the causal effect from only treatment or control observations.</p>
+<p>Equivalently we can reach to the same conclusion that <span class="math inline">\(e(X)\)</span> close to 0 or 1 leads to high variance of the IPW estimator <a href="rcm.html#eq:ipwest-sn">(4.28)</a> using the variance formula <a href="rcm.html#eq:isvar-sn">(4.23)</a>.</p>
+<p>There is no silver bullet to overcome the lack-of-overlapping/none-overlapping problem. Practically solutions can be categorized into two orthogonal directions.</p>
+<ol style="list-style-type: decimal">
+<li>Remove observations with propensity scores close to 0 or 1.</li>
+<li>Modify the propensity score model by removing some covariates from <span class="math inline">\(X\)</span>.</li>
+<li>Change the weights explicitly.</li>
+</ol>
+<p>For the first approach, throwing away observations means we give up on estimating the average treatment effect for the whole population. For those regions where the propensity scores under the current model is close to 0 or 1, as we explained above, estimating CATE for these strata requires a lot of observations and is very inefficient because either treatment or control will only be a very small proportion of the sample. By leaving these strata out of the picture, we leave ourselves with an estimator that only estimates the average treatment effect on the well-overlapped region — a biased estimator if our goal is average treatment effect for whole population. But this biased estimator has much smaller variance. In other words, we are trading off variance with bias. Moreover, the bias here is explicitly known as not accounting effect from those lack-of-overlapping areas.</p>
+<p>For the second approach, why can we modify the propensity score model by removing some covariates? The theory of propensity score and IPW does not mandate that there is only one propensity score model. In fact, there can be infinitely many. All we need is that the covariates <span class="math inline">\(X\)</span> satisfies the conditional unconfoundedness condition
+<span class="math display">\[
+(Y(1),Y(0))\perp \! \! \! \! \perp Z | X .
+\]</span>
+Imagine there exists a smallest set of covariates <span class="math inline">\(X^*\)</span> satisfying the above condition. If we remove any one covariate from <span class="math inline">\(X^*\)</span>, the condition will fail. But it is possible that we can still add more covariates into the set <span class="math inline">\(X^*\)</span> and still maintains the conditional independence condition.</p>
+<p>The effect of adding more covariates? Potential more prediction power for <span class="math inline">\(Z\)</span> given <span class="math inline">\(X\)</span>! However, unlike traditional supervised learning problem where more prediction power is better, in propensity modeling, more prediction power leads to more propensity scores close to 0 or 1 — a nightmare for variance consideration. On the contrary, randomized experiments with a balanced treatment allocation (50% vs. 50%) corresponds to a propensity score being exactly 0.5 and there is no prediction power of any covariate set <span class="math inline">\(X\)</span> to the treatment assignment <span class="math inline">\(Z\)</span> since assignment is purely random. But randomized design using balanced assignment provides the best case scenario for estimating average treatment effect. Therefore, the purpose of propensity modeling is not for predicting treatment assignment <span class="math inline">\(Z\)</span>. Its real intention is for providing the correct weight for IPW estimation or simply dimension reduction for matching. Pursuing prediction accuracy when modeling propensity score does not help and to the contrary it only leads to high variance. This is a fundamental difference between propensity modeling and predictive modeling.</p>
+<p>As an illustration, in the kidney stone example in Table <a href="simpson.html#tab:kidneystone">2.1</a> of Chapter <a href="simpson.html#simpson">2</a>, suppose the size of the stone is the only confounder needed to meet the conditional unconfoundedness requirement. Suppose treatment B is only offered in limited locations. In this case, knowing location information of a patient can greatly improves prediction power for which treatment a patient will choose. For patient outside of these limited locations, she can only pick treatment A, and we can 100% accuracy if our goal is to predict <span class="math inline">\(Z\)</span>. When conditioning on both kidney stone size and location, for these locations where treatment B is not available, there is of course no treatment B observations. In other words, keeping location as covariate to condition on leads to none-overlapping strata. But if kidney stone size alone meets the conditional unconfoundedness condition, we only need to condition on kidney stone size. Without location in the propensity score model, we no longer get extreme scores like 0 or 1.</p>
+<p>The central issue here is how do we know whether a set of covariates <span class="math inline">\(X\)</span> satisfies conditional unconfoundedness. Unfortunately there is no test. In practice, it is usually safer to put more covariates at first^[To the surprises of many, it is not true that it is safe to pick as many covariates as possible. Sometimes conditioning on certain covariates may create confoundness! We then check whether we get extreme propensity scores and as a result need to throw away some covariates that have high prediction power for assignment but at the same time deemed to be low in confounding effect. Of course the judgment of whether a covariate is likely to have confounding effect or not is subjective and with each covariate removed we are running under greater risk of missing confounding effect so the propensity scores are biased. In this sense, removing covariates should be justified as trading confidence in unbiasedness for reducing variance. But at least these subjective choices can be clearly documented so that the assumptions are part of the results.</p>
+<p>For the third approach, <span class="citation"><a href="probability-minimum.html#ref-li2018balancing" role="doc-biblioref">Li, Morgan, and Zaslavsky</a> (<a href="probability-minimum.html#ref-li2018balancing" role="doc-biblioref">2018</a>)</span> proposed to use weight proportional to <span class="math inline">\(1-e(X)\)</span> for treatment and <span class="math inline">\(e(X)\)</span> for control. Comparing to the weights in IPW where treatment weight is proportional to <span class="math inline">\(1/e(X)\)</span> and control weight proportional to <span class="math inline">\(1/(1-e(X))\)</span>, these new weights will never explode even for <span class="math inline">\(e(X)\)</span> close to 0 and 1 (these will get very small weights). Intuitively, this has the similar effect as if we remove those non-overlapping region of <span class="math inline">\(X\)</span>. <span class="citation"><a href="probability-minimum.html#ref-li2018balancing" role="doc-biblioref">Li, Morgan, and Zaslavsky</a> (<a href="probability-minimum.html#ref-li2018balancing" role="doc-biblioref">2018</a>)</span> call this <em>overlap weight</em> and showed that this weighting method unbiasedly estimate the average treatment effect under a reweighted population distribution of <span class="math inline">\(X\)</span> by putting an weight of <span class="math inline">\(e(X)(1-e(X)\)</span>. That is, by using the <em>overlap weight</em>, we explicitly avoid the task of estimate the ATE under the true population distribution where non-overlapping issue exists; instead, we give small weights to non-overlapping areas and larger weights to overlapping areas to mitigate the issue of exploding weight. This can be seen as a soft version of the first approach where we give 0 weight for observations in non-overlapping areas.</p>
+</div>
+<div id="psmm" class="section level2" number="4.11">
+<h2><span class="header-section-number">4.11</span> Other Propensity Score Modeling Methods</h2>
+<p>Propensity scores <span class="math inline">\(P(Z=1|X)\)</span> have to be learned from the data unless the data generation process is known as in randomzed experiments. Traditional approach takes the data pairs <span class="math inline">\((Z,X)\)</span> and fit a probabilistic model such as a logistic regression model to predict the propensity scores. These parametric models are subject to model mis-specification. This is why in practice directly using IPW with logistic regression fitted propensity score often give unreliable results and people will either use matching on propensity score and use propensity score merely as dimension reduction tool instead of weights, or use doubly robust estimation.</p>
+<p><span class="citation"><a href="probability-minimum.html#ref-imai2014covariate" role="doc-biblioref">Imai and Ratkovic</a> (<a href="probability-minimum.html#ref-imai2014covariate" role="doc-biblioref">2014</a>)</span> realized that the MLE of a logistic regression model for propensity modeling is equivalent to minimize the imbalance of the sigmoid function’s partial derivative with respect to the parameter (sigmoid function is a function of covariate <span class="math inline">\(X\)</span> and model parameter) between treatment and control. Since covariate <span class="math inline">\(X\)</span> is not affected by treatment, ideally any function of covariate <span class="math inline">\(X\)</span> should be balanced. Why just optimize for this partial derivative of a sigmoid function?</p>
+<p>In light of this, <span class="citation"><a href="probability-minimum.html#ref-imai2014covariate" role="doc-biblioref">Imai and Ratkovic</a> (<a href="probability-minimum.html#ref-imai2014covariate" role="doc-biblioref">2014</a>)</span> proposed to fit any parametric propensity score model using method of moments for a set of balancing equations. This <em>covariance balancing propensity score</em> (CBPS) method generalized logistic regression and other parametric models by making the optimization goal of the model fitting explicit in forms of balancing arbitrary functions of <span class="math inline">\(X\)</span>.</p>
+<p>This idea of direct optimization of covariate balance make the problem of propensity score modeling into a constrained covariate blancing optimization problem, which can also be extended to nonparametric model. For instance, <span class="citation"><a href="probability-minimum.html#ref-hainmueller2012entropy" role="doc-biblioref">Hainmueller</a> (<a href="probability-minimum.html#ref-hainmueller2012entropy" role="doc-biblioref">2012</a>)</span> proposed <em>entropy balancing</em> to choose individual weights directly without a parametric model. Also see <span class="citation"><a href="probability-minimum.html#ref-athey2018approximate" role="doc-biblioref">Athey, Imbens, and Wager</a> (<a href="probability-minimum.html#ref-athey2018approximate" role="doc-biblioref">2018</a>)</span>.</p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="7">
+<li id="fn7"><p>The idea of potential outcome is first introduced by J. Neyman in his 1925 master thesis on application of randomized experiments in agriculture where he talked about “potential yield.”<a href="rcm.html#fnref7" class="footnote-back">↩︎</a></p></li>
+<li id="fn8"><p>The name “ignorability” stems from the missing data view. It means the missing data mechanism can be ignored and we can treat them to be missing completely at random. See Section <a href="rcm.html#missingdata">4.5</a>.<a href="rcm.html#fnref8" class="footnote-back">↩︎</a></p></li>
+<li id="fn9"><p>For this reason some authors prefer the name complete unconfoundedness to emphasize no confounders are left outside.<a href="rcm.html#fnref9" class="footnote-back">↩︎</a></p></li>
+<li id="fn10"><p>This proof is borrowed from <span class="citation"><a href="probability-minimum.html#ref-causal_statsurvay" role="doc-biblioref">Pearl</a> (<a href="probability-minimum.html#ref-causal_statsurvay" role="doc-biblioref">2009</a>)</span> with notation changes<a href="rcm.html#fnref10" class="footnote-back">↩︎</a></p></li>
+<li id="fn11"><p>Actually independence is not required but variances of Monte Carlo estimators will be harder to estimate without independence.<a href="rcm.html#fnref11" class="footnote-back">↩︎</a></p></li>
+<li id="fn12"><p>Here and after <span class="math inline">\(\mathrm{E}\)</span> is taken under the complete data probability measure <span class="math inline">\(P^*\)</span> unless otherwise explicitly specified.<a href="rcm.html#fnref12" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="randomintro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="cgm.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

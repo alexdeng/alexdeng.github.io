@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Randomized Experiment | Causal Inference and Its Applications in Online Industry</title>
+  <meta name="description" content="this is a draft book." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Randomized Experiment | Causal Inference and Its Applications in Online Industry" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="this is a draft book." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Randomized Experiment | Causal Inference and Its Applications in Online Industry" />
+  
+  <meta name="twitter:description" content="this is a draft book." />
+  
+
+<meta name="author" content="Alex Deng" />
+
+
+<meta name="date" content="2021-03-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="simpson.html"/>
+<link rel="next" href="rcm.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="libs/viz/viz.js"></script>
+<link href="libs/DiagrammeR-styles/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding/grViz.js"></script>
+
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Draft</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="part"><span><b>I Causal Inference: An Overview</b></span></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="simpson.html"><a href="simpson.html"><i class="fa fa-check"></i><b>2</b> Correlation and Simpson’s Paradox</a></li>
+<li class="chapter" data-level="3" data-path="randomintro.html"><a href="randomintro.html"><i class="fa fa-check"></i><b>3</b> Randomized Experiment</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="randomintro.html"><a href="randomintro.html#completerand"><i class="fa fa-check"></i><b>3.1</b> Complete Randomization</a></li>
+<li class="chapter" data-level="3.2" data-path="randomintro.html"><a href="randomintro.html#indrand"><i class="fa fa-check"></i><b>3.2</b> Independent Randomization</a></li>
+<li class="chapter" data-level="3.3" data-path="randomintro.html"><a href="randomintro.html#clusterrandomization"><i class="fa fa-check"></i><b>3.3</b> Clustered Randomization</a></li>
+<li class="chapter" data-level="3.4" data-path="randomintro.html"><a href="randomintro.html#aore"><i class="fa fa-check"></i><b>3.4</b> Analysis of Randomized Experiments as Two Sample Problem</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rcm.html"><a href="rcm.html"><i class="fa fa-check"></i><b>4</b> Potential Outcomes Framework</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="rcm.html"><a href="rcm.html#naive-estimation"><i class="fa fa-check"></i><b>4.1</b> Naive Estimation</a></li>
+<li class="chapter" data-level="4.2" data-path="rcm.html"><a href="rcm.html#randomization-and-unconfoundedness"><i class="fa fa-check"></i><b>4.2</b> Randomization and Unconfoundedness</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="rcm.html"><a href="rcm.html#matching"><i class="fa fa-check"></i><b>4.2.1</b> Conditional Unconfoundedness, Matching and Covariates Balancing</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="rcm.html"><a href="rcm.html#propensity-score"><i class="fa fa-check"></i><b>4.3</b> Propensity Score</a></li>
+<li class="chapter" data-level="4.4" data-path="rcm.html"><a href="rcm.html#sutva"><i class="fa fa-check"></i><b>4.4</b> SUTVA</a></li>
+<li class="chapter" data-level="4.5" data-path="rcm.html"><a href="rcm.html#missingdata"><i class="fa fa-check"></i><b>4.5</b> Missing Data and Weighted Samples</a></li>
+<li class="chapter" data-level="4.6" data-path="rcm.html"><a href="rcm.html#missing-data-mechanisms-and-ignorability"><i class="fa fa-check"></i><b>4.6</b> Missing Data Mechanisms and Ignorability</a></li>
+<li class="chapter" data-level="4.7" data-path="rcm.html"><a href="rcm.html#is"><i class="fa fa-check"></i><b>4.7</b> Importance Sampling</a></li>
+<li class="chapter" data-level="4.8" data-path="rcm.html"><a href="rcm.html#ipw"><i class="fa fa-check"></i><b>4.8</b> Inverse Propensity Score Weighting (IPW)</a></li>
+<li class="chapter" data-level="4.9" data-path="rcm.html"><a href="rcm.html#dr"><i class="fa fa-check"></i><b>4.9</b> Doubly Robust Estimation</a></li>
+<li class="chapter" data-level="4.10" data-path="rcm.html"><a href="rcm.html#bias-variance"><i class="fa fa-check"></i><b>4.10</b> Bias-Variance Trade off and Covariates Overlap</a></li>
+<li class="chapter" data-level="4.11" data-path="rcm.html"><a href="rcm.html#psmm"><i class="fa fa-check"></i><b>4.11</b> Other Propensity Score Modeling Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="cgm.html"><a href="cgm.html"><i class="fa fa-check"></i><b>5</b> Causal Graphical Model</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="cgm.html"><a href="cgm.html#structural-equation-model-causal-diagram-and-d-separation"><i class="fa fa-check"></i><b>5.1</b> Structural Equation Model, Causal Diagram and d-separation</a></li>
+<li class="chapter" data-level="5.2" data-path="cgm.html"><a href="cgm.html#the-do-operator"><i class="fa fa-check"></i><b>5.2</b> the <em>do</em> operator</a></li>
+<li class="chapter" data-level="5.3" data-path="cgm.html"><a href="cgm.html#the-back-door-criterion"><i class="fa fa-check"></i><b>5.3</b> The Back-door Criterion</a></li>
+<li class="chapter" data-level="5.4" data-path="cgm.html"><a href="cgm.html#causal-mechanism-and-the-front-door-criterion"><i class="fa fa-check"></i><b>5.4</b> Causal Mechanism and the Front-door Criterion</a></li>
+<li class="chapter" data-level="5.5" data-path="cgm.html"><a href="cgm.html#general-identification"><i class="fa fa-check"></i><b>5.5</b> General Identification Strategy</a></li>
+<li class="chapter" data-level="5.6" data-path="cgm.html"><a href="cgm.html#rcm-vs.-cgm"><i class="fa fa-check"></i><b>5.6</b> RCM vs. CGM</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="regression-based-methods.html"><a href="regression-based-methods.html"><i class="fa fa-check"></i><b>6</b> Regression-based Methods</a></li>
+<li class="part"><span><b>II Large Scale Online Controlled Experiments</b></span></li>
+<li class="chapter" data-level="7" data-path="abintro.html"><a href="abintro.html"><i class="fa fa-check"></i><b>7</b> A/B Testing: Beyond Randomized Experiments</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="abintro.html"><a href="abintro.html#specialaspects"><i class="fa fa-check"></i><b>7.1</b> Special Aspects of A/B Tests</a></li>
+<li class="chapter" data-level="7.2" data-path="abintro.html"><a href="abintro.html#telemetry"><i class="fa fa-check"></i><b>7.2</b> Instrumentation and Telemetry</a></li>
+<li class="chapter" data-level="7.3" data-path="abintro.html"><a href="abintro.html#common-pitfalls"><i class="fa fa-check"></i><b>7.3</b> Common Pitfalls</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="abstats.html"><a href="abstats.html"><i class="fa fa-check"></i><b>8</b> Statistical Analysis of A/B Tests</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="abstats.html"><a href="abstats.html#metric"><i class="fa fa-check"></i><b>8.1</b> Metric</a></li>
+<li class="chapter" data-level="8.2" data-path="abstats.html"><a href="abstats.html#randomization-unit-and-analysis-unit"><i class="fa fa-check"></i><b>8.2</b> Randomization Unit and Analysis Unit</a></li>
+<li class="chapter" data-level="8.3" data-path="abstats.html"><a href="abstats.html#abstatsover"><i class="fa fa-check"></i><b>8.3</b> Inference for Average Treatment Effect of A/B Tests</a></li>
+<li class="chapter" data-level="8.4" data-path="abstats.html"><a href="abstats.html#indvar"><i class="fa fa-check"></i><b>8.4</b> Independence Assumption and Variance Estimation</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="abstats.html"><a href="abstats.html#independence-assumption"><i class="fa fa-check"></i><b>8.4.1</b> Independence Assumption</a></li>
+<li class="chapter" data-level="8.4.2" data-path="abstats.html"><a href="abstats.html#variance-estimation-for-average-and-weighted-average"><i class="fa fa-check"></i><b>8.4.2</b> Variance Estimation for Average and Weighted Average</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="abstats.html"><a href="abstats.html#normalassumption"><i class="fa fa-check"></i><b>8.5</b> Central Limit Theorem and Normal Approximation</a></li>
+<li class="chapter" data-level="8.6" data-path="abstats.html"><a href="abstats.html#percentilevar"><i class="fa fa-check"></i><b>8.6</b> Confidence Interval and Variance Estimation for Percentile metrics</a></li>
+<li class="chapter" data-level="8.7" data-path="abstats.html"><a href="abstats.html#p-value-statistical-power-s-and-m-error"><i class="fa fa-check"></i><b>8.7</b> p-Value, Statistical Power, S and M Error</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="abstats.html"><a href="abstats.html#p-value"><i class="fa fa-check"></i><b>8.7.1</b> p-Value</a></li>
+<li class="chapter" data-level="8.7.2" data-path="abstats.html"><a href="abstats.html#statistical-power"><i class="fa fa-check"></i><b>8.7.2</b> Statistical Power</a></li>
+<li class="chapter" data-level="8.7.3" data-path="abstats.html"><a href="abstats.html#type-s-and-type-m-error"><i class="fa fa-check"></i><b>8.7.3</b> Type S and Type M Error</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="abstats.html"><a href="abstats.html#aoabchallenge"><i class="fa fa-check"></i><b>8.8</b> Statistical Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="abdiagnosis.html"><a href="abdiagnosis.html"><i class="fa fa-check"></i><b>9</b> System Diagnosis and Quality Checks for A/B Tests</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="abdiagnosis.html"><a href="abdiagnosis.html#system-validation-using-aa-test"><i class="fa fa-check"></i><b>9.1</b> System Validation using A/A Test</a></li>
+<li class="chapter" data-level="9.2" data-path="abdiagnosis.html"><a href="abdiagnosis.html#sample-ratio-mismatch"><i class="fa fa-check"></i><b>9.2</b> Sample Ratio Mismatch</a></li>
+<li class="chapter" data-level="9.3" data-path="abdiagnosis.html"><a href="abdiagnosis.html#trigger-and-filter-condition"><i class="fa fa-check"></i><b>9.3</b> Trigger and Filter Condition</a></li>
+<li class="chapter" data-level="9.4" data-path="abdiagnosis.html"><a href="abdiagnosis.html#interaction-detection"><i class="fa fa-check"></i><b>9.4</b> Interaction Detection</a></li>
+<li class="chapter" data-level="9.5" data-path="abdiagnosis.html"><a href="abdiagnosis.html#metric-denominator-mismatch"><i class="fa fa-check"></i><b>9.5</b> Metric Denominator Mismatch</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sensitivity.html"><a href="sensitivity.html"><i class="fa fa-check"></i><b>10</b> Improving Metric Sensitivity</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="sensitivity.html"><a href="sensitivity.html#metric-sensitivity-decomposition"><i class="fa fa-check"></i><b>10.1</b> Metric Sensitivity Decomposition</a></li>
+<li class="chapter" data-level="10.2" data-path="sensitivity.html"><a href="sensitivity.html#vrreg"><i class="fa fa-check"></i><b>10.2</b> Variance Reduction</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="sensitivity.html"><a href="sensitivity.html#cuped"><i class="fa fa-check"></i><b>10.2.1</b> Control Variates and CUPED</a></li>
+<li class="chapter" data-level="10.2.2" data-path="sensitivity.html"><a href="sensitivity.html#regadj"><i class="fa fa-check"></i><b>10.2.2</b> General Regression Adjustment and Doubly Robust Estimation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="misc-topics.html"><a href="misc-topics.html"><i class="fa fa-check"></i><b>11</b> Misc Topics</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="misc-topics.html"><a href="misc-topics.html#misc-deltamethod"><i class="fa fa-check"></i><b>11.1</b> Delta Method</a></li>
+<li class="chapter" data-level="11.2" data-path="misc-topics.html"><a href="misc-topics.html#misc-randomdenom"><i class="fa fa-check"></i><b>11.2</b> Random Denominator for Independent Randomization Experiments</a></li>
+<li class="chapter" data-level="11.3" data-path="misc-topics.html"><a href="misc-topics.html#misc-mestimator"><i class="fa fa-check"></i><b>11.3</b> M-Estimator and Z-Estimator</a></li>
+</ul></li>
+<li class="part"><span><b>III Appendix</b></span></li>
+<li class="chapter" data-level="12" data-path="probability-minimum.html"><a href="probability-minimum.html"><i class="fa fa-check"></i><b>12</b> Probability Minimum</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="probability-minimum.html"><a href="probability-minimum.html#probability"><i class="fa fa-check"></i><b>12.1</b> probability</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="probability-minimum.html"><a href="probability-minimum.html#app-conditional-ind"><i class="fa fa-check"></i><b>12.1.1</b> Conditional Independence</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://alexdeng.github.io" target="blank">Alex Deng</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Causal Inference and Its Applications in Online Industry</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="randomintro" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Randomized Experiment</h1>
+<p>What could an experimental physicist do if she wants to compare two experiment conditions? Simple. She just need to run two experiments under both conditions and then compare the outcomes. In Table <a href="simpson.html#tab:kidneystone">2.1</a> there are two different treatments of kidney stones, A and B. Pick any patient in Table <a href="simpson.html#tab:kidneystone">2.1</a>. If a patient took treatment A, we observe the outcome of treating the patient with A. It is impossible for us to rewind the time and force the patient to take treatment B and observe the outcome. Even if we could, what we really want to observe is the outcome of treating this patient with treatment B if he or she chose treatment B under no coercion. The same situation applies to patients took treatment A and we are not be able to know what treatment B would do to them. These hypothetical outcomes, not observed and also impossible to observe, are called the counterfactuals.</p>
+<p>Counterfactuals are like ghost observations and cannot be directly used in any calculation. They plays a pivotal role in the potential outcome framework. Theories of the potential outcome framework center around the question of whether and how can we infer statistical quantities, e.g. mean, of a counterfactual by only using observed outcomes. Potential outcomes and its related theories are our topics for the next chapter. But long before the advent of potential outcome framework and even the existence of statistics as a discipline, the idea of randomized experiment was already being used.</p>
+<p>Take the kidney stone treatment example. If we do not allow patients to self-select their treatment. Instead, we design a split of patients into two groups receiving treatment A and B. If the split is done such that the only difference between the two groups is the treatment they use and <em>all other things being equal</em>, then any difference between outcomes of the two groups can only possibly be <em>caused</em> by the difference in the treatments they received. In other words, the comparison of the two groups should be a fair comparison immune to any systematic selection bias.</p>
+<p>Randomization is the simplest strategy to ensure an <em>all-other-thing-being-equal</em> splitting. It is a form of intervention that echos the definition of causal effect as the result of <em>change through intervention</em>. Inferring causal effect by means of randomization is also called randomized experiment, or controlled experiment. We learn the effect of <em>change through intervention</em> by really doing intervention, similar to scientists running experiments by changing experiment conditions in a lab. The subtle difference is randomization does not allow us to observe the counterfactuals under different conditions directly. Instead, it relies on the magic spell “all other things being equal.” Arguments using the power of “all other things being equal” are extremely simple to almost being obvious. Fisher, whose work in early 1920s popularized the idea of randomized experiment, believed randomization and more generally the idea of permutation to be <em>obvious to anyone</em> and treated them as examples of his “logic of inductive science.” As form of logic, he believed no formal statistics or mathematics is needed to convey the idea to any rational person. Indeed, in logic, <em>Ceteris paribus</em> is the Latin phrase for “all other things being equal” and any conclusion based on using this argument is called a <em>cp law</em>.</p>
+<p>Different randomization mechanisms can achieve <em>all-other-thing-being-equal</em>. In all randomization mechanism we consider the case of only two groups. Extension to more than two groups is straightforward. For two group cases, we often call one group treatment and the other control. Define assignment indicator <span class="math inline">\(Z\)</span> as <span class="math inline">\(Z=0\)</span> for being assigned to the fist group (control) and <span class="math inline">\(Z=1\)</span> for being assigned to the second group (treatment). Although different randomization mechanisms all achieve the requirement of <em>all-other-thing-being-equal</em>. The choice of randomization mechanism has an implication in the data generating process underneath the collected observations and has an impact on the following statistical analysis.</p>
+<div id="completerand" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Complete Randomization</h2>
+<p>Suppose there are <span class="math inline">\(N\)</span> subjects in total and we want to split them into two groups of sizes <span class="math inline">\(M\)</span> and <span class="math inline">\(N-M\)</span>. All we need to do is to sample <span class="math inline">\(M\)</span> subjects out of <span class="math inline">\(N\)</span> without replacement. Each patient have the same probability <span class="math inline">\(M/N\)</span> of being assigned to the first group and probability <span class="math inline">\(1-M/N\)</span> to be assigned to the second group.</p>
+<p>Complete randomization is closely connected to the idea of permutation. One way of implementing complete randomization would be permute the <span class="math inline">\(N\)</span> subjects into a random order and assign the first <span class="math inline">\(M\)</span> subjects to the first group and the rest to the second.</p>
+<p>Complete randomization ensures the size of each group to be fixed. However, assignment <span class="math inline">\(Z\)</span> for different subjects are not independent. To see that, <span class="math inline">\(Z = 1\)</span> for one subject reduces the chance of <span class="math inline">\(Z=1\)</span> for another subject because of the fixed size of treatment and control. For <span class="math inline">\(i^{\text{th}}\)</span> and <span class="math inline">\(j^{\text{th}}\)</span> subject,
+<span class="math display">\[\begin{align*}
+\mathrm{Cov}(Z_i, Z_j) &amp; = \mathrm{E}(Z_i Z_j) - \mathrm{E}(Z_i)\mathrm{E}(Z_i) \\
+&amp; = \frac{M}{N}\frac{M-1}{N-1} - \left( \frac{M}{N} \right)^2 &lt; 0.
+\end{align*}\]</span></p>
+</div>
+<div id="indrand" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Independent Randomization</h2>
+<p>Complete randomization requires experimenters to know the total size and desired sizes for each groups at the randomization stage. In many applications, subjects were recruited on an ongoing basis. For these cases, randomization can also be done by drawing a group label from a multi-class Bernoulli distribution independently for each subject.</p>
+<p>Suppose we need to split <span class="math inline">\(N\)</span> subjects into K groups with probabilities <span class="math inline">\(p_1, \dots, p_K\)</span>, <span class="math inline">\(\sum_k p_k = 1\)</span>. For each subject, we draw the group label <span class="math inline">\(L\)</span> from the distribution following
+<span class="math display">\[
+L = k, \quad \text{with probability } p_k, \quad k = 1,\dots, K. 
+\]</span></p>
+<p>Unlike in complete randomization, assignment indicator <span class="math inline">\(Z\)</span> for different subjects are by design independent. Also, the group sizes <span class="math inline">\(N_1,\dots,N_K\)</span> are no longer fixed numbers but a random vector from multinomial distribution
+<span class="math display">\[
+(N_1,\dots,N_K) \sim \text{Multinom}(N, p_1,\dots,p_K).
+\]</span></p>
+<p>Independent randomization is also called Bernoulli trial as each assignment is an independent Bernoulli random variable.</p>
+</div>
+<div id="clusterrandomization" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Clustered Randomization</h2>
+<p>Often, treatments are assigned at the level of each subject. This is not always the case nor is it always desired. For example, when doing an experiment to study effect of certain education method, randomizing each individual student is not possible and randomizing each classroom is more appropriate. Randomizing clusters of subjects still satisfies <em>all-other-things-being-equal</em>. Either complete randomization or independent randomization can be used to randomize clusters.</p>
+<p>Clustered randomization is commonly used when social spillover or interference effect exists. In the education method example above, since students are interacting with each other and even might form study groups, it is possible that the effect of a new education method on a student will also be affected by assignments of other students he or she closely interacts with. In case like this, if we can cluster students such that inter-cluster level interference is negligible, then a clustered randomization should be used.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
+<p>Clustered randomization highlights the distinction of two different units: <em>randomization</em> unit and <em>analysis unit</em>. <em>Analysis unit</em> is the unit at which we want to infer causal effect. <em>Randomization unit</em> is the unit at which randomization is performed. Randomization unit has to be defined equal or less granular than the analysis unit. This means randomization can be applied on clusters of analysis units but within each analysis unit randomization of sub-analysis unit level does not make sense. To see this, if a sub-analysis unit is used for randomization, then each analysis unit could experience both treatment and control and can no longer belong to only one treatment group.</p>
+</div>
+<div id="aore" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Analysis of Randomized Experiments as Two Sample Problem</h2>
+<p>Although randomization experiment provides a straightforward method to infer causal effect and the <em>all-other-thing-being-equal</em> argument is obvious to most minds, the analysis of randomized experiments remains a statistical problem. Rigorous analysis of randomized experiment requires using a causal model such as potential outcomes framework. Potential outcome framework will be our main topic in the Chapter <a href="rcm.html#rcm">4</a>, where we will show randomization satisfies a condition called “ignorability” or “unconfoundedness” under which naive comparison of different treatment groups leads to an unbiased estimation of causal effect — mathematically justifying the <em>all-other-thing-being-equal</em> logic. Here we briefly go through a widely used practice simply treating the analysis of randomized experiments as a special application of the two sample problem.</p>
+<p>The two sample problem concerns with two independent samples drawn from two distributions, and a typical interest is to compare the means of the two. Let <span class="math inline">\(X, X_1,\dots,X_N\)</span> and <span class="math inline">\(Y, Y_1,\dots,Y_M\)</span> are <em>i.i.d.</em> random variables. That is, we observed <span class="math inline">\(N\)</span> <em>i.i.d.</em> observations having the same distribution as <span class="math inline">\(X\)</span> and <span class="math inline">\(M\)</span> <em>i.i.d.</em> observations as <span class="math inline">\(Y\)</span>. We are interested in the difference of the two means
+<span class="math display">\[\begin{equation*}
+\delta = \mathrm{E}(Y) - \mathrm{E}(X).
+\end{equation*}\]</span></p>
+<p><span class="math inline">\(\delta\)</span> can be unbiased estimated by the estimator
+<span class="math display">\[\begin{equation*}
+\Delta = \overline{Y} - \overline{X}.
+\end{equation*}\]</span></p>
+<p>When <span class="math inline">\(N\)</span> and <span class="math inline">\(M\)</span> are small, the distribution of <span class="math inline">\(\Delta\)</span> is hard to track down. If we further assume <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are both normally distributed, then we know <span class="math inline">\(\Delta\)</span> is also normally distributed and we should focus on estimating its variance.
+Since <span class="math inline">\(X_i\)</span> and <span class="math inline">\(Y_i\)</span> are independent,
+<span class="math display">\[\begin{align*}
+\mathrm{Var}_\text{TS}(\Delta) &amp; = \mathrm{Var}(\overline{Y})+ \mathrm{Var}(\overline{X}) \\
+&amp; = \frac{\mathrm{Var}(Y)}{M} + \frac{\mathrm{Var}(X)}{N},
+\end{align*}\]</span>
+where the subscript <span class="math inline">\(TS\)</span> stands for two sample and <span class="math inline">\(\mathrm{Var}(Y)\)</span> can be unbiasedly estimated using sample variance formula
+<span class="math display">\[
+\widehat{\sigma}_Y^2 = \frac{\sum_i (Y_i - \overline{Y})^2}{M-1}
+\]</span>
+given <em>i.i.d.</em> <span class="math inline">\(Y_i\)</span> and similarly <span class="math inline">\(\widehat{\sigma}_X^2\)</span> for <span class="math inline">\(\mathrm{Var}(X)\)</span>. <span class="math inline">\(M-1\)</span> here is merely for finite sample unbiasedness and is often replaced by <span class="math inline">\(M\)</span> unless <span class="math inline">\(M\)</span> is very small.</p>
+<p>Let’s denote the estimated <span class="math inline">\(\mathrm{Var}_\text{TS}(\Delta)\)</span> by <span class="math inline">\(\widehat{\sigma}_\text{TS}^2\)</span>, <span class="math inline">\(\frac{\Delta - \delta}{\widehat{\sigma}_\text{TS}}\)</span> follows a standard normal distribution if we ignore the fact that <span class="math inline">\(\widehat{\sigma}_\text{TS}\)</span> is an estimator and not same as the true standard deviation of <span class="math inline">\(\Delta\)</span>. Indeed, when <span class="math inline">\(M\)</span> and <span class="math inline">\(N\)</span> are large, by the law of large number and the Slutsky’s theorem, <span class="math inline">\(\frac{\Delta - \delta}{\widehat{\sigma}_\text{TS}}\)</span> converges in distribution to the standard normal distribution. When <span class="math inline">\(M\)</span> and <span class="math inline">\(N\)</span> are small, Gosset, under the name Student, showed that <span class="math inline">\(\frac{\Delta - \delta}{\widehat{\sigma}_\text{TS}}\)</span> follows a t-distribution which has a heavier tail than standard normal distribution.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
+<p>With moderate to large number of samples, even without <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> being normally distributed, <span class="math inline">\(\Delta\)</span> and its standardized version <span class="math inline">\(\frac{\Delta - \delta}{\widehat{\sigma}_\text{TS}}\)</span> will be approximately normal thanks to the central limit theorem (and Slutsky’s theorem for the normalized <span class="math inline">\(\Delta\)</span>). Also in this case the t-distribution, with a degree of freedom over 30, is practically equivalent to a normal distribution.</p>
+<p>The moderate to large sample case is also referred to as z-statistic, and z-test for the corresponding hypothesis test, as compared to t-test based on t-statistic. In practice this distinction is often (rightfully) ignored. The normal assumption on both <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> for the small sample case is too strong to meet in most applications. Efforts often have to be made to transform observations into a normal-like distribution. This is not necessary for large sample case as long as the central limit theorem kicks in. This is why z-statistic and z-test are much more useful in practice. However because t-statistic automatically turns into a z-statistic when degree of freedom is large. People often keep using the name t-statistic and t-test.</p>
+<p>For moderate to large sample case, a <span class="math inline">\(1-\alpha\)</span> two sided confidence interval is
+<span class="math display">\[
+\Delta \pm z_{\alpha/2} \widehat{\sigma}_\text{TS}\,,
+\]</span>
+where <span class="math inline">\(z_{\alpha/2}\)</span> is the <span class="math inline">\(1-\alpha/2\)</span> quantile of the standard normal distribution.</p>
+<p>Correspondingly, a two-sided z-test for the null hypothesis <span class="math inline">\(H_0: \delta = 0\)</span> is to reject <span class="math inline">\(H_0\)</span> when
+<span class="math display">\[
+\frac{|\Delta|}{\widehat{\sigma}_\text{TS}} \ge z_{\alpha/2}\,.
+\]</span></p>
+<p>For a randomized experiment with binary treatment, by the <em>all-other-thing-being-equal</em> argument, the causal effect of the treatment becomes the difference between the two groups. Comparing the treatment group and the control group seems to naturally fit into a two sample problem. <span class="math inline">\(\Delta\)</span> becomes an unbiased estimator for the causal effect for the mean — the average treatment effect. However, there are a few notable differences.</p>
+<p>Unlike the standard two sample problem, where the data-generating-process is such that we sample <em>i.i.d.</em> observations from treatment and control groups separately and independently. Data-generating process in a randomized experiments is more complicated and relies on two things: the randomization mechanism and also the causal estimand.</p>
+<p>For complete randomization, the data-generating process involves two steps, first step is to sample <span class="math inline">\(N+M\)</span> units for the experiment with their counterfactual pair <span class="math inline">\((Y(1),Y(0))\)</span>, and the second step is the permutation such that <span class="math inline">\(N\)</span> units are assigned to control and <span class="math inline">\(M\)</span> to the treatment. The observation is <span class="math inline">\(Y(1)\)</span> if assigned to treatment and <span class="math inline">\(Y(0)\)</span> if control. The first step is optional as some researchers such as Neyman prefer to assume <span class="math inline">\(N+M\)</span> units are given and only focus on the average treatment effect on this set of <span class="math inline">\(N+M\)</span> units (This is called sample average treatment effect SATE, comparing to population average treatment effect PATE). In this case observations are not independent within each group or across groups due to sampling without replacement. The randomness in a complete randomized experiments are only due to the assignment randomization. Considering population average treatment effect adds the first step of sampling <span class="math inline">\(M+N\)</span> units into the picture but it draws from a single distribution of counterfactual pairs rather than from two distributions independently as in the independent two sample problem.</p>
+<p>For independent randomization and for population average treatment effect, the data-generating-process is first independently toss a coin as the treatment assignment process and then independently draw from treatment distribution or control distribution based on the treatment assignment. This does provide <em>i.i.d.</em> observations for both treatment group and control groups, and also guarantees independence between the two groups. In the classic Bernoulli trial introduced above, we fix the total sample size <span class="math inline">\(M+N\)</span> and <span class="math inline">\(M\)</span> (and <span class="math inline">\(N\)</span>) is not a fixed number but rather from a Binomial distribution. If instead of population average treatment effect, the sample average treatment effect is desired, the data-generating-process is again different. <span class="math inline">\(M+N\)</span> counterfactual pairs are assumed to be given. For each of them, we independently assign treatment or control to decide <span class="math inline">\(Y(1)\)</span> or <span class="math inline">\(Y(0)\)</span> to observe.</p>
+<p>Despite the differences, two sample t-test or z-test are often used in practice for both complete randomization design and independent randomization design. Is this a huge mistake that practitioners have been making? Fortunately, the conclusion is this practice is totally fine and we will now explain.</p>
+<p>We first look at the complete randomization design. Recall it differs from independent sampling because treatment assignments of units are negatively correlated with each other. Typically, if we have sum of negatively correlated random variables, we expect the variance of the sum to be smaller than the independent case because
+<span class="math display">\[\begin{align*}
+\mathrm{Var}(\sum_i Y_i) &amp; = \sum_i \mathrm{Var}(Y_i) + \sum_i \sum_{j \neq i}\mathrm{Cov}(Y_i, Y_j) \\
+&amp; &lt; \sum \mathrm{Var}(Y_i)
+\end{align*}\]</span>
+if <span class="math inline">\(\mathrm{Cov}(Y_i, Y_j) &lt; 0\)</span>. This suggests that the variance estimation <span class="math inline">\({\widehat{\sigma}_X^2}/N\)</span> and <span class="math inline">\({\widehat{\sigma}_Y^2/M}\)</span> are over-estimating the true variance of <span class="math inline">\(\mathrm{Var}(\overline{X})\)</span> and <span class="math inline">\(\mathrm{Var}(\overline{X})\)</span>. However, because of the same negative correlation,
+<span class="math display">\[
+\mathrm{Var}(\Delta) = \mathrm{Var}(\overline{Y}-\overline{X}) &gt;  \mathrm{Var}(\overline{Y})+\mathrm{Var}(\overline{X}), 
+\]</span>
+leading to under-estimation of <span class="math inline">\(\mathrm{Var}(\Delta)\)</span> when ignoring the dependency between <span class="math inline">\(\overline{Y}\)</span> and <span class="math inline">\(\overline{X}\)</span>.</p>
+<p>Put these two ``errors’’ together, when we pretend two samples are <em>i.i.d.</em> from its own distribution and apply two sample t-test or z-test with
+<span class="math display">\[
+\mathrm{Var}_\text{TS}(\Delta) = \mathrm{Var}(\overline{Y})+ \mathrm{Var}(\overline{X}),
+\]</span>
+we are over-estimating the variance of both component on the RHS, but also missing a positive covariance between <span class="math inline">\(\overline{Y}\)</span> and <span class="math inline">\(\overline{X}\)</span>, leading to under-estimation of the LHS. It is unclear <span class="math inline">\(\mathrm{Var}_\text{TS}(\Delta)\)</span> is over-estimating or under-estimating the true variance because the two opposing corrections without exact derivation.</p>
+<p><span class="citation"><a href="probability-minimum.html#ref-imbens2015causal" role="doc-biblioref">Imbens and Rubin</a> (<a href="probability-minimum.html#ref-imbens2015causal" role="doc-biblioref">2015</a>)</span> analyzed the exact variance formula for completed randomized experiments, for both sample average treatment effect (SATE) and population average treatment effect (PATE). The results are comforting. For PATE, they showed that <span class="math inline">\(\mathrm{Var}_\text{TS}(\Delta) = \frac{\mathrm{Var}(Y)}{M} + \frac{\mathrm{Var}(X)}{N}\)</span> turns out to be the correct variance of <span class="math inline">\(\Delta\)</span>. In other words, the two <code>errors</code> in different directions strike a perfect balance and the sum of the two has no error — the two sample problem, under a totally different data-generating-process, produces the correct variance. For SATE, the true variance is always smaller than the two sample variance <span class="math inline">\(\mathrm{Var}_\text{TS}(\Delta)\)</span>. <span class="citation"><a href="probability-minimum.html#ref-imbens2015causal" role="doc-biblioref">Imbens and Rubin</a> (<a href="probability-minimum.html#ref-imbens2015causal" role="doc-biblioref">2015</a>)</span> showed the correction term relies on the variance of individual treatment effect for the <span class="math inline">\(M+N\)</span> units. When there is no individual treatment effect variation, the correction term is <span class="math inline">\(0\)</span> so <span class="math inline">\(\mathrm{Var}_\text{TS}(\Delta)\)</span> again is exact. In general there is no estimator for the correction term available because individual treatment effects are not observable. <span class="math inline">\(\mathrm{Var}_\text{TS}(\Delta)\)</span> remains an close upper bound.</p>
+<p>Now we look at the independent randomization. Independent randomization for PATE is closer to the data-generating-process of two sample t-test and z-test, except that sample sizes <span class="math inline">\(M\)</span> and <span class="math inline">\(N\)</span> are not fixed but random. In the analysis of two sample problem when sample sizes are fixed, for <span class="math inline">\(\mathrm{Var}_\text{TS}(\Delta)\)</span> we used the fact
+<span class="math display">\[
+\mathrm{Var}(\overline{Y}) = \frac{\mathrm{Var}(Y)}{M}.
+\]</span>
+When <span class="math inline">\(M\)</span> is random, the above is not correct.
+We offer two justifications that we can pretend sample sizes are fixed in practice.</p>
+<p>The first justification is using large sample theory and the second justification is conditional test.</p>
+<p>Applying the conditional variance formula leads to
+<span class="math display">\[\begin{align*}
+\mathrm{Var}(\overline{Y}) &amp; =\mathrm{E}\left( \mathrm{Var}(\overline{Y} | M) \right) +  \mathrm{Var} \left( \mathrm{E} (\overline{Y} | M)  \right ) \\
+&amp; = \mathrm{E}\left( \mathrm{Var}(Y)/M \right).
+\end{align*}\]</span>
+The last equality is because <span class="math inline">\(\mathrm{E} (\overline{Y} | M) = \mathrm{E}(Y)\)</span> is a constant with zero variance. Moving the constant <span class="math inline">\(\mathrm{Var}(Y)\)</span> out of the last expectation,
+<span class="math display" id="eq:randomsize">\[\begin{equation}
+\mathrm{Var}(\overline{Y}) = \mathrm{Var}(Y)\times \mathrm{E}(\frac{1}{M}). \tag{3.1}
+\end{equation}\]</span>
+We see that the correct variance of <span class="math inline">\(\overline{Y}\)</span> depends on <span class="math inline">\(\mathrm{E}(\frac{1}{M})\)</span> (and <span class="math inline">\(\mathrm{E}(\frac{1}{N})\)</span> for <span class="math inline">\(\overline{X}\)</span>). (Technically the expectation here is a conditional expectation given <span class="math inline">\(M&gt;0\)</span> and <span class="math inline">\(N&gt;0\)</span> because the comparison does not make sense if only one group gets observations.) For independent randomization, <span class="math inline">\(M\)</span> and <span class="math inline">\(N\)</span> follows binomial distribution. By central limit theorem <span class="math inline">\(M\)</span> is <span class="math inline">\(O(\sqrt{M})\)</span> away from its expectation <span class="math inline">\(\mathrm{E}(M)\)</span>, and for <span class="math inline">\(N\)</span> similarly. As <span class="math inline">\(M+N\)</span> increases and when <span class="math inline">\(M\)</span> and <span class="math inline">\(N\)</span> are both moderately large, <span class="math inline">\(\frac{1}{M}\)</span>, <span class="math inline">\(\mathrm{E}(\frac{1}{M})\)</span> and <span class="math inline">\(\frac{1}{\mathrm{E}(M)}\)</span> are all close enough to be practically equivalent and the same goes for <span class="math inline">\(N\)</span>. This is why for independent randomized experiment, in almost all applications we can treat the sample sizes as if they are fixed numbers. A proof of this requires using central limit theorem with the delta method and can be found in Section <a href="misc-topics.html#misc-randomdenom">11.2</a>. The result holds not only for binomial distribution, but more general for any <span class="math inline">\((M,N)\)</span> abiding the central limit theorem. Here we use simulation to illustrate the point. Figure shows the distribution of the ratio of <span class="math inline">\(1/M\)</span> to <span class="math inline">\(\frac{1}{\mathrm{E}(M)}\)</span> when <span class="math inline">\(M\)</span> is from a binomial(K,0.5) distribution with increasing <span class="math inline">\(K = M+N\)</span>. The vertical line is the ratio of <span class="math inline">\(\mathrm{E}(\frac{1}{M})\)</span> to <span class="math inline">\(\frac{1}{\mathrm{E}(M)}\)</span>. We see with <span class="math inline">\(K = 1,000\)</span>, the ratio of <span class="math inline">\(\mathrm{E}(\frac{1}{M})\)</span> to <span class="math inline">\(\frac{1}{\mathrm{E}(M)}\)</span> is already very close to 1. Moreover, <span class="math inline">\(1/M\)</span> is almost always within 10% relative error for <span class="math inline">\(\frac{1}{\mathrm{E}(M)}\)</span>. A 10% relative error for variance only translate to 5% error for the standard error, and for the test statistics. This error is even smaller with larger sample sizes.</p>
+<div class="figure"><span id="fig:demorandomdenom"></span>
+<img src="causalonline_files/figure-html/demorandomdenom-1.png" alt="Ratios of $1/M$ and $\frac{1}{\mathrm{E}(M)}$ as $N+M$ increases from $100$ to $100,000$. vertical line is the ratio of $\mathrm{E}(\frac{1}{M})$ to $\frac{1}{\mathrm{E}(M)}$." width="672" />
+<p class="caption">
+Figure 3.1: Ratios of <span class="math inline">\(1/M\)</span> and <span class="math inline">\(\frac{1}{\mathrm{E}(M)}\)</span> as <span class="math inline">\(N+M\)</span> increases from <span class="math inline">\(100\)</span> to <span class="math inline">\(100,000\)</span>. vertical line is the ratio of <span class="math inline">\(\mathrm{E}(\frac{1}{M})\)</span> to <span class="math inline">\(\frac{1}{\mathrm{E}(M)}\)</span>.
+</p>
+</div>
+<p>The conditional test perspective offers another justification regardless of sample size. Note that the sample size <span class="math inline">\(M\)</span> and <span class="math inline">\(N\)</span> are irrelevant to our interest of comparing two distributions. <span class="math inline">\(M\)</span> and <span class="math inline">\(N\)</span> are called <em>nuisance parameters</em>. We can partition the data-generating-process into two components, one that involves the parameter of interest, and one that only involves nuisance parameters. One can argue that only the first part contains information for the inference of the parameter of interest. And the second part only adds noises that contains no useful information.</p>
+<p>By this argument, for the purpose of two sample comparison, we can <em>condition</em> on <span class="math inline">\(M\)</span> and <span class="math inline">\(N\)</span> by taking them out of the data-generating-process, meaning that we change the natural data-generating-process into a conditional version where we fix not only <span class="math inline">\(N+M\)</span> but also <span class="math inline">\(N\)</span> and <span class="math inline">\(M\)</span>. After fixing <span class="math inline">\(N\)</span> and <span class="math inline">\(M\)</span>, the conditional data-generating-process reduces to the the two sample comparison and we can treat both <span class="math inline">\(X_i\)</span> and <span class="math inline">\(Y_i\)</span> are <em>i.i.d.</em><a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></p>
+<p>The last case to justify is independent randomization for SATE. After conditioning on sample sizes, the conditional data-generating-process is the same as complete randomization for SATE. And we have already justified using two sample t-test or z-test for this case.</p>
+<p>The analysis of randomized experiments are much sophisticated and richer than two sample problem described in this section. Other randomization mechanism such as cluster randomization and stratified randomization poses different data-generating-processes where <span class="math inline">\(\mathrm{Var}_\text{TS}(\Delta)\)</span> could deviate from the true variance of <span class="math inline">\(\Delta\)</span> a lot. Also, our causal estimand of interest might not be as simple as the difference in the mean. Moreover, there exists better experiment design and more accurate estimator (smaller variance) for average treatment effect. Randomized experiments have huge application in the Internet era for online industry, where it got a new name called A/B testing (or A/B/n testing for more than one treatment). We will see randomized experiments again in later chapters on randomized experiments with a focus on online application.</p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="4">
+<li id="fn4"><p>Interference violate SUTVA assumption. See Section <a href="rcm.html#sutva">4.4</a>.<a href="randomintro.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>Technically it is a Welch’s t. Student’s original t-statistic assumes common variance of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> and used a pooled variance estimator.<a href="randomintro.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p>In Bayesian statistics, we always condition on observations and infer the conditional distribution of the parameter of interest given observations. There is no such issue as nuisance parameter. In Frequentist statistics, conditional test often improves statistical power because it removes noises from nuisance parameters.<a href="randomintro.html#fnref6" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="simpson.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rcm.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

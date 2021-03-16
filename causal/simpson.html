@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Correlation and Simpson’s Paradox | Causal Inference and Its Applications in Online Industry</title>
+  <meta name="description" content="this is a draft book." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Correlation and Simpson’s Paradox | Causal Inference and Its Applications in Online Industry" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="this is a draft book." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Correlation and Simpson’s Paradox | Causal Inference and Its Applications in Online Industry" />
+  
+  <meta name="twitter:description" content="this is a draft book." />
+  
+
+<meta name="author" content="Alex Deng" />
+
+
+<meta name="date" content="2021-03-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intro.html"/>
+<link rel="next" href="randomintro.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="libs/viz/viz.js"></script>
+<link href="libs/DiagrammeR-styles/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding/grViz.js"></script>
+
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Draft</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="part"><span><b>I Causal Inference: An Overview</b></span></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="simpson.html"><a href="simpson.html"><i class="fa fa-check"></i><b>2</b> Correlation and Simpson’s Paradox</a></li>
+<li class="chapter" data-level="3" data-path="randomintro.html"><a href="randomintro.html"><i class="fa fa-check"></i><b>3</b> Randomized Experiment</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="randomintro.html"><a href="randomintro.html#completerand"><i class="fa fa-check"></i><b>3.1</b> Complete Randomization</a></li>
+<li class="chapter" data-level="3.2" data-path="randomintro.html"><a href="randomintro.html#indrand"><i class="fa fa-check"></i><b>3.2</b> Independent Randomization</a></li>
+<li class="chapter" data-level="3.3" data-path="randomintro.html"><a href="randomintro.html#clusterrandomization"><i class="fa fa-check"></i><b>3.3</b> Clustered Randomization</a></li>
+<li class="chapter" data-level="3.4" data-path="randomintro.html"><a href="randomintro.html#aore"><i class="fa fa-check"></i><b>3.4</b> Analysis of Randomized Experiments as Two Sample Problem</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rcm.html"><a href="rcm.html"><i class="fa fa-check"></i><b>4</b> Potential Outcomes Framework</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="rcm.html"><a href="rcm.html#naive-estimation"><i class="fa fa-check"></i><b>4.1</b> Naive Estimation</a></li>
+<li class="chapter" data-level="4.2" data-path="rcm.html"><a href="rcm.html#randomization-and-unconfoundedness"><i class="fa fa-check"></i><b>4.2</b> Randomization and Unconfoundedness</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="rcm.html"><a href="rcm.html#matching"><i class="fa fa-check"></i><b>4.2.1</b> Conditional Unconfoundedness, Matching and Covariates Balancing</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="rcm.html"><a href="rcm.html#propensity-score"><i class="fa fa-check"></i><b>4.3</b> Propensity Score</a></li>
+<li class="chapter" data-level="4.4" data-path="rcm.html"><a href="rcm.html#sutva"><i class="fa fa-check"></i><b>4.4</b> SUTVA</a></li>
+<li class="chapter" data-level="4.5" data-path="rcm.html"><a href="rcm.html#missingdata"><i class="fa fa-check"></i><b>4.5</b> Missing Data and Weighted Samples</a></li>
+<li class="chapter" data-level="4.6" data-path="rcm.html"><a href="rcm.html#missing-data-mechanisms-and-ignorability"><i class="fa fa-check"></i><b>4.6</b> Missing Data Mechanisms and Ignorability</a></li>
+<li class="chapter" data-level="4.7" data-path="rcm.html"><a href="rcm.html#is"><i class="fa fa-check"></i><b>4.7</b> Importance Sampling</a></li>
+<li class="chapter" data-level="4.8" data-path="rcm.html"><a href="rcm.html#ipw"><i class="fa fa-check"></i><b>4.8</b> Inverse Propensity Score Weighting (IPW)</a></li>
+<li class="chapter" data-level="4.9" data-path="rcm.html"><a href="rcm.html#dr"><i class="fa fa-check"></i><b>4.9</b> Doubly Robust Estimation</a></li>
+<li class="chapter" data-level="4.10" data-path="rcm.html"><a href="rcm.html#bias-variance"><i class="fa fa-check"></i><b>4.10</b> Bias-Variance Trade off and Covariates Overlap</a></li>
+<li class="chapter" data-level="4.11" data-path="rcm.html"><a href="rcm.html#psmm"><i class="fa fa-check"></i><b>4.11</b> Other Propensity Score Modeling Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="cgm.html"><a href="cgm.html"><i class="fa fa-check"></i><b>5</b> Causal Graphical Model</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="cgm.html"><a href="cgm.html#structural-equation-model-causal-diagram-and-d-separation"><i class="fa fa-check"></i><b>5.1</b> Structural Equation Model, Causal Diagram and d-separation</a></li>
+<li class="chapter" data-level="5.2" data-path="cgm.html"><a href="cgm.html#the-do-operator"><i class="fa fa-check"></i><b>5.2</b> the <em>do</em> operator</a></li>
+<li class="chapter" data-level="5.3" data-path="cgm.html"><a href="cgm.html#the-back-door-criterion"><i class="fa fa-check"></i><b>5.3</b> The Back-door Criterion</a></li>
+<li class="chapter" data-level="5.4" data-path="cgm.html"><a href="cgm.html#causal-mechanism-and-the-front-door-criterion"><i class="fa fa-check"></i><b>5.4</b> Causal Mechanism and the Front-door Criterion</a></li>
+<li class="chapter" data-level="5.5" data-path="cgm.html"><a href="cgm.html#general-identification"><i class="fa fa-check"></i><b>5.5</b> General Identification Strategy</a></li>
+<li class="chapter" data-level="5.6" data-path="cgm.html"><a href="cgm.html#rcm-vs.-cgm"><i class="fa fa-check"></i><b>5.6</b> RCM vs. CGM</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="regression-based-methods.html"><a href="regression-based-methods.html"><i class="fa fa-check"></i><b>6</b> Regression-based Methods</a></li>
+<li class="part"><span><b>II Large Scale Online Controlled Experiments</b></span></li>
+<li class="chapter" data-level="7" data-path="abintro.html"><a href="abintro.html"><i class="fa fa-check"></i><b>7</b> A/B Testing: Beyond Randomized Experiments</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="abintro.html"><a href="abintro.html#specialaspects"><i class="fa fa-check"></i><b>7.1</b> Special Aspects of A/B Tests</a></li>
+<li class="chapter" data-level="7.2" data-path="abintro.html"><a href="abintro.html#telemetry"><i class="fa fa-check"></i><b>7.2</b> Instrumentation and Telemetry</a></li>
+<li class="chapter" data-level="7.3" data-path="abintro.html"><a href="abintro.html#common-pitfalls"><i class="fa fa-check"></i><b>7.3</b> Common Pitfalls</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="abstats.html"><a href="abstats.html"><i class="fa fa-check"></i><b>8</b> Statistical Analysis of A/B Tests</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="abstats.html"><a href="abstats.html#metric"><i class="fa fa-check"></i><b>8.1</b> Metric</a></li>
+<li class="chapter" data-level="8.2" data-path="abstats.html"><a href="abstats.html#randomization-unit-and-analysis-unit"><i class="fa fa-check"></i><b>8.2</b> Randomization Unit and Analysis Unit</a></li>
+<li class="chapter" data-level="8.3" data-path="abstats.html"><a href="abstats.html#abstatsover"><i class="fa fa-check"></i><b>8.3</b> Inference for Average Treatment Effect of A/B Tests</a></li>
+<li class="chapter" data-level="8.4" data-path="abstats.html"><a href="abstats.html#indvar"><i class="fa fa-check"></i><b>8.4</b> Independence Assumption and Variance Estimation</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="abstats.html"><a href="abstats.html#independence-assumption"><i class="fa fa-check"></i><b>8.4.1</b> Independence Assumption</a></li>
+<li class="chapter" data-level="8.4.2" data-path="abstats.html"><a href="abstats.html#variance-estimation-for-average-and-weighted-average"><i class="fa fa-check"></i><b>8.4.2</b> Variance Estimation for Average and Weighted Average</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="abstats.html"><a href="abstats.html#normalassumption"><i class="fa fa-check"></i><b>8.5</b> Central Limit Theorem and Normal Approximation</a></li>
+<li class="chapter" data-level="8.6" data-path="abstats.html"><a href="abstats.html#percentilevar"><i class="fa fa-check"></i><b>8.6</b> Confidence Interval and Variance Estimation for Percentile metrics</a></li>
+<li class="chapter" data-level="8.7" data-path="abstats.html"><a href="abstats.html#p-value-statistical-power-s-and-m-error"><i class="fa fa-check"></i><b>8.7</b> p-Value, Statistical Power, S and M Error</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="abstats.html"><a href="abstats.html#p-value"><i class="fa fa-check"></i><b>8.7.1</b> p-Value</a></li>
+<li class="chapter" data-level="8.7.2" data-path="abstats.html"><a href="abstats.html#statistical-power"><i class="fa fa-check"></i><b>8.7.2</b> Statistical Power</a></li>
+<li class="chapter" data-level="8.7.3" data-path="abstats.html"><a href="abstats.html#type-s-and-type-m-error"><i class="fa fa-check"></i><b>8.7.3</b> Type S and Type M Error</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="abstats.html"><a href="abstats.html#aoabchallenge"><i class="fa fa-check"></i><b>8.8</b> Statistical Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="abdiagnosis.html"><a href="abdiagnosis.html"><i class="fa fa-check"></i><b>9</b> System Diagnosis and Quality Checks for A/B Tests</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="abdiagnosis.html"><a href="abdiagnosis.html#system-validation-using-aa-test"><i class="fa fa-check"></i><b>9.1</b> System Validation using A/A Test</a></li>
+<li class="chapter" data-level="9.2" data-path="abdiagnosis.html"><a href="abdiagnosis.html#sample-ratio-mismatch"><i class="fa fa-check"></i><b>9.2</b> Sample Ratio Mismatch</a></li>
+<li class="chapter" data-level="9.3" data-path="abdiagnosis.html"><a href="abdiagnosis.html#trigger-and-filter-condition"><i class="fa fa-check"></i><b>9.3</b> Trigger and Filter Condition</a></li>
+<li class="chapter" data-level="9.4" data-path="abdiagnosis.html"><a href="abdiagnosis.html#interaction-detection"><i class="fa fa-check"></i><b>9.4</b> Interaction Detection</a></li>
+<li class="chapter" data-level="9.5" data-path="abdiagnosis.html"><a href="abdiagnosis.html#metric-denominator-mismatch"><i class="fa fa-check"></i><b>9.5</b> Metric Denominator Mismatch</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sensitivity.html"><a href="sensitivity.html"><i class="fa fa-check"></i><b>10</b> Improving Metric Sensitivity</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="sensitivity.html"><a href="sensitivity.html#metric-sensitivity-decomposition"><i class="fa fa-check"></i><b>10.1</b> Metric Sensitivity Decomposition</a></li>
+<li class="chapter" data-level="10.2" data-path="sensitivity.html"><a href="sensitivity.html#vrreg"><i class="fa fa-check"></i><b>10.2</b> Variance Reduction</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="sensitivity.html"><a href="sensitivity.html#cuped"><i class="fa fa-check"></i><b>10.2.1</b> Control Variates and CUPED</a></li>
+<li class="chapter" data-level="10.2.2" data-path="sensitivity.html"><a href="sensitivity.html#regadj"><i class="fa fa-check"></i><b>10.2.2</b> General Regression Adjustment and Doubly Robust Estimation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="misc-topics.html"><a href="misc-topics.html"><i class="fa fa-check"></i><b>11</b> Misc Topics</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="misc-topics.html"><a href="misc-topics.html#misc-deltamethod"><i class="fa fa-check"></i><b>11.1</b> Delta Method</a></li>
+<li class="chapter" data-level="11.2" data-path="misc-topics.html"><a href="misc-topics.html#misc-randomdenom"><i class="fa fa-check"></i><b>11.2</b> Random Denominator for Independent Randomization Experiments</a></li>
+<li class="chapter" data-level="11.3" data-path="misc-topics.html"><a href="misc-topics.html#misc-mestimator"><i class="fa fa-check"></i><b>11.3</b> M-Estimator and Z-Estimator</a></li>
+</ul></li>
+<li class="part"><span><b>III Appendix</b></span></li>
+<li class="chapter" data-level="12" data-path="probability-minimum.html"><a href="probability-minimum.html"><i class="fa fa-check"></i><b>12</b> Probability Minimum</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="probability-minimum.html"><a href="probability-minimum.html#probability"><i class="fa fa-check"></i><b>12.1</b> probability</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="probability-minimum.html"><a href="probability-minimum.html#app-conditional-ind"><i class="fa fa-check"></i><b>12.1.1</b> Conditional Independence</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://alexdeng.github.io" target="blank">Alex Deng</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Causal Inference and Its Applications in Online Industry</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="simpson" class="section level1" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Correlation and Simpson’s Paradox</h1>
+<p>Consider the following conceptual graph. This is a simple causal graphical model which will be revisited and explained in detail later in Chapter <a href="cgm.html#cgm">5</a>. For now, simply interpret an arrow as a causal relationship. In Figure <a href="simpson.html#fig:confounder">2.1</a>, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> share a common cause <span class="math inline">\(U\)</span>. Structures like this naturally induce a correlation between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</p>
+<div class="figure"><span id="fig:confounder"></span>
+<div id="htmlwidget-06c047e5ac305de748f6" style="width:672px;height:200px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-06c047e5ac305de748f6">{"x":{"diagram":"\ndigraph {\ngraph [layout = dot size = 7 ratio = 0.7]\n  node [shape = circle width=.3 fixedsize=true fontname = Helvetica]\n  subgraph {\n  rank = same; X; Y;\n  }\n  U -> {X Y}\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<p class="caption">
+Figure 2.1: Graphical model for mutual dependence, a.k.a. a fork.
+</p>
+</div>
+<p>To see that, let <span class="math inline">\(U\sim N(0,\rho^2)\)</span> for some <span class="math inline">\(\rho&lt;1\)</span> and let <span class="math inline">\(\epsilon_1\)</span> and <span class="math inline">\(\epsilon_2\)</span> to be independent noises following <span class="math inline">\(N(0,1-\rho^2)\)</span> and are also independent of <span class="math inline">\(U\)</span>. Let <span class="math inline">\(X = U + \epsilon_1\)</span> and <span class="math inline">\(Y = U + \epsilon_2\)</span>. It can be shown that <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have bivariate normal distribution with mean 0, variance 1 and correlation <span class="math inline">\(\rho^2\)</span>.</p>
+<p>A positive correlation between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> means a relatively large <span class="math inline">\(X\)</span> is <em>associated</em> with a relatively large value of <span class="math inline">\(Y\)</span>. In fact,
+<span class="math display">\[\begin{equation*}
+\mathrm{E}(Y|X = x) = \rho^2\times x.
+\end{equation*}\]</span></p>
+<p>Does it mean increasing <span class="math inline">\(X\)</span> has a causal effect on increasing <span class="math inline">\(Y\)</span>? No! In the ground-truth model, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are both noisy versions of the common underlying signal <span class="math inline">\(U\)</span>. By symmetry, the following is also true:
+<span class="math display">\[\begin{equation*}
+\mathrm{E}(X|Y = y) = \rho^2\times y.
+\end{equation*}\]</span></p>
+<p>If we consider <span class="math inline">\(X\)</span> causes <span class="math inline">\(Y\)</span>, by the same logic <span class="math inline">\(Y\)</span> also causes <span class="math inline">\(X\)</span>. This violates the common sense that cause and effect cannot be reversed. <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are statistically correlated but it does not warrant a causal relationship. This phenomenon is often quoted as</p>
+<blockquote>
+<p>“Correlation does not imply causation.”</p>
+</blockquote>
+<p>The above contrived example seems to suggest the distinction between correlation and causation is clear and should be apparent to careful eyes. Quite the opposite! Human nature makes it very hard to distinguish them, as illustrated by the infamous Simpson’s paradox.</p>
+<hr />
+<p>Simpson’s paradox is often presented as a compelling demonstration of how easy it is to reach paradoxical conclusions when interpreting data too superficially without deeper analyses. It is one of the most known statistics puzzles. On one hand, it only requires elementary math to understand the problem. On the other hand, it has deeper psychological implication and often be interpreted as limitation of statistical methods. To resolve the paradox requires solid understanding about causal inference. Simpson’s paradox is deeply connected to the desire of causal knowledge as part of human nature and the tendency to take correlation as causation.</p>
+<p>Edward H. Simpson first addressed this phenomenon in a technical paper in 1951, but Karl Pearson et. al. in 1899 and Udny Yule in 1903, had mentioned a similar effect earlier.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> We take the <strong>Kidney stone treatment</strong> data to illustrate Simpson’s paradox. Other well known data sets used to illustrate Simpson’s paradox include UC Berkeley gender bias data and baseball batting average data.</p>
+<table>
+<caption><span id="tab:kidneystone">Table 2.1: </span>Kidney Stone Treatments. Treatment A has higher success rate in both small and large stone cases, but lower when both cases combined.</caption>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">Treatment A</th>
+<th align="left">Treatment B</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Small Stones</td>
+<td align="left">93%(81/87)</td>
+<td align="left">87%(234/270)</td>
+</tr>
+<tr class="even">
+<td align="left">Large Stones</td>
+<td align="left">73%(192/263)</td>
+<td align="left">69%(55/80)</td>
+</tr>
+<tr class="odd">
+<td align="left">Both</td>
+<td align="left">78%(273/350)</td>
+<td align="left">83%(289/350)</td>
+</tr>
+</tbody>
+</table>
+<p>Table <a href="simpson.html#tab:kidneystone">2.1</a> shows success rate of treating kidney stones using two different treatments, denoted as A and B. The patients were further segmented by their kidney stone size. Success rates were computed for each of the 4 treatment kidney-size combinations, as well as the overall success rate for the two treatments. From the table, treatment B has a higher success rate overall, regardless of the size of the stone. However, segmented by the size of the stone, in both small and large stone cases, treatment A shows higher success rate.</p>
+<p>How could it be true? Is treatment A better or worse than treatment B?</p>
+<p>On the surface, Simpson’s paradox can be explained by simple arithmetics. Namely the ratio of sums <span class="math inline">\((a+b)/(c+d)\)</span> could be ordered differently than individual ratios <span class="math inline">\(a/b\)</span> and <span class="math inline">\(c/d\)</span>. In the kidney stone example, we see small stone cases generally have higher success rate regardless of treatment. In the data set, treatment A consists of small stone and big stone groups, with 87/(87+263)=23.1% patients have small stones. Treatment B has only 270/(270+80) = 77.1% patients with small stones. When grouped together, treatment B have higher success rate only because it contains more patients that are easier to treat.</p>
+<p>The arithmetics is simple and the explanation seems to be straightforward. What makes Simpson’s paradox so important and profound?</p>
+<p>Suppose as a data scientist you are presented with the kidney stone data, with only aggregated data. What conclusion will you make? Most people will conclude that treatment B is better, given that 95% confidence interval of success rate for treatment A overall is estimated to be <span class="math inline">\(78\%\pm0.1\%\)</span>, while for treatment B is <span class="math inline">\(83\%\pm0.08\%\)</span>). However, once you are presented with the stone size segmented data, you realize you might just made a huge mistake. How could treatment B be better if treatment A is better in both small stone and large stone cases? You must correct your earlier assessment and then conclude treatment A is better.</p>
+<p>But wait a minute, what if somebody else gives you a further segmented data that show, say, for both small stone and large stone cases, when segmented by gender, treatment B is better than treatment A for all gender? Isn’t this mathematically possible by the same arithmetics aforementioned?</p>
+<p>We can ask this kind of questions on and on and reach to a conclusion that no conclusion can be made based on any type of data (pun intended). Now we see the real and unsettling problem. Can we learn anything from data?</p>
+<p>The key to resolve the paradox is simple yet profound, “correlation does not imply causation!” Why do people feel this is a paradox in the first place? And what do we mean by “learn from data?” What Simpson’s paradox reveals is the hidden truth that as human beings our brains are hardwired to look for <em>causal</em> effect.</p>
+<p>If the difference between kidney stone success rate is indeed <em>caused</em> by treatment A being more effective than treatment B for both small and large stone cases, then overall treatment A should be more effective than treatment B because a patient can only have small or big stone. In fact, we should be able to further state</p>
+<p><span class="math display">\[\begin{align*}
+\text{Overall effect} &amp; = \text{Effect on small stone patients}\times P(\text{patient have small stone}) \\
+&amp; + \text{Effect on large stone patients}\times P(\text{patient have large stone}).
+\end{align*}\]</span></p>
+<p>The rationale in this argument is buried deep down in the definition of causal effect — the notion of change. When we <em>change</em> treatment from A to B, or vice versa, we assume the size of a patient’s kidney stone remains unchanged because it is a precondition of the treatment. Therefore the proportion of patient having small or large stones has nothing to do with our decision of which treatment to use.</p>
+<p>But did we explicitly claim any causal relationship? No! Before we see the segmented data, all we observe is that there exists a positive correlation between choosing treatment B over A and higher treatment success rate. After the data is further segmented by stone size, the correlation is reversed. Through the arithmetic explanation, we see that the reason why treatment B is better in aggregated data is actually not because the treatment itself, but due to the higher proportion of small stone patients in treatment B. In other words, the link between the choice of treatment and success rate is not <em>causal</em> at all. Treatment B is either just “lucky” to have more easier-to-treat patients with smaller stones, or more likely, there is certain self-selection mechanism that leads more patients with larger stones to choosing treatment A, or more patients with smaller stones to choosing treatment B, or both, despite this dataset showing seemly a balanced design with both treatment A and treatment B each having 350 patients. Correlation does not imply causation. Correlation can happen due to many other unobserved confounder factors. In this case one confounder effect is the size of the stone. There could be more confounders. We just never know. What makes this such a puzzling paradox is the fact that correlation is not what we are looking for, causation is! Researchers collect this data set with the hope to find out which treatment is better. Our goal of searching for causal knowledge tricked everyone into unconsciously considering correlation as causation, hence the paradox!<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+Paradox resolved! But an unnerving concern remains: Why are our brains almost hardwired to interpret correlation as causal effect? The following XKCD comic reminds us of how vulnerable we are.
+<div class="figure"><span id="fig:xkcdcorr"></span>
+<img src="images/correlation.png" alt="Correlation(xkcd 552)" width="50%" />
+<p class="caption">
+Figure 2.2: Correlation(xkcd 552)
+</p>
+</div>
+<p>This is not a book on philosophy, but we hope some degree of philosophical discussions can help:</p>
+<ol style="list-style-type: decimal">
+<li>As pointed out by empiricists, causality, and knowledge in general, is learned from experience. When analyzing a dataset — a form of collected experiences, we tend to treat all conclusions as causal.</li>
+<li>Causal relationship is much more stable and robust than correlation. As demonstrated in Simpson’s paradox, correlation relationship might be due to many other confounders, known or unknown, observed or unobserved. Correlation as knowledge is hard to transfer to a situation in future. Statisticians call this external validity. Interpreting empirical correlation between two events as causation tremendously simplifies our understanding of the world. Occam’s razor in action.</li>
+<li>Many psychological studies demonstrated the existence of cognitive bias in which people are often overly confident in believing their own discovery. We naturally believe our findings are reflecting a form of <em>truth</em>. This can be seen as a type of systematic error from inductive reasoning.</li>
+</ol>
+<hr />
+<p>Statistics, not philosophy, should provide us with the rigorous tool to prevent us from falling into the trap of correlation. Unfortunately, correlation, not causation, is the firstborn in the household of statistics. The study of more than one outcome variables belongs to multivariate statistics and many may be more familiar with its modern day incarnations under other names such as predictive analysis/modeling and machine learning or simply AI. Given a joint probability distribution, we can predict one random variable from observations of others, by exploiting correlation structures between them. If two variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are correlated in a joint distribution, our understanding of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are intertwined together. If we <em>change</em> our estimate of <span class="math inline">\(X\)</span>, our estimate of <span class="math inline">\(Y\)</span> also changes. In this sense multivariate statistics and modern predictive modeling are all about correlation under certain joint probability distribution.</p>
+<p>The definition of causation also relies on <em>change</em> but it is a totally different kind. In correlation, the changes are passively observed. In causation, we <em>change through intervention</em> directly. The difference between passive observing and intervention is critical and begs a proper treatment in statistics. In the former case, the ground-truth underlying joint distribution between random variables of interest is responsible for the change, but not part of the change. In the latter, the joint distribution itself can be changed and disturbed by the act of the intervention.</p>
+<p>At the very core of causal inference is about how we reason and talk about intervention using appropriate statistical vocabularies. A direct method following the discussion above is to study the impact of intervention on the joint distribution and quantify the causal effect of an intervention on a focal random variable using post-intervention joint distributions. This approach was taken and led by Judea Pearl through a series of works started in 1980s culminated in a new causal graphical model with a new algebra called <em>do</em> calculus.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> An alternative approach is to augment the joint distribution with the idea of potential outcomes. A third approach, with a much longer history is randomization. Randomization is the most straightforward way to learn effect of intervention by really doing intervention. The next few chapters will go through all these different approaches and explain how they are connected to each other.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>Simpson’s paradox is also called Yule-Simpson effect.<a href="simpson.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Simpson’s paradox also links to Savage’s <em>Sure thing principle</em>: “[Let f and g be any two acts], if a person prefers f to g, either knowing
+that the event B obtained, or knowing that the event not-B obtained, then
+he should prefer f to g even if he knows nothing about B.” We see that Sure thing principle also has an implicit causal setup.<a href="simpson.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Judea Pearl received Turing Award for “fundamental contributions to artificial intelligence through the development of a calculus for probabilistic and causal reasoning.”<a href="simpson.html#fnref3" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="randomintro.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

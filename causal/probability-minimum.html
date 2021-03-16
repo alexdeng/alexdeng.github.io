@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 12 Probability Minimum | Causal Inference and Its Applications in Online Industry</title>
+  <meta name="description" content="this is a draft book." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 12 Probability Minimum | Causal Inference and Its Applications in Online Industry" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="this is a draft book." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 12 Probability Minimum | Causal Inference and Its Applications in Online Industry" />
+  
+  <meta name="twitter:description" content="this is a draft book." />
+  
+
+<meta name="author" content="Alex Deng" />
+
+
+<meta name="date" content="2021-03-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="misc-topics.html"/>
+
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="libs/viz/viz.js"></script>
+<link href="libs/DiagrammeR-styles/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding/grViz.js"></script>
+
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Draft</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="part"><span><b>I Causal Inference: An Overview</b></span></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="simpson.html"><a href="simpson.html"><i class="fa fa-check"></i><b>2</b> Correlation and Simpson’s Paradox</a></li>
+<li class="chapter" data-level="3" data-path="randomintro.html"><a href="randomintro.html"><i class="fa fa-check"></i><b>3</b> Randomized Experiment</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="randomintro.html"><a href="randomintro.html#completerand"><i class="fa fa-check"></i><b>3.1</b> Complete Randomization</a></li>
+<li class="chapter" data-level="3.2" data-path="randomintro.html"><a href="randomintro.html#indrand"><i class="fa fa-check"></i><b>3.2</b> Independent Randomization</a></li>
+<li class="chapter" data-level="3.3" data-path="randomintro.html"><a href="randomintro.html#clusterrandomization"><i class="fa fa-check"></i><b>3.3</b> Clustered Randomization</a></li>
+<li class="chapter" data-level="3.4" data-path="randomintro.html"><a href="randomintro.html#aore"><i class="fa fa-check"></i><b>3.4</b> Analysis of Randomized Experiments as Two Sample Problem</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rcm.html"><a href="rcm.html"><i class="fa fa-check"></i><b>4</b> Potential Outcomes Framework</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="rcm.html"><a href="rcm.html#naive-estimation"><i class="fa fa-check"></i><b>4.1</b> Naive Estimation</a></li>
+<li class="chapter" data-level="4.2" data-path="rcm.html"><a href="rcm.html#randomization-and-unconfoundedness"><i class="fa fa-check"></i><b>4.2</b> Randomization and Unconfoundedness</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="rcm.html"><a href="rcm.html#matching"><i class="fa fa-check"></i><b>4.2.1</b> Conditional Unconfoundedness, Matching and Covariates Balancing</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="rcm.html"><a href="rcm.html#propensity-score"><i class="fa fa-check"></i><b>4.3</b> Propensity Score</a></li>
+<li class="chapter" data-level="4.4" data-path="rcm.html"><a href="rcm.html#sutva"><i class="fa fa-check"></i><b>4.4</b> SUTVA</a></li>
+<li class="chapter" data-level="4.5" data-path="rcm.html"><a href="rcm.html#missingdata"><i class="fa fa-check"></i><b>4.5</b> Missing Data and Weighted Samples</a></li>
+<li class="chapter" data-level="4.6" data-path="rcm.html"><a href="rcm.html#missing-data-mechanisms-and-ignorability"><i class="fa fa-check"></i><b>4.6</b> Missing Data Mechanisms and Ignorability</a></li>
+<li class="chapter" data-level="4.7" data-path="rcm.html"><a href="rcm.html#is"><i class="fa fa-check"></i><b>4.7</b> Importance Sampling</a></li>
+<li class="chapter" data-level="4.8" data-path="rcm.html"><a href="rcm.html#ipw"><i class="fa fa-check"></i><b>4.8</b> Inverse Propensity Score Weighting (IPW)</a></li>
+<li class="chapter" data-level="4.9" data-path="rcm.html"><a href="rcm.html#dr"><i class="fa fa-check"></i><b>4.9</b> Doubly Robust Estimation</a></li>
+<li class="chapter" data-level="4.10" data-path="rcm.html"><a href="rcm.html#bias-variance"><i class="fa fa-check"></i><b>4.10</b> Bias-Variance Trade off and Covariates Overlap</a></li>
+<li class="chapter" data-level="4.11" data-path="rcm.html"><a href="rcm.html#psmm"><i class="fa fa-check"></i><b>4.11</b> Other Propensity Score Modeling Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="cgm.html"><a href="cgm.html"><i class="fa fa-check"></i><b>5</b> Causal Graphical Model</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="cgm.html"><a href="cgm.html#structural-equation-model-causal-diagram-and-d-separation"><i class="fa fa-check"></i><b>5.1</b> Structural Equation Model, Causal Diagram and d-separation</a></li>
+<li class="chapter" data-level="5.2" data-path="cgm.html"><a href="cgm.html#the-do-operator"><i class="fa fa-check"></i><b>5.2</b> the <em>do</em> operator</a></li>
+<li class="chapter" data-level="5.3" data-path="cgm.html"><a href="cgm.html#the-back-door-criterion"><i class="fa fa-check"></i><b>5.3</b> The Back-door Criterion</a></li>
+<li class="chapter" data-level="5.4" data-path="cgm.html"><a href="cgm.html#causal-mechanism-and-the-front-door-criterion"><i class="fa fa-check"></i><b>5.4</b> Causal Mechanism and the Front-door Criterion</a></li>
+<li class="chapter" data-level="5.5" data-path="cgm.html"><a href="cgm.html#general-identification"><i class="fa fa-check"></i><b>5.5</b> General Identification Strategy</a></li>
+<li class="chapter" data-level="5.6" data-path="cgm.html"><a href="cgm.html#rcm-vs.-cgm"><i class="fa fa-check"></i><b>5.6</b> RCM vs. CGM</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="regression-based-methods.html"><a href="regression-based-methods.html"><i class="fa fa-check"></i><b>6</b> Regression-based Methods</a></li>
+<li class="part"><span><b>II Large Scale Online Controlled Experiments</b></span></li>
+<li class="chapter" data-level="7" data-path="abintro.html"><a href="abintro.html"><i class="fa fa-check"></i><b>7</b> A/B Testing: Beyond Randomized Experiments</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="abintro.html"><a href="abintro.html#specialaspects"><i class="fa fa-check"></i><b>7.1</b> Special Aspects of A/B Tests</a></li>
+<li class="chapter" data-level="7.2" data-path="abintro.html"><a href="abintro.html#telemetry"><i class="fa fa-check"></i><b>7.2</b> Instrumentation and Telemetry</a></li>
+<li class="chapter" data-level="7.3" data-path="abintro.html"><a href="abintro.html#common-pitfalls"><i class="fa fa-check"></i><b>7.3</b> Common Pitfalls</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="abstats.html"><a href="abstats.html"><i class="fa fa-check"></i><b>8</b> Statistical Analysis of A/B Tests</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="abstats.html"><a href="abstats.html#metric"><i class="fa fa-check"></i><b>8.1</b> Metric</a></li>
+<li class="chapter" data-level="8.2" data-path="abstats.html"><a href="abstats.html#randomization-unit-and-analysis-unit"><i class="fa fa-check"></i><b>8.2</b> Randomization Unit and Analysis Unit</a></li>
+<li class="chapter" data-level="8.3" data-path="abstats.html"><a href="abstats.html#abstatsover"><i class="fa fa-check"></i><b>8.3</b> Inference for Average Treatment Effect of A/B Tests</a></li>
+<li class="chapter" data-level="8.4" data-path="abstats.html"><a href="abstats.html#indvar"><i class="fa fa-check"></i><b>8.4</b> Independence Assumption and Variance Estimation</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="abstats.html"><a href="abstats.html#independence-assumption"><i class="fa fa-check"></i><b>8.4.1</b> Independence Assumption</a></li>
+<li class="chapter" data-level="8.4.2" data-path="abstats.html"><a href="abstats.html#variance-estimation-for-average-and-weighted-average"><i class="fa fa-check"></i><b>8.4.2</b> Variance Estimation for Average and Weighted Average</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="abstats.html"><a href="abstats.html#normalassumption"><i class="fa fa-check"></i><b>8.5</b> Central Limit Theorem and Normal Approximation</a></li>
+<li class="chapter" data-level="8.6" data-path="abstats.html"><a href="abstats.html#percentilevar"><i class="fa fa-check"></i><b>8.6</b> Confidence Interval and Variance Estimation for Percentile metrics</a></li>
+<li class="chapter" data-level="8.7" data-path="abstats.html"><a href="abstats.html#p-value-statistical-power-s-and-m-error"><i class="fa fa-check"></i><b>8.7</b> p-Value, Statistical Power, S and M Error</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="abstats.html"><a href="abstats.html#p-value"><i class="fa fa-check"></i><b>8.7.1</b> p-Value</a></li>
+<li class="chapter" data-level="8.7.2" data-path="abstats.html"><a href="abstats.html#statistical-power"><i class="fa fa-check"></i><b>8.7.2</b> Statistical Power</a></li>
+<li class="chapter" data-level="8.7.3" data-path="abstats.html"><a href="abstats.html#type-s-and-type-m-error"><i class="fa fa-check"></i><b>8.7.3</b> Type S and Type M Error</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="abstats.html"><a href="abstats.html#aoabchallenge"><i class="fa fa-check"></i><b>8.8</b> Statistical Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="abdiagnosis.html"><a href="abdiagnosis.html"><i class="fa fa-check"></i><b>9</b> System Diagnosis and Quality Checks for A/B Tests</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="abdiagnosis.html"><a href="abdiagnosis.html#system-validation-using-aa-test"><i class="fa fa-check"></i><b>9.1</b> System Validation using A/A Test</a></li>
+<li class="chapter" data-level="9.2" data-path="abdiagnosis.html"><a href="abdiagnosis.html#sample-ratio-mismatch"><i class="fa fa-check"></i><b>9.2</b> Sample Ratio Mismatch</a></li>
+<li class="chapter" data-level="9.3" data-path="abdiagnosis.html"><a href="abdiagnosis.html#trigger-and-filter-condition"><i class="fa fa-check"></i><b>9.3</b> Trigger and Filter Condition</a></li>
+<li class="chapter" data-level="9.4" data-path="abdiagnosis.html"><a href="abdiagnosis.html#interaction-detection"><i class="fa fa-check"></i><b>9.4</b> Interaction Detection</a></li>
+<li class="chapter" data-level="9.5" data-path="abdiagnosis.html"><a href="abdiagnosis.html#metric-denominator-mismatch"><i class="fa fa-check"></i><b>9.5</b> Metric Denominator Mismatch</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sensitivity.html"><a href="sensitivity.html"><i class="fa fa-check"></i><b>10</b> Improving Metric Sensitivity</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="sensitivity.html"><a href="sensitivity.html#metric-sensitivity-decomposition"><i class="fa fa-check"></i><b>10.1</b> Metric Sensitivity Decomposition</a></li>
+<li class="chapter" data-level="10.2" data-path="sensitivity.html"><a href="sensitivity.html#vrreg"><i class="fa fa-check"></i><b>10.2</b> Variance Reduction</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="sensitivity.html"><a href="sensitivity.html#cuped"><i class="fa fa-check"></i><b>10.2.1</b> Control Variates and CUPED</a></li>
+<li class="chapter" data-level="10.2.2" data-path="sensitivity.html"><a href="sensitivity.html#regadj"><i class="fa fa-check"></i><b>10.2.2</b> General Regression Adjustment and Doubly Robust Estimation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="misc-topics.html"><a href="misc-topics.html"><i class="fa fa-check"></i><b>11</b> Misc Topics</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="misc-topics.html"><a href="misc-topics.html#misc-deltamethod"><i class="fa fa-check"></i><b>11.1</b> Delta Method</a></li>
+<li class="chapter" data-level="11.2" data-path="misc-topics.html"><a href="misc-topics.html#misc-randomdenom"><i class="fa fa-check"></i><b>11.2</b> Random Denominator for Independent Randomization Experiments</a></li>
+<li class="chapter" data-level="11.3" data-path="misc-topics.html"><a href="misc-topics.html#misc-mestimator"><i class="fa fa-check"></i><b>11.3</b> M-Estimator and Z-Estimator</a></li>
+</ul></li>
+<li class="part"><span><b>III Appendix</b></span></li>
+<li class="chapter" data-level="12" data-path="probability-minimum.html"><a href="probability-minimum.html"><i class="fa fa-check"></i><b>12</b> Probability Minimum</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="probability-minimum.html"><a href="probability-minimum.html#probability"><i class="fa fa-check"></i><b>12.1</b> probability</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="probability-minimum.html"><a href="probability-minimum.html#app-conditional-ind"><i class="fa fa-check"></i><b>12.1.1</b> Conditional Independence</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://alexdeng.github.io" target="blank">Alex Deng</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Causal Inference and Its Applications in Online Industry</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="probability-minimum" class="section level1" number="12">
+<h1><span class="header-section-number">Chapter 12</span> Probability Minimum</h1>
+<div id="probability" class="section level2" number="12.1">
+<h2><span class="header-section-number">12.1</span> probability</h2>
+<div id="app-conditional-ind" class="section level3" number="12.1.1">
+<h3><span class="header-section-number">12.1.1</span> Conditional Independence</h3>
+<p>Below are commonly used rules of conditional independence.</p>
+<p><strong>Symmetry</strong>:<br />
+<span class="math display">\[
+X \perp \! \! \! \! \perp Y \implies Y \perp \! \! \! \! \perp X.
+\]</span></p>
+<p><strong>Decomposition</strong>:
+<span class="math display">\[
+X \perp \! \! \! \! \perp A,B \implies X \perp \! \! \! \! \perp A \text{  and  } X \perp \! \! \! \! \perp B
+\]</span></p>
+<p><strong>Weak union</strong>:
+<span class="math display">\[
+X \perp \! \! \! \! \perp A,B \implies X \perp \! \! \! \! \perp A | B \text{  and  } X \perp \! \! \! \! \perp B | A
+\]</span></p>
+<p><strong>Contraction</strong>:
+<span class="math display">\[
+X \perp \! \! \! \! \perp A|B \text{  and  } X \perp \! \! \! \! \perp B \iff X \perp \! \! \! \! \perp A, B
+\]</span></p>
+<p><strong>Intersection</strong>:
+<span class="math display">\[
+X \perp \! \! \! \! \perp A|C, B \text{  and  } X \perp \! \! \! \! \perp B|C, A \implies X \perp \! \! \! \! \perp A, B | C
+\]</span></p>
+
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-agresti1998approximate" class="csl-entry">
+Agresti, Alan, and Brent A Coull. 1998. <span>“Approximate Is Better Than <span>‘Exact’</span> for Interval Estimation of Binomial Proportions.”</span> <em>The American Statistician</em> 52 (2): 119–26.
+</div>
+<div id="ref-stosim" class="csl-entry">
+Asmussen, Soren, and Peter Glynn. 2008. <em><span>Stochastic Simulation</span></em>. Springer-Verlag.
+</div>
+<div id="ref-athey2018approximate" class="csl-entry">
+Athey, Susan, Guido W Imbens, and Stefan Wager. 2018. <span>“Approximate Residual Balancing: Debiased Inference of Average Treatment Effects in High Dimensions.”</span> <em>Journal of the Royal Statistical Society: Series B (Statistical Methodology)</em> 80 (4): 597–623.
+</div>
+<div id="ref-bakshy2014designing" class="csl-entry">
+Bakshy, Eytan, Dean Eckles, and Michael S Bernstein. 2014. <span>“Designing and Deploying Online Field Experiments.”</span> In <em>Proceedings of the 23rd International Conference on World Wide Web</em>, edited by acm, 283–92. ACM.
+</div>
+<div id="ref-barber2012bayesian" class="csl-entry">
+Barber, David. 2012. <em>Bayesian Reasoning and Machine Learning</em>. Cambridge University Press.
+</div>
+<div id="ref-barber2016knockoff" class="csl-entry">
+Barber, Rina Foygel, and Emmanuel J Candes. 2016. <span>“A Knockoff Filter for High-Dimensional Selective Inference.”</span> <em>arXiv Preprint arXiv:1602.03574</em>.
+</div>
+<div id="ref-bartroff2012sequential" class="csl-entry">
+Bartroff, Jay, Tze Leung Lai, and Mei-Chiung Shih. 2012. <em>Sequential Experimentation in Clinical Trials: Design and Analysis</em>. Vol. 298. Springer Science &amp; Business Media.
+</div>
+<div id="ref-bates2014fitting" class="csl-entry">
+Bates, Douglas, Martin Mächler, Ben Bolker, and Steve Walker. 2014. <span>“Fitting Linear Mixed-Effects Models Using Lme4.”</span> <em>arXiv Preprint arXiv:1406.5823</em>.
+</div>
+<div id="ref-benjamin2018redefine" class="csl-entry">
+Benjamin, Daniel J, James O Berger, Magnus Johannesson, Brian A Nosek, E-J Wagenmakers, Richard Berk, Kenneth A Bollen, et al. 2018. <span>“Redefine Statistical Significance.”</span> <em>Nature Human Behaviour</em> 2 (1): 6.
+</div>
+<div id="ref-benjamini1995controlling" class="csl-entry">
+Benjamini, Yoav, and Yosef Hochberg. 1995. <span>“<span class="nocase">Controlling the false discovery rate: a practical and powerful approach to multiple testing</span>.”</span> <em>J. R. Stat. Soc. Ser. B</em>, 289–300.
+</div>
+<div id="ref-boos2000large" class="csl-entry">
+Boos, Dennis D, and Jacqueline M Hughes-Oliver. 2000. <span>“How Large Does n Have to Be for z and t Intervals?”</span> <em>The American Statistician</em> 54 (2): 121–28.
+</div>
+<div id="ref-brown1983estimation" class="csl-entry">
+Brown, Morton B, and Robert A Wolfe. 1983. <span>“Estimation of the Variance of Percentile Estimates.”</span> <em>Computational Statistics &amp; Data Analysis</em> 1: 167–74.
+</div>
+<div id="ref-carpenter2016stan" class="csl-entry">
+Carpenter, Bob, Andrew Gelman, Matt Hoffman, Daniel Lee, Ben Goodrich, Michael Betancourt, Michael A Brubaker, Jiqiang Guo, Peter Li, and Allen Riddell. 2016. <span>“Stan: A Probabilistic Programming Language.”</span> <em>Journal of Statistical Software</em> 20: 1–37.
+</div>
+<div id="ref-casella2002statistical" class="csl-entry">
+Casella, George, and Roger L Berger. 2002. <em>Statistical Inference, Second Edition</em>. Duxbury Press: Pacific Grove, CA.
+</div>
+<div id="ref-chamandy2015teaching" class="csl-entry">
+Chamandy, Nicholas, Omkar Muralidharan, and Stefan Wager. 2015. <span>“Teaching Statistics at Google-Scale.”</span> <em>The American Statistician</em> 69 (4): 283–91.
+</div>
+<div id="ref-coey2016people" class="csl-entry">
+Coey, Dominic, and Michael Bailey. 2016. <span>“People and Cookies: Imperfect Treatment Assignment in Online Experiments.”</span> In <em>Proceedings of the 25th International Conference on World Wide Web</em>, 1103–11. International World Wide Web Conferences Steering Committee.
+</div>
+<div id="ref-semiparamissing" class="csl-entry">
+Davidian, M, Anastasios A. Tsiatis, and S Leon. 2005. <span>“<span class="nocase">Semiparametric Estimation of Treatment Effect in a Pretest-Posttest Study with Missing Data</span>.”</span> <em>Stat. Sci.</em> 20 (3): 295–301.
+</div>
+<div id="ref-Deng:2016b" class="csl-entry">
+Deng, A., and X. Shi. 2016. <span>“Data-Driven Metric Development for Online Controlled Experiments: Seven Lessons Learned.”</span> In <em>Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em>.
+</div>
+<div id="ref-Deng2018kdd" class="csl-entry">
+Deng, Alex, Ulf Knoblich, and Jiannan Lu. 2018. <span>“Applying the Delta Method in Metric Analytics: A Practical Guide with Novel Ideas.”</span> In <em>Proceedings of the 24th ACM SIGKDD International Conference on Knowledge Discovery &amp;#38; Data Mining</em>, 233–42. KDD ’18. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/3219819.3219919">https://doi.org/10.1145/3219819.3219919</a>.
+</div>
+<div id="ref-deng2016continuous" class="csl-entry">
+Deng, Alex, Jiannan Lu, and Shouyuan Chen. 2016. <span>“Continuous Monitoring of a/b Tests Without Pain: Optional Stopping in Bayesian Testing.”</span> In <em>Data Science and Advanced Analytics (DSAA), 2016 IEEE International Conference on</em>, 243–52. IEEE.
+</div>
+<div id="ref-Deng2017WSDM" class="csl-entry">
+Deng, Alex, Jiannan Lu, and Jonthan Litz. 2017. <span>“Trustworthy Analysis of Online a/b Tests: Pitfalls, Challenges and Solutions.”</span> In <em>Proceedings of the Tenth ACM International Conference on Web Search and Data Mining</em>, 641–49. WSDM ’17. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/3018661.3018677">https://doi.org/10.1145/3018661.3018677</a>.
+</div>
+<div id="ref-deng2013cuped" class="csl-entry">
+Deng, Alex, Ya Xu, Ron Kohavi, and Toby Walker. 2013. <span>“<span class="nocase">Improving the sensitivity of online controlled experiments by utilizing pre-experiment data</span>.”</span> In <em>Proc. 6th ACM Int. Conf. Web Search Data Min.</em>, edited by acm, 123–32. ACM.
+</div>
+<div id="ref-choiceofexp" class="csl-entry">
+Deng, Shaojie, Roger Longbotham, Toby Walker, and Ya Xu. 2011. <span>“<span class="nocase">Choice of the Randomization Unit in Online Controlled Experiment</span>.”</span> <em>JSM Proc.</em>
+</div>
+<div id="ref-donner1987statistical" class="csl-entry">
+Donner, Allan. 1987. <span>“Statistical Methodology for Paired Cluster Designs.”</span> <em>American Journal of Epidemiology</em> 126 (5): 972–79.
+</div>
+<div id="ref-efron2011tweedie" class="csl-entry">
+Efron, Bradley. 2011. <span>“<span class="nocase">Tweedie’s formula and selection bias</span>.”</span> <em>J. Am. Stat. Assoc.</em> 106 (496): 1602–14.
+</div>
+<div id="ref-fisher1958cigarettes" class="csl-entry">
+Fisher, Ronald. 1958. <span>“Cigarettes, Cancer, and Statistics.”</span> <em>The Centennial Review of Arts &amp; Science</em> 2: 151–66.
+</div>
+<div id="ref-fisher1960percentile" class="csl-entry">
+Fisher, Sir Ronald A, and EA Cornish. 1960. <span>“The Percentile Points of Distributions Having Known Cumulants.”</span> <em>Technometrics</em> 2 (2): 209–25.
+</div>
+<div id="ref-fithian2014optimal" class="csl-entry">
+Fithian, William, Dennis Sun, and Jonathan Taylor. 2014. <span>“Optimal Inference After Model Selection.”</span> <em>arXiv Preprint arXiv:1410.2597</em>.
+</div>
+<div id="ref-freedman2008regressiona" class="csl-entry">
+Freedman, David A. 2008. <span>“<span class="nocase">On regression adjustments to experimental data</span>.”</span> <em>Adv. Appl. Math.</em> 40 (2): 180–93.
+</div>
+<div id="ref-gelman2014beyond" class="csl-entry">
+Gelman, Andrew, and John Carlin. 2014. <span>“Beyond Power Calculations: Assessing Type s (Sign) and Type m (Magnitude) Errors.”</span> <em>Perspectives on Psychological Science</em> 9 (6): 641–51.
+</div>
+<div id="ref-dagelman" class="csl-entry">
+Gelman, Andrew, and Jennifer Hill. 2006. <em><span class="nocase">Data analysis using regression and multilevel/hierarchical models</span></em>. Cambridge University Press.
+</div>
+<div id="ref-gomez2016netflix" class="csl-entry">
+Gomez-Uribe, Carlos A, and Neil Hunt. 2016. <span>“The Netflix Recommender System: Algorithms, Business Value, and Innovation.”</span> <em>ACM Transactions on Management Information Systems (TMIS)</em> 6 (4): 13.
+</div>
+<div id="ref-goodman2008dirty" class="csl-entry">
+Goodman, Steven. 2008. <span>“A Dirty Dozen: Twelve p-Value Misconceptions.”</span> In <em>Seminars in Hematology</em>, 45:135–40. 3. Elsevier.
+</div>
+<div id="ref-hainmueller2012entropy" class="csl-entry">
+Hainmueller, Jens. 2012. <span>“Entropy Balancing for Causal Effects: A Multivariate Reweighting Method to Produce Balanced Samples in Observational Studies.”</span> <em>Political Analysis</em> 20 (1): 25–46.
+</div>
+<div id="ref-hall2013bootstrap" class="csl-entry">
+Hall, Peter. 2013. <em>The Bootstrap and Edgeworth Expansion</em>. Springer Science &amp; Business Media.
+</div>
+<div id="ref-hoenig2001abuse" class="csl-entry">
+Hoenig, John M, and Dennis M Heisey. 2001. <span>“The Abuse of Power: The Pervasive Fallacy of Power Calculations for Data Analysis.”</span> <em>The American Statistician</em> 55 (1): 19–24.
+</div>
+<div id="ref-longterm43887" class="csl-entry">
+Hohnhold, Henning, Deirdre O’Brien, and Diane Tang. 2015. <span>“Focus on the Long-Term: It’s Better for Users and Business.”</span> In <em>Proceedings 21st Conference on Knowledge Discovery and Data Mining</em>. Sydney, Australia. <a href="http://dl.acm.org/citation.cfm?doid=2783258.2788583">http://dl.acm.org/citation.cfm?doid=2783258.2788583</a>.
+</div>
+<div id="ref-imai2014covariate" class="csl-entry">
+Imai, Kosuke, and Marc Ratkovic. 2014. <span>“Covariate Balancing Propensity Score.”</span> <em>Journal of the Royal Statistical Society: Series B (Statistical Methodology)</em> 76 (1): 243–63.
+</div>
+<div id="ref-imbens2015causal" class="csl-entry">
+Imbens, Guido W, and Donald B Rubin. 2015. <em>Causal Inference in Statistics, Social, and Biomedical Sciences</em>. Cambridge University Press.
+</div>
+<div id="ref-johari2017peeking" class="csl-entry">
+Johari, Ramesh, Pete Koomen, Leonid Pekelis, and David Walsh. 2017. <span>“Peeking at a/b Tests: Why It Matters, and What to Do about It.”</span> In <em>Proceedings of the 23rd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em>, 1517–25. ACM.
+</div>
+<div id="ref-jordan2004graphical" class="csl-entry">
+Jordan, Michael I. 2004. <span>“Graphical Models.”</span> <em>Statistical Science</em>, 140–55.
+</div>
+<div id="ref-klar2001current" class="csl-entry">
+Klar, Neil, and Allan Donner. 2001. <span>“Current and Future Challenges in the Design and Analysis of Cluster Randomization Trials.”</span> <em>Statistics in Medicine</em> 20 (24): 3729–40.
+</div>
+<div id="ref-kleiner2014scalable" class="csl-entry">
+Kleiner, Ariel, Ameet Talwalkar, Purnamrita Sarkar, and Michael I Jordan. 2014. <span>“<span class="nocase">A scalable bootstrap for massive data</span>.”</span> <em>J. R. Stat. Soc. Ser. B (Statistical Methodol.</em>
+</div>
+<div id="ref-puzzlingOutcomes" class="csl-entry">
+Kohavi, Ron, Alex Deng, Brian Frasca, Roger Longbotham, Toby Walker, and Ya Xu. 2012. <span>“<span>Trustworthy Online Controlled Experiments: Five Puzzling Outcomes Explained</span>.”</span> <em>Proc. 18th Conf. Knowl. Discov. Data Min.</em>
+</div>
+<div id="ref-abScale" class="csl-entry">
+Kohavi, Ron, Alex Deng, Brian Frasca, Ya Xu, Toby Walker, and Nils Pohlmann. 2013. <span>“Online Controlled Experiments at Large Scale.”</span> <em>Proc.19th Conf. Knowl. Discov. Data Min.</em>
+</div>
+<div id="ref-Kohavi2014SevenRules" class="csl-entry">
+Kohavi, Ron, Alex Deng, Roger Longbotham, and Ya Xu. 2014. <span>“<span class="nocase">Seven rules of thumb for web site experimenters</span>.”</span> In <em>Proc. 20th Conf. Knowl. Discov. Data Min.</em>, edited by acm, 1857–66. KDD ’14. New York, USA.
+</div>
+<div id="ref-kohavilongbotham2015" class="csl-entry">
+Kohavi, Ron, and Roger Longbotham. 2015. <span>“Online Controlled Experiments and a/b Tests.”</span> <em>Encyclopedia of Machine Learning and Data Mining</em>.
+</div>
+<div id="ref-expsurvey" class="csl-entry">
+Kohavi, Ron, Roger Longbotham, Dan Sommerfield, and Randal M Henne. 2009. <span>“<span class="nocase">Controlled Experiments on the Web: survey and practical guide</span>.”</span> <em>Data Min. Knowl. Discov.</em> 18: 140–81.
+</div>
+<div id="ref-Kohavi2010" class="csl-entry">
+Kohavi, Ron, Roger Longbotham, and Toby Walker. 2010. <span>“<span class="nocase">Online experiments: Practical lessons</span>.”</span> <em>Computer (Long. Beach. Calif).</em> 43 (9): 82–85.
+</div>
+<div id="ref-kohavi2010tracking" class="csl-entry">
+Kohavi, Ron, David Messner, Seth Eliot, Juan Lavista Ferres, Randy Henne, Vignesh Kannappan, and Justin Wang. 2010. <span>“Tracking Users’ Clicks and Submits: Tradeoffs Between User Experience and Data Loss.”</span> <em>Redmond: Sn</em>.
+</div>
+<div id="ref-krewski1976distribution" class="csl-entry">
+Krewski, Daniel. 1976. <span>“Distribution-Free Confidence Intervals for Quantile Intervals.”</span> <em>Journal of the American Statistical Association</em> 71 (354): 420–22.
+</div>
+<div id="ref-lauritzen1996graphical" class="csl-entry">
+Lauritzen, Steffen L. 1996. <em>Graphical Models</em>. Vol. 17. Clarendon Press.
+</div>
+<div id="ref-li2018balancing" class="csl-entry">
+Li, Fan, Kari Lock Morgan, and Alan M Zaslavsky. 2018. <span>“Balancing Covariates via Propensity Score Weighting.”</span> <em>Journal of the American Statistical Association</em> 113 (521): 390–400.
+</div>
+<div id="ref-lin2013agnostic" class="csl-entry">
+Lin, Winston. 2013. <span>“<span class="nocase">Agnostic notes on regression adjustments to experimental data: Reexamining Freedman’s critique</span>.”</span> <em>Ann. Appl. Stat.</em> 7 (1): 295–318.
+</div>
+<div id="ref-ludeng2016" class="csl-entry">
+Lu, Jiannan, and Alex Deng. 2016. <span>“Demystifying the Bias from Selective Inference: A Revisit to Dawid’s Treatment Selection Problem.”</span> <em>ArXiv Pre-Print</em>. <a href="http://arxiv.org/abs/1601.05835">http://arxiv.org/abs/1601.05835</a>.
+</div>
+<div id="ref-lu2018note" class="csl-entry">
+Lu, Jiannan, Yixuan Qiu, and Alex Deng. 2018. <span>“A Note on Type s/m Errors in Hypothesis Testing.”</span> <em>British Journal of Mathematical and Statistical Psychology</em>.
+</div>
+<div id="ref-meyer1987outer" class="csl-entry">
+Meyer, John S. 1987. <span>“Outer and Inner Confidence Intervals for Finite Population Quantile Intervals.”</span> <em>Journal of the American Statistical Association</em> 82 (397): 201–4.
+</div>
+<div id="ref-miratrix2013adjusting" class="csl-entry">
+Miratrix, Luke W, Jasjeet S Sekhon, and Bin Yu. 2013. <span>“<span class="nocase">Adjusting treatment effect estimates by post-stratification in randomized experiments</span>.”</span> <em>J. R. Stat. Soc. Ser. B (Statistical Methodol.</em> 75 (2): 369–96.
+</div>
+<div id="ref-counterfac" class="csl-entry">
+Morgan, Stephen L, and Christopher Winship. 2014. <em>Counterfactuals and Causal Inference</em>. Cambridge University Press.
+</div>
+<div id="ref-Murphy2012" class="csl-entry">
+Murphy, Kevin P. 2012. <em><span class="nocase">Machine learning: a probabilistic perspective</span></em>. MIT press.
+</div>
+<div id="ref-pearl1995causal" class="csl-entry">
+Pearl, Judea. 1995. <span>“Causal Diagrams for Empirical Research.”</span> <em>Biometrika</em> 82 (4): 669–88.
+</div>
+<div id="ref-causal_statsurvay" class="csl-entry">
+———. 2009. <span>“<span class="nocase">Causal inference in statistics: An overview</span>.”</span> <em>Stat. Surv.</em> 3: 96–146.
+</div>
+<div id="ref-regulation2016regulation" class="csl-entry">
+Regulation, General Data Protection. 2016. <span>“Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the Protection of Natural Persons with Regard to the Processing of Personal Data and on the Free Movement of Such Data, and Repealing Directive 95/46.”</span> <em>Official Journal of the European Union (OJ)</em> 59 (1-88): 294.
+</div>
+<div id="ref-ries2011lean" class="csl-entry">
+Ries, Eric. 2011. <em>The Lean Startup: How Today’s Entrepreneurs Use Continuous Innovation to Create Radically Successful Businesses</em>. Crown Books.
+</div>
+<div id="ref-robins1995semiparametric" class="csl-entry">
+Robins, James M, and Andrea Rotnitzky. 1995. <span>“Semiparametric Efficiency in Multivariate Regression Models with Missing Data.”</span> <em>Journal of the American Statistical Association</em> 90 (429): 122–29.
+</div>
+<div id="ref-Senn2008" class="csl-entry">
+Senn, S. 2008. <span>“<span class="nocase">A note concerning a selection "paradox" of Dawid’s</span>.”</span> <em>Am. Stat. Assoc.</em> 62 (3): 206–10. <a href="https://doi.org/10.1198/000313008X331530">https://doi.org/10.1198/000313008X331530</a>.
+</div>
+<div id="ref-shpitser2012identification" class="csl-entry">
+Shpitser, Ilya, and Judea Pearl. 2012. <span>“Identification of Conditional Interventional Distributions.”</span> <em>arXiv Preprint arXiv:1206.6876</em>.
+</div>
+<div id="ref-googlesurvey" class="csl-entry">
+Tang, Diane, Ashish Agarwal, Deirdre O’Brien, and Mike Meyer. 2010. <span>“<span>Overlapping Experiment Infrastructure: More, Better, Faster Experimentation</span>.”</span> <em>Proc. 16th Conf. Knowl. Discov. Data Min.</em>
+</div>
+<div id="ref-taylor2018post" class="csl-entry">
+Taylor, Jonathan, and Robert Tibshirani. 2018. <span>“Post-Selection Inference for-Penalized Likelihood Models.”</span> <em>Canadian Journal of Statistics</em> 46 (1): 41–61.
+</div>
+<div id="ref-taylor2015statistical" class="csl-entry">
+Taylor, Jonathan, and Robert J Tibshirani. 2015. <span>“Statistical Learning and Selective Inference.”</span> <em>Proceedings of the National Academy of Sciences</em> 112 (25): 7629–34.
+</div>
+<div id="ref-semipara" class="csl-entry">
+Tsiatis, Anastasios A. 2006. <em><span class="nocase">Semiparametric Theory and Missing Data</span></em>. Springer-Verlag.
+</div>
+<div id="ref-VanderVaart2000" class="csl-entry">
+Van der Vaart, Aad W. 2000. <em><span class="nocase">Asymptotic statistics</span></em>. Vol. 3. Cambridge university press.
+</div>
+<div id="ref-wager2017estimation" class="csl-entry">
+Wager, Stefan, and Susan Athey. 2017. <span>“Estimation and Inference of Heterogeneous Treatment Effects Using Random Forests.”</span> <em>Journal of the American Statistical Association</em>, no. just-accepted.
+</div>
+<div id="ref-allofstat" class="csl-entry">
+Wasserman, Larry. 2003. <em><span class="nocase">All of Statistics: A Concise Course in Statistical Inference</span></em>. Springer.
+</div>
+<div id="ref-linkedinInfra" class="csl-entry">
+Xu, Ya, Nanyu Chen, Addrian Fernandez, Omar Sinno, and Anmol Bhasin. 2015. <span>“From Infrastructure to Culture: A/b Testing Challenges in Large Scale Social Networks.”</span> In <em>Proceedings of the 21th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em>, 2227–36. KDD ’15. New York, NY, USA: ACM. <a href="https://doi.org/10.1145/2783258.2788602">https://doi.org/10.1145/2783258.2788602</a>.
+</div>
+<div id="ref-yangtsiatis" class="csl-entry">
+Yang, Li, and Anastasios A. Tsiatis. 2001. <span>“<span class="nocase">Efficiency Study of Estimators for a Treatment Effect in a Pretest-Posttest Trial</span>.”</span> <em>Am. Stat.</em> 55 (4): 314–21.
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="misc-topics.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

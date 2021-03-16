@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 10 Improving Metric Sensitivity | Causal Inference and Its Applications in Online Industry</title>
+  <meta name="description" content="this is a draft book." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 10 Improving Metric Sensitivity | Causal Inference and Its Applications in Online Industry" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="this is a draft book." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 10 Improving Metric Sensitivity | Causal Inference and Its Applications in Online Industry" />
+  
+  <meta name="twitter:description" content="this is a draft book." />
+  
+
+<meta name="author" content="Alex Deng" />
+
+
+<meta name="date" content="2021-03-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="abdiagnosis.html"/>
+<link rel="next" href="misc-topics.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="libs/viz/viz.js"></script>
+<link href="libs/DiagrammeR-styles/styles.css" rel="stylesheet" />
+<script src="libs/grViz-binding/grViz.js"></script>
+
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Draft</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="part"><span><b>I Causal Inference: An Overview</b></span></li>
+<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="simpson.html"><a href="simpson.html"><i class="fa fa-check"></i><b>2</b> Correlation and Simpson’s Paradox</a></li>
+<li class="chapter" data-level="3" data-path="randomintro.html"><a href="randomintro.html"><i class="fa fa-check"></i><b>3</b> Randomized Experiment</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="randomintro.html"><a href="randomintro.html#completerand"><i class="fa fa-check"></i><b>3.1</b> Complete Randomization</a></li>
+<li class="chapter" data-level="3.2" data-path="randomintro.html"><a href="randomintro.html#indrand"><i class="fa fa-check"></i><b>3.2</b> Independent Randomization</a></li>
+<li class="chapter" data-level="3.3" data-path="randomintro.html"><a href="randomintro.html#clusterrandomization"><i class="fa fa-check"></i><b>3.3</b> Clustered Randomization</a></li>
+<li class="chapter" data-level="3.4" data-path="randomintro.html"><a href="randomintro.html#aore"><i class="fa fa-check"></i><b>3.4</b> Analysis of Randomized Experiments as Two Sample Problem</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="rcm.html"><a href="rcm.html"><i class="fa fa-check"></i><b>4</b> Potential Outcomes Framework</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="rcm.html"><a href="rcm.html#naive-estimation"><i class="fa fa-check"></i><b>4.1</b> Naive Estimation</a></li>
+<li class="chapter" data-level="4.2" data-path="rcm.html"><a href="rcm.html#randomization-and-unconfoundedness"><i class="fa fa-check"></i><b>4.2</b> Randomization and Unconfoundedness</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="rcm.html"><a href="rcm.html#matching"><i class="fa fa-check"></i><b>4.2.1</b> Conditional Unconfoundedness, Matching and Covariates Balancing</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="rcm.html"><a href="rcm.html#propensity-score"><i class="fa fa-check"></i><b>4.3</b> Propensity Score</a></li>
+<li class="chapter" data-level="4.4" data-path="rcm.html"><a href="rcm.html#sutva"><i class="fa fa-check"></i><b>4.4</b> SUTVA</a></li>
+<li class="chapter" data-level="4.5" data-path="rcm.html"><a href="rcm.html#missingdata"><i class="fa fa-check"></i><b>4.5</b> Missing Data and Weighted Samples</a></li>
+<li class="chapter" data-level="4.6" data-path="rcm.html"><a href="rcm.html#missing-data-mechanisms-and-ignorability"><i class="fa fa-check"></i><b>4.6</b> Missing Data Mechanisms and Ignorability</a></li>
+<li class="chapter" data-level="4.7" data-path="rcm.html"><a href="rcm.html#is"><i class="fa fa-check"></i><b>4.7</b> Importance Sampling</a></li>
+<li class="chapter" data-level="4.8" data-path="rcm.html"><a href="rcm.html#ipw"><i class="fa fa-check"></i><b>4.8</b> Inverse Propensity Score Weighting (IPW)</a></li>
+<li class="chapter" data-level="4.9" data-path="rcm.html"><a href="rcm.html#dr"><i class="fa fa-check"></i><b>4.9</b> Doubly Robust Estimation</a></li>
+<li class="chapter" data-level="4.10" data-path="rcm.html"><a href="rcm.html#bias-variance"><i class="fa fa-check"></i><b>4.10</b> Bias-Variance Trade off and Covariates Overlap</a></li>
+<li class="chapter" data-level="4.11" data-path="rcm.html"><a href="rcm.html#psmm"><i class="fa fa-check"></i><b>4.11</b> Other Propensity Score Modeling Methods</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="cgm.html"><a href="cgm.html"><i class="fa fa-check"></i><b>5</b> Causal Graphical Model</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="cgm.html"><a href="cgm.html#structural-equation-model-causal-diagram-and-d-separation"><i class="fa fa-check"></i><b>5.1</b> Structural Equation Model, Causal Diagram and d-separation</a></li>
+<li class="chapter" data-level="5.2" data-path="cgm.html"><a href="cgm.html#the-do-operator"><i class="fa fa-check"></i><b>5.2</b> the <em>do</em> operator</a></li>
+<li class="chapter" data-level="5.3" data-path="cgm.html"><a href="cgm.html#the-back-door-criterion"><i class="fa fa-check"></i><b>5.3</b> The Back-door Criterion</a></li>
+<li class="chapter" data-level="5.4" data-path="cgm.html"><a href="cgm.html#causal-mechanism-and-the-front-door-criterion"><i class="fa fa-check"></i><b>5.4</b> Causal Mechanism and the Front-door Criterion</a></li>
+<li class="chapter" data-level="5.5" data-path="cgm.html"><a href="cgm.html#general-identification"><i class="fa fa-check"></i><b>5.5</b> General Identification Strategy</a></li>
+<li class="chapter" data-level="5.6" data-path="cgm.html"><a href="cgm.html#rcm-vs.-cgm"><i class="fa fa-check"></i><b>5.6</b> RCM vs. CGM</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="regression-based-methods.html"><a href="regression-based-methods.html"><i class="fa fa-check"></i><b>6</b> Regression-based Methods</a></li>
+<li class="part"><span><b>II Large Scale Online Controlled Experiments</b></span></li>
+<li class="chapter" data-level="7" data-path="abintro.html"><a href="abintro.html"><i class="fa fa-check"></i><b>7</b> A/B Testing: Beyond Randomized Experiments</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="abintro.html"><a href="abintro.html#specialaspects"><i class="fa fa-check"></i><b>7.1</b> Special Aspects of A/B Tests</a></li>
+<li class="chapter" data-level="7.2" data-path="abintro.html"><a href="abintro.html#telemetry"><i class="fa fa-check"></i><b>7.2</b> Instrumentation and Telemetry</a></li>
+<li class="chapter" data-level="7.3" data-path="abintro.html"><a href="abintro.html#common-pitfalls"><i class="fa fa-check"></i><b>7.3</b> Common Pitfalls</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="abstats.html"><a href="abstats.html"><i class="fa fa-check"></i><b>8</b> Statistical Analysis of A/B Tests</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="abstats.html"><a href="abstats.html#metric"><i class="fa fa-check"></i><b>8.1</b> Metric</a></li>
+<li class="chapter" data-level="8.2" data-path="abstats.html"><a href="abstats.html#randomization-unit-and-analysis-unit"><i class="fa fa-check"></i><b>8.2</b> Randomization Unit and Analysis Unit</a></li>
+<li class="chapter" data-level="8.3" data-path="abstats.html"><a href="abstats.html#abstatsover"><i class="fa fa-check"></i><b>8.3</b> Inference for Average Treatment Effect of A/B Tests</a></li>
+<li class="chapter" data-level="8.4" data-path="abstats.html"><a href="abstats.html#indvar"><i class="fa fa-check"></i><b>8.4</b> Independence Assumption and Variance Estimation</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="abstats.html"><a href="abstats.html#independence-assumption"><i class="fa fa-check"></i><b>8.4.1</b> Independence Assumption</a></li>
+<li class="chapter" data-level="8.4.2" data-path="abstats.html"><a href="abstats.html#variance-estimation-for-average-and-weighted-average"><i class="fa fa-check"></i><b>8.4.2</b> Variance Estimation for Average and Weighted Average</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="abstats.html"><a href="abstats.html#normalassumption"><i class="fa fa-check"></i><b>8.5</b> Central Limit Theorem and Normal Approximation</a></li>
+<li class="chapter" data-level="8.6" data-path="abstats.html"><a href="abstats.html#percentilevar"><i class="fa fa-check"></i><b>8.6</b> Confidence Interval and Variance Estimation for Percentile metrics</a></li>
+<li class="chapter" data-level="8.7" data-path="abstats.html"><a href="abstats.html#p-value-statistical-power-s-and-m-error"><i class="fa fa-check"></i><b>8.7</b> p-Value, Statistical Power, S and M Error</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="abstats.html"><a href="abstats.html#p-value"><i class="fa fa-check"></i><b>8.7.1</b> p-Value</a></li>
+<li class="chapter" data-level="8.7.2" data-path="abstats.html"><a href="abstats.html#statistical-power"><i class="fa fa-check"></i><b>8.7.2</b> Statistical Power</a></li>
+<li class="chapter" data-level="8.7.3" data-path="abstats.html"><a href="abstats.html#type-s-and-type-m-error"><i class="fa fa-check"></i><b>8.7.3</b> Type S and Type M Error</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="abstats.html"><a href="abstats.html#aoabchallenge"><i class="fa fa-check"></i><b>8.8</b> Statistical Challenges</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="abdiagnosis.html"><a href="abdiagnosis.html"><i class="fa fa-check"></i><b>9</b> System Diagnosis and Quality Checks for A/B Tests</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="abdiagnosis.html"><a href="abdiagnosis.html#system-validation-using-aa-test"><i class="fa fa-check"></i><b>9.1</b> System Validation using A/A Test</a></li>
+<li class="chapter" data-level="9.2" data-path="abdiagnosis.html"><a href="abdiagnosis.html#sample-ratio-mismatch"><i class="fa fa-check"></i><b>9.2</b> Sample Ratio Mismatch</a></li>
+<li class="chapter" data-level="9.3" data-path="abdiagnosis.html"><a href="abdiagnosis.html#trigger-and-filter-condition"><i class="fa fa-check"></i><b>9.3</b> Trigger and Filter Condition</a></li>
+<li class="chapter" data-level="9.4" data-path="abdiagnosis.html"><a href="abdiagnosis.html#interaction-detection"><i class="fa fa-check"></i><b>9.4</b> Interaction Detection</a></li>
+<li class="chapter" data-level="9.5" data-path="abdiagnosis.html"><a href="abdiagnosis.html#metric-denominator-mismatch"><i class="fa fa-check"></i><b>9.5</b> Metric Denominator Mismatch</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="sensitivity.html"><a href="sensitivity.html"><i class="fa fa-check"></i><b>10</b> Improving Metric Sensitivity</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="sensitivity.html"><a href="sensitivity.html#metric-sensitivity-decomposition"><i class="fa fa-check"></i><b>10.1</b> Metric Sensitivity Decomposition</a></li>
+<li class="chapter" data-level="10.2" data-path="sensitivity.html"><a href="sensitivity.html#vrreg"><i class="fa fa-check"></i><b>10.2</b> Variance Reduction</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="sensitivity.html"><a href="sensitivity.html#cuped"><i class="fa fa-check"></i><b>10.2.1</b> Control Variates and CUPED</a></li>
+<li class="chapter" data-level="10.2.2" data-path="sensitivity.html"><a href="sensitivity.html#regadj"><i class="fa fa-check"></i><b>10.2.2</b> General Regression Adjustment and Doubly Robust Estimation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="misc-topics.html"><a href="misc-topics.html"><i class="fa fa-check"></i><b>11</b> Misc Topics</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="misc-topics.html"><a href="misc-topics.html#misc-deltamethod"><i class="fa fa-check"></i><b>11.1</b> Delta Method</a></li>
+<li class="chapter" data-level="11.2" data-path="misc-topics.html"><a href="misc-topics.html#misc-randomdenom"><i class="fa fa-check"></i><b>11.2</b> Random Denominator for Independent Randomization Experiments</a></li>
+<li class="chapter" data-level="11.3" data-path="misc-topics.html"><a href="misc-topics.html#misc-mestimator"><i class="fa fa-check"></i><b>11.3</b> M-Estimator and Z-Estimator</a></li>
+</ul></li>
+<li class="part"><span><b>III Appendix</b></span></li>
+<li class="chapter" data-level="12" data-path="probability-minimum.html"><a href="probability-minimum.html"><i class="fa fa-check"></i><b>12</b> Probability Minimum</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="probability-minimum.html"><a href="probability-minimum.html#probability"><i class="fa fa-check"></i><b>12.1</b> probability</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="probability-minimum.html"><a href="probability-minimum.html#app-conditional-ind"><i class="fa fa-check"></i><b>12.1.1</b> Conditional Independence</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://alexdeng.github.io" target="blank">Alex Deng</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Causal Inference and Its Applications in Online Industry</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="sensitivity" class="section level1" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Improving Metric Sensitivity</h1>
+<p>There are two important aspects for a metric: its directionality and sensitivity <span class="citation">(<a href="probability-minimum.html#ref-Deng:2016b" role="doc-biblioref">A. Deng and Shi 2016</a>)</span>. The directionality of a metric tells us how to interpret the movement of it. In other words, the movement of the metric positively or negatively should be able to tell us something good or bad happened. Metrics without a clear directionality may still be useful for other purposes such as to provide side information for another main metric, but they are unfit to aid directly in decision making. Sensitivity of a metric reflects how likely we can <em>move</em> the metric in an experiment. The more sensitive the metric, the more <em>actionable</em> the metric is. A metric can have very good directionality but if it rarely moves in a typical A/B tests, it is barely useful.</p>
+<p>Directionality is largely inherent from the design and definition of the metric itself. Sensitivity, on the other hand, not only depends on the metric definition, but also the experiment design and statistical method used for inference.</p>
+<div id="metric-sensitivity-decomposition" class="section level2" number="10.1">
+<h2><span class="header-section-number">10.1</span> Metric Sensitivity Decomposition</h2>
+<p>By definition, metric sensitivity reflects how easy a metric can be moved in an A/B test. What do we mean by move a metric? We have learned in Chapter <a href="abstats.html#abstats">8</a> that being a statistic, the movement of a metric need to be interpreted in a statistical way. For a predefined confidence level <span class="math inline">\(\alpha\)</span>, we declare a metric moved if the null hypothesis of zero ATE is rejected at <span class="math inline">\(\alpha\)</span> level. That is, the p-value of a two-sided null hypothesis test is less than <span class="math inline">\(\alpha\)</span>, or equivalently the two-sided <span class="math inline">\(1-\alpha\)</span> confidence interval excludes zero. Under this definition, the probability of a metric <em>moved</em> in an A/B test is given by:</p>
+<p><span class="math display" id="eq:sensitivity">\[\begin{equation}
+P(\text{Reject $H_0$}) = \int P(\text{Reject $H_0$}|\delta)dP(\delta)\,, \tag{10.1}
+\end{equation}\]</span>
+where <span class="math inline">\(\delta\)</span> is the true ATE and the integration is to average over a distribution of treatment effect <span class="math inline">\(\delta\)</span>. From Equation <a href="sensitivity.html#eq:sensitivity">(10.1)</a> it is easy to see the sensitivity can be decomposed into two factors:</p>
+<ol style="list-style-type: decimal">
+<li>The statistical power: The probability of rejecting the null hypothesis given a fixed ATE <span class="math inline">\(\delta\)</span>.</li>
+<li>The distribution of the true ATE <span class="math inline">\(\delta\)</span>.</li>
+</ol>
+<p>Therefore, to improve the sensitivity, we can either improve the statistical power, or change the effect <span class="math inline">\(\delta\)</span> itself. This can also be seen from the z-score
+<span class="math display">\[
+\frac{\Delta}{\sqrt{\sigma_t^2/n_t + \sigma_c^2/n_c}} \,,
+\]</span>
+whose mean value is
+<span class="math display">\[
+\frac{\delta}{\sqrt{\sigma_t^2/n_t + \sigma_c^2/n_c}} \,.
+\]</span>
+On average, to increase the value of the absolute value of z-score, we either increase the numerator <span class="math inline">\(|\delta|\)</span> — that is to change the distribution of <span class="math inline">\(\delta\)</span>,
+or decrease the denominator to increase statistical power. When we found a metric hard to move in experiments and seeks way to improve its sensitivity, it is crucial to understand which one of the two factors is the main issue.</p>
+<p>In most cases lacking sensitivity of a metric is mainly due to low statistical power, and we should focus on reducing variance of the metric. We can reduce variance of the metric by either increasing the sample size of each variants, or coming up with a more efficient ATE estimator that has less variance than the standard <span class="math inline">\(\Delta\)</span>. Increasing sample size can be done by running experiment at a larger traffic percentage for each variant group, e.g., using 20% traffic for both treatment and control instead of 5%. This approach is limited to 50% treatment and 50% control as the maximum, and even less traffic per group if we run multiple treatments concurrently. Another common way of increasing sample size is to run experiments longer. Two week experiment typically have more users than one week experiment. However, as mentioned in Section <a href="abintro.html#specialaspects">7.1</a>, when we change experiment period from one week to two weeks, the population mixture for heavy user and casual user also changes, as well as the distribution of metrics. As the result metric variance may not decrease, as shown in Figure <a href="abintro.html#fig:growingsample">7.1</a>. Nevertheless, for most metrics running experiment longer increases statistical power. Reducing metric variance via more efficient ATE estimator is always a good thing to do whenever possible to make sure we don’t leave any “free” sensitivity on the table. This is be our topic in Section <a href="sensitivity.html#vrreg">10.2</a>.</p>
+<p>When low sensitivity is due to the numerator — the <span class="math inline">\(\delta\)</span>, it means the distribution of <span class="math inline">\(\delta\)</span> is very close to 0 and can be treated as practically 0 most of the time. The first question we should be asking is what is the triggering rate of the change we are testing. If the change we make by design will only affect a very small proportion of the population, then majority of the users will not have any treatment effect and including them in the analysis will only <em>dilute</em> the <span class="math inline">\(\delta\)</span>. By zooming into those users who are affected by the treatment, we can increase <span class="math inline">\(|\delta|\)</span> and improve sensitivity. Analyzing only triggered population is called triggered analyses. When doing triggered analysis, it is</p>
+</div>
+<div id="vrreg" class="section level2" number="10.2">
+<h2><span class="header-section-number">10.2</span> Variance Reduction</h2>
+<p>So far we have been using the simple difference of sample averages <span class="math inline">\(\Delta\)</span> to estimate the ATE <span class="math inline">\(\delta\)</span>. Randomization guarantees it is unbiased, that is <span class="math inline">\(E(\Delta) = \delta\)</span>. The statistical power of the two sample test based on <span class="math inline">\(\Delta\)</span> relies on its variance <span class="math inline">\(\mathrm{Var}(\Delta)\)</span>. Reducing its variance increases statistical power and the sensitivity of the metric.</p>
+<p>Usually, there is a trade-off between variance and bias, so called bias-variance trade-off. However, as we will see, there is a way to reduce the variance without introducing any bias. Statisticians calls this efficiency augmentation <span class="citation">(<a href="probability-minimum.html#ref-semipara" role="doc-biblioref">Tsiatis 2006</a>)</span>. Efficiency augmentation here means more accurate estimation using the same amount of information or sample size. In other words, we seek to come up with a new estimator <span class="math inline">\(\Delta^*\)</span> to replace <span class="math inline">\(\Delta\)</span> that is still unbiased and with smaller variance. We show a simple and powerful idea based on variance reduction using control variates from Monte Carlo simulation. The general theory of regression adjustment and semiparametric efficiency augmentation is closely related to the idea of doubly robust estimation in Section <a href="rcm.html#dr">4.9</a>.</p>
+<div id="cuped" class="section level3" number="10.2.1">
+<h3><span class="header-section-number">10.2.1</span> Control Variates and CUPED</h3>
+<p>In the context of Monte Carlo simulation, we face a similar problem of estimate the mean <span class="math inline">\(\mathrm{E}(Y)\)</span> of a random variable <span class="math inline">\(Y\)</span> for which we can simulate (draw sample) from. The naive Monte Carlo estimator is the sample mean <span class="math inline">\(\overline{Y}\)</span>, similar to the naive ATE estimator <span class="math inline">\(\Delta\)</span>. Control variates provide an alternative Monte Carlo estimator with smaller variance. To do that, we need another random variable <span class="math inline">\(X\)</span> with <em>known</em> mean <span class="math inline">\(\mu_x=\mathrm{E}(X)\)</span>. For any fixed value of <span class="math inline">\(\theta\)</span>, the following is also an unbiased estimator for <span class="math inline">\(\mathrm{E}(Y)\)</span>:
+<span class="math display">\[
+\widehat{Y}_{cv}:=\overline{Y} - \theta \overline{X} + \theta \mu_x\,.
+\]</span>
+The unbiasedness of <span class="math inline">\(\widehat{Y}_{cv}\)</span> is due to the fact that last two terms on the right hand side cancels with each other since <span class="math inline">\(\mathrm{E}(\overline{X})= \mu_x\)</span>. Also note that this estimator requires <span class="math inline">\(\mu_x\)</span> to be known to even be defined.</p>
+<p>The variance of this newly created estimator <span class="math inline">\(\widehat{Y}_{cv}\)</span> is
+<span class="math display">\[\begin{align*}
+\mathrm{Var} (\widehat{Y}_{cv}) &amp;= \mathrm{Var}  (\overline{Y} - \theta \overline{X}) = \mathrm{Var}  (Y-\theta X)/n  \\
+&amp;=\frac{1}{n} (\mathrm{Var} Y) + \theta^2\mathrm{Var} (X) - 2\theta\mathrm{Cov}  (Y,X))\,.
+\end{align*}\]</span>
+Note that <span class="math inline">\(\mathrm{Var} (\widehat{Y}_{cv})\)</span> is minimized when we choose
+<span class="math display" id="eq:optTheta">\[\begin{align}
+\theta = \mathrm{Cov}(Y,X)/\mathrm{Var}(X) \tag{10.2}
+\end{align}\]</span>
+and with this optimal choice of <span class="math inline">\(\theta\)</span>, we have
+<span class="math display">\[
+\mathrm{Var} (\widehat{Y}_{cv}) = \mathrm{Var}(\overline{Y}) (1- \rho^2) \,,
+\]</span>
+where <span class="math inline">\(\rho = \mathrm{Cor} (Y,X)\)</span> is the <em>correlation</em> between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span>. That is
+<span class="math display">\[
+\frac{\mathrm{Var} (\widehat{Y}_{cv})}{\mathrm{Var}(\overline{Y})} = 1 - \rho^2 \,.
+\]</span>
+That is, the variance is reduced by a factor of <span class="math inline">\(\rho^2\)</span>! The larger <span class="math inline">\(\rho\)</span>, the better the variance reduction.</p>
+<p>The single control variate case can be easily generalized to include multiple variables. It is interesting to point out the connection with linear regression. The optimal <span class="math inline">\(\theta\)</span> turns out to be the ordinary least square (OLS) solution of regressing (centered) <span class="math inline">\(Y\)</span> on (centered) <span class="math inline">\(X\)</span>, which in multiple variable case has variance
+<span class="math display">\[\begin{align*} 
+\mathrm{Var} (\widehat{Y}_{cv}) &amp;= \mathrm{Var}(\overline{Y}) (1- R^2) \,,
+\end{align*}\]</span>
+with <span class="math inline">\(R^2\)</span> being the proportion of variance explained coefficient from the linear regression.</p>
+<p>It is also possible to use nonlinear adjustment. Instead of allowing only linear adjustment, we can minimize variance in a more general functional space. Let
+<span class="math display" id="eq:cv2">\[\begin{align}
+\widehat{Y}_{cv} = \overline{Y} - \overline{f(X)} + \mathrm{E}(f(X)), \tag{10.3}
+\end{align}\]</span>
+and then try to minimize the variance of . It can be shown that the regression function <span class="math inline">\(\mathrm{E} (Y|X)\)</span> gives the optimal <span class="math inline">\(f(X)\)</span>.</p>
+<hr />
+<p>Exercise: Prove <span class="math inline">\(f(X) = \mathrm{E} (Y|X)\)</span> is the optimal control variates for <span class="math inline">\(Y\)</span> using <span class="math inline">\(X\)</span>.</p>
+<hr />
+<p>So far we have been looking at one sample mean and assume the mean of control variate <span class="math inline">\(\mu_x\)</span> to be known. Utilizing control variates to reduce variance is a very common technique in Monte Carlo simulation <span class="citation">(<a href="probability-minimum.html#ref-stosim" role="doc-biblioref">Asmussen and Glynn 2008</a>)</span>. The difficulty of applying it usually boils down to finding a control variate <span class="math inline">\(X\)</span> that is highly correlated with <span class="math inline">\(Y\)</span> and at the same time has known <span class="math inline">\(\mathrm{E}(X)\)</span>.</p>
+<p><span class="citation"><a href="probability-minimum.html#ref-deng2013cuped" role="doc-biblioref">Alex Deng et al.</a> (<a href="probability-minimum.html#ref-deng2013cuped" role="doc-biblioref">2013</a>)</span> made the observation that in a randomized experiment, we don’t need to know <span class="math inline">\(\mu_x\)</span> to use <span class="math inline">\(X\)</span> as control variate because we care about the ATE, not the two means <span class="math inline">\(\mathrm{Y^{(t)}}\)</span> and <span class="math inline">\(\mathrm{Y^{(c)}}\)</span> for treatment and control groups. If we replace <span class="math inline">\(\overline{Y^{(t)}}\)</span> by <span class="math inline">\(\overline{Y^{(t)}_{cv}}\)</span> and <span class="math inline">\(\overline{Y^{(c)}}\)</span> by <span class="math inline">\(\overline{Y^{(c)}_{cv}}\)</span>, and then define
+<span class="math display">\[\begin{align*}
+\Delta^* &amp;:= \overline{Y^{(t)}_{cv}} - \overline{Y^{(c)}_{cv}} \\
+    &amp;= \Delta(Y) - \theta \Delta(X) + \theta (\mathrm{E}(X^{t})-\mathrm{E}(X^{c}))\,.
+\end{align*}\]</span>
+Here <span class="math inline">\(\Delta(Y) = \overline{Y^{t}} - \overline{Y^{c}}\)</span> and <span class="math inline">\(\Delta(X) = \overline{X^{t}} - \overline{X^{c}}\)</span> are
+simple difference of sample means. From Equation <a href="sensitivity.html#eq:deltacv">(10.4)</a> it is apparent that if <span class="math inline">\(\mathrm{E}(X^{t})=\mathrm{E}(X^{c}))\)</span>, the last term disappear and
+<span class="math display" id="eq:deltacv">\[\begin{equation}
+\Delta^* = \Delta(Y) - \theta \Delta(X) \tag{10.4}\,.
+\end{equation}\]</span></p>
+<p>In a few elementary steps, we have achieved wonder. This new <span class="math inline">\(\Delta^*\)</span> in Equation <a href="sensitivity.html#eq:deltacv">(10.4)</a> does not involve any unknown mean <span class="math inline">\(\mathrm{E}(X^{t})\)</span> or <span class="math inline">\(\mathrm{E}(X^{c})\)</span>. Moreover, its variance can be greatly reduced comparing to the original ATE estimator <span class="math inline">\(\Delta\)</span> thanks to control variate <span class="math inline">\(X\)</span>. The only requirement is the control variates <span class="math inline">\(X\)</span> we picked need to satisfy the condition
+<span class="math display">\[
+\mathrm{E}(X^{t})=\mathrm{E}(X^{c}))\,.
+\]</span>
+that is, the ATE on <span class="math inline">\(X\)</span> must be zero. These kind of <span class="math inline">\(X\)</span> are abundant in practice, because a treatment cannot possibly impact anything observed <strong>before</strong> an experiment unit get exposed to the treatment. <span class="citation"><a href="probability-minimum.html#ref-deng2013cuped" role="doc-biblioref">Alex Deng et al.</a> (<a href="probability-minimum.html#ref-deng2013cuped" role="doc-biblioref">2013</a>)</span> calls these <em>pre-experiment</em> variables and named the simple procedure described so far <em>CUPED</em> (Controlled experiment Using Pre-Experiment Data), and demonstrated the effectiveness of using the same metric data for the pre-experiment period as control variates performs well in practice. Figure <a href="sensitivity.html#fig:cupedcv">10.1</a> shows the variance of a metric reduced by more than 50%. With only half of the original sample size, <span class="math inline">\(\Delta^*\)</span> of CUPED produces more statistical power than estimating ATE by <span class="math inline">\(\Delta\)</span>.</p>
+<div class="figure"><span id="fig:cupedcv"></span>
+<img src="images/cuped.PNG" alt="Variance Reduction in Action for a real experiment. Top: p-value. Bottom: p-value when using only half the users for CUPED." width="70%" />
+<p class="caption">
+Figure 10.1: Variance Reduction in Action for a real experiment. Top: p-value. Bottom: p-value when using only half the users for CUPED.
+</p>
+</div>
+<p>A few important remarks:</p>
+<ol style="list-style-type: decimal">
+<li>Optimal <span class="math inline">\(\theta\)</span> is <span class="math inline">\(\mathrm{Cov}(Y,X)/\mathrm{Var}(X)\)</span> for control variates. In CUPED, we have treatment and control groups. Should we use treatment or control group to define the optimal <span class="math inline">\(\theta\)</span>? The answer is it usually does not matter much. Note that the CUPED estimator <span class="math inline">\(\Delta^*\)</span> is unbiased for <em>any</em> fixed value of <span class="math inline">\(\theta\)</span>, and different <span class="math inline">\(\theta\)</span> merely affect variance reduction rate. As long as the treatment effect is not too big, the optimal <span class="math inline">\(\theta\)</span> for the two groups are very close and it does not make a lot of difference which one to choose. If needed, one can optimize <span class="math inline">\(\theta\)</span> to minimize the variance of <span class="math inline">\(\Delta^*\)</span> directly. The minimizer of <span class="math inline">\(\mathrm{Var}(\Delta^*)\)</span> is
+<span class="math display">\[
+\frac{\mathrm{Cov}(\overline{Y^{t}},\overline{X^{t}})+\mathrm{Cov}(\overline{Y^{c}},\overline{X^{c}})}{\mathrm{Var}(\overline{X^{t}})+\mathrm{Var}(\overline{X^{c}})}\,.
+\]</span>
+Another choice is to use pooled data of treatment and control to compute <span class="math inline">\(\theta\)</span>. In Section <a href="sensitivity.html#regadj">10.2.2</a> we will use results from more general semiparametric theory to bring a much clearer picture.</li>
+<li>Equation <a href="sensitivity.html#eq:deltacv">(10.4)</a> can be trivially extended to nonlinear adjustment:
+<span class="math display" id="eq:deltacv2">\[\begin{equation}
+\Delta^* := \overline{Y^{(t)}_{cv}} - \overline{Y^{(c)}_{cv}} = \Delta(Y) - \Delta(f(X)) \tag{10.5}\,.
+\end{equation}\]</span>
+Similar to control variates, the closer <span class="math inline">\(f(X)\)</span> to <span class="math inline">\(\mathrm{E}(Y|X)\)</span>, the better the variance reduction.</li>
+<li>Pre-experiment data does not literally means data collected before the experiment begins. It can be anything before the <em>triggering</em> of the treatment intervention. For example, the day-of-week a user is first observed in the experiment is independent of the experiment itself, as well as the age, gender, browser and the device a user uses.</li>
+<li>Control variates <span class="math inline">\(X\)</span> can be categorical (discrete) or continuous. When <span class="math inline">\(X\)</span> is categorical, we can use one-hot encoder to create dummy binary variables, and CUPED can be seen as post-stratification adjustment, which is shown to be asymptotically as efficient as doing actual blocking (stratified sampling) <span class="citation">(<a href="probability-minimum.html#ref-miratrix2013adjusting" role="doc-biblioref">Miratrix, Sekhon, and Yu 2013</a>)</span>.<br />
+</li>
+<li>For some choice of <span class="math inline">\(X\)</span>, it might be not be well-defined for a subset of experiment units. For example, new users just appeared during the experiment do not exist before the experiment period and the pre-experiment period metric value for them are simply not defined. In such cases, <span class="citation"><a href="probability-minimum.html#ref-deng2013cuped" role="doc-biblioref">Alex Deng et al.</a> (<a href="probability-minimum.html#ref-deng2013cuped" role="doc-biblioref">2013</a>)</span> proposed to impute with <span class="math inline">\(0\)</span> and at the same time also include an binary indicator variate to indicate whether a unit has valid pre-experiment and use both in a multiple regression version of CUPED.</li>
+<li>There is a deep connection between control variates and linear regression. However, control variates method does not actually assume any linear relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. The linear regression and the optimal <span class="math inline">\(\theta\)</span> being solution of OLS is simply a <em>working model</em>. The extension to nonlinear <span class="math inline">\(f(X)\)</span> makes it clear that the working model can be any model and the quality of the model only affects the variance reduction rate. Therefore, CUPED is not the same as directly fitting a linear regression with treatment assignment indicator and predictors <span class="math inline">\(X\)</span>, despite the resemblance. In the next section we will use a more general semiparametric model to emphasize the distinction.</li>
+</ol>
+</div>
+<div id="regadj" class="section level3" number="10.2.2">
+<h3><span class="header-section-number">10.2.2</span> General Regression Adjustment and Doubly Robust Estimation</h3>
+<p>There is a clear resemblance between CUPED and linear regression. Let <span class="math inline">\(A_i\)</span> be the binary treatment assignment indicator of the ith experiment unit. Consider the following two common linear regression models:
+<span class="math display" id="eq:ancova">\[\begin{equation}
+Y_i = \alpha + \delta A_i + \beta X_i  + \epsilon_i   \tag{10.6} \,,
+\end{equation}\]</span>
+and
+<span class="math display" id="eq:ancova2">\[\begin{equation}
+Y_i = \alpha + \delta A_i + \beta X_i  + (\gamma X_i)A_i + \epsilon_i \tag{10.7}\,.
+\end{equation}\]</span>
+Under the standard linear regression model assumptions, the regressors <span class="math inline">\(X\)</span> and <span class="math inline">\(A\)</span> are considered to be fixed, the residual <span class="math inline">\(\epsilon_i\)</span> are assumed to be i.i.d. with a normal distribution. The only random component in the underlying data-generating-process are from the residuals alone. <span class="math inline">\(\alpha+\beta X\)</span> is the prediction for <span class="math inline">\(Y\)</span> in the control group based on <span class="math inline">\(X\)</span>. <span class="math inline">\(\delta\)</span> is the average treatment effect and <span class="math inline">\(\gamma X_i\)</span> in the second model is the linear treatment effect adjustment that allows the conditional treatment effect <span class="math inline">\(\mathrm{E}(\tau|X)\)</span> to be a linear function of <span class="math inline">\(X\)</span>. Fitting the linear model to get estimators of those coefficients and their sampling distributions are also known as <em>Analysis of (Co)Variances</em> (ANOVA/ANCOVA). We call the first model <em>ANCOVA1</em> and the second <em>ANCOVA2</em>.</p>
+<p>Both models are widely used in two group comparison for both experiment data and also observational data. Many have pointed out the <em>efficiency gain</em> from the regression model to increase accuracy of estimating the average treatment effect <span class="math inline">\(\delta\)</span>. Nevertheless, it is obvious that the linear model is too restrictive. The data-generating-process for real world problems will involve random <span class="math inline">\(X\)</span> and <span class="math inline">\(A\)</span>; the true regression <span class="math inline">\(\mathrm{E}(Y|X,A)\)</span> will unlikely be linear, so <span class="math inline">\(\epsilon\)</span> may not even satisfy <span class="math inline">\(\mathrm{E}(\epsilon|X) = 0\)</span>, let alone i.i.d. normally distributed.</p>
+<p>Freedman <span class="citation">(<a href="probability-minimum.html#ref-freedman2008regressiona" role="doc-biblioref">Freedman 2008</a>)</span> criticized the practices of using parametric linear regression theory on experimentation data, stating: “randomization does not justify the models, bias is likely; nor are the usual variance calculations to be trusted.” Using Neyman’s complete randomization with potential outcomes (see Section <a href="randomintro.html#completerand">3.1</a>), Freedman avoid postulating a parametric model for <span class="math inline">\((Y(T),Y(C),X)\)</span> by treating them as fixed and the only random component is the treatment assignment <span class="math inline">\(A\)</span>. Asymptotic and finite sample theories for the <em>ANCOVA1</em> model was given in <span class="citation"><a href="probability-minimum.html#ref-freedman2008regressiona" role="doc-biblioref">Freedman</a> (<a href="probability-minimum.html#ref-freedman2008regressiona" role="doc-biblioref">2008</a>)</span>; and a following work <span class="citation"><a href="probability-minimum.html#ref-lin2013agnostic" role="doc-biblioref">Lin</a> (<a href="probability-minimum.html#ref-lin2013agnostic" role="doc-biblioref">2013</a>)</span> studied the <em>ANCOVA2</em> model.</p>
+<p>Here we follow the independent randomization model (Section <a href="randomintro.html#indrand">3.2</a>) and assume <span class="math inline">\((Y,X,A)\)</span> are independently sampled from a super population. The model we use is general. The joint distribution of <span class="math inline">\((Y,X,A)\)</span> are allowed to be anything except the restriction that <span class="math inline">\(A\)</span> is result of independent randomization. That is, the joint density has a natural decomposition as
+<span class="math display" id="eq:semidecomp">\[\begin{equation}
+p(y,x,a) = p_y(y|x,a)p_a(a|x)p(x) \, \tag{10.8}
+\end{equation}\]</span>
+and <span class="math inline">\(p_a(a|x)\)</span> is known to be the Bernoulli density <span class="math inline">\(p^a(1-p)^{(1-a)}\)</span> with fixed treatment probability <span class="math inline">\(p\)</span>. This kind of model with a combination of both parametric and nonparametric components are called <em>semiparametric model</em>.</p>
+<p>The target of the inference is to estimate the ATE
+<span class="math display">\[
+\delta = \mathrm{E}(Y|A = 1) - \mathrm{E}(Y|A=0)\,.
+\]</span>
+Unlike in a parametric model where the target of inference is either one of the model parameters or a function of them, for semiparametric model, the inference can be any functional of the distribution.</p>
+<p>For large sample, asymptotic theories exist for semiparametric model just like parametric model. It can be shown that all reasonable consistent and asymptotically normal estimators for <span class="math inline">\(\delta\)</span> are either exactly or asymptotically equivalent to this form:
+<span class="math display" id="eq:gform1">\[\begin{equation}
+\overline{Y^{(t)}} - \overline{Y^{(c)}} + \frac{1}{n}\sum \left((A_i - p)h(X_i)\right) \tag{10.9}
+\end{equation}\]</span>
+for a function <span class="math inline">\(h\)</span> of <span class="math inline">\(X\)</span>.</p>
+<p>A rigorous explanation is beyond our scope and can be found in <span class="citation"><a href="probability-minimum.html#ref-semipara" role="doc-biblioref">Tsiatis</a> (<a href="probability-minimum.html#ref-semipara" role="doc-biblioref">2006</a>)</span>, <span class="citation"><a href="probability-minimum.html#ref-VanderVaart2000" role="doc-biblioref">Van der Vaart</a> (<a href="probability-minimum.html#ref-VanderVaart2000" role="doc-biblioref">2000</a>)</span> or <span class="citation"><a href="probability-minimum.html#ref-robins1995semiparametric" role="doc-biblioref">Robins and Rotnitzky</a> (<a href="probability-minimum.html#ref-robins1995semiparametric" role="doc-biblioref">1995</a>)</span>. Here we just state some general results focusing on high level intuitions. Asymptotic theory for semiparametric models focus on only regular and asymptotically linear estimators (RAL). Regularity condition is to avoid pathological estimators whose behavior can vary dramatically in the neighborhood of the ground truth value, as exemplified by Hodges’ estimator <span class="citation">(<a href="probability-minimum.html#ref-VanderVaart2000" role="doc-biblioref">Van der Vaart 2000</a>)</span>. Consistent RAL estimators represents all reasonable estimators of interest with nice properties such as asymptotical normality, including MLE for parametric models, M-estimator and Z-estimator.</p>
+<p>Semiparametric theory guarantees that all consistent RAL is asymptotically equivalent to an estimator of the form
+<span class="math display">\[
+\overline {\psi(Y,X,A)} + \overline{h(Y,X,A)}\,,
+\]</span>
+where <span class="math inline">\(\overline{\psi(Y,X,A)}\)</span> is <em>any</em> consistent RAL estimator and <span class="math inline">\(h(Y,X,A)\)</span> is from a linear subspace of the Hilbert space of mean-zero finite variance random functions. This linear subspace, denoted by <span class="math inline">\(\mathcal{T}^{\perp}\)</span>, is the orthogonal component of the <em>tangent space</em> <span class="math inline">\(\mathcal{T}\)</span>. The tangent space for a parametric model can be defined as the linear subspace spanned by score functions. For a semiparametric model, the tangent space contains the tangent space of any parametric submodel – that is, a parametric model whose distribution is also included in the semiparametric model.</p>
+<p>For our purpose, we already have a consistent RAL. The naive <span class="math inline">\(\Delta\)</span> estimator <span class="math inline">\(\overline{Y^{(t)}} - \overline{Y^{(c)}}\)</span> is asymptotically equivalent to
+<span class="math display">\[
+\overline {\frac{AY}{p} - \frac{(1-A)Y}{1-p}}\,.
+\]</span>
+Turns out that the linear space <span class="math inline">\(\mathcal{T}^{\perp}\)</span> has a very simple form. It contains all mean-zero finite variance functions of <span class="math inline">\(h(A,X)\)</span> such that
+<span class="math display">\[
+\mathrm{E}(f(A,X)|X) = 0\,.
+\]</span>
+Since <span class="math inline">\(f(A,X)\)</span> is <span class="math inline">\(f(1,X)\)</span> with probability <span class="math inline">\(p\)</span> and <span class="math inline">\(f(0,X)\)</span> with probability <span class="math inline">\(1-p\)</span>, the above condition together with the independence of <span class="math inline">\(A\)</span> and <span class="math inline">\(X\)</span> entails
+<span class="math display">\[
+f(A,X) = (A-p)f(1,A) \,.
+\]</span>
+Let <span class="math inline">\(h(X)= f(1,A)\)</span>, we have shown Equation <a href="sensitivity.html#eq:gform1">(10.9)</a> characterizes all consistent RAL for ATE <span class="math inline">\(\delta\)</span>.</p>
+<hr />
+<p>Exercise: Show <span class="math inline">\(\overline{Y^{(t)}} - \overline{Y^{(c)}}\)</span> is asymptotically equivalent to <span class="math inline">\(\overline {\frac{AY}{p} - \frac{(1-A)Y}{1-p}}\)</span>. Show <span class="math inline">\(f(A,X) = (A-p)f(1,A)\)</span> if <span class="math inline">\(\mathrm{E}(f(A,X)|X) = 0\)</span> and <span class="math inline">\(A\)</span> is independent Bernoulli(p).</p>
+<hr />
+<p>Because <span class="math inline">\(\mathrm{E}\left((A_i - p)h(X_i)\right) = 0\)</span>, Equation <a href="sensitivity.html#eq:gform1">(10.9)</a> can be seen as a sum of any consistent RAL estimator and another estimator of <span class="math inline">\(0\)</span>. This is similar to CUPED where we augment naive ATE estimator <span class="math inline">\(\Delta\)</span> by <span class="math inline">\(\theta\Delta(X)\)</span>. Like in CUPED we optimize <span class="math inline">\(\theta\)</span> to minimize variance, here we can minimize the variance of <a href="sensitivity.html#eq:gform1">(10.9)</a> to find the optimal functional form of <span class="math inline">\(h(X)\)</span>.</p>
+<p>Using the asymptotic equivalent form <span class="math inline">\(\overline {\frac{AY}{p} - \frac{(1-A)Y}{1-p}}\)</span> of <span class="math inline">\(\overline{Y^{(t)}} - \overline{Y^{(c)}}\)</span>, minimize the variance of Equation <a href="sensitivity.html#eq:gform1">(10.9)</a> is to minimize variance of
+<span class="math display">\[
+\frac{AY}{p} - \frac{(1-A)Y}{1-p} + (A - p)h(X)\,,
+\]</span>
+which is attained if and only if
+<span class="math display">\[
+\mathrm{E}\left(\left(\frac{AY}{p} - \frac{(1-A)Y}{1-p} + (A - p)h(X)\right) \times (A-p)h(X)\right) = 0 \,.
+\]</span>
+Let <span class="math inline">\(h_1(X) = \mathrm{E}(Y|X,A=1)\)</span> and <span class="math inline">\(h_0(X) = \mathrm{E}(Y|X,A=0)\)</span>,
+<span class="math display">\[\begin{align*}
+\mathrm{E}\left(\frac{AY}{p} (A-p)h(X)\right) &amp; = \mathrm{E}\left(\frac{AY}{p} (A-p)h(X)|X \right) \\
+&amp; = \mathrm{E}((1-p)h_1(X) h(X)) \,.
+\end{align*}\]</span>
+Similarly,
+<span class="math display">\[\begin{align}
+\mathrm{E}\left(\frac{(1-A)Y}{1-p} (A-p)h(X)\right) &amp; = \mathrm{E}(p h_0(X) h(X))\,,\\
+\mathrm{E}((A-p)^2h(X)^2) &amp; = p(1-p)\mathrm{E}(h(X)^2) \,.
+\end{align}\]</span>
+We get
+<span class="math display">\[
+\mathrm{E}\left(
+(1-p)h_1(X) h(X) + p h_0(X) h(X) + p(1-p)h(X)^2
+\right) = 0 \,.
+\]</span>
+The nontrivial solution (<span class="math inline">\(h(X)\)</span> is not constant 0) is
+<span class="math display">\[
+h(X) = -\frac{h_1(X)}{p} - \frac{h_0(X)}{1-p}\,.
+\]</span>
+Equation <a href="sensitivity.html#eq:gform1">(10.9)</a> with this optimal augmentation becomes
+<span class="math display" id="eq:gform2">\[\begin{equation}
+\overline{Y^{(t)}} - \overline{Y^{(c)}} - \frac{1}{n}\sum \left((A_i - p)\left(\frac{h_1(X)}{p} + \frac{h_0(X)}{1-p}\right)\right) \tag{10.10}
+\end{equation}\]</span>
+which is also asymptotically equivalent to
+<span class="math display" id="eq:gform3">\[\begin{equation}
+\overline{Y^{(t)}} - \overline{Y^{(c)}} - \sum \left((A_i - \overline{A})\left(\frac{h_1(X)}{n_t} + \frac{h_0(X)}{n_c}\right)\right) \tag{10.11}
+\end{equation}\]</span></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="abdiagnosis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="misc-topics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
