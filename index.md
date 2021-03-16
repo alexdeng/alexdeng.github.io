@@ -11,7 +11,7 @@ markdown: kramdown
   <img src="{{ site.baseurl }}public/profile2_mono_sq.jpg" alt="Alex Shaojie Deng" title="Alex Deng" width="200px"/>
 </div>
 
-I'm a data and applied scientist on the [Microsoft Analysis and Experimentation Team](http://www.exp-platform.com), part of the Cloud and AI platform. The Analysis and Experimentation team is responsible for one of the largest and best cutting-edge online experimentation system in the industry. I'm currently leading a team focusing on methodological improvements of the experimentation platform as well as tackling the related engineering challenges. My team's and my works span the area of causal inference and online experimentation, Bayesian optimization, reinforcement learning, auto Machine Learning, recommender systems, high throughput distributed computing, compiler and data analysis pipelines.
+I'm a data scientist at Airbnb (since Dec, 2020). Prior to Airbnb I worked on the [Microsoft Analysis and Experimentation Team](http://www.exp-platform.com) and [Azure Machine Learning](https://azure.github.io/azureml-web/), both part of the Cloud and AI platform. The Analysis and Experimentation team is responsible for one of the largest and best cutting-edge online experimentation system in the industry. I'm led a team focusing on methodological improvements of the experimentation platform as well as tackling the related engineering challenges. My team's and my works span the area of causal inference and online experimentation, Bayesian optimization, reinforcement learning, auto Machine Learning, recommender systems, high throughput distributed computing, compiler and data analysis pipelines. In Azure Machine Learning, my team represented 1st party data and ML scientist experience of the product, and worked on large scale distributed training, auto machine learning, ML pipeline and product analytics. 
 
 I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequential Monte Carlo with [Prof. Tze Lai](https://statistics.stanford.edu/people/tze-leung-lai). 
 
@@ -65,6 +65,7 @@ Jiannan Lu, Alex Deng. Statistics and Probability Letters, 2017.
     Yu Guo and Alex Deng. [ArXiv](http://arxiv.org/abs/1501.00450)
 
 ## Other Talks/Slides 
+-   [(WIP) Notes on Causal Inference and A/B testing]({{site.baseurl}}causal/index.html)
 -   [Trustworthy A/B Tests]({{site.baseurl}}public/files/ExpediaTestSummit.pdf)
 -   [A/B Testing for the Next Decade: challenges, competitions and opportunities (Netflix U Talk)]({{site.baseurl}}public/files/NetflixUTalk.pdf)
 -   [Challenges in A/B Testing (Amazon Tech Talk)]({{site.baseurl}}public/files/Amazon%20Tech%20Talk.pdf)
