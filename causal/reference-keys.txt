@@ -178,6 +178,7 @@ metric-sensitivity-decomposition
 vrreg
 cuped
 regadj
+doubly-robust-estimator
 misc-topics
 misc-deltamethod
 misc-randomdenom

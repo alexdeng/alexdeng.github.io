@@ -24,7 +24,7 @@
 <meta name="author" content="Alex Deng" />
 
 
-<meta name="date" content="2021-03-15" />
+<meta name="date" content="2021-03-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -154,6 +154,7 @@
 <ul>
 <li class="chapter" data-level="10.2.1" data-path="sensitivity.html"><a href="sensitivity.html#cuped"><i class="fa fa-check"></i><b>10.2.1</b> Control Variates and CUPED</a></li>
 <li class="chapter" data-level="10.2.2" data-path="sensitivity.html"><a href="sensitivity.html#regadj"><i class="fa fa-check"></i><b>10.2.2</b> General Regression Adjustment and Doubly Robust Estimation</a></li>
+<li class="chapter" data-level="10.2.3" data-path="sensitivity.html"><a href="sensitivity.html#doubly-robust-estimator"><i class="fa fa-check"></i><b>10.2.3</b> Doubly Robust Estimator</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="misc-topics.html"><a href="misc-topics.html"><i class="fa fa-check"></i><b>11</b> Misc Topics</a>
@@ -388,6 +389,32 @@ which is also asymptotically equivalent to
 <span class="math display" id="eq:gform3">\[\begin{equation}
 \overline{Y^{(t)}} - \overline{Y^{(c)}} - \sum \left((A_i - \overline{A})\left(\frac{h_1(X)}{n_t} + \frac{h_0(X)}{n_c}\right)\right) \tag{10.11}
 \end{equation}\]</span></p>
+<p>Estimator <a href="sensitivity.html#eq:gform3">(10.11)</a> solves the problem of the most efficient consistent and RAL estimator for the ATE <span class="math inline">\(\delta\)</span> under the semiparametric model where we make not a single model assumption other than the independent randomization. To use that, we need to know the true regression <span class="math inline">\(h_1(X) = \mathrm{E}(Y|X,A=1)\)</span> and <span class="math inline">\(h_0(X) = \mathrm{E}(Y|X,A=0)\)</span> which requires separated works. However, any choice of <span class="math inline">\(h_1\)</span> and <span class="math inline">\(h_0\)</span> in <a href="sensitivity.html#eq:gform3">(10.11)</a> is still of the form <a href="sensitivity.html#eq:gform1">(10.9)</a> and is a consistent RAL estimator. In particular, when <span class="math inline">\(h_0(X)=h_1(X)=0\)</span>, estimator <a href="sensitivity.html#eq:gform3">(10.11)</a> reduced to <span class="math inline">\(\Delta\)</span>. When <span class="math inline">\(h_0(X) = h_1(X) = f(X)\)</span>, estimator <a href="sensitivity.html#eq:gform3">(10.11)</a> reduces to
+<span class="math display">\[
+\overline{Y^{(t)}} - \overline{Y^{(c)}} - (\overline{f(X^{(t)})}-\overline{f(X^{(c)})})\,
+\]</span>
+which is the same as general CUPED in Equation <a href="sensitivity.html#eq:deltacv2">(10.5)</a>.</p>
+<hr />
+<p>Exercise: Show Equation <a href="sensitivity.html#eq:gform3">(10.11)</a> reduce to Equation <a href="sensitivity.html#eq:deltacv2">(10.5)</a> when <span class="math inline">\(h_0(X)=h_0(X)=f(X)\)</span>.</p>
+<hr />
+<p><span class="citation"><a href="probability-minimum.html#ref-tsiatiscovariateadj" role="doc-biblioref">Tsiatis et al.</a> (<a href="probability-minimum.html#ref-tsiatiscovariateadj" role="doc-biblioref">2008</a>)</span> showed both <em>ANCOVA1</em> and <em>ANCOVA2</em> are special case of estimators of the form <a href="sensitivity.html#eq:gform3">(10.11)</a> when <span class="math inline">\(h_0(X)=h_1(X)=f(X)\)</span>. From this perspective, they are also special cases of CUPED estimator <a href="sensitivity.html#eq:deltacv2">(10.5)</a>. The differences between <em>ANCOVA1</em> and <em>ANCOVA2</em> are the choice of how to fit linear regression <span class="math inline">\(f(X)\)</span> using treatment and control data. Recall that the linear coefficient estimator is <span class="math inline">\(\mathrm{Cov}(X,Y)/\mathrm{Var}(X)\)</span>. the denominator <span class="math inline">\(\mathrm{Var}(X)\)</span> is the same for treatment and control. <span class="math inline">\(\mathrm{Cov}(X,Y)\)</span> are different due to the treatment effect. <em>ANCOVA1</em> pools the data together and fit a linear regression. This is to use
+<span class="math display">\[
+\mathrm{Cov}(X,Y) = p\mathrm{Cov}_T(X,Y) + (1-p)\mathrm{Cov}_C(X,Y)\,,
+\]</span>
+where <span class="math inline">\(\mathrm{Cov}_T(X,Y)\)</span> is the covariance in the treatment, <span class="math inline">\(\mathrm{Cov}_C(X,Y)\)</span> for control and <span class="math inline">\(p\)</span> is the proportion of treatment sample size. On the contrary, <em>ANCOVA2</em> uses
+<span class="math display">\[
+\mathrm{Cov}(X,Y) = (1-p)\mathrm{Cov}_T(X,Y) + p\mathrm{Cov}_C(X,Y)\,.
+\]</span></p>
+<p>For CUPED, in the end of Section <a href="sensitivity.html#cuped">10.2.1</a> we showed if we optimize <span class="math inline">\(\theta\)</span> to minimize the variance of CUPED estimator <span class="math inline">\(\Delta^*\)</span> directly, the optimal <span class="math inline">\(\theta\)</span> is
+<span class="math display">\[
+\frac{\mathrm{Cov}(\overline{Y^{t}},\overline{X^{t}})+\mathrm{Cov}(\overline{Y^{c}},\overline{X^{c}})}{\mathrm{Var}(\overline{X^{t}})+\mathrm{Var}(\overline{X^{c}})}\,.
+\]</span>
+This <span class="math inline">\(\theta\)</span> asymptotically converge to <span class="math inline">\((1-p)\mathrm{Cov}_T(X,Y) + p\mathrm{Cov}_C(X,Y)\)</span>. Hence CUPED with this arrangement of <span class="math inline">\(\theta\)</span> is asymptotically equivalent to <em>ANCOVA2</em>.</p>
+<p>Because <span class="math inline">\(\mathrm{Cov}(\overline{Y^{t}},\overline{X^{t}}) = \mathrm{Cov}_T(X,Y)/n_t\)</span> and <span class="math inline">\(\mathrm{Cov}(\overline{Y^{c}},\overline{X^{c}}) = \mathrm{Cov}_C(X,Y)/n_c\)</span>, we can see covariances are weighted inversely proportional to the sample sizes. This explains why it is better to weight <span class="math inline">\(\mathrm{Cov}_T(X,Y)\)</span> by <span class="math inline">\(1-p\)</span> and <span class="math inline">\(\mathrm{Cov}_C(X,Y)\)</span> by <span class="math inline">\(p\)</span>, instead of using a more straightforward choice of <span class="math inline">\(p\)</span> for <span class="math inline">\(\mathrm{Cov}_T(X,Y)\)</span> and <span class="math inline">\(1-p\)</span> for <span class="math inline">\(\mathrm{Cov}_C(X,Y)\)</span> as in <em>ANCOVA1</em> . From here we also see <em>ANCOVA2</em> is theoretically better than <em>ANCOVA1</em>. Although in practice this difference is small unless <span class="math inline">\(p\)</span> is away from 0.5 and <span class="math inline">\(\mathrm{Cov}_T(X,Y)\)</span> is very different from <span class="math inline">\(\mathrm{Cov}_C(X,Y)\)</span>.</p>
+</div>
+<div id="doubly-robust-estimator" class="section level3" number="10.2.3">
+<h3><span class="header-section-number">10.2.3</span> Doubly Robust Estimator</h3>
+<p>Before we close the discussion of regression adjustment, take a look at the doubly robust estimator. DR estiator when propensity score is known is the same as <a href="sensitivity.html#eq:gform3">(10.11)</a>! The goal of doubly robust estimator was to combine regression prediction to impute missing counterfactuals with propensity reweighting so as long as one of the two models is unbiased the DR estimator remains unbiased. For randomized experiments the propensity model is known and the DR estimation is unbiased for arbitrary regression model. This is the spirit of regression adjustment in <a href="sensitivity.html#eq:gform3">(10.11)</a>. The closer the regression model is to the true regression <span class="math inline">\(h_0=\mathrm{E}(Y|X,A=0)\)</span> and <span class="math inline">\(h_1=\mathrm{E}(Y|X,A=1)\)</span>, the better (smaller variance).</p>
 
 </div>
 </div>
