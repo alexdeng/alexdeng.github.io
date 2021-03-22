@@ -24,7 +24,7 @@
 <meta name="author" content="Alex Deng" />
 
 
-<meta name="date" content="2021-03-21" />
+<meta name="date" content="2021-03-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -195,8 +195,8 @@
 <h1><span class="header-section-number">Chapter 2</span> Correlation and Simpson’s Paradox</h1>
 <p>Consider the following conceptual graph. This is a simple causal graphical model which will be revisited and explained in detail later in Chapter <a href="cgm.html#cgm">5</a>. For now, simply interpret an arrow as a causal relationship. In Figure <a href="simpson.html#fig:confounder">2.1</a>, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> share a common cause <span class="math inline">\(U\)</span>. Structures like this naturally induce a correlation between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</p>
 <div class="figure"><span id="fig:confounder"></span>
-<div id="htmlwidget-06c047e5ac305de748f6" style="width:672px;height:200px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-06c047e5ac305de748f6">{"x":{"diagram":"\ndigraph {\ngraph [layout = dot size = 7 ratio = 0.7]\n  node [shape = circle width=.3 fixedsize=true fontname = Helvetica]\n  subgraph {\n  rank = same; X; Y;\n  }\n  U -> {X Y}\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-23d52ec61a1f06ff3b20" style="width:672px;height:200px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-23d52ec61a1f06ff3b20">{"x":{"diagram":"\ndigraph {\ngraph [layout = dot size = 7 ratio = 0.7]\n  node [shape = circle width=.3 fixedsize=true fontname = Helvetica]\n  subgraph {\n  rank = same; X; Y;\n  }\n  U -> {X Y}\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
 Figure 2.1: Graphical model for mutual dependence, a.k.a. a fork.
 </p>

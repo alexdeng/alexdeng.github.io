@@ -24,7 +24,7 @@
 <meta name="author" content="Alex Deng" />
 
 
-<meta name="date" content="2021-03-21" />
+<meta name="date" content="2021-03-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -236,8 +236,8 @@ where <span class="math inline">\(\overline{Y_T}\)</span> is the average of trea
 <p><a href="rcm.html#eq:association">(4.6)</a> is called the <em>association effect</em> of <span class="math inline">\(Z\)</span> on <span class="math inline">\(Y\)</span>. Unlike the <em>causal effect</em> <a href="rcm.html#eq:ate">(4.3)</a>, association can be defined using the observed joint distribution <span class="math inline">\(P\)</span>.</p>
 <p>In general, association <a href="rcm.html#eq:association">(4.6)</a> and causation <a href="rcm.html#eq:ate">(4.3)</a> are different, because <span class="math inline">\(\mathrm{E^*}(Y(z))\)</span> and <span class="math inline">\(\mathrm{E}(Y|Z = z)\)</span> are not the same. This is just another version of correlation does not imply causation. Associations can be caused by many confounders other than the cause of interest <span class="math inline">\(Z\)</span>. Figure <a href="rcm.html#fig:confounder2">4.1</a> demonstrates this using causal graphical models. We will wait until section <a href="cgm.html#cgm">5</a> to introduce causal graphical model. But the idea is very clear in Figure <a href="rcm.html#fig:confounder2">4.1</a>. There is a potential causal link from <span class="math inline">\(Z\)</span> to <span class="math inline">\(Y\)</span>. But there might exist confounder <span class="math inline">\(U\)</span> which can impact <span class="math inline">\(Z\)</span> and <span class="math inline">\(Y\)</span> simultaneously.</p>
 <div class="figure"><span id="fig:confounder2"></span>
-<div id="htmlwidget-c9d8c393aa0faf7f961c" style="width:672px;height:200px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c9d8c393aa0faf7f961c">{"x":{"diagram":"\ndigraph {\ngraph [layout = dot size = 7 ratio = 0.7]\n  node [shape = circle width=.3 fixedsize=true fontname = Helvetica]\n  subgraph {\n  rank = same; Z; Y;\n  }\n  U -> {Z Y}\n  Z -> Y\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b4aebdcf507928fad5e5" style="width:672px;height:200px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b4aebdcf507928fad5e5">{"x":{"diagram":"\ndigraph {\ngraph [layout = dot size = 7 ratio = 0.7]\n  node [shape = circle width=.3 fixedsize=true fontname = Helvetica]\n  subgraph {\n  rank = same; Z; Y;\n  }\n  U -> {Z Y}\n  Z -> Y\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 <p class="caption">
 Figure 4.1: Confounder.
 </p>
