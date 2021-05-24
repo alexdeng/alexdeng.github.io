@@ -24,7 +24,7 @@
 <meta name="author" content="Alex Deng" />
 
 
-<meta name="date" content="2021-03-22" />
+<meta name="date" content="2021-05-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -346,11 +346,11 @@ Turns out that the linear space <span class="math inline">\(\mathcal{T}^{\perp}\
 \]</span>
 Since <span class="math inline">\(f(A,X)\)</span> is <span class="math inline">\(f(1,X)\)</span> with probability <span class="math inline">\(p\)</span> and <span class="math inline">\(f(0,X)\)</span> with probability <span class="math inline">\(1-p\)</span>, the above condition together with the independence of <span class="math inline">\(A\)</span> and <span class="math inline">\(X\)</span> entails
 <span class="math display">\[
-f(A,X) = (A-p)f(1,A) \,.
+f(A,X) = \frac{A-p}{1-p}f(1,X) \,.
 \]</span>
-Let <span class="math inline">\(h(X)= f(1,A)\)</span>, we have shown Equation <a href="sensitivity.html#eq:gform1">(10.9)</a> characterizes all consistent RAL for ATE <span class="math inline">\(\delta\)</span>.</p>
+Let <span class="math inline">\(h(X)= f(1,X)/(1-p)\)</span>, we have shown Equation <a href="sensitivity.html#eq:gform1">(10.9)</a> characterizes all consistent RAL for ATE <span class="math inline">\(\delta\)</span>.</p>
 <hr />
-<p>Exercise: Show <span class="math inline">\(\overline{Y^{(t)}} - \overline{Y^{(c)}}\)</span> is asymptotically equivalent to <span class="math inline">\(\overline {\frac{AY}{p} - \frac{(1-A)Y}{1-p}}\)</span>. Show <span class="math inline">\(f(A,X) = (A-p)f(1,A)\)</span> if <span class="math inline">\(\mathrm{E}(f(A,X)|X) = 0\)</span> and <span class="math inline">\(A\)</span> is independent Bernoulli(p).</p>
+<p>Exercise: Show <span class="math inline">\(\overline{Y^{(t)}} - \overline{Y^{(c)}}\)</span> is asymptotically equivalent to <span class="math inline">\(\overline {\frac{AY}{p} - \frac{(1-A)Y}{1-p}}\)</span>. Show <span class="math inline">\(f(A,X) = \frac{A-p}{1-p}f(1,X)\)</span> if <span class="math inline">\(\mathrm{E}(f(A,X)|X) = 0\)</span> and <span class="math inline">\(A\)</span> is independent Bernoulli(p).</p>
 <hr />
 <p>Because <span class="math inline">\(\mathrm{E}\left((A_i - p)h(X_i)\right) = 0\)</span>, Equation <a href="sensitivity.html#eq:gform1">(10.9)</a> can be seen as a sum of any consistent RAL estimator and another estimator of <span class="math inline">\(0\)</span>. This is similar to CUPED where we augment naive ATE estimator <span class="math inline">\(\Delta\)</span> by <span class="math inline">\(\theta\Delta(X)\)</span>. Like in CUPED we optimize <span class="math inline">\(\theta\)</span> to minimize variance, here we can minimize the variance of <a href="sensitivity.html#eq:gform1">(10.9)</a> to find the optimal functional form of <span class="math inline">\(h(X)\)</span>.</p>
 <p>Using the asymptotic equivalent form <span class="math inline">\(\overline {\frac{AY}{p} - \frac{(1-A)Y}{1-p}}\)</span> of <span class="math inline">\(\overline{Y^{(t)}} - \overline{Y^{(c)}}\)</span>, minimize the variance of Equation <a href="sensitivity.html#eq:gform1">(10.9)</a> is to minimize variance of
