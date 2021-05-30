@@ -17,6 +17,8 @@ I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequenti
 
 
 ## Selected Publications (newest first)
+-   [On Post-selection Inference in A/B Testing]({{site.baseurl}}public/files/PostSelectionKDD2021.pdf)    
+    Alex Deng, Yicheng Li, Jiannan Lu and Vivek Ramamurthy. KDD 2021.
 -   [Empirical Bayes Estimation of Treatment Effects with Many A/B Tests: An Overview](http://www.joseluismontielolea.com/AEAPandP.pdf)  
     Eduardo Azevedo, Alex Deng, Jose Montiel and Glen Weyl.  AEA Papers and Proceedings 2019
 -   [Applying the Delta Method in Metric Analytics: A Practical Guide with Novel Ideas]({{site.baseurl}}public/files/kdd2018-dm.pdf)  
@@ -27,9 +29,9 @@ I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequenti
     Jiannan Lu, Yixuan Qiu, Alex Deng. British Journal of Mathematical and Statistical Psychology 2018.
 -   [On randomization-based causal inference for matched-pair
 factorial designs]({{site.baseurl}}public/files/STAPRO_7848_final.pdf)  
-Jiannan Lu, Alex Deng. Statistics and Probability Letters, 2017. 
+Jiannan Lu, Alex Deng. Statistics and Probability Letters, 2017.
 -   [Trustworthy analysis of online A/B tests: Pitfalls, challenges and solutions]({{site.baseurl}}public/files/wsdm2017-rup.pdf)  
-    Alex Deng, Jiannan Lu, Jonathan Litz. To appear in WSDM 2017. 
+    Alex Deng, Jiannan Lu, Jonathan Litz. WSDM 2017. 
 -   [Continuous monitoring of A/B tests without pain: Optional stopping in Bayesian testing]({{site.baseurl}}public/files/continuousMonitoring.pdf)  ([ArXiv ver.](http://arxiv.org/abs/1602.05549))    
     Alex Deng, Jiannan Lu, Shouyuan Chen. DSAA 2016.
 -   [Data-Driven Metric Development for Online Controlled Experiments: Seven Lessons Learned](http://www.kdd.org/kdd2016/papers/files/adf0853-dengA.pdf)  
@@ -56,9 +58,7 @@ Jiannan Lu, Alex Deng. Statistics and Probability Letters, 2017.
     Hock Peng Chan, Shaojie Deng and Tze-Leung Lai. Advances in Applied Probability 2012.
 
 
-## Preprints And Working Papers
--   On Post-Selection Inference in A/B Tests    
-    Alex Deng, Yicheng Li and Jiannan Lu. [ArXiv](https://arxiv.org/abs/1910.03788)  
+## Preprints
 -   Concise Summarization of Heterogeneous Treatment Effect Using Total Variation Regularized Regression    
     Alex Deng, Pengchuan Zhang, Shouyuan Chen, Dong Woo Kim and Jiannan Lu. [ArXiv](https://arxiv.org/abs/1610.03917)
 -   Flexible Online Repeated Measures Experiment  
