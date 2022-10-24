@@ -17,7 +17,7 @@ I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequenti
 
 
 ## Selected Publications (newest first)
--   [(To appear)On Post-selection Inference in A/B Testing]
+-   (To appear) On Post-selection Inference in A/B Testing
     Alex Deng, Lo-Hua Yuan, Naoya Kanai and Alexandre Salama-Manteau. WSDM 2023.
 -   [A/B Testing Intuition Busters: Common Misunderstandings in Online Controlled Experiments](https://bit.ly/ABTestingIntuitionBustersComment)
     Ron Kohavi, Alex Deng, Lukas Vermeer. KDD 2022.
