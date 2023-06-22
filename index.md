@@ -17,7 +17,7 @@ I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequenti
 
 
 ## Selected Publications (newest first)
--   (To Appear) Variance Reduction Using In-Experiment Data: Efficient and Targeted Online Measurement for Sparse and Delayed Outcomes.
+-   [Variance Reduction Using In-Experiment Data: Efficient and Targeted Online Measurement for Sparse and Delayed Outcomes.]({{site.baseurl}}public/files/kdd2034-inexp.pdf)
     Alex Deng, Michelle Du, Anna Matlin and Qing Zhang. KDD 2023.
 -   [Zero to Hero: Exploiting null effects to achieve variance reduction in experiments with one-sided triggering](https://arxiv.org/abs/2112.13299)
     Alex Deng, Lo-Hua Yuan, Naoya Kanai and Alexandre Salama-Manteau. WSDM 2023.
