@@ -17,6 +17,8 @@ I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequenti
 
 
 ## Selected Publications (newest first)
+-   [The Price is Right: Removing A/B Test Bias in a Marketplace of Expirable Goods.]({{site.baseurl}}public/files/Smart_Pricing_CIKM.pdf)
+    Thu Le, Alex Deng. CIKM 2023.
 -   [Variance Reduction Using In-Experiment Data: Efficient and Targeted Online Measurement for Sparse and Delayed Outcomes.]({{site.baseurl}}public/files/kdd2023-inexp.pdf)
     Alex Deng, Michelle Du, Anna Matlin and Qing Zhang. KDD 2023.
 -   [Zero to Hero: Exploiting null effects to achieve variance reduction in experiments with one-sided triggering](https://arxiv.org/abs/2112.13299)
