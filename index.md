@@ -67,6 +67,8 @@ Jiannan Lu, Alex Deng. Statistics and Probability Letters, 2017.
 
 
 ## Preprints
+-   From Augmentation to Decomposition: A New Look at CUPED in 2023
+    Alex Deng, Lke Hagar, Nathaniel Stevens, Tatiana Xifara, Lo-Hua Yuan, Amit Gandhi. [Extended Abstract](({{site.baseurl}}public/files/CUPED_2023_Metric_Decomp.pdf)). [CODE@MIT 2023 poster](({{site.baseurl}}public/files/code2023.pdf))
 -   Concise Summarization of Heterogeneous Treatment Effect Using Total Variation Regularized Regression
     Alex Deng, Pengchuan Zhang, Shouyuan Chen, Dong Woo Kim and Jiannan Lu. [ArXiv](https://arxiv.org/abs/1610.03917)
 -   Flexible Online Repeated Measures Experiment
