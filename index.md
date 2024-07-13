@@ -11,12 +11,16 @@ markdown: kramdown
   <img src="{{ site.baseurl }}public/profile2_mono_sq.jpg" alt="Alex Shaojie Deng" title="Alex Deng" width="200px"/>
 </div>
 
-I'm a data scientist at Airbnb (since Dec, 2020). Prior to Airbnb I worked on the [Microsoft Analysis and Experimentation Team](http://www.exp-platform.com) and [Azure Machine Learning](https://azure.github.io/azureml-web/), both part of the Cloud and AI platform. The Analysis and Experimentation team is responsible for one of the largest and best cutting-edge online experimentation system in the industry. I'm led a team focusing on methodological improvements of the experimentation platform as well as tackling the related engineering challenges. My team's and my works span the area of causal inference and online experimentation, Bayesian optimization, reinforcement learning, auto Machine Learning, recommender systems, high throughput distributed computing, compiler and data analysis pipelines. In Azure Machine Learning, my team represented 1st party data and ML scientist experience of the product, and worked on large scale distributed training, auto machine learning, ML pipeline and product analytics.
+I'm a technical director of platform data science and machine learning at Airbnb, chairing the science track in the company-wide AI and ML council. I worked on a wide range of initiatives such as modernizing Airbnb's applied research development, collaboration and prototyping ecosystem, building data foundation and consumption interface for event sequences analytics and user behavior modeling, and agile experimentation paradigm for offline and online evaluation of ML models. I also serve in the leadership teams for both the relevance and personalization team and the core data science team.  
+
+Prior to Airbnb I worked on the [Microsoft Analysis and Experimentation Team](http://www.exp-platform.com) and [Azure Machine Learning](https://azure.github.io/azureml-web/), both part of the Cloud and AI platform. The Analysis and Experimentation team is responsible for one of the largest and best cutting-edge online experimentation system in the industry. I'm led a team focusing on methodological improvements of the experimentation platform as well as tackling the related engineering challenges. My team's and my works span the area of causal inference and online experimentation, Bayesian optimization, reinforcement learning, auto Machine Learning, recommender systems, high throughput distributed computing, compiler and data analysis pipelines. In Azure Machine Learning, my team represented 1st party data and ML scientist experience of the product, and worked on large scale distributed training, auto machine learning, ML pipeline and product analytics.
 
 I finished my Ph.D. study in statistics at Stanford in 2010 focusing on sequential Monte Carlo with [Prof. Tze Lai](https://statistics.stanford.edu/people/tze-leung-lai).
 
 
 ## Selected Publications (newest first)
+-   [Metric Decomposition in A/B Tests.]({{site.baseurl}}public/files/kdd2024-decomp.pdf)
+    Alex Deng, Luke Hagar, Nathaniel Stevens, Tatiana Xifara, Amit Gandhi.  KDD 2024.
 -   [The Price is Right: Removing A/B Test Bias in a Marketplace of Expirable Goods.]({{site.baseurl}}public/files/Smart_Pricing_CIKM.pdf)
     Thu Le, Alex Deng. CIKM 2023.
 -   [Variance Reduction Using In-Experiment Data: Efficient and Targeted Online Measurement for Sparse and Delayed Outcomes.]({{site.baseurl}}public/files/kdd2023-inexp.pdf)

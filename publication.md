@@ -5,6 +5,8 @@ title: Publications
 
 
 ## Selected Publications (newest first)
+-   [Metric Decomposition in A/B Tests.]({{site.baseurl}}public/files/kdd2024-decomp.pdf)
+    Alex Deng, Luke Hagar, Nathaniel Stevens, Tatiana Xifara, Amit Gandhi.  KDD 2024.
 -   [The Price is Right: Removing A/B Test Bias in a Marketplace of Expirable Goods.]({{site.baseurl}}public/files/Smart_Pricing_CIKM.pdf)
     Thu Le, Alex Deng. CIKM 2023.
 -   [Variance Reduction Using In-Experiment Data: Efficient and Targeted Online Measurement for Sparse and Delayed Outcomes.]({{site.baseurl}}public/files/kdd2023-inexp.pdf)
