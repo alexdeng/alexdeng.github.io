@@ -26,6 +26,8 @@ I earned my Ph.D. in Statistics from Stanford University in 2010, where I studie
     Dillon Davis, Huiji Gao, Thomas Legrand, Malay Haldar, Alex Deng, Han Zhao, Liwei He and Sanjeev Katariya. CIKM 2024.
 -   [Metric Decomposition in A/B Tests.]({{site.baseurl}}public/files/kdd2024-decomp.pdf)
     Alex Deng, Luke Hagar, Nathaniel Stevens, Tatiana Xifara, Amit Gandhi.  KDD 2024.
+-   [Statistical challenges in online controlled experiments: A review of a/b testing methodology.](https://www.tandfonline.com/doi/pdf/10.1080/00031305.2023.2257237)
+    Nicholas Larsen, Jonathan Stallrich, Srijan Sengupta, Alex Deng, Ron Kohavi and Nathaniel T. Stevens. The American Statistician 2027 Vol. 78.
 -   [The Price is Right: Removing A/B Test Bias in a Marketplace of Expirable Goods.]({{site.baseurl}}public/files/Smart_Pricing_CIKM.pdf)
     Thu Le, Alex Deng. CIKM 2023.
 -   [Variance Reduction Using In-Experiment Data: Efficient and Targeted Online Measurement for Sparse and Delayed Outcomes.]({{site.baseurl}}public/files/kdd2023-inexp.pdf)
