@@ -38,6 +38,8 @@ I earned my Ph.D. in Statistics from Stanford University in 2010, where I studie
     Ron Kohavi, Alex Deng, Lukas Vermeer. KDD 2022.
 -   [On Post-selection Inference in A/B Testing]({{site.baseurl}}public/files/PostSelectionKDD2021.pdf)
     Alex Deng, Yicheng Li, Jiannan Lu and Vivek Ramamurthy. KDD 2021.
+-   [AB Testing with fat tail](https://eduardomazevedo.github.io/papers/azevedo-et-al-ab.pdf)
+    Eduardo M Azevedo, Alex Deng, José Luis Montiel Olea, Justin Rao and E Glen Weyl. Journal of Political Economy 2020. 
 -   [Empirical Bayes Estimation of Treatment Effects with Many A/B Tests: An Overview](http://www.joseluismontielolea.com/AEAPandP.pdf)
     Eduardo Azevedo, Alex Deng, Jose Montiel and Glen Weyl.  AEA Papers and Proceedings 2019
 -   [Applying the Delta Method in Metric Analytics: A Practical Guide with Novel Ideas]({{site.baseurl}}public/files/kdd2018-dm.pdf)
