@@ -88,6 +88,7 @@ Jiannan Lu, Alex Deng. Statistics and Probability Letters, 2017.
     Yu Guo and Alex Deng. [ArXiv](http://arxiv.org/abs/1501.00450)
 
 ## Other Talks/Slides
+-   [Return-Aware Experimentation: Three Rules & Three Tricks (NABE Tech 2025)]({{site.baseurl}}public/files/Deng-NABE2025-Return-Aware-Experimentation.pdf)
 -   [(WIP) Notes on Causal Inference and A/B testing]({{site.baseurl}}causal/index.html)
 -   [Trustworthy A/B Tests]({{site.baseurl}}public/files/ExpediaTestSummit.pdf)
 -   [A/B Testing for the Next Decade: challenges, competitions and opportunities (Netflix U Talk)]({{site.baseurl}}public/files/NetflixUTalk.pdf)
