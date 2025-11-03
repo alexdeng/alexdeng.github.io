@@ -55,7 +55,7 @@ Vue.component('dice', {
       }
     },
     all_sixes: function() {
-      return this.faces.reduce(function(a,b) {return a+b}) == 6*this.faces.length;
+      return this.faces.reduce(function(a,b) {return a+b}, 0) == 6*this.faces.length;
     },
   }
 });
