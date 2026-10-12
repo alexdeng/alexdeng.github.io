@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:,">
+<title>Tae Kim Conjugation Cheatsheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fdf8ec; --bg2:#fffdf7; --surface:#ffffff; --surface2:#fff8e6;
+  --ink:#1a1e28; --muted:#6b7280; --line:#e9ddc3; --line2:#d9ceb0;
+  --accent:#c73e1d; --accent-ink:#fff; --teal:#174f5e; --teal-bg:#e6f2f0;
+  --gold:#b7791f; --chip:#fef3c7; --fav:#f59e0b;
+  --radius:18px; --radius-sm:12px;
+  --shadow:0 4px 24px rgba(26,30,40,.07), 0 1px 4px rgba(26,30,40,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#10131a; --bg2:#12161f; --surface:#1c222e; --surface2:#222a3a;
+    --ink:#f2eee3; --muted:#a8b0be; --line:#2e3648; --line2:#3a455e;
+    --accent:#ff7a52; --accent-ink:#16100d; --teal:#7dd3c8; --teal-bg:#1a2f33;
+    --chip:#2a2210; --shadow:0 4px 24px rgba(0,0,0,.35);
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.6}
+a{color:var(--teal);text-decoration:underline;text-underline-offset:3px}
+button{font:inherit;cursor:pointer}
+.jp{font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;font-weight:600;letter-spacing:.01em}
+.jp-lg{font-size:1.18rem}
+.serif{font-family:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif}
+.romaji{display:block;font-size:.76rem;font-weight:400;color:var(--muted);letter-spacing:.02em;line-height:1.3;margin-top:1px}
+.no-romaji .romaji{display:none}
+ruby rt{font-size:.52em;color:var(--muted);font-weight:400}
+.no-furigana ruby rt{visibility:hidden}
+
+/* Top bar */
+.topbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb, var(--bg) 88%, transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:980px;margin:0 auto;padding:10px 16px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.brand{font-family:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;font-weight:900;font-size:1.05rem;line-height:1.1}
+.brand small{display:block;font-family:"Noto Sans JP","Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic",Meiryo,sans-serif;font-weight:500;font-size:.72rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.search{flex:1;min-width:180px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:8px 12px}
+.search input{border:0;outline:0;background:transparent;color:var(--ink);width:100%;font-size:.95rem}
+.btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:8px 12px;border-radius:999px;font-size:.85rem;font-weight:600}
+.btn.active{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn-accent{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+
+.wrap{max-width:980px;margin:0 auto;padding:20px 16px 48px}
+.hero{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px 20px 18px;box-shadow:var(--shadow);overflow:hidden;position:relative}
+.hero::before{content:"活用";position:absolute;right:12px;top:-18px;font-family:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;font-size:7rem;font-weight:900;opacity:.06;line-height:1;pointer-events:none}
+.hero h1{font-family:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;font-size:2rem;line-height:1.05;margin:0 0 8px;letter-spacing:-.02em}
+.hero h1 span{color:var(--accent)}
+.hero p{margin:0;color:var(--muted);max-width:640px;font-size:.97rem}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.pill{font-size:.78rem;font-weight:700;padding:6px 10px;border-radius:999px;background:var(--surface2);border:1px solid var(--line)}
+.pill strong{color:var(--accent)}
+
+.quicknav{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 4px}
+.quicknav a{font-size:.84rem;font-weight:600;text-decoration:none;background:var(--surface);border:1px solid var(--line);padding:7px 11px;border-radius:999px;color:var(--ink)}
+.quicknav a:hover{border-color:var(--accent)}
+
+/* Grouped sticky nav inside topbar */
+.groupnav{flex-basis:100%;display:flex;gap:6px;flex-wrap:wrap;padding-top:2px}
+.groupnav a{font-size:.76rem;font-weight:700;text-decoration:none;color:var(--ink);background:var(--surface2);border:1px solid var(--line);padding:4px 9px;border-radius:999px;white-space:nowrap}
+.groupnav a:hover,.groupnav a:focus{border-color:var(--accent);color:var(--accent)}
+.groupnav a b{color:var(--accent);font-weight:800;margin-right:2px}
+
+/* Contents / index */
+.toc{background:var(--surface);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:18px 20px;margin:16px 0 4px}
+.toc h2{font-family:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;font-size:1.15rem;margin:0 0 4px}
+.toc>p{margin:0 0 12px;color:var(--muted);font-size:.88rem}
+.toc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px 18px}
+.toc-group h3{margin:0 0 5px;font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
+.toc-group ul{list-style:none;margin:0;padding:0}
+.toc-group li{margin:3px 0}
+.toc-group a{font-size:.88rem;font-weight:600;color:var(--ink);text-decoration:none}
+.toc-group a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+.toc-group a .jp{color:var(--teal);font-weight:700}
+@media (max-width:680px){.toc-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:430px){.toc-grid{grid-template-columns:1fr}}
+
+/* Section dividers */
+.section-head{display:flex;align-items:baseline;gap:10px;margin:30px 2px 2px;scroll-margin-top:150px}
+.section-head .sec-no{font-family:"Noto Serif JP",serif;font-weight:900;color:var(--accent);font-size:.85rem;letter-spacing:.06em}
+.section-head h2{font-family:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;font-size:1.35rem;margin:0;line-height:1.2}
+.section-head p{margin:0;color:var(--muted);font-size:.85rem}
+.section-head .top-link{margin-left:auto;font-size:.78rem;font-weight:700;text-decoration:none;white-space:nowrap}
+.card{scroll-margin-top:150px}
+@media (max-width:680px){.card,.section-head{scroll-margin-top:168px}.section-head{flex-wrap:wrap}.section-head .top-link{margin-left:0}}
+
+.note{font-size:.86rem;color:var(--muted);background:var(--teal-bg);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin:16px 0}
+.note b{color:var(--ink)}
+
+/* Cards */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);margin:18px 0;overflow:hidden}
+.card-head{padding:16px 18px 12px;display:flex;gap:12px;align-items:flex-start;justify-content:space-between}
+.card-head h2{font-family:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;font-size:1.28rem;line-height:1.2;margin:0}
+.card-head h2 .kana{color:var(--accent)}
+.card-head p{margin:6px 0 0;color:var(--muted);font-size:.92rem;max-width:620px}
+.card-actions{display:flex;gap:6px;flex-shrink:0}
+.icon-btn{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--surface2);display:grid;place-items:center;font-size:1rem}
+.icon-btn.starred{background:#fff7d6;border-color:#f59e0b;color:#92400e}
+@media (prefers-color-scheme: dark){.icon-btn.starred{background:#3a2e0a;color:#fbbf24}}
+.rule{margin:0 18px 14px;background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:.9rem}
+.rule b{color:var(--accent)}
+.example{margin:0 18px 16px;font-size:.9rem;color:var(--muted)}
+.example b{color:var(--ink)}
+
+/* Table */
+.table-wrap{overflow:hidden;border-top:1px solid var(--line)}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+thead th{text-align:left;font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);padding:10px 14px;background:var(--surface2);border-bottom:1px solid var(--line);font-weight:700}
+tbody td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:color-mix(in srgb, var(--surface2) 55%, transparent)}
+.rowlabel{font-weight:700;white-space:nowrap;font-size:.88rem}
+.rowlabel small{display:block;font-weight:400;color:var(--muted);font-size:.76rem}
+.dim{color:var(--muted);font-size:.88rem}
+
+/* Highlight card for nda */
+.card-highlight{border-color:#f0c9a8}
+.card-highlight .card-head h2{font-size:1.45rem}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:800;color:var(--accent);background:#fff1e6;border:1px solid #ffd9b8;padding:5px 8px;border-radius:999px}
+@media (prefers-color-scheme: dark){.badge{background:#2e1a12;border-color:#5a2f1a}}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:0 18px 18px}
+.mini{background:var(--surface2);border:1px solid var(--line);border-radius:14px;padding:13px 14px}
+.mini h3{margin:0 0 6px;font-size:.92rem}
+.mini p,.mini li{font-size:.88rem;color:var(--muted)}
+.mini ul{margin:6px 0 0 18px;padding:0}
+.kbd{font-family:ui-monospace,monospace;font-size:.82em;background:var(--surface);border:1px solid var(--line2);border-bottom-width:2px;padding:1px 5px;border-radius:6px}
+
+.footer{margin-top:28px;padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--surface)}
+.footer p{margin:0;font-size:.88rem;color:var(--muted)}
+.hidden-by-search{display:none!important}
+.empty{ display:none; text-align:center;padding:28px;border:1px dashed var(--line2);border-radius:16px;color:var(--muted);background:var(--surface)}
+.empty.show{display:block}
+
+@media (max-width:680px){
+  .hero h1{font-size:1.65rem}
+  .grid2{grid-template-columns:1fr}
+  thead{display:none}
+  table,tbody,tr,td{display:block;width:100%}
+  tbody tr{padding:10px 12px;border-bottom:1px solid var(--line)}
+  tbody td{border:0;padding:5px 2px}
+  tbody td::before{content:attr(data-label);display:block;font-size:.70rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:1px}
+  tbody td.rowlabel::before{display:none}
+  .rowlabel{font-size:1rem;padding-bottom:2px!important}
+  .topbar-in{padding:10px 12px}
+  .brand small{display:none}
+}
+@media print{
+  .topbar,.quicknav,.groupnav,.card-actions{ display:none!important}
+  body{background:#fff}
+  .card{box-shadow:none;break-inside:avoid}
+  .wrap{max-width:none}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brand">Conjugation Cheatsheet<small>Tae Kim • Grammar Patterns</small></div>
+    <label class="search" aria-label="Search tables">
+      <span aria-hidden="true">⌕</span>
+      <input id="q" type="search" placeholder="Search: te-form, past, potential, 飲む, 食べる, 高い…">
+    </label>
+    <button class="btn" id="toggleRomaji" aria-pressed="true">Romaji ON</button>
+    <button class="btn" id="toggleFuri" aria-pressed="true">Furigana ON</button>
+    <button class="btn" id="toggleFavs">★ Starred only</button>
+    <nav class="groupnav" aria-label="Sections">
+      <a href="#sec-tenses"><b>A</b>All tenses</a>
+      <a href="#sec-verbs"><b>B</b>Verbs</a>
+      <a href="#sec-adjectives"><b>C</b>Adjectives &amp; state-of-being</a>
+      <a href="#sec-aspect"><b>D</b>Aspect</a>
+      <a href="#sec-conditionals"><b>E</b>Conditionals &amp; volition</a>
+      <a href="#sec-voice"><b>F</b>Voice</a>
+      <a href="#sec-requests"><b>G</b>Requests &amp; obligations</a>
+      <a href="#sec-honorifics"><b>H</b>Honorifics</a>
+      <a href="#sec-written"><b>I</b>Written style</a>
+      <a href="#sec-formmap"><b>J</b>Form map</a>
+      <a href="#contents">Contents ↑</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1>Every tense &amp; form,<br><span>on one page.</span></h1>
+    <p>A complete at-a-glance reference for the inflection system in Tae Kim's <em>Guide to Learning Japanese</em> — every tense (non-past &amp; past, affirmative &amp; negative, plain &amp; polite) for verbs, i-adjectives, na-adjectives and nouns, plus progressive aspect, conditionals, volitional, potential, passive, causative and every other derived form, reorganized so you can look up a form here instead of searching the source.</p>
+    <div class="hero-meta">
+      <span class="pill"><strong>19</strong> tables · 10 sections</span>
+      <span class="pill">All tenses — plain + polite</span>
+      <span class="pill">る-verbs vs う-verbs</span>
+      <span class="pill">For N5–N3 review</span>
+    </div>
+  </section>
+
+  <section class="toc" id="contents" aria-label="Contents">
+    <h2>Contents — find any form in seconds</h2>
+    <p>Tables are grouped by what you're looking up, and <b>every tense table uses the same row order — Non-past → Non-past negative → Past → Past negative</b> — so a form is always in the same position. The search bar stays at the top of the screen; the lettered nav above it jumps straight to a section.</p>
+    <div class="toc-grid">
+      <div class="toc-group"><h3>A · All tenses</h3><ul>
+        <li><a href="#tenses">Master tense matrix — every word type</a></li>
+      </ul></div>
+      <div class="toc-group"><h3>B · Verb paradigms</h3><ul>
+        <li><a href="#verbs-plain">Plain forms <span class="jp">ない・た・なかった</span></a></li>
+        <li><a href="#te-ta"><span class="jp">て / た</span> sound-change rules</a></li>
+        <li><a href="#tai">Desire <span class="jp">～たい</span></a></li>
+      </ul></div>
+      <div class="toc-group"><h3>C · Adjectives &amp; state-of-being</h3><ul>
+        <li><a href="#iadj"><span class="jp">い</span>-adjectives</a></li>
+        <li><a href="#naadj"><span class="jp">な</span>-adjectives &amp; nouns <span class="jp">だ / です</span></a></li>
+        <li><a href="#nda">Explanatory <span class="jp">んだ / のだ</span></a></li>
+      </ul></div>
+      <div class="toc-group"><h3>D · Aspect — ongoing, done, experienced</h3><ul>
+        <li><a href="#teiru">Progressive &amp; result <span class="jp">～ている・てある・ておく</span></a></li>
+        <li><a href="#experience">Experience &amp; completion <span class="jp">たことがある・たり・てしまう</span></a></li>
+      </ul></div>
+      <div class="toc-group"><h3>E · Conditionals &amp; volition</h3><ul>
+        <li><a href="#conditionals">Conditionals <span class="jp">たら・ば・なら・と</span></a></li>
+        <li><a href="#volitional">Volitional <span class="jp">～よう</span></a></li>
+        <li><a href="#potential">Potential — “can do”</a></li>
+      </ul></div>
+      <div class="toc-group"><h3>F · Voice</h3><ul>
+        <li><a href="#passive-causative">Passive &amp; causative</a></li>
+      </ul></div>
+      <div class="toc-group"><h3>G · Requests &amp; obligations</h3><ul>
+        <li><a href="#imperative">Commands &amp; requests <span class="jp">ください</span></a></li>
+        <li><a href="#obligations">Must / may / mustn't <span class="jp">なければならない・てもいい</span></a></li>
+      </ul></div>
+      <div class="toc-group"><h3>H · Polite &amp; honorific</h3><ul>
+        <li><a href="#polite">Polite <span class="jp">ます / です</span> paradigm</a></li>
+        <li><a href="#honorifics">Honorific &amp; humble verbs</a></li>
+      </ul></div>
+      <div class="toc-group"><h3>I · Written style</h3><ul>
+        <li><a href="#written">Formal / literary <span class="jp">である・ぬ・ず</span></a></li>
+      </ul></div>
+      <div class="toc-group"><h3>J · One-verb index</h3><ul>
+        <li><a href="#form-map">Complete form map — <span class="jp">食べる・飲む</span>, every form</a></li>
+      </ul></div>
+    </div>
+  </section>
+
+  <div class="note"><b>How to read any table:</b> the stem never changes — think of it like a character radical — and the ending carries tense / negation. For う-verbs only the final kana moves through the a-i-u-e-o row (あ・い・う・え・お); for る-verbs, just drop る and attach. Japanese has only <b>two tenses — non-past (present &amp; future) and past</b>; everything else on this page is aspect, mood or voice built on those two.</div>
+
+  <!-- NDA - user's example -->
+  
+  <div class="section-head" id="sec-tenses"><span class="sec-no">A</span><div><h2>A · All tenses</h2><p>The whole tense system in one grid — start here.</p></div><a class="top-link" href="#contents">Contents ↑</a></div>
+
+  <article class="card" id="tenses" data-search="all tenses tense matrix non-past past present future negative polite plain masu desu nomu takai shizuka gakusei">
+    <div class="card-head"><div><h2>Master tense matrix — <span class="kana">all tenses, all word types</span></h2><p>Japanese has exactly two tenses: <b>non-past</b> (present &amp; future — context and time words decide) and <b>past</b>. Cross them with affirmative / negative and plain / polite and you get the whole system, for every word type, in one grid. Rows are in the same order as every other tense table on this page.</p></div><div class="card-actions"><button class="icon-btn star">☆</button><button class="icon-btn copy">⧉</button></div></div>
+    <div class="rule"><b>How to read:</b> pick the row (tense × plain/polite), then the column (word type). Example — past negative, polite, verb: <span class="jp">飲みませんでした</span>.</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Tense</th><th>Verb — 飲む</th><th>い-Adj — 高い</th><th>な-Adj — 静か</th><th>Noun — 学生</th></tr></thead>
+      <tbody>
+        <tr><td class="rowlabel">Non-past</td><td data-label="Verb"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>む</span><span class="romaji">nomu</span></td><td data-label="い-Adj"><span class="jp jp-lg"><ruby>高<rt>たか</rt></ruby>い</span><span class="romaji">takai</span></td><td data-label="な-Adj"><span class="jp jp-lg"><ruby>静<rt>しず</rt></ruby>かだ</span><span class="romaji">shizuka da</span></td><td data-label="Noun"><span class="jp jp-lg"><ruby>学生<rt>がくせい</rt></ruby>だ</span><span class="romaji">gakusei da</span></td></tr>
+        <tr><td class="rowlabel">Non-past Neg.</td><td data-label="Verb"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>まない</span><span class="romaji">nomanai</span></td><td data-label="い-Adj"><span class="jp jp-lg"><ruby>高<rt>たか</rt></ruby>くない</span><span class="romaji">takakunai</span></td><td data-label="な-Adj"><span class="jp jp-lg"><ruby>静<rt>しず</rt></ruby>かじゃない</span><span class="romaji">shizuka ja nai</span></td><td data-label="Noun"><span class="jp jp-lg"><ruby>学生<rt>がくせい</rt></ruby>じゃない</span><span class="romaji">gakusei ja nai</span></td></tr>
+        <tr><td class="rowlabel">Past</td><td data-label="Verb"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>んだ</span><span class="romaji">nonda</span></td><td data-label="い-Adj"><span class="jp jp-lg"><ruby>高<rt>たか</rt></ruby>かった</span><span class="romaji">takakatta</span></td><td data-label="な-Adj"><span class="jp jp-lg"><ruby>静<rt>しず</rt></ruby>かだった</span><span class="romaji">shizuka datta</span></td><td data-label="Noun"><span class="jp jp-lg"><ruby>学生<rt>がくせい</rt></ruby>だった</span><span class="romaji">gakusei datta</span></td></tr>
+        <tr><td class="rowlabel">Past-Neg.</td><td data-label="Verb"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>まなかった</span><span class="romaji">nomanakatta</span></td><td data-label="い-Adj"><span class="jp jp-lg"><ruby>高<rt>たか</rt></ruby>くなかった</span><span class="romaji">takakunakatta</span></td><td data-label="な-Adj"><span class="jp jp-lg"><ruby>静<rt>しず</rt></ruby>かじゃなかった</span><span class="romaji">shizuka ja nakatta</span></td><td data-label="Noun"><span class="jp jp-lg"><ruby>学生<rt>がくせい</rt></ruby>じゃなかった</span><span class="romaji">gakusei ja nakatta</span></td></tr>
+        <tr><td class="rowlabel">Non-past<small>polite</small></td><td data-label="Verb"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>みます</span><span class="romaji">nomimasu</span></td><td data-label="い-Adj"><span class="jp jp-lg"><ruby>高<rt>たか</rt></ruby>いです</span><span class="romaji">takai desu</span></td><td data-label="な-Adj"><span class="jp jp-lg"><ruby>静<rt>しず</rt></ruby>かです</span><span class="romaji">shizuka desu</span></td><td data-label="Noun"><span class="jp jp-lg"><ruby>学生<rt>がくせい</rt></ruby>です</span><span class="romaji">gakusei desu</span></td></tr>
+        <tr><td class="rowlabel">Non-past Neg.<small>polite</small></td><td data-label="Verb"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>みません</span><span class="romaji">nomimasen</span></td><td data-label="い-Adj"><span class="jp jp-lg"><ruby>高<rt>たか</rt></ruby>くないです</span><span class="romaji">takakunai desu</span></td><td data-label="な-Adj"><span class="jp jp-lg"><ruby>静<rt>しず</rt></ruby>かではありません</span><span class="romaji">shizuka dewa arimasen</span></td><td data-label="Noun"><span class="jp jp-lg"><ruby>学生<rt>がくせい</rt></ruby>ではありません</span><span class="romaji">gakusei dewa arimasen</span></td></tr>
+        <tr><td class="rowlabel">Past<small>polite</small></td><td data-label="Verb"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>みました</span><span class="romaji">nomimashita</span></td><td data-label="い-Adj"><span class="jp jp-lg"><ruby>高<rt>たか</rt></ruby>かったです</span><span class="romaji">takakatta desu</span></td><td data-label="な-Adj"><span class="jp jp-lg"><ruby>静<rt>しず</rt></ruby>かでした</span><span class="romaji">shizuka deshita</span></td><td data-label="Noun"><span class="jp jp-lg"><ruby>学生<rt>がくせい</rt></ruby>でした</span><span class="romaji">gakusei deshita</span></td></tr>
+        <tr><td class="rowlabel">Past-Neg.<small>polite</small></td><td data-label="Verb"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>みませんでした</span><span class="romaji">nomimasen deshita</span></td><td data-label="い-Adj"><span class="jp jp-lg"><ruby>高<rt>たか</rt></ruby>くなかったです</span><span class="romaji">takakunakatta desu</span></td><td data-label="な-Adj"><span class="jp jp-lg"><ruby>静<rt>しず</rt></ruby>かではありませんでした</span><span class="romaji">shizuka dewa arimasen deshita</span></td><td data-label="Noun"><span class="jp jp-lg"><ruby>学生<rt>がくせい</rt></ruby>ではありませんでした</span><span class="romaji">gakusei dewa arimasen deshita</span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="example"><b>There is no separate future tense:</b> <span class="jp">明日飲む</span> ashita nomu = “I’ll drink tomorrow” — same non-past form, future read from context. Detail tables for each column: verbs → §B, polite verbs → §H, い-adjectives &amp; copula → §C.</p>
+  </article>
+
+  <div class="section-head" id="sec-verbs"><span class="sec-no">B</span><div><h2>B · Verb paradigms</h2><p>Plain forms, the て/た sound changes, and desire.</p></div><a class="top-link" href="#contents">Contents ↑</a></div>
+
+<article class="card" id="verbs-plain" data-search="verb plain dictionary nai negative past taberu nomu ru verb u verb ichidan godan">
+    <div class="card-head"><div><h2>Verbs — <span class="kana">plain forms</span> at a glance</h2><p>The core 4: dictionary, negative, past, past-negative. Everything else (て, たら, たい) is built from these stems.</p></div><div class="card-actions"><button class="icon-btn star">☆</button><button class="icon-btn copy">⧉</button></div></div>
+    <div class="rule"><b>る-verb (ichidan):</b> drop <span class="jp">る</span> + ending. &nbsp; <b>う-verb (godan):</b> final kana shifts row — あ-row for negative, い-row for stem, た/て with sound changes (next table).</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Form</th><th>る-verb — 食べる</th><th>う-verb — 飲む</th><th>う-verb — 話す</th></tr></thead>
+      <tbody>
+        <tr><td class="rowlabel">Non-past<small>dictionary form</small></td><td data-label="食べる"><span class="jp jp-lg"><ruby>食<rt>た</rt></ruby>べる</span><span class="romaji">taberu</span></td><td data-label="飲む"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>む</span><span class="romaji">nomu</span></td><td data-label="話す"><span class="jp jp-lg"><ruby>話<rt>はな</rt></ruby>す</span><span class="romaji">hanasu</span></td></tr>
+        <tr><td class="rowlabel">Non-past Neg.<small>～ない</small></td><td data-label="食べる"><span class="jp jp-lg"><ruby>食<rt>た</rt></ruby>べない</span><span class="romaji">tabenai</span></td><td data-label="飲む"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>まない</span><span class="romaji">nomanai</span></td><td data-label="話す"><span class="jp jp-lg"><ruby>話<rt>はな</rt></ruby>さない</span><span class="romaji">hanasanai</span></td></tr>
+        <tr><td class="rowlabel">Past<small>～た / ～だ</small></td><td data-label="食べる"><span class="jp jp-lg"><ruby>食<rt>た</rt></ruby>べた</span><span class="romaji">tabeta</span></td><td data-label="飲む"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>んだ</span><span class="romaji">nonda</span></td><td data-label="話す"><span class="jp jp-lg"><ruby>話<rt>はな</rt></ruby>した</span><span class="romaji">hanashita</span></td></tr>
+        <tr><td class="rowlabel">Past-Neg.<small>～なかった</small></td><td data-label="食べる"><span class="jp jp-lg"><ruby>食<rt>た</rt></ruby>べなかった</span><span class="romaji">tabenakatta</span></td><td data-label="飲む"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>まなかった</span><span class="romaji">nomanakatta</span></td><td data-label="話す"><span class="jp jp-lg"><ruby>話<rt>はな</rt></ruby>さなかった</span><span class="romaji">hanasanakatta</span></td></tr>
+        <tr><td class="rowlabel">て-form</td><td data-label="食べる"><span class="jp jp-lg"><ruby>食<rt>た</rt></ruby>べて</span><span class="romaji">tabete</span></td><td data-label="飲む"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>んで</span><span class="romaji">nonde</span></td><td data-label="話す"><span class="jp jp-lg"><ruby>話<rt>はな</rt></ruby>して</span><span class="romaji">hanashite</span></td></tr>
+      </tbody>
+    </table></div>
+    <div class="grid2">
+      <div class="mini"><h3>⚠ Irregulars — memorize as-is</h3><ul><li><span class="jp">する</span> suru → しない / した / して</li><li><span class="jp">来る</span> kuru → こない / きた / きて</li><li><span class="jp">ある</span> aru → negative is just <span class="jp">ない</span> (no あらない)</li><li><span class="jp">行く</span> iku → 行って / 行った (not 行いて)</li></ul></div>
+      <div class="mini"><h3>The う → わ trap</h3><p>う-verbs ending in <span class="jp">う</span> go to <span class="jp">わ</span>, not あ, in the negative: <span class="jp">買う → 買わない</span> kawanai, <span class="jp">会う → 会わない</span> awanai. Every other う-verb uses the plain あ-row.</p></div>
+    </div>
+  </article>
+
+<article class="card" id="te-ta" data-search="te form ta form sound change euphonic onbin って んで いて いで して">
+    <div class="card-head"><div><h2>て-form &amp; た-form — <span class="kana">う-verb sound changes</span></h2><p>For る-verbs it’s trivial (drop る + て / た). For う-verbs, the ending collapses — group by final kana. た-form is identical, just swap て→た, で→だ.</p></div><div class="card-actions"><button class="icon-btn star">☆</button><button class="icon-btn copy">⧉</button></div></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Dictionary ending</th><th>て-form</th><th>Example</th><th>た-form</th></tr></thead>
+      <tbody>
+        <tr><td class="rowlabel">う ・ つ ・ る</td><td data-label="て-form"><span class="jp jp-lg">～って</span><span class="romaji">-tte</span></td><td data-label="Example"><span class="jp">買う→買って</span><span class="romaji">kau → katte</span> · <span class="jp">立つ→立って</span> · <span class="jp">帰る→帰って</span></td><td data-label="た-form"><span class="jp">～った</span><span class="romaji">katta / tatta / kaetta</span></td></tr>
+        <tr><td class="rowlabel">む ・ ぶ ・ ぬ</td><td data-label="て-form"><span class="jp jp-lg">～んで</span><span class="romaji">-nde</span></td><td data-label="Example"><span class="jp">飲む→飲んで</span> · <span class="jp">遊ぶ→遊んで</span> · <span class="jp">死ぬ→死んで</span></td><td data-label="た-form"><span class="jp">～んだ</span><span class="romaji">nonda / asonda / shinda</span></td></tr>
+        <tr><td class="rowlabel">く</td><td data-label="て-form"><span class="jp jp-lg">～いて</span><span class="romaji">-ite</span></td><td data-label="Example"><span class="jp">書く→書いて</span><span class="romaji">kaku → kaite</span></td><td data-label="た-form"><span class="jp">～いた</span><span class="romaji">kaita</span></td></tr>
+        <tr><td class="rowlabel">ぐ</td><td data-label="て-form"><span class="jp jp-lg">～いで</span><span class="romaji">-ide</span></td><td data-label="Example"><span class="jp">泳ぐ→泳いで</span><span class="romaji">oyogu → oyoide</span></td><td data-label="た-form"><span class="jp">～いだ</span><span class="romaji">oyoida</span></td></tr>
+        <tr><td class="rowlabel">す</td><td data-label="て-form"><span class="jp jp-lg">～して</span><span class="romaji">-shite</span></td><td data-label="Example"><span class="jp">話す→話して</span><span class="romaji">hanasu → hanashite</span></td><td data-label="た-form"><span class="jp">～した</span><span class="romaji">hanashita</span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="example"><b>Mnemonic in one line:</b> うつる → って, むぶぬ → んで, く → いて, ぐ → いで, す → して. If you can say the て-form, you already know the た-form, たら and たり — they all share the same stem.</p>
+  </article>
+
+<article class="card" id="tai" data-search="tai want to stem tabetai nomitai desire">
+    <div class="card-head"><div><h2>Desire — <span class="kana">～たい</span> “want to do”</h2><p>Stem + たい. The result conjugates exactly like an い-adjective.</p></div><div class="card-actions"><button class="icon-btn star">☆</button><button class="icon-btn copy">⧉</button></div></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Form</th><th>食べたい</th><th>飲みたい</th></tr></thead>
+      <tbody>
+        <tr><td class="rowlabel">Non-past</td><td data-label="食べたい"><span class="jp jp-lg">食べたい</span><span class="romaji">tabetai</span></td><td data-label="飲みたい"><span class="jp jp-lg">飲みたい</span><span class="romaji">nomitai</span></td></tr>
+        <tr><td class="rowlabel">Non-past Neg.</td><td data-label="食べたい"><span class="jp jp-lg">食べたくない</span><span class="romaji">tabetakunai</span></td><td data-label="飲みたい"><span class="jp jp-lg">飲みたくない</span><span class="romaji">nomitakunai</span></td></tr>
+        <tr><td class="rowlabel">Past</td><td data-label="食べたい"><span class="jp jp-lg">食べたかった</span><span class="romaji">tabetakatta</span></td><td data-label="飲みたい"><span class="jp jp-lg">飲みたかった</span><span class="romaji">nomitakatta</span></td></tr>
+        <tr><td class="rowlabel">Past-Neg.</td><td data-label="食べたい"><span class="jp jp-lg">食べたくなかった</span><span class="romaji">tabetakunakatta</span></td><td data-label="飲みたい"><span class="jp jp-lg">飲みたくなかった</span><span class="romaji">nomitakunakatta</span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="example"><b>For things (not actions):</b> use <span class="jp">～が欲しい</span> hoshii — also an い-adjective: <span class="jp">欲しい / 欲しくない / 欲しかった / 欲しくなかった</span>.</p>
+  </article>
+
+  <div class="section-head" id="sec-adjectives"><span class="sec-no">C</span><div><h2>C · Adjectives & state-of-being</h2><p>い-adjectives, な-adjectives, nouns — and the explanatory のだ built on them.</p></div><a class="top-link" href="#contents">Contents ↑</a></div>
+
+<article class="card" id="iadj" data-search="i adjective takai samui oishii takakunai takakatta">
+    <div class="card-head"><div><h2>い-Adjectives — <span class="kana">高い</span></h2><p>い-adjectives conjugate by themselves — no だ needed. Drop final い and attach. The one irregular is いい (from よい).</p></div><div class="card-actions"><button class="icon-btn star">☆</button><button class="icon-btn copy">⧉</button></div></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Form</th><th>高い — expensive / tall</th><th>Rule</th><th>いい — good (irregular)</th></tr></thead>
+      <tbody>
+        <tr><td class="rowlabel">Non-past</td><td data-label="高い"><span class="jp jp-lg">高い</span><span class="romaji">takai</span></td><td class="dim">dictionary</td><td data-label="いい"><span class="jp">いい</span><span class="romaji">ii</span></td></tr>
+        <tr><td class="rowlabel">Non-past Neg.</td><td data-label="高い"><span class="jp jp-lg">高くない</span><span class="romaji">takakunai</span></td><td class="dim">～く + ない</td><td data-label="いい"><span class="jp">よくない</span><span class="romaji">yokunai</span></td></tr>
+        <tr><td class="rowlabel">Past</td><td data-label="高い"><span class="jp jp-lg">高かった</span><span class="romaji">takakatta</span></td><td class="dim">～かった</td><td data-label="いい"><span class="jp">よかった</span><span class="romaji">yokatta</span></td></tr>
+        <tr><td class="rowlabel">Past-Neg.</td><td data-label="高い"><span class="jp jp-lg">高くなかった</span><span class="romaji">takakunakatta</span></td><td class="dim">～く + なかった</td><td data-label="いい"><span class="jp">よくなかった</span><span class="romaji">yokunakatta</span></td></tr>
+        <tr><td class="rowlabel">て-form</td><td data-label="高い"><span class="jp jp-lg">高くて</span><span class="romaji">takakute</span></td><td class="dim">～くて — for linking</td><td data-label="いい"><span class="jp">よくて</span><span class="romaji">yokute</span></td></tr>
+        <tr><td class="rowlabel">Adverb</td><td data-label="高い"><span class="jp jp-lg">高く</span><span class="romaji">takaku</span></td><td class="dim">～く + verb</td><td data-label="いい"><span class="jp">よく</span><span class="romaji">yoku</span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="example"><b>Polite:</b> just add <span class="jp">です</span> without changing the adjective — <span class="jp">高いです / 高かったです</span>. Never <span class="jp">*高いだ</span>.</p>
+  </article>
+
+<article class="card" id="naadj" data-search="na adjective noun da desu ja nai datta shizuka gakusei copula">
+    <div class="card-head"><div><h2>な-Adjectives &amp; Nouns — <span class="kana">だ / です</span></h2><p>These don’t conjugate themselves; the copula does. That’s why their table looks exactly like the left column of the んだ table.</p></div><div class="card-actions"><button class="icon-btn star">☆</button><button class="icon-btn copy">⧉</button></div></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Form</th><th>Plain — 静か / 学生</th><th>Polite</th></tr></thead>
+      <tbody>
+        <tr><td class="rowlabel">Non-past</td><td data-label="Plain"><span class="jp jp-lg">静かだ / 学生だ</span><span class="romaji">shizuka da / gakusei da</span></td><td data-label="Polite"><span class="jp">静かです / 学生です</span><span class="romaji">shizuka desu / gakusei desu</span></td></tr>
+        <tr><td class="rowlabel">Non-past Neg.</td><td data-label="Plain"><span class="jp jp-lg">静かじゃない / 学生じゃない</span><span class="romaji">shizuka ja nai / gakusei ja nai</span></td><td data-label="Polite"><span class="jp">静かじゃないです / 静かではありません</span><span class="romaji">ja nai desu / dewa arimasen</span></td></tr>
+        <tr><td class="rowlabel">Past</td><td data-label="Plain"><span class="jp jp-lg">静かだった / 学生だった</span><span class="romaji">shizuka datta / gakusei datta</span></td><td data-label="Polite"><span class="jp">静かでした / 学生でした</span><span class="romaji">shizuka deshita / gakusei deshita</span></td></tr>
+        <tr><td class="rowlabel">Past-Neg.</td><td data-label="Plain"><span class="jp jp-lg">静かじゃなかった / 学生じゃなかった</span><span class="romaji">shizuka ja nakatta / gakusei ja nakatta</span></td><td data-label="Polite"><span class="jp">静かじゃありませんでした</span><span class="romaji">ja arimasen deshita</span></td></tr>
+        <tr><td class="rowlabel">て-form</td><td data-label="Plain"><span class="jp jp-lg">静かで / 学生で</span><span class="romaji">shizuka de / gakusei de</span></td><td class="dim">Use で to link clauses</td></tr>
+      </tbody>
+    </table></div>
+    <p class="example"><b>Attaching to a noun:</b> な-adj + な + noun (<span class="jp">静かな部屋</span>), noun + の + noun (<span class="jp">学生の本</span>). That な is the same な you saw in <span class="jp">学生なんだ</span> — wait, no: nouns take な before んだ in the explanatory form, even though plain noun + noun uses の.</p>
+  </article>
+
+<article class="card" id="nda" data-search="nda noda no da explanatory んだ のだ 学生 飲む">
+    <div class="card-head">
+      <div>
+        <h2>「<span class="kana">んだ</span>」 — explanatory tone</h2>
+        <p>Adds an explanatory / “it is that…” nuance. Short form of のだ. To conjugate it, inflect what comes <em>before</em> んだ — substitute の for ん and のだ for んだ when you need the full form.</p>
+      </div>
+      <div class="card-actions"><button class="icon-btn star" aria-label="Star this card">☆</button><button class="icon-btn copy" aria-label="Copy table">⧉</button></div>
+    </div>
+    <div class="rule"><b>Pattern:</b> Noun / な-adj needs <span class="jp">な</span> before んだ → <span class="jp">学生なんだ</span>. Verbs &amp; い-adj attach directly → <span class="jp">飲むんだ</span> / <span class="jp">高いんだ</span>.</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Form</th><th>Noun / Na-Adj — 学生</th><th>Verb / I-Adj — 飲む</th><th>Meaning cue</th></tr></thead>
+      <tbody>
+        <tr><td class="rowlabel">Non-past</td><td data-label="Noun / Na-Adj"><span class="jp jp-lg"><ruby>学生<rt>がくせい</rt></ruby>なんだ</span><span class="romaji">gakusei nan da</span></td><td data-label="Verb / I-Adj"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>むんだ</span><span class="romaji">nomun da</span></td><td class="dim">It’s that (I’m) a student / (I) drink</td></tr>
+        <tr><td class="rowlabel">Non-past Neg.</td><td data-label="Noun / Na-Adj"><span class="jp jp-lg"><ruby>学生<rt>がくせい</rt></ruby>なんじゃない</span><span class="romaji">gakusei nan ja nai</span></td><td data-label="Verb / I-Adj"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>むんじゃない</span><span class="romaji">nomun ja nai</span></td><td class="dim">It’s not that…</td></tr>
+        <tr><td class="rowlabel">Past</td><td data-label="Noun / Na-Adj"><span class="jp jp-lg"><ruby>学生<rt>がくせい</rt></ruby>なんだった</span><span class="romaji">gakusei nan datta</span></td><td data-label="Verb / I-Adj"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>むんだった</span><span class="romaji">nomun datta</span></td><td class="dim">It was that…</td></tr>
+        <tr><td class="rowlabel">Past-Neg.</td><td data-label="Noun / Na-Adj"><span class="jp jp-lg"><ruby>学生<rt>がくせい</rt></ruby>なんじゃなかった</span><span class="romaji">gakusei nan ja nakatta</span></td><td data-label="Verb / I-Adj"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>むんじゃなかった</span><span class="romaji">nomun ja nakatta</span></td><td class="dim">It wasn’t that…</td></tr>
+      </tbody>
+    </table></div>
+    <p class="example"><b>Polite version:</b> <span class="jp">んです</span> <span class="romaji" style="display:inline">n desu</span> — e.g. <span class="jp">飲むんです</span>, <span class="jp">学生なんです</span>. In questions you’ll hear <span class="jp">んですか？</span> constantly: it asks for an explanation, not just yes/no.</p>
+  </article>
+
+  <div class="section-head" id="sec-aspect"><span class="sec-no">D</span><div><h2>D · Aspect</h2><p>Ongoing, resulting, experienced and completed actions.</p></div><a class="top-link" href="#contents">Contents ↑</a></div>
+
+  <article class="card" id="teiru" data-search="te iru teiru progressive continuous resultative state te aru te oku te miru tabete iru nonde iru imasu">
+    <div class="card-head"><div><h2>Aspect — <span class="kana">～ている</span> in every tense</h2><p>て-form + いる. いる itself conjugates like a る-verb, so tense and negation all live on いる — same row order as the master matrix. Three readings: action in progress (“is drinking”), resulting state (“is married / lives / is wearing”), and habitual (“drinks every day / works at…”).</p></div><div class="card-actions"><button class="icon-btn star">☆</button><button class="icon-btn copy">⧉</button></div></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Tense</th><th>食べる → 食べている</th><th>飲む → 飲んでいる</th></tr></thead>
+      <tbody>
+        <tr><td class="rowlabel">Non-past</td><td data-label="食べている"><span class="jp jp-lg"><ruby>食<rt>た</rt></ruby>べている</span><span class="romaji">tabete iru</span></td><td data-label="飲んでいる"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>んでいる</span><span class="romaji">nonde iru</span></td></tr>
+        <tr><td class="rowlabel">Non-past Neg.</td><td data-label="食べている"><span class="jp jp-lg"><ruby>食<rt>た</rt></ruby>べていない</span><span class="romaji">tabete inai</span></td><td data-label="飲んでいる"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>んでいない</span><span class="romaji">nonde inai</span></td></tr>
+        <tr><td class="rowlabel">Past</td><td data-label="食べている"><span class="jp jp-lg"><ruby>食<rt>た</rt></ruby>べていた</span><span class="romaji">tabete ita</span></td><td data-label="飲んでいる"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>んでいた</span><span class="romaji">nonde ita</span></td></tr>
+        <tr><td class="rowlabel">Past-Neg.</td><td data-label="食べている"><span class="jp jp-lg"><ruby>食<rt>た</rt></ruby>べていなかった</span><span class="romaji">tabete inakatta</span></td><td data-label="飲んでいる"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>んでいなかった</span><span class="romaji">nonde inakatta</span></td></tr>
+        <tr><td class="rowlabel">Non-past<small>polite</small></td><td data-label="食べている"><span class="jp jp-lg"><ruby>食<rt>た</rt></ruby>べています</span><span class="romaji">tabete imasu</span></td><td data-label="飲んでいる"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>んでいます</span><span class="romaji">nonde imasu</span></td></tr>
+        <tr><td class="rowlabel">Non-past Neg.<small>polite</small></td><td data-label="食べている"><span class="jp jp-lg"><ruby>食<rt>た</rt></ruby>べていません</span><span class="romaji">tabete imasen</span></td><td data-label="飲んでいる"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>んでいません</span><span class="romaji">nonde imasen</span></td></tr>
+        <tr><td class="rowlabel">Past<small>polite</small></td><td data-label="食べている"><span class="jp jp-lg"><ruby>食<rt>た</rt></ruby>べていました</span><span class="romaji">tabete imashita</span></td><td data-label="飲んでいる"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>んでいました</span><span class="romaji">nonde imashita</span></td></tr>
+        <tr><td class="rowlabel">Past-Neg.<small>polite</small></td><td data-label="食べている"><span class="jp jp-lg"><ruby>食<rt>た</rt></ruby>べていませんでした</span><span class="romaji">tabete imasen deshita</span></td><td data-label="飲んでいる"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>んでいませんでした</span><span class="romaji">nonde imasen deshita</span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="example"><b>Speech contraction:</b> いる is usually dropped to just る — <span class="jp">食べてる / 飲んでる</span> tabeteru / nonderu.</p>
+    <div class="grid2">
+      <div class="mini"><h3><span class="jp">～てある</span> te aru — done &amp; ready</h3><p>Result of an intentional action, still in effect: <span class="jp">予約してある</span> “(I) have it reserved.” Object takes が. Past: <span class="jp">～てあった</span>.</p></div>
+      <div class="mini"><h3><span class="jp">～ておく</span> te oku — do in advance</h3><p>Preparation for later: <span class="jp">買っておく</span> “buy ahead of time.” Contracts to <span class="jp">～とく / ～どく</span> (買っとく, 飲んどく). Past: <span class="jp">～ておいた</span>.</p></div>
+      <div class="mini"><h3><span class="jp">～てみる</span> te miru — try doing</h3><p><span class="jp">食べてみる</span> “try eating (and see).” Conjugates on みる.</p></div>
+      <div class="mini"><h3><span class="jp">～ていく / ～てくる</span> — change over time</h3><p><span class="jp">増えていく</span> “keep increasing (from now)”; <span class="jp">増えてきた</span> “has increased (up to now).”</p></div>
+    </div>
+  </article>
+
+  <article class="card" id="experience" data-search="experience koto ga aru tari te shimau chau completion regret tabeta koto nondari">
+    <div class="card-head"><div><h2>Experience, listing &amp; completion</h2><p>Three past-stem patterns: having done something before, listing sample actions, and finishing (or regretting) an action. All are built on the た-form, so tense sits on the final word.</p></div><div class="card-actions"><button class="icon-btn star">☆</button><button class="icon-btn copy">⧉</button></div></div>
+    <div class="rule"><b>～たことがある</b> — “have done … before.” ある conjugates like any existence verb; the negative <span class="jp">ことがない</span> means “have <em>never</em> done …”.</div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Tense</th><th>食べる</th><th>飲む</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td class="rowlabel">Non-past</td><td data-label="食べる"><span class="jp jp-lg"><ruby>食<rt>た</rt></ruby>べたことがある</span><span class="romaji">tabeta koto ga aru</span></td><td data-label="飲む"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>んだことがある</span><span class="romaji">nonda koto ga aru</span></td><td class="dim">have eaten / drunk before</td></tr>
+        <tr><td class="rowlabel">Non-past Neg.</td><td data-label="食べる"><span class="jp jp-lg"><ruby>食<rt>た</rt></ruby>べたことがない</span><span class="romaji">tabeta koto ga nai</span></td><td data-label="飲む"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>んだことがない</span><span class="romaji">nonda koto ga nai</span></td><td class="dim">have never eaten / drunk</td></tr>
+        <tr><td class="rowlabel">Past</td><td data-label="食べる"><span class="jp jp-lg"><ruby>食<rt>た</rt></ruby>べたことがあった</span><span class="romaji">tabeta koto ga atta</span></td><td data-label="飲む"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>んだことがあった</span><span class="romaji">nonda koto ga atta</span></td><td class="dim">had (at some point) …</td></tr>
+        <tr><td class="rowlabel">Past-Neg.</td><td data-label="食べる"><span class="jp jp-lg"><ruby>食<rt>た</rt></ruby>べたことがなかった</span><span class="romaji">tabeta koto ga nakatta</span></td><td data-label="飲む"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>んだことがなかった</span><span class="romaji">nonda koto ga nakatta</span></td><td class="dim">had never …</td></tr>
+      </tbody>
+    </table></div>
+    <div class="grid2">
+      <div class="mini"><h3><span class="jp">～たり</span> tari — listing sample actions</h3><p>た-form + り, repeat, close with する (which carries the tense): <span class="jp">食べたり飲んだりする</span> “do things like eat and drink.” Past: <span class="jp">食べたり飲んだりした</span>.</p></div>
+      <div class="mini"><h3><span class="jp">～てしまう</span> te shimau — completion / regret</h3><p><span class="jp">食べてしまう</span> tabete shimau · past <span class="jp">食べてしまった</span> · neg <span class="jp">食べてしまわない</span>. Contracts in speech to <span class="jp">～ちゃう / ～じゃう</span>: 食べちゃった, 飲んじゃった.</p></div>
+    </div>
+  </article>
+
+  <div class="section-head" id="sec-conditionals"><span class="sec-no">E</span><div><h2>E · Conditionals & volition</h2><p>If/when, let's, and can-do.</p></div><a class="top-link" href="#contents">Contents ↑</a></div>
+
+<article class="card" id="conditionals" data-search="conditional tara ba nara to if when tabetara tabereba">
+    <div class="card-head"><div><h2>Conditionals — <span class="kana">たら / ば / なら / と</span></h2><p>Four ways to say “if / when.” たら is the most general; ば is hypothetical; なら is contextual (“if it’s the case that…”); と is for automatic / inevitable results.</p></div><div class="card-actions"><button class="icon-btn star">☆</button><button class="icon-btn copy">⧉</button></div></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Word type</th><th>～たら</th><th>～ば</th><th>～なら</th></tr></thead>
+      <tbody>
+        <tr><td class="rowlabel">Verb</td><td data-label="たら"><span class="jp">食べたら / 飲んだら</span><span class="romaji">tabetara / nondara</span><span class="dim">past + ら</span></td><td data-label="ば"><span class="jp">食べれば / 飲めば</span><span class="romaji">tabereba / nomeba</span><span class="dim">え-row + ば</span></td><td data-label="なら"><span class="jp">食べるなら / 飲むなら</span><span class="romaji">taberu nara / nomu nara</span></td></tr>
+        <tr><td class="rowlabel">い-adj</td><td data-label="たら"><span class="jp">高かったら</span><span class="romaji">takakattara</span></td><td data-label="ば"><span class="jp">高ければ</span><span class="romaji">takakereba</span><span class="dim">drop い + ければ</span></td><td data-label="なら"><span class="jp">高いなら</span><span class="romaji">takai nara</span></td></tr>
+        <tr><td class="rowlabel">な-adj / Noun</td><td data-label="たら"><span class="jp">静かだったら / 学生だったら</span><span class="romaji">shizuka dattara</span></td><td data-label="ば"><span class="dim">— use なら or であれば</span></td><td data-label="なら"><span class="jp">静かなら / 学生なら</span><span class="romaji">shizuka nara / gakusei nara</span></td></tr>
+        <tr><td class="rowlabel">Negative ば</td><td colspan="3" data-label="Negative ba"><span class="jp">食べなければ / 飲まなければ / 高くなければ</span> <span class="romaji">tabenakereba / nomanakereba / takakunakereba</span> <span class="dim">— pattern: negative stem + ければ (“if not…” / “must” with ならない)</span></td></tr>
+      </tbody>
+    </table></div>
+  </article>
+
+<article class="card" id="volitional" data-search="volitional you mashou lets shall tabeyou nomou">
+    <div class="card-head"><div><h2>Volitional — <span class="kana">～よう</span> “let’s / I shall”</h2><p>Plain counterpart of ましょう. Also used after と思う for intentions.</p></div><div class="card-actions"><button class="icon-btn star">☆</button><button class="icon-btn copy">⧉</button></div></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Type</th><th>Rule</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td class="rowlabel">る-verb</td><td class="dim">drop る + よう</td><td data-label="Example"><span class="jp jp-lg">食べる → 食べよう</span><span class="romaji">taberu → tabeyou</span></td></tr>
+        <tr><td class="rowlabel">う-verb</td><td class="dim">う-row → お-row + う</td><td data-label="Example"><span class="jp jp-lg">飲む → 飲もう</span><span class="romaji">nomu → nomou</span> · <span class="jp">行く → 行こう</span></td></tr>
+        <tr><td class="rowlabel">Irregular</td><td class="dim">memorize</td><td data-label="Example"><span class="jp">する → しよう</span> · <span class="jp">来る → 来よう</span> <span class="romaji">suru → shiyou · kuru → koyou</span></td></tr>
+      </tbody>
+    </table></div>
+  </article>
+
+<article class="card" id="potential" data-search="potential can do dekiru rareru ereru taberareru nomeru">
+    <div class="card-head"><div><h2>Potential — <span class="kana">can do</span></h2><p>Result behaves like a る-verb, whatever the original verb was. Object often marked with が instead of を.</p></div><div class="card-actions"><button class="icon-btn star">☆</button><button class="icon-btn copy">⧉</button></div></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Type</th><th>Rule</th><th>Example → Negative / Past</th></tr></thead>
+      <tbody>
+        <tr><td class="rowlabel">る-verb</td><td class="dim">drop る + られる</td><td data-label="Example"><span class="jp jp-lg">食べられる</span><span class="romaji">taberareru</span><span class="dim"> → 食べられない / 食べられた</span></td></tr>
+        <tr><td class="rowlabel">う-verb</td><td class="dim">う-row → え-row + る</td><td data-label="Example"><span class="jp jp-lg">飲める</span><span class="romaji">nomeru</span><span class="dim"> → 飲めない / 飲めた</span> · <span class="jp">話せる</span> hanaseru</td></tr>
+        <tr><td class="rowlabel">Irregular</td><td class="dim">memorize</td><td data-label="Example"><span class="jp">する → できる</span> dekiru · <span class="jp">来る → 来られる</span> korareru</td></tr>
+      </tbody>
+    </table></div>
+    <p class="example"><b>Spoken shortcut:</b> ら is often dropped for る-verbs in speech — <span class="jp">食べれる</span> tabereru. Understand it, but use the full <span class="jp">食べられる</span> in careful writing / exams.</p>
+  </article>
+
+  <div class="section-head" id="sec-voice"><span class="sec-no">F</span><div><h2>F · Voice</h2><p>Passive and causative.</p></div><a class="top-link" href="#contents">Contents ↑</a></div>
+
+<article class="card" id="passive-causative" data-search="passive causative rareru saseru ukemi shieki taberareru tabesaseru">
+    <div class="card-head"><div><h2>Passive &amp; Causative — <span class="kana">quick map</span></h2><p>Both are built from the negative stem region — if you know the ない-form stem, you’re one step away.</p></div><div class="card-actions"><button class="icon-btn star">☆</button><button class="icon-btn copy">⧉</button></div></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th></th><th>る-verb — 食べる</th><th>う-verb — 飲む</th><th>Rule</th></tr></thead>
+      <tbody>
+        <tr><td class="rowlabel">Passive<small>be done to</small></td><td data-label="食べる"><span class="jp jp-lg">食べられる</span><span class="romaji">taberareru</span></td><td data-label="飲む"><span class="jp jp-lg">飲まれる</span><span class="romaji">nomareru</span></td><td class="dim">る: +られる · う: あ-row + れる</td></tr>
+        <tr><td class="rowlabel">Causative<small>make / let</small></td><td data-label="食べる"><span class="jp jp-lg">食べさせる</span><span class="romaji">tabesaseru</span></td><td data-label="飲む"><span class="jp jp-lg">飲ませる</span><span class="romaji">nomaseru</span></td><td class="dim">る: +させる · う: あ-row + せる</td></tr>
+        <tr><td class="rowlabel">Causative-Passive</td><td data-label="食べる"><span class="jp jp-lg">食べさせられる</span><span class="romaji">tabesaserareru</span></td><td data-label="飲む"><span class="jp jp-lg">飲まされる</span><span class="romaji">nomasareru</span><span class="dim">う-verbs shorten to ～される</span></td></tr>
+        <tr><td class="rowlabel">Irregulars</td><td colspan="3" data-label="Irregulars"><span class="jp">する → される / させる</span> · <span class="jp">来る → 来られる / 来させる</span> <span class="romaji">suru → sareru / saseru · kuru → korareru / kosaseru</span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="example"><b>Watch out:</b> for る-verbs, potential and passive are both <span class="jp">～られる</span> (食べられる = can eat / be eaten). Context and particles (が vs に) disambiguate.</p>
+  </article>
+
+  <div class="section-head" id="sec-requests"><span class="sec-no">G</span><div><h2>G · Requests & obligations</h2><p>Commands, requests, must / may / mustn't.</p></div><a class="top-link" href="#contents">Contents ↑</a></div>
+
+<article class="card" id="imperative" data-search="imperative command prohibitive na kudasai te kudasai request">
+    <div class="card-head"><div><h2>Commands &amp; Requests</h2><p>From blunt to polite — choose by relationship, not just grammar. In everyday life you’ll mostly use the て + ください forms.</p></div><div class="card-actions"><button class="icon-btn star">☆</button><button class="icon-btn copy">⧉</button></div></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Form</th><th>る-verb</th><th>う-verb</th><th>Use</th></tr></thead>
+      <tbody>
+        <tr><td class="rowlabel">Imperative</td><td data-label="る-verb"><span class="jp jp-lg">食べろ</span><span class="romaji">tabero</span></td><td data-label="う-verb"><span class="jp jp-lg">飲め</span><span class="romaji">nome</span><span class="dim"> — え-row</span></td><td class="dim">Blunt order; signs, emergencies, quoted speech</td></tr>
+        <tr><td class="rowlabel">Prohibitive</td><td data-label="る-verb"><span class="jp jp-lg">食べるな</span><span class="romaji">taberu na</span></td><td data-label="う-verb"><span class="jp jp-lg">飲むな</span><span class="romaji">nomu na</span></td><td class="dim">Dictionary + な = “Don’t…!”</td></tr>
+        <tr><td class="rowlabel">Request (polite)</td><td data-label="る-verb"><span class="jp jp-lg">食べてください</span><span class="romaji">tabete kudasai</span></td><td data-label="う-verb"><span class="jp jp-lg">飲んでください</span><span class="romaji">nonde kudasai</span></td><td class="dim">て-form + ください</td></tr>
+        <tr><td class="rowlabel">Negative request</td><td data-label="る-verb"><span class="jp jp-lg">食べないでください</span><span class="romaji">tabenaide kudasai</span></td><td data-label="う-verb"><span class="jp jp-lg">飲まないでください</span><span class="romaji">nomanaide kudasai</span></td><td class="dim">ない-form + でください</td></tr>
+      </tbody>
+    </table></div>
+  </article>
+
+  <article class="card" id="obligations" data-search="obligation must permission may must not nakereba naranai nakute mo ii te mo ii te wa ikenai hou ga ii should">
+    <div class="card-head"><div><h2>Must, may &amp; mustn’t — <span class="kana">obligations &amp; permission</span></h2><p>All built from forms you already have: the ない-stem for “must”, the て-form for permission and prohibition.</p></div><div class="card-actions"><button class="icon-btn star">☆</button><button class="icon-btn copy">⧉</button></div></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Function</th><th>食べる</th><th>飲む</th><th>Pattern</th></tr></thead>
+      <tbody>
+        <tr><td class="rowlabel">Must<small>have to</small></td><td data-label="食べる"><span class="jp jp-lg"><ruby>食<rt>た</rt></ruby>べなければならない</span><span class="romaji">tabenakereba naranai</span></td><td data-label="飲む"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>まなければならない</span><span class="romaji">nomanakereba naranai</span></td><td class="dim">ない-stem + なければ + ならない / いけない. Also ～なくてはいけない; casual ～ないと, ～なくちゃ</td></tr>
+        <tr><td class="rowlabel">Don’t have to</td><td data-label="食べる"><span class="jp jp-lg"><ruby>食<rt>た</rt></ruby>べなくてもいい</span><span class="romaji">tabenakute mo ii</span></td><td data-label="飲む"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>まなくてもいい</span><span class="romaji">nomanakute mo ii</span></td><td class="dim">negative て-form (～なくて) + もいい</td></tr>
+        <tr><td class="rowlabel">May<small>it’s OK to</small></td><td data-label="食べる"><span class="jp jp-lg"><ruby>食<rt>た</rt></ruby>べてもいい</span><span class="romaji">tabete mo ii</span></td><td data-label="飲む"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>んでもいい</span><span class="romaji">nonde mo ii</span></td><td class="dim">て-form + もいい</td></tr>
+        <tr><td class="rowlabel">Mustn’t<small>not allowed</small></td><td data-label="食べる"><span class="jp jp-lg"><ruby>食<rt>た</rt></ruby>べてはいけない</span><span class="romaji">tabete wa ikenai</span></td><td data-label="飲む"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>んではいけない</span><span class="romaji">nonde wa ikenai</span></td><td class="dim">て-form + はいけない (spoken: ～ちゃ / ～じゃ いけない)</td></tr>
+        <tr><td class="rowlabel">Should<small>had better</small></td><td data-label="食べる"><span class="jp jp-lg"><ruby>食<rt>た</rt></ruby>べたほうがいい</span><span class="romaji">tabeta hou ga ii</span></td><td data-label="飲む"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>んだほうがいい</span><span class="romaji">nonda hou ga ii</span></td><td class="dim">past + ほうがいい. Shouldn’t: ない + ほうがいい — 食べないほうがいい</td></tr>
+      </tbody>
+    </table></div>
+  </article>
+
+  <div class="section-head" id="sec-honorifics"><span class="sec-no">H</span><div><h2>H · Polite & honorific</h2><p>The ます/です paradigm and 敬語 verb forms.</p></div><a class="top-link" href="#contents">Contents ↑</a></div>
+
+<article class="card" id="polite" data-search="polite masu masen mashita desu present past polite form">
+    <div class="card-head"><div><h2>Polite — <span class="kana">ます</span> forms</h2><p>Use the stem (る-verb: drop る; う-verb: い-row) + ます paradigm. The past and negative live entirely in the ending.</p></div><div class="card-actions"><button class="icon-btn star">☆</button><button class="icon-btn copy">⧉</button></div></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th></th><th>る-verb — 食べる</th><th>う-verb — 飲む</th><th>Ending</th></tr></thead>
+      <tbody>
+        <tr><td class="rowlabel">Non-past<small>present / future</small></td><td data-label="食べる"><span class="jp jp-lg">食べます</span><span class="romaji">tabemasu</span></td><td data-label="飲む"><span class="jp jp-lg">飲みます</span><span class="romaji">nomimasu</span></td><td class="dim">～ます</td></tr>
+        <tr><td class="rowlabel">Non-past Neg.</td><td data-label="食べる"><span class="jp jp-lg">食べません</span><span class="romaji">tabemasen</span></td><td data-label="飲む"><span class="jp jp-lg">飲みません</span><span class="romaji">nomimasen</span></td><td class="dim">～ません</td></tr>
+        <tr><td class="rowlabel">Past</td><td data-label="食べる"><span class="jp jp-lg">食べました</span><span class="romaji">tabemashita</span></td><td data-label="飲む"><span class="jp jp-lg">飲みました</span><span class="romaji">nomimashita</span></td><td class="dim">～ました</td></tr>
+        <tr><td class="rowlabel">Past-Neg.</td><td data-label="食べる"><span class="jp jp-lg">食べませんでした</span><span class="romaji">tabemasen deshita</span></td><td data-label="飲む"><span class="jp jp-lg">飲みませんでした</span><span class="romaji">nomimasen deshita</span></td><td class="dim">～ませんでした</td></tr>
+        <tr><td class="rowlabel">Volitional (polite)</td><td data-label="食べる"><span class="jp jp-lg">食べましょう</span><span class="romaji">tabemashou</span></td><td data-label="飲む"><span class="jp jp-lg">飲みましょう</span><span class="romaji">nomimashou</span></td><td class="dim">～ましょう = let’s…</td></tr>
+      </tbody>
+    </table></div>
+  </article>
+
+  <article class="card" id="honorifics" data-search="honorific humble keigo sonkeigo kenjougo irassharu ossharu nasaru meshiagaru itadaku ukagau">
+    <div class="card-head"><div><h2>Honorific &amp; humble verbs — <span class="kana">敬語</span></h2><p>Raise the other person’s actions (honorific), lower your own (humble). The common verbs have special forms — memorize this table; everything else uses the productive patterns below.</p></div><div class="card-actions"><button class="icon-btn star">☆</button><button class="icon-btn copy">⧉</button></div></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Meaning</th><th>Plain</th><th>Honorific</th><th>Humble</th></tr></thead>
+      <tbody>
+        <tr><td class="rowlabel">go / come / be</td><td data-label="Plain"><span class="jp">行く・来る・いる</span><span class="romaji">iku · kuru · iru</span></td><td data-label="Honorific"><span class="jp jp-lg">いらっしゃる</span><span class="romaji">irassharu</span></td><td data-label="Humble"><span class="jp">参る / おる</span><span class="romaji">mairu / oru</span></td></tr>
+        <tr><td class="rowlabel">say</td><td data-label="Plain"><span class="jp">言う</span><span class="romaji">iu</span></td><td data-label="Honorific"><span class="jp jp-lg">おっしゃる</span><span class="romaji">ossharu</span></td><td data-label="Humble"><span class="jp">申す・申し上げる</span><span class="romaji">mousu · moushiageru</span></td></tr>
+        <tr><td class="rowlabel">do</td><td data-label="Plain"><span class="jp">する</span><span class="romaji">suru</span></td><td data-label="Honorific"><span class="jp jp-lg">なさる</span><span class="romaji">nasaru</span></td><td data-label="Humble"><span class="jp">いたす</span><span class="romaji">itasu</span></td></tr>
+        <tr><td class="rowlabel">eat / drink</td><td data-label="Plain"><span class="jp">食べる・飲む</span><span class="romaji">taberu · nomu</span></td><td data-label="Honorific"><span class="jp jp-lg">召し上がる</span><span class="romaji">meshiagaru</span></td><td data-label="Humble"><span class="jp">いただく</span><span class="romaji">itadaku</span></td></tr>
+        <tr><td class="rowlabel">see / look</td><td data-label="Plain"><span class="jp">見る</span><span class="romaji">miru</span></td><td data-label="Honorific"><span class="jp jp-lg">ご覧になる</span><span class="romaji">go-ran ni naru</span></td><td data-label="Humble"><span class="jp">拝見する</span><span class="romaji">haiken suru</span></td></tr>
+        <tr><td class="rowlabel">give (to me / us)</td><td data-label="Plain"><span class="jp">くれる</span><span class="romaji">kureru</span></td><td data-label="Honorific"><span class="jp jp-lg">くださる</span><span class="romaji">kudasaru</span></td><td data-label="Humble"><span class="dim">—</span></td></tr>
+        <tr><td class="rowlabel">ask / visit</td><td data-label="Plain"><span class="jp">聞く・訪ねる</span><span class="romaji">kiku · tazuneru</span></td><td data-label="Honorific"><span class="dim">—</span></td><td data-label="Humble"><span class="jp">伺う</span><span class="romaji">ukagau</span></td></tr>
+      </tbody>
+    </table></div>
+    <div class="grid2">
+      <div class="mini"><h3>Productive honorific pattern</h3><p><span class="jp">お + stem + になる</span>: お読みになる “(you) read.” The passive form ～られる is also used as a lighter honorific: 読まれる.</p></div>
+      <div class="mini"><h3>Productive humble pattern</h3><p><span class="jp">お + stem + する</span>: お持ちする “I’ll carry it (for you).” Sino-Japanese verbs take ご: ご案内する.</p></div>
+    </div>
+    <p class="example"><b>Conjugation:</b> special verbs inflect as う-verbs (いらっしゃる → いらっしゃらない / いらっしゃった; note ます-form いらっしゃいます). くださる → くださいます.</p>
+  </article>
+
+  <div class="section-head" id="sec-written"><span class="sec-no">I</span><div><h2>I · Written style</h2><p>Formal and literary forms for reading and essays.</p></div><a class="top-link" href="#contents">Contents ↑</a></div>
+
+  <article class="card" id="written" data-search="written formal literary de aru nu zu style essay bunsho de wa nai">
+    <div class="card-head"><div><h2>Written / formal style — <span class="kana">である</span></h2><p>Essays, articles and reports drop ます/です and use plain forms, with the copula written である and a literary negative ぬ. Same tense rows as everywhere else on this page.</p></div><div class="card-actions"><button class="icon-btn star">☆</button><button class="icon-btn copy">⧉</button></div></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Tense</th><th>Copula — noun / な-adj</th><th>Verb — literary negative</th></tr></thead>
+      <tbody>
+        <tr><td class="rowlabel">Non-past</td><td data-label="Copula"><span class="jp jp-lg"><ruby>学生<rt>がくせい</rt></ruby>である</span><span class="romaji">gakusei de aru</span></td><td data-label="Verb"><span class="dim">use the plain form: 飲む / 食べる</span></td></tr>
+        <tr><td class="rowlabel">Non-past Neg.</td><td data-label="Copula"><span class="jp jp-lg"><ruby>学生<rt>がくせい</rt></ruby>ではない</span><span class="romaji">gakusei de wa nai</span></td><td data-label="Verb"><span class="jp jp-lg"><ruby>飲<rt>の</rt></ruby>まぬ / <ruby>食<rt>た</rt></ruby>べぬ</span><span class="romaji">nomanu / tabenu — negative stem + ぬ (literary ない)</span></td></tr>
+        <tr><td class="rowlabel">Past</td><td data-label="Copula"><span class="jp jp-lg"><ruby>学生<rt>がくせい</rt></ruby>であった</span><span class="romaji">gakusei de atta</span></td><td data-label="Verb"><span class="dim">use the plain past: 飲んだ / 食べた</span></td></tr>
+        <tr><td class="rowlabel">Past-Neg.</td><td data-label="Copula"><span class="jp jp-lg"><ruby>学生<rt>がくせい</rt></ruby>ではなかった</span><span class="romaji">gakusei de wa nakatta</span></td><td data-label="Verb"><span class="dim">～なかった, as in speech</span></td></tr>
+        <tr><td class="rowlabel">Without doing<small>～ずに</small></td><td data-label="Copula"><span class="dim">—</span></td><td data-label="Verb"><span class="jp jp-lg"><ruby>食<rt>た</rt></ruby>べずに / <ruby>飲<rt>の</rt></ruby>まずに</span><span class="romaji">tabezu ni / nomazu ni — negative stem + ず. Irregular: する → せず, 来る → こず</span></td></tr>
+      </tbody>
+    </table></div>
+    <p class="example"><b>Also in writing:</b> だ is kept in casual written style (headlines, narration, notes); である is the formal essay register. ぬ never takes tense itself — past is still ～なかった.</p>
+  </article>
+
+  <div class="section-head" id="sec-formmap"><span class="sec-no">J</span><div><h2>J · One-verb index</h2><p>Every form of 食べる and 飲む on one table.</p></div><a class="top-link" href="#contents">Contents ↑</a></div>
+
+  <article class="card" id="form-map" data-search="form map index all forms complete taberu nomu every conjugation lookup">
+    <div class="card-head"><div><h2>Complete form map — <span class="kana">one verb, every form</span></h2><p>The fastest lookup on the page: pick the form name in the left column and read across. Both model verbs, side by side, in a fixed order — core tenses first, then stems, then derived forms.</p></div><div class="card-actions"><button class="icon-btn star">☆</button><button class="icon-btn copy">⧉</button></div></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Form</th><th>る-verb — 食べる</th><th>う-verb — 飲む</th><th>Built from</th></tr></thead>
+      <tbody>
+        <tr><td class="rowlabel">Non-past</td><td data-label="食べる"><span class="jp jp-lg">食べる</span><span class="romaji">taberu</span></td><td data-label="飲む"><span class="jp jp-lg">飲む</span><span class="romaji">nomu</span></td><td class="dim">dictionary form</td></tr>
+        <tr><td class="rowlabel">Non-past Neg.</td><td data-label="食べる"><span class="jp jp-lg">食べない</span><span class="romaji">tabenai</span></td><td data-label="飲む"><span class="jp jp-lg">飲まない</span><span class="romaji">nomanai</span></td><td class="dim">stem / あ-row + ない</td></tr>
+        <tr><td class="rowlabel">Past</td><td data-label="食べる"><span class="jp jp-lg">食べた</span><span class="romaji">tabeta</span></td><td data-label="飲む"><span class="jp jp-lg">飲んだ</span><span class="romaji">nonda</span></td><td class="dim">て-form stem + た/だ</td></tr>
+        <tr><td class="rowlabel">Past-Neg.</td><td data-label="食べる"><span class="jp jp-lg">食べなかった</span><span class="romaji">tabenakatta</span></td><td data-label="飲む"><span class="jp jp-lg">飲まなかった</span><span class="romaji">nomanakatta</span></td><td class="dim">negative + かった</td></tr>
+        <tr><td class="rowlabel">Polite</td><td data-label="食べる"><span class="jp jp-lg">食べます</span><span class="romaji">tabemasu</span></td><td data-label="飲む"><span class="jp jp-lg">飲みます</span><span class="romaji">nomimasu</span></td><td class="dim">stem / い-row + ます (§H for full paradigm)</td></tr>
+        <tr><td class="rowlabel">て-form</td><td data-label="食べる"><span class="jp jp-lg">食べて</span><span class="romaji">tabete</span></td><td data-label="飲む"><span class="jp jp-lg">飲んで</span><span class="romaji">nonde</span></td><td class="dim">§B sound-change rules</td></tr>
+        <tr><td class="rowlabel">たり (listing)</td><td data-label="食べる"><span class="jp jp-lg">食べたり</span><span class="romaji">tabetari</span></td><td data-label="飲む"><span class="jp jp-lg">飲んだり</span><span class="romaji">nondari</span></td><td class="dim">past stem + り</td></tr>
+        <tr><td class="rowlabel">たら (conditional)</td><td data-label="食べる"><span class="jp jp-lg">食べたら</span><span class="romaji">tabetara</span></td><td data-label="飲む"><span class="jp jp-lg">飲んだら</span><span class="romaji">nondara</span></td><td class="dim">past + ら</td></tr>
+        <tr><td class="rowlabel">ば (conditional)</td><td data-label="食べる"><span class="jp jp-lg">食べれば</span><span class="romaji">tabereba</span></td><td data-label="飲む"><span class="jp jp-lg">飲めば</span><span class="romaji">nomeba</span></td><td class="dim">え-row + ば</td></tr>
+        <tr><td class="rowlabel">Volitional</td><td data-label="食べる"><span class="jp jp-lg">食べよう</span><span class="romaji">tabeyou</span></td><td data-label="飲む"><span class="jp jp-lg">飲もう</span><span class="romaji">nomou</span></td><td class="dim">stem + よう / お-row + う</td></tr>
+        <tr><td class="rowlabel">Imperative</td><td data-label="食べる"><span class="jp jp-lg">食べろ</span><span class="romaji">tabero</span></td><td data-label="飲む"><span class="jp jp-lg">飲め</span><span class="romaji">nome</span></td><td class="dim">stem + ろ / え-row</td></tr>
+        <tr><td class="rowlabel">Prohibitive</td><td data-label="食べる"><span class="jp jp-lg">食べるな</span><span class="romaji">taberu na</span></td><td data-label="飲む"><span class="jp jp-lg">飲むな</span><span class="romaji">nomu na</span></td><td class="dim">dictionary + な</td></tr>
+        <tr><td class="rowlabel">Potential</td><td data-label="食べる"><span class="jp jp-lg">食べられる</span><span class="romaji">taberareru</span></td><td data-label="飲む"><span class="jp jp-lg">飲める</span><span class="romaji">nomeru</span></td><td class="dim">stem + られる / え-row + る</td></tr>
+        <tr><td class="rowlabel">Passive</td><td data-label="食べる"><span class="jp jp-lg">食べられる</span><span class="romaji">taberareru</span></td><td data-label="飲む"><span class="jp jp-lg">飲まれる</span><span class="romaji">nomareru</span></td><td class="dim">stem + られる / あ-row + れる</td></tr>
+        <tr><td class="rowlabel">Causative</td><td data-label="食べる"><span class="jp jp-lg">食べさせる</span><span class="romaji">tabesaseru</span></td><td data-label="飲む"><span class="jp jp-lg">飲ませる</span><span class="romaji">nomaseru</span></td><td class="dim">stem + させる / あ-row + せる</td></tr>
+        <tr><td class="rowlabel">Causative-Passive</td><td data-label="食べる"><span class="jp jp-lg">食べさせられる</span><span class="romaji">tabesaserareru</span></td><td data-label="飲む"><span class="jp jp-lg">飲まされる</span><span class="romaji">nomasareru</span></td><td class="dim">causative + passive</td></tr>
+        <tr><td class="rowlabel">たい (desire)</td><td data-label="食べる"><span class="jp jp-lg">食べたい</span><span class="romaji">tabetai</span></td><td data-label="飲む"><span class="jp jp-lg">飲みたい</span><span class="romaji">nomitai</span></td><td class="dim">stem / い-row + たい</td></tr>
+        <tr><td class="rowlabel">ている (aspect)</td><td data-label="食べる"><span class="jp jp-lg">食べている</span><span class="romaji">tabete iru</span></td><td data-label="飲む"><span class="jp jp-lg">飲んでいる</span><span class="romaji">nonde iru</span></td><td class="dim">て-form + いる (§D for full paradigm)</td></tr>
+      </tbody>
+    </table></div>
+  </article>
+
+  <div class="empty" id="empty">No table matches that search. Try “past”, “potential”, or a verb like 飲む.</div>
+
+  <div class="footer">
+    <p><b>Source &amp; further reading:</b> Patterns summarized from Tae Kim’s <em>Guide to Learning Japanese</em> — free at <a href="https://guidetojapanese.org/learn/author/tae-kim/" target="_blank" rel="noopener">guidetojapanese.org</a> (also as the PDF / book <em>A Guide to Japanese Grammar</em>). This page is an original study summary, not a reproduction — use it to review, then read the full lessons there for examples and nuance. Starred items stay starred only while this tab is open.</p>
+    <p style="margin-top:8px">Cheat for remembering everything: <b>Past stem = たら / たり stem. Negative stem = なければ / passive / causative stem. い-row stem = ます / たい / やすい stem.</b> Learn the three stems and the rest is endings.</p>
+  </div>
+</main>
+
+<script>
+(function(){
+  var q=document.getElementById('q');
+  var cards=Array.prototype.slice.call(document.querySelectorAll('.card'));
+  var empty=document.getElementById('empty');
+  var favOnly=false;
+  function norm(s){return (s||'').toLowerCase();}
+  function applyFilter(){
+    var term=norm(q.value.trim());
+    var visible=0;
+    cards.forEach(function(c){
+      var matchesSearch=!term || norm(c.getAttribute('data-search')+' '+c.textContent).indexOf(term)!==-1;
+      var matchesFav=!favOnly || c.classList.contains('is-starred');
+      var show=matchesSearch && matchesFav;
+      c.classList.toggle('hidden-by-search',!show);
+      if(show) visible++;
+    });
+    empty.classList.toggle('show',visible===0);
+  }
+  q.addEventListener('input',applyFilter);
+
+  var romajiBtn=document.getElementById('toggleRomaji');
+  romajiBtn.addEventListener('click',function(){
+    var on=document.body.classList.toggle('no-romaji')===false;
+    romajiBtn.textContent=on?'Romaji ON':'Romaji OFF';
+    romajiBtn.classList.toggle('active',!on);
+    romajiBtn.setAttribute('aria-pressed',on?'true':'false');
+  });
+  var furiBtn=document.getElementById('toggleFuri');
+  furiBtn.addEventListener('click',function(){
+    var on=document.body.classList.toggle('no-furigana')===false;
+    furiBtn.textContent=on?'Furigana ON':'Furigana OFF';
+    furiBtn.classList.toggle('active',!on);
+    furiBtn.setAttribute('aria-pressed',on?'true':'false');
+  });
+  var favBtn=document.getElementById('toggleFavs');
+  favBtn.addEventListener('click',function(){
+    favOnly=!favOnly;
+    favBtn.classList.toggle('active',favOnly);
+    favBtn.textContent=favOnly?'★ Showing starred':'★ Starred only';
+    applyFilter();
+  });
+
+  document.querySelectorAll('.card').forEach(function(card){
+    var star=card.querySelector('.star');
+    if(star){
+      star.addEventListener('click',function(){
+        var on=card.classList.toggle('is-starred');
+        star.textContent=on?'★':'☆';
+        star.classList.toggle('starred',on);
+        if(favOnly) applyFilter();
+      });
+    }
+    var copyBtn=card.querySelector('.copy');
+    if(copyBtn){
+      copyBtn.addEventListener('click',function(){
+        var title=card.querySelector('h2')?card.querySelector('h2').textContent.trim():'';
+        var rows=[];
+        card.querySelectorAll('tbody tr').forEach(function(tr){
+          var cells=[];
+          tr.querySelectorAll('td').forEach(function(td){
+            var t=td.textContent.replace(/\s+/g,' ').trim();
+            cells.push(t);
+          });
+          rows.push(cells.join(' | '));
+        });
+        var text=title+'\n'+rows.join('\n');
+        if(navigator.clipboard&&navigator.clipboard.writeText){
+          navigator.clipboard.writeText(text).then(function(){
+            var old=copyBtn.textContent; copyBtn.textContent='✓'; setTimeout(function(){copyBtn.textContent=old;},1200);
+          }).catch(function(){});
+        }
+      });
+    }
+  });
+})();
+</script>
+</body>
+</html>
