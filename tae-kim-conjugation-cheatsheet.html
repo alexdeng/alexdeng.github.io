@@ -68,6 +68,7 @@ ruby rt{font-size:.52em;color:var(--muted);font-weight:400}
 .groupnav a{font-size:.76rem;font-weight:700;text-decoration:none;color:var(--ink);background:var(--surface2);border:1px solid var(--line);padding:4px 9px;border-radius:999px;white-space:nowrap}
 .groupnav a:hover,.groupnav a:focus{border-color:var(--accent);color:var(--accent)}
 .groupnav a b{color:var(--accent);font-weight:800;margin-right:2px}
+.search-status{flex-basis:100%;font-size:.8rem;font-weight:600;color:var(--muted)}
 
 /* Contents / index */
 .toc{background:var(--surface);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:18px 20px;margin:16px 0 4px}
@@ -144,12 +145,15 @@ tbody tr:hover td{background:color-mix(in srgb, var(--surface2) 55%, transparent
   .hero h1{font-size:1.65rem}
   .grid2{grid-template-columns:1fr}
   thead{display:none}
-  table,tbody,tr,td{display:block;width:100%}
-  tbody tr{padding:10px 12px;border-bottom:1px solid var(--line)}
-  tbody td{border:0;padding:5px 2px}
-  tbody td::before{content:attr(data-label);display:block;font-size:.70rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:1px}
-  tbody td.rowlabel::before{display:none}
-  .rowlabel{font-size:1rem;padding-bottom:2px!important}
+  table,tbody{display:block;width:100%}
+  tbody tr{display:flex;flex-wrap:wrap;gap:2px 18px;padding:9px 14px 11px;border-bottom:1px solid var(--line)}
+  tbody tr:last-child{border-bottom:0}
+  tbody td{display:block;border:0;padding:2px 0;flex:1 1 8.5rem;min-width:0;overflow-wrap:break-word}
+  tbody td[data-label]::before{content:attr(data-label);display:block;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;line-height:1.3}
+  tbody td.rowlabel{flex:1 1 100%}
+  tbody td[colspan]{flex:1 1 100%}
+  .rowlabel{font-size:.98rem;white-space:normal}
+  table .jp-lg{font-size:1.08rem}
   .topbar-in{padding:10px 12px}
   .brand small{display:none}
 }
@@ -185,6 +189,7 @@ tbody tr:hover td{background:color-mix(in srgb, var(--surface2) 55%, transparent
       <a href="#sec-formmap"><b>J</b>Form map</a>
       <a href="#contents">Contents ↑</a>
     </nav>
+    <div class="search-status" id="searchStatus" role="status" aria-live="polite" hidden></div>
   </div>
 </header>
 
@@ -600,21 +605,59 @@ tbody tr:hover td{background:color-mix(in srgb, var(--surface2) 55%, transparent
   var q=document.getElementById('q');
   var cards=Array.prototype.slice.call(document.querySelectorAll('.card'));
   var empty=document.getElementById('empty');
+  var statusEl=document.getElementById('searchStatus');
+  var heads=Array.prototype.slice.call(document.querySelectorAll('.section-head'));
+  var chrome=Array.prototype.slice.call(document.querySelectorAll('.hero,.toc,.note'));
   var favOnly=false;
   function norm(s){return (s||'').toLowerCase();}
   function applyFilter(){
     var term=norm(q.value.trim());
+    var filtering=!!term||favOnly;
     var visible=0;
     cards.forEach(function(c){
-      var matchesSearch=!term || norm(c.getAttribute('data-search')+' '+c.textContent).indexOf(term)!==-1;
+      var matchesSearch=!term || norm((c.getAttribute('data-search')||'')+' '+c.textContent).indexOf(term)!==-1;
       var matchesFav=!favOnly || c.classList.contains('is-starred');
       var show=matchesSearch && matchesFav;
       c.classList.toggle('hidden-by-search',!show);
       if(show) visible++;
     });
+    heads.forEach(function(h){
+      var el=h.nextElementSibling,any=false;
+      while(el && !el.classList.contains('section-head')){
+        if(el.classList.contains('card') && !el.classList.contains('hidden-by-search')){any=true;break;}
+        el=el.nextElementSibling;
+      }
+      h.classList.toggle('hidden-by-search',filtering && !any);
+    });
+    chrome.forEach(function(el){ el.classList.toggle('hidden-by-search',filtering); });
     empty.classList.toggle('show',visible===0);
+    if(statusEl){
+      if(filtering){
+        statusEl.hidden=false;
+        statusEl.textContent=visible===0
+          ? 'No tables match — clear the search to see all '+cards.length+'.'
+          : 'Showing '+visible+' of '+cards.length+' tables'+(term?' for \u201C'+q.value.trim()+'\u201D':'')+'.';
+      }else{
+        statusEl.hidden=true;
+        statusEl.textContent='';
+      }
+    }
   }
-  q.addEventListener('input',applyFilter);
+  var scrollTimer=null;
+  function onSearch(){
+    applyFilter();
+    if(scrollTimer) clearTimeout(scrollTimer);
+    if(!q.value.trim()) return;
+    scrollTimer=setTimeout(function(){
+      var first=null;
+      for(var i=0;i<cards.length;i++){ if(!cards[i].classList.contains('hidden-by-search')){first=cards[i];break;} }
+      if(first && first.scrollIntoView) first.scrollIntoView({block:'start'});
+    },450);
+  }
+  q.addEventListener('input',onSearch);
+  q.addEventListener('keyup',onSearch);
+  q.addEventListener('change',applyFilter);
+  q.addEventListener('search',onSearch);
 
   var romajiBtn=document.getElementById('toggleRomaji');
   romajiBtn.addEventListener('click',function(){
